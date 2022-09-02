@@ -1,0 +1,575 @@
+\documentclass{article}
+
+% librerías:
+\usepackage{amsmath, mathtools, amssymb, mathrsfs, amsthm, multicol, nicematrix}
+\usepackage{lmodern, geometry, graphicx, forest}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+
+%configuraciones:
+\setlength{\columnseprule}{1pt}
+\geometry{
+    left = 20mm,
+    right = 20mm,
+    top = 20mm
+}
+\hyphenpenalty=10000
+\graphicspath{ {C:/Users/usuario/Documents/U/} }
+
+%texto
+\begin{document}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1cm}
+
+		\textbf{\Large{Tarea No.1}}
+
+		\vspace{1.5cm}
+
+		\textbf{David Gómez}
+
+		\vspace{5cm}
+
+		\includegraphics[width=\textwidth]{logo-eci.jpg}
+
+		\vspace{5cm}
+
+		Matemáticas\\
+		Escuela Colombiana de Ingeniería Julio Garavito\\
+		Colombia\\
+		\today
+
+	\end{center}
+\end{titlepage}
+\section{Sección 1.1}
+\begin{itemize}
+	\item \textbf{Punto 1}
+	\item[] Proposiciones:
+		\begin{itemize}
+			\item La lógica estudia las reglas de deducción formales
+			\item la lógica proporciona reglas
+			\item la lógica matemática se ocupa de la posibilidad de axiomatizar las teorías matemáticas
+		\end{itemize}
+	\item Frases (no proposiciones):
+	      \begin{itemize}
+		      \item En un nivel elemental
+		      \item En un nivel avanzado
+		      \item La teoría de la demostración
+	      \end{itemize}
+	\item \textbf{Punto 2}
+	\item[] Proposiciones:
+		\begin{itemize}
+			\item Una especiﬁcación formal usa notación matemática para describir de manera precisa las propiedades que un sistema de información debe tener
+			\item Describe lo que el sistema debe hacer sin decir cómo se va a hacer.
+			\item Esta abstracción hace que las especiﬁcaciones formales sean útiles en el proceso de desarrollar un sistema
+		\end{itemize}
+	\item[] Frases (no proposiciones)
+		\begin{itemize}
+			\item especular sobre el signiﬁcado de frases en un impreciso Pseudocódigo.
+			\item como para aquellos que desarrollan los programas para satisfacer esos requerimientos
+			\item promover un entendimiento común entre todos los interesados en el sistema.
+		\end{itemize}
+	\item \textbf{Punto 3}
+	      a) y b) tienen la misma estructura.
+\end{itemize}
+\section{Sección 1.2}
+\begin{itemize}
+	\item \textbf{Punto 1}
+	      \begin{itemize}
+		      \item[] b)
+			      \begin{equation*}
+				      (\textrm{\textit{true}} \equiv \textrm{\textit{false}}) \tag*{Cumple con la definición de $\phi ::= (\phi \equiv \phi)$}
+			      \end{equation*}
+		      \item[] d)
+			      \begin{equation*}
+				      (p \vee (p \equiv (\lnot q))) \tag*{Cumple con la definición de $\phi ::= (\phi \vee \phi)$}
+			      \end{equation*}
+		      \item[] f)
+			      \begin{equation*}
+				      ((q \wedge (\lnot q))\leftarrow (\lnot(\lnot(\lnot(p \rightarrow r))))) \tag*{Cumple con la definición de $\phi ::= (\phi \leftarrow \phi)$}
+			      \end{equation*}
+	      \end{itemize}
+	\item \textbf{Punto 2}
+	      \begin{itemize}
+		      \item[] a)
+			      \begin{equation*}
+				      (p \vee) \tag*{No se encuentra en la definición de $\phi$ (hace falta algún $\phi$ despues de $\vee$)}
+			      \end{equation*}
+		      \item[] c)
+			      \begin{equation*}
+				      \lnot p \tag*{No se encuentra en la definición de $\phi$ (hace falta cerrar todo con "()")}
+			      \end{equation*}
+		      \item[] e)
+			      \begin{equation*}
+				      (p \vee q) \vee r \tag*{No se encuentra en la definición de $\phi$ (hace falta cerrar todo con "()")}
+			      \end{equation*}
+	      \end{itemize}
+	\item \textbf{Punto 3}
+	      \begin{itemize}
+		      \item[] a)
+			      \begin{center}
+				      \begin{NiceTabular}{l}
+					      $p$ : Un número natural es par   \\
+					      $q$ : Un número natural es impar \\
+					      \makebox[5cm]{\hrulefill}        \\
+					      $(p \equiv (\lnot q))$
+				      \end{NiceTabular}
+			      \end{center}
+		      \item[] b)
+			      \begin{center}
+				      \begin{NiceTabular}{l}
+					      $p$ : El sol brilla hoy    \\
+					      $q$ : El sol brilla mañana \\
+					      \makebox[4cm]{\hrulefill}  \\
+					      $(p \rightarrow (\lnot q))$
+				      \end{NiceTabular}
+			      \end{center}
+		      \item[] c)
+			      \begin{center}
+				      \begin{NiceTabular}{l}
+					      $p$ : Juan está celoso       \\
+					      $q$ : Juan está de mal genio \\
+					      \makebox[4.5cm]{\hrulefill}  \\
+					      $p \vee q$
+				      \end{NiceTabular}
+			      \end{center}
+		      \item[] d)
+			      \begin{center}
+				      \begin{NiceTabular}{l}
+					      $p$ : Una petición ocurre               \\
+					      $q$ : Una petición será atendida        \\
+					      $r$ : El proceso de horarios se bloquea \\
+					      \makebox[6cm]{\hrulefill}               \\
+					      $((p \Rightarrow q) \vee r)$
+				      \end{NiceTabular}
+			      \end{center}
+		      \item[] e)
+			      \begin{center}
+				      \begin{NiceTabular}{l}
+					      $p$ : Llueve              \\
+					      $q$ : Hace sol            \\
+					      \makebox[2cm]{\hrulefill} \\
+					      $((p \vee q) \wedge (\lnot(p \wedge q)))$
+				      \end{NiceTabular}
+			      \end{center}
+		      \item[] f)
+			      \begin{center}
+				      \begin{NiceTabular}{l}
+					      $p$ : (tener) Zapatos                \\
+					      $q$ : (tener) Camisa                 \\
+					      $r$ : hay servicio en el restaurante \\
+					      \makebox[5cm]{\hrulefill}            \\
+					      $((\lnot(p \vee q)) \Rightarrow (\lnot r))$
+				      \end{NiceTabular}
+			      \end{center}
+		      \item[] g)
+			      \begin{center}
+				      \begin{NiceTabular}{l}
+					      $p_0$ : Mi hermana quiere un gato blanco \\
+					      $q_0$ : Mi hermana quiere un gato negro  \\
+					      $p_1$ : Mi hermana quiere un gato        \\
+					      $q_1$ : El gato es blanco                \\
+					      $r_1$ : El gato es negro                 \\
+					      \makebox[5cm]{\hrulefill}                \\
+					      $\Phi \equiv (p_0 \wedge q_0)$           \\
+					      $\vee$                                   \\
+					      $\Phi \equiv (p_1 \wedge (q_1 \wedge r_1))$
+				      \end{NiceTabular}
+			      \end{center}
+		      \item[] h)
+			      \begin{center}
+				      \begin{NiceTabular}{l}
+					      $p$ : Mi pareja raja            \\
+					      $q$ : Mi pareja presta el hacha \\
+					      \makebox[5cm]{\hrulefill}       \\
+					      $((\lnot p) \wedge (\lnot q))$
+				      \end{NiceTabular}
+			      \end{center}
+	      \end{itemize}
+	\item \textbf{Punto 4}
+	      $h$ : El cuarteto interpretará a Haydn.
+	      $m$ : El cuarteto interpretará a Mozart.
+	      \begin{itemize}
+		      \item[] a) $(h \vee m)$\\
+			      El cuarteto interpretará a Haydn o a Mozart.
+		      \item[] b) $(h \equiv (\lnot m))$\\
+			      El cuarteto interpreta a Haydn solo si no interpreta a Mozart.
+		      \item[] c) $(\lnot (h \equiv m))$\\
+			      El cuarteto interpretará a Haydn o a Mozart, pero no ambos.
+		      \item[] d) $(\lnot (h \wedge m))$\\
+			      El cuarteto no interpreta a Haydn o no interpreta a Mozart.
+		      \item[] e) $(((\lnot (h \wedge m)) \wedge (\lnot h)) \rightarrow m)$\\
+			      si sucede que, el cuarteto no interpreta a Haydn o no interpreta a Mozart y no interpretan a Haydn, entonces interpretan a Mozart.
+	      \end{itemize}
+	\item \textbf{Punto 5}
+	      \begin{itemize}
+		      \item[] a) Si Pedro entiende matemáticas, entonces puede entender lógica. Pedro no entiende lógica.\\Consecuentemente, Pedro no entiende matemáticas.
+			      \begin{center}
+				      $p$ : Pedro entiende matemáticas.\\
+				      $q$ : Pedro puede entender lógica.\\
+				      \makebox[5cm]{\hrulefill}\\
+				      \begin{NiceTabular}{l l}
+					      0. $(p \rightarrow q)$ & axioma/ enunciado \\
+					      1. $(\lnot q)$         & axioma/ enunciado \\
+					      2. $(\lnot p)$         & MTT, (0,1)
+				      \end{NiceTabular}
+			      \end{center}
+		      \item[] b) Si llueve o cae nieve, entonces no hay electricidad. Llueve. Entonces, no habrá electricidad.
+			      \begin{center}
+				      $p$ : Llueve\\
+				      $q$ : Cae nieve\\
+				      $r$ : Hay electricidad\\
+				      \makebox[6.5cm]{\hrulefill}\\
+				      \begin{NiceTabular}{l l}
+					      0. $((p \vee q) \rightarrow (\lnot r))$ & axioma/ enunciado \\
+					      1. $(q)$                                & axioma/ enunciado \\
+					      2. $(\lnot r)$                          & MPP, (0,1)        \\
+				      \end{NiceTabular}
+			      \end{center}
+		      \item[] c) Si llueve o cae nieve, entonces no hay electricidad. Hay electricidad. Entonces no nevó.
+			      \begin{center}
+				      $p$ : Llueve\\
+				      $q$ : Cae nieve\\
+				      $r$ : Hay electricidad\\
+				      \makebox[6.5cm]{\hrulefill}\\
+				      \begin{NiceTabular}{l l}
+					      0. $((p \vee q) \rightarrow (\lnot r))$ & axioma/ enunciado   \\
+					      1. $(r)$                                & axioma/ enunciado   \\
+					      2. $(\lnot(p \vee q))$                  & MTT, (0, 1)         \\
+					      3. $((\lnot p) \wedge (\lnot q))$       & DM, (2)             \\
+					      4. $(\lnot q)$                          & Simplificación, (3)
+				      \end{NiceTabular}
+			      \end{center}
+		      \item[] d) Si $\sin x$ es diferenciable, entonces $\sin x$ es continua. Si $\sin x$ es continua, entonces $\sin x$ es diferenciable. La función $\sin x$ es diferenciable. Consecuentemente, la función $\sin x$ es integrable.
+			      \begin{center}
+				      $p$ : $\sin x$ es diferenciable.\\
+				      $q$ : $\sin x$ es continua\\
+				      $r$ : $\sin x$ es integrable\\
+				      \makebox[7cm]{\hrulefill}\\
+				      \begin{NiceTabular}{l l}
+					      0. $(p \rightarrow q)$ & axioma/ enunciado               \\
+					      1. $(q \rightarrow p)$ & axioma/ enunciado               \\
+					      2. $p$                 & axioma/ enunciado               \\
+					      3. $(p \equiv q)$      & def. equivalencia, (0, 1)       \\
+					      4. $q$                                                   \\
+					      5. $r$                 & Teorema fundamental del cálculo
+				      \end{NiceTabular}
+			      \end{center}
+		      \item[] e) Si Gödel fuera presidente, entonces el Congreso presentaría leyes razonables. Gödel no es presidente. Por lo tanto, el Congreso no presenta leyes razonables.
+			      \begin{center}
+				      $p$ : Gödel es presidente\\
+				      $q$ : El congreso presenta leyes razonables\\
+				      \makebox[7.5cm]{\hrulefill}\\
+				      \begin{NiceTabular}{l l}
+					      0. $(p \rightarrow q)$                               \\
+					      1. $(\lnot p)$                                       \\
+					      2. $(\lnot q)$ & (falacia: negación del antecedente)
+				      \end{NiceTabular}
+			      \end{center}
+		      \item[] f) Si llueve, entonces no hay picnic. Si cae nieve, entonces no hay picnic. Llueve o cae nieve. Por lo tanto, no hay picnic.
+			      \begin{center}
+				      $p$ : Llueve.\\
+				      $q$ : Hay picnic.\\
+				      $r$ : Cae nieve.\\
+				      \makebox[6.5cm]{\hrulefill}\\
+				      \begin{NiceTabular}{l l}
+					      0. $(p \rightarrow (\lnot q))$          & axioma/ enunciado    \\
+					      1. $(r \rightarrow (\lnot q))$          & axioma/ enunciado    \\
+					      2. $(p \vee r)$                         & axioma/ enunciado    \\
+					      3. $((p \vee r) \rightarrow (\lnot q))$ & equivalencia, (0, 1) \\
+					      4. $(\lnot q)$                          & MPP, (3, 2)
+				      \end{NiceTabular}
+			      \end{center}
+	      \end{itemize}
+\end{itemize}
+\section{Sección 1.3}
+\begin{itemize}
+	\item \textbf{Punto 1}
+	      \begin{itemize}
+		      \item[] b) \textit{true}
+			      \begin{center}
+				      \textit{true}
+			      \end{center}
+		      \item[] d) $((p \wedge (\lnot q)) \to r)$
+			      \begin{center}
+				      \begin{forest}
+					      for tree={parent anchor=south,child anchor=north}
+					      [$\to$
+					      [$\wedge$
+							      [$p$]
+								      [$\lnot$
+									      [$q$]
+								      ]
+						      ]
+						      [$r$]
+					      ]
+				      \end{forest}
+			      \end{center}
+		      \item[] f) $(p \to (q \to p))$
+			      \begin{center}
+				      \begin{forest}
+					      for tree={parent anchor=south,child anchor=north}
+					      [
+					      $\to$
+					      [
+							      [$p$]
+								      [
+									      $\to$
+									      [
+											      [$q$]
+												      [$p$]
+										      ]
+								      ]
+						      ]
+					      ]
+				      \end{forest}
+			      \end{center}
+	      \end{itemize}
+	\item \textbf{Punto 2}
+	      \begin{itemize}
+		      \item[] a)$p$\\
+			      $p$
+		      \item[] c) $((p \wedge (\lnot q)) \to r)$\\
+			      $p, q, r, (\lnot q), (p \wedge(\lnot q)), ((p \wedge (\lnot q)) \to r) $
+		      \item[] e) $(p \to (q \to p))$\\
+			      $p, q, (q \to p), (p \to (q \to p))$
+	      \end{itemize}
+	\item \textbf{Punto 3}
+	      \begin{itemize}
+		      \item[] a) Una proposición que es una negación de una equivalencia.
+			      \begin{center}
+				      \begin{forest}
+					      for tree={parent anchor=south,child anchor=north}
+					      [
+					      $\lnot$
+					      [
+							      $\equiv$
+							      [
+									      [$\phi$]
+										      [$\psi$]
+								      ]
+						      ]
+					      ]
+				      \end{forest}
+			      \end{center}
+		      \item[] b) Una proposición que es una disyunción cuyos disyuntos ambos son conjunciones.
+			      \begin{center}
+				      \begin{forest}
+					      for tree={parent anchor=south,child anchor=north}
+					      [
+					      $\vee$
+					      [
+							      $\wedge$
+							      [$\phi_0$]
+								      [$\phi_1$]
+						      ]
+						      [
+							      $\wedge$
+							      [$\phi_2$]
+								      [$\phi_3$]
+						      ]
+					      ]
+				      \end{forest}
+			      \end{center}
+		      \item[] c) Una proposición que es una conjunción de conjunciones.
+			      \begin{center}
+				      \begin{forest}
+					      for tree={parent anchor=south,child anchor=north}
+					      [
+					      $\wedge$
+					      [
+							      $\wedge$
+							      [$\phi_0$]
+								      [$\phi_1$]
+						      ]
+						      [
+							      $\wedge$
+							      [$\phi_2$]
+								      [$\phi_3$]
+						      ]
+					      ]
+				      \end{forest}
+			      \end{center}
+		      \item[] d) Una proposición que es una implicación cuyo antecedente es una negación y consecuente es una equivalencia.
+			      \begin{center}
+				      \begin{forest}
+					      for tree={parent anchor=south,child anchor=north}
+					      [
+					      $\to$
+					      [
+							      $\lnot$
+							      [$\phi_0$]
+						      ]
+						      [
+							      $\equiv$
+							      [$\phi_1$]
+								      [$\phi_2$]
+						      ]
+					      ]
+				      \end{forest}
+			      \end{center}
+		      \item[] e)Una proposición que es una consecuencia cuyo antecedente es una disyunción y consecuente una discrepancia.
+			      \begin{center}
+				      \begin{forest}
+					      for tree={parent anchor=south,child anchor=north}
+					      [
+					      $\gets$
+					      [
+							      $\not\equiv$
+							      [$\phi_2$]
+								      [$\phi_3$]
+						      ]
+						      [
+							      $\vee$
+							      [$\phi_0$]
+								      [$\phi_1$]
+						      ]
+					      ]
+				      \end{forest}
+			      \end{center}
+	      \end{itemize}
+	\item \textbf{Punto 4}
+	      $(((p \vee q) \equiv (r \to p)) \gets (q \not\equiv (\lnot q)))$
+\end{itemize}
+\section{Sección 1.4}
+\begin{itemize}
+	\item \textbf{Punto 2}
+	      \begin{alignat*}{2}
+		      \intertext{Con $(\lnot \psi)$}
+		      L[(\lnot \psi)]           & = 1 + L[\psi]                                         \\
+		                                & = 1 + R[\psi] \tag*{Hipótesis de inducción}           \\
+		                                & = R[(\lnot \psi)] \tag*{$\Box$}
+		      \intertext{Con $(\psi \not\equiv \tau)$}
+		      L[(\psi \not\equiv \tau)] & = 1 + L[\psi] + L[\tau]                               \\
+		                                & = 1 + R[\psi] + R[\tau] \tag*{Hipótesis de inducción} \\
+		                                & = R[(\psi \not\equiv \tau)] \tag*{$\Box$}
+		      \intertext{Con $(\psi \vee \tau)$}
+		      L[(\psi \vee \tau)]       & = 1 + L[\psi] + L[\tau]                               \\
+		                                & = 1 + R[\psi] + R[\tau] \tag*{Hipótesis de inducción} \\
+		                                & = R[(\psi \vee \tau)] \tag*{$\Box$}
+		      \intertext{Con $(\psi \wedge \tau)$}
+		      L[(\psi \wedge \tau)]     & = 1 + L[\psi] + L[\tau]                               \\
+		                                & = 1 + R[\psi] + R[\tau] \tag*{Hipótesis de inducción} \\
+		                                & = R[(\psi \wedge \tau)] \tag*{$\Box$}
+		      \intertext{Con $(\psi \to \tau)$}
+		      L[(\psi \to \tau)]        & = 1 + L[\psi] + L[\tau]                               \\
+		                                & = 1 + R[\psi] + R[\tau] \tag*{Hipótesis de inducción} \\
+		                                & = R[(\psi \to \tau)] \tag*{$\Box$}
+		      \intertext{Con $(\psi \gets \tau)$}
+		      L[(\psi \gets \tau)]      & = 1 + L[\psi] + L[\tau]                               \\
+		                                & = 1 + R[\psi] + R[\tau] \tag*{Hipótesis de inducción} \\
+		                                & = R[(\psi \gets \tau)] \tag*{$\Box$}
+	      \end{alignat*}
+	\item \textbf{Punto 3}
+	      \begin{equation*}
+		      L[(x] :=
+		      \begin{cases}
+			      L[x] + 1 \\
+			      L[(] = 1
+		      \end{cases}
+	      \end{equation*}
+	      \begin{equation*}
+		      R[x)] :=
+		      \begin{cases}
+			      R[x] + 1 \\
+			      R[)] = 1
+		      \end{cases}
+	      \end{equation*}
+	\item \textbf{Punto 7}\\
+	      funciones auxiliares:
+	      \begin{equation*}
+		      EQ[x \equiv y] :=
+		      \begin{cases}
+			      EQ[x] + EQ[y] + 1 \\
+			      EQ[\equiv] = 1
+		      \end{cases}
+	      \end{equation*}
+	      \begin{equation*}
+		      T[x\ \textrm{\textit{true}}\ y] :=
+		      \begin{cases}
+			      T[x] + T[y] + 1 \\
+			      T[\textrm{\textit{true}}] = 1
+		      \end{cases}
+	      \end{equation*}
+	      \begin{equation*}
+		      F[x \ \textrm{\textit{false}}\  y] :=
+		      \begin{cases}
+			      F[x] + F[y] + 1 \\
+			      F[\textrm{\textit{false}}] = 1
+		      \end{cases}
+	      \end{equation*}
+	      \begin{equation*}
+		      \textrm{Conectores} : \{\lnot, \wedge, \vee, \to, \gets, \not\equiv\}
+	      \end{equation*}
+	      \begin{alignat*}{2}
+		      \textrm{con}          & \in \textrm{Conectores} \\
+			  \textrm{otro} & \notin \textrm{Conectores} \\[0.5cm]	
+		      S[x\ \textrm{con}\ y] & :=
+		      \smash{\left\{\begin{array}{@{}l@{}}
+				                    S[x] + S[y] + 1 \\[\jot]
+				                    S[\textrm{con}] = 1\\[\jot]
+									S[\textrm{otro}] = 0
+			                    \end{array}\right.}
+	      \end{alignat*}
+	      \begin{alignat*}{2}
+		      \intertext{Propiedad}
+		      M(\phi)&: \smash{\left\{\begin{array}{@{}l@{}}
+												(\forall \phi : ((EQ[\phi] \geq 1) \wedge (F[\phi] = 0) \wedge (T[\phi] = 0)))\\[\jot]
+			  									M(\phi) \Rightarrow (\exists u\, \vert\, u \in \phi \wedge S[u] = 0)
+											\end{array}\right.}
+		      \intertext{\textbf{Caso base: $\phi = (p_0 \equiv p_1)$}}
+			EQ[\phi] &= 1 \tag*{$\checkmark$}\\
+			F[\phi] &= 0\tag*{$\checkmark$}\\
+			T[\phi] &= 0\tag*{$\checkmark$}\\
+			M(\phi) &\Rightarrow (\exists u\, \vert\, u \in \phi \wedge S[u] = 0) \tag*{\textit{true}}
+			\intertext{\textbf{Casos inductivos:} $(\lnot \psi), (\psi \equiv \tau), (\psi \not\equiv \tau), (\psi \vee \tau), (\psi \wedge \tau), (\psi \to \tau), (\psi \gets \tau) $}
+			\intertext{Con $\phi = (\lnot \psi)$}
+			EQ[(\lnot \psi)] &\geq 1 \tag*{$\checkmark$}\\
+			F[(\lnot \psi)] &= 0\tag*{$\checkmark$}\\
+			T[(\lnot \psi)] &= 0\tag*{$\checkmark$}\\
+			M((\lnot \psi)) &\Rightarrow (\exists u\, \vert\, u \in \phi \wedge S[u] = 0) \tag*{\textit{true}}
+			\intertext{Con $\phi = (\psi \equiv \tau)$}
+			EQ[(\psi \equiv \tau)] &= 1 + EQ[\psi] + EQ[\tau]\\
+			EQ[(\psi \equiv \tau)] &\geq 1 \tag*{$\checkmark$}\\
+			F[(\psi \equiv \tau)] &= 0\tag*{$\checkmark$}\\
+			T[(\psi \equiv \tau)] &= 0\tag*{$\checkmark$}\\
+			M((\psi \equiv \tau)) &\Rightarrow (\exists u\, \vert\, u \in \phi \wedge S[u] = 0) \tag*{\textit{true}}
+			\intertext{Con $\phi = (\psi \not\equiv \tau)$}
+			EQ[(\psi \not\equiv \tau)] &= EQ[\psi] + EQ[\tau]\\
+			EQ[(\psi \not\equiv \tau)] &\geq 1 \tag*{$\checkmark$}\\
+			F[(\psi \not\equiv \tau)] &= 0\tag*{$\checkmark$}\\
+			T[(\psi \not\equiv \tau)] &= 0\tag*{$\checkmark$}\\
+			M((\psi \not\equiv \tau)) &\Rightarrow (\exists u\, \vert\, u \in \phi \wedge S[u] = 0) \tag*{\textit{true}}
+			\intertext{Con $\phi = (\psi \not\equiv \tau)$}
+			EQ[(\psi \vee \tau)] &= EQ[\psi] + EQ[\tau]\\
+			EQ[(\psi \vee \tau)] &\geq 1 \tag*{$\checkmark$}\\
+			F[(\psi \vee \tau)] &= 0\tag*{$\checkmark$}\\
+			T[(\psi \vee \tau)] &= 0\tag*{$\checkmark$}\\
+			M((\psi \vee \tau)) &\Rightarrow (\exists u\, \vert\, u \in \phi \wedge S[u] = 0) \tag*{\textit{true}}
+			\intertext{Con $\phi = (\psi \not\equiv \tau)$}
+			EQ[(\psi \vee \tau)] &= EQ[\psi] + EQ[\tau]\\
+			EQ[(\psi \vee \tau)] &\geq 1 \tag*{$\checkmark$}\\
+			F[(\psi \vee \tau)] &= 0\tag*{$\checkmark$}\\
+			T[(\psi \vee \tau)] &= 0\tag*{$\checkmark$}\\
+			M((\psi \vee \tau)) &\Rightarrow (\exists u\, \vert\, u \in \phi \wedge S[u] = 0) \tag*{\textit{true}}
+			\intertext{Con $\phi = (\psi \wedge \tau)$}
+			EQ[(\psi \wedge \tau)] &= EQ[\psi] + EQ[\tau]\\
+			EQ[(\psi \wedge \tau)] &\geq 1 \tag*{$\checkmark$}\\
+			F[(\psi \wedge \tau)] &= 0\tag*{$\checkmark$}\\
+			T[(\psi \wedge \tau)] &= 0\tag*{$\checkmark$}\\
+			M((\psi \wedge \tau)) &\Rightarrow (\exists u\, \vert\, u \in \phi \wedge S[u] = 0) \tag*{\textit{true}}
+			\intertext{Con $\phi = (\psi \to \tau)$}
+			EQ[(\psi \to \tau)] &= EQ[\psi] + EQ[\tau]\\
+			EQ[(\psi \to \tau)] &\geq 1 \tag*{$\checkmark$}\\
+			F[(\psi \to \tau)] &= 0\tag*{$\checkmark$}\\
+			T[(\psi \to \tau)] &= 0\tag*{$\checkmark$}\\
+			M((\psi \to \tau)) &\Rightarrow (\exists u\, \vert\, u \in \phi \wedge S[u] = 0) \tag*{\textit{true}}
+			\intertext{Con $\phi = (\psi \gets \tau)$}
+			EQ[(\psi \gets \tau)] &= EQ[\psi] + EQ[\tau]\\
+			EQ[(\psi \gets \tau)] &\geq 1 \tag*{$\checkmark$}\\
+			F[(\psi \gets \tau)] &= 0\tag*{$\checkmark$}\\
+			T[(\psi \gets \tau)] &= 0\tag*{$\checkmark$}\\
+			M((\psi \gets \tau)) &\Rightarrow (\exists u\, \vert\, u \in \phi \wedge S[u] = 0) \tag*{\textit{true}}
+		  \end{alignat*}
+\end{itemize}
+\end{document}

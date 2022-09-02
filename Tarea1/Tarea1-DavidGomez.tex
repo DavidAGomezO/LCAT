@@ -1,0 +1,672 @@
+\documentclass{article}
+
+% librerías:
+\usepackage{amsmath, mathtools, amssymb, mathrsfs, amsthm, multicol, nicematrix}
+\usepackage{lmodern, geometry, graphicx}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+
+%configuraciones:
+\setlength{\columnseprule}{1pt}
+\geometry{
+    left = 20mm,
+    right = 20mm,
+    top = 20mm
+}
+\hyphenpenalty=10000
+\graphicspath{ {C:/Users/usuario/Documents/U/} }
+
+%texto
+\begin{document}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1cm}
+
+		\textbf{\Large{Tarea No.1}}
+
+		\vspace{1.5cm}
+
+		\textbf{David Gómez}
+
+		\vspace{5cm}
+
+		\includegraphics[width=\textwidth]{logo-eci.jpg}
+
+		\vspace{5cm}
+
+		Matemáticas\\
+		Escuela Colombiana de Ingeniería Julio Garavito\\
+		Colombia\\
+		\today
+
+	\end{center}
+\end{titlepage}
+
+\section{Sección 0.1}
+\begin{itemize}
+	\item[] \textbf{Punto 2}
+		\begin{itemize}
+			\item Número algebraico:
+			\item[] Se denomina de esta forma todo número el cual es solución a una función/ ecuación donde los coeficientes de la variable pertenecen al conjunto de los números racionales. Todos los números racionales son números algebraicos, sin embargo, no todos los números reales y complejos son algebraicos.
+			\item Número irracional:
+			\item[] Desde el punto de vista de los números Reales, se puede tomar a los irracionales como el conjunto complemento a los racionales. De otra forma, los irracionales se refieren a todo número Real el cual no pueda escribirse a modo de fracción (numerador y denominador ambos pertenecientes a los números enteros).
+			\item Número trascendente:
+			\item[] Se denomina de esta forma todo número el cual no sea solución a una función/ ecuación donde los coeficientes de la variable pertenecen al conjunto de los números racionales. Estos son las excepciones (reales y complejos) los cuales se mencionaron en los números algebraicos. Cabe resaltar que la unión entre los conjuntos de números algebraicos y trascendentes da como resultado todos los números.
+		\end{itemize}
+	\item[] \textbf{Punto 3}
+		\begin{itemize}
+			\item Conjunto:
+			\item [] En general, un conjunto es una agrupación de objetos los cuales normalmente cumplen alguna condición la cual le da la identidad a dicho conjunto. En programación un conjunto es una colección la cual se distingue por no tener orden y no admite elementos que sean iguales o repetidos. En matemáticas, un conjunto es una agrupación de número los cuales cumplen cierta propiedad, o siguen alguna sucesión, ecuación o son resultado de alguna operación entre otros conjuntos definidos (ejemplo: los irracionales, los cuales se definen mediante el complemento o la negación de la propiedad que da como resultado a los racionales).
+			\item Conjunto finito:
+			\item [] Un conjunto finito es aquel conjunto el cual es contable, es decir, la cantidad de elementos pertenecientes a este es comparable a un número natural.\\
+			      Ejemplo:
+			      $ \mathbb{A} = \{1,\ 2,\ 3\}\ $ Este es un conjunto finito, ya que la cantidad de elementos que pertenecen a este es comparable con el natural $3$.
+			\item Conjunto infinito:
+			\item [] Un conjunto infinito es aquel conjunto el cual no es contable, es decir, la cantidad de elementos \\pertenecientes a este no es comparable con un número natural.\\
+			      Ejemplo: El conjunto de los números naturales, está claro que no es posible contar cuantos números naturales hay, y se puede demostrar sencillamente revisando su principal propiedad, la cual indica que el sucesor de un natural es un natural, entonces si se asume que hay una cantidad finita de naturales se entraría en una contradicción, demostrando así que este es un conjunto infinito.
+		\end{itemize}
+	\item[] \textbf{Punto 4}
+		\begin{itemize}
+			\item Función parcial:
+			\item [] Una función parcial es aquella función la cual cumple que no tiene una pareja para ciertos elementos de su dominio, es decir, si una función $f$ tiene dominio el conjunto $A$, y codominio el conjunto $B$, se dice que es parcial si existe por lo menos un elemento de $A$ para el cual no exista su respectiva relación en $B$ mediante $f$.
+			\item Función total:
+			\item [] Una función total es aquella función la cual cumple que tiene pareja para todos los elementos de su dominio, es decir, si una función $f$ tiene dominio el conjunto $A$, y codominio el conjunto $B$, se dice que es total si para todo elemento de $A$ existe un elemento en $B$ mediante $f$.
+			\item Función inyectiva:
+			\item [] Una función inyectiva es aquella función la cual cumple que para cada elemento de su dominio tiene como máximo un elemento relacionado en su codominio y viceversa, es decir, cada elemento de su codominio tiene como máximo un elemento de su dominio. Debido a su definición también son conocidas como funciones uno a uno.
+			\item Función sobreyectiva:
+			\item [] Una función sobreyectiva es aquella función la cual cumple que para todo elemento de su codominio hay por lo menos un elemento en su dominio el cual, mediante la función, se relacione a dicho elemento del codominio.
+			\item Función biyectiva:
+			\item [] Una función biyectiva es aquella función la cual cumple que todo elemento de su dominio se relaciona exclusivamente con un elemento del codominio, y garantiza que todo elemento del dominio tenga un elemento relacionado en el codominio.
+		\end{itemize}
+	\item [] \textbf{Punto 5}
+	      \begin{itemize}
+		      \item Relación binaria;
+		      \item [] Una relación binaria es aquel conjunto de pares ordenados cuyas componentes pertenecen cada una a un conjunto, y cumplen alguna propiedad que les de dicha relación (el conjunto resultante se compone de pares ordenados contenidos en el producto cartesiano entre los conjuntos a los que pertenecen las componentes)
+		      \item Relación binaria reflexiva:
+		      \item [] Una relación binaria reflexiva es aquel conjunto de pares ordenados cuyas componentes cumplen la propiedad reflexiva. Esta propiedad habla a cerca de la operación que relaciona las variables de los pares ordenados, y cumple que cada elemento se puede relacionar consigo mismo.
+		      \item Relación binaria simétrica:
+		      \item [] Una relación simétrica es aquel conjunto de pares ordenados cuyas componentes cumplen la propiedad simétrica. Esta propiedad habla de la operación que relaciona las variables de los pares ordenados, y cumple que, si un elemento se relaciona con otro, entones la relación se puede realizar de forma inversa, es decir, si $a$ se relaciona con $b$ entones $b$ se relaciona con $a$.
+		      \item Relación binaria antisimétrica:
+		      \item [] Una relación antisimétrica es aquel conjunto de pares ordenados cuyas componentes cumplen la propiedad antisimétrica. Esta propiedad habla de la operación que relaciona las variables de los pares ordenados, y cumple que si un elemento se relaciona con otro y este último se relaciona con el primero, entonces se está hablando del mismo elemento.
+		      \item Relación binaria asimétrica:
+		      \item [] Una relación asimétrica es aquel conjunto de pares ordenados cuyas componentes cumplen la propiedad de asimetría. Esta propiedad habla de la operación que relaciona las variables de los pares ordenados, y cumple que si un elemento se relaciona con otro entones este ultimo no se puede relacionar con el primero.
+		      \item Relación binaria transitiva:
+		      \item [] Una relación transitiva es aquel conjunto de pares ordenados cuyas componentes cumplen la propiedad de transitividad. Esta propiedad habla de la operación que relaciona las variables de los pares ordenados, y cumple que, si un elemento se relaciona con otro, y este otro con un tercero, la relación se mantiene de igual forma entre el primero y el tercero. Es decir, si $a$ se relaciona con $b$, $b$ se relaciona con $c$, entonces $a$ se relaciona con $c$.
+	      \end{itemize}
+	\item [] \textbf{Punto 7}
+	      \begin{itemize}
+		      \item Teorema fundamental de la aritmética:
+		      \item [] El teorema fundamental de la aritmética concluye que todo entero positivo mayor a 1, posee una única forma de descomponerse en factores primos.
+		      \item Teorema fundamental del álgebra:
+		      \item [] El teorema fundamental del álgebra concluye que, en los complejos, todo polinomio de grado n, tiene n soluciones/ raíces.
+		      \item Teorema fundamental del cálculo:
+		      \item [] El teorema fundamental del cálculo se divide en dos partes, las cuales concluyen que: La operación de integración es inversa a la derivada (integrar una derivada o derivar una integral resulta en la función con la que se comenzó). Y que la integral definida de una función se puede obtener mediante la antiderivada de esta al ser evaluada en los límites y realizar la resta de estos.
+	      \end{itemize}
+\end{itemize}
+\section{Sección 0.2}
+\begin{itemize}
+	\item [] \textbf{Punto 4: Demostrar por inducción}
+	      \begin{alignat*}{2}
+		      \sum_{i = 1}^{n} 2i - 1   & = n^2 \ ,\ \forall n \in \mathbb{N}\,\vert\, n \geq 1
+		      \intertext{Caso base, $n = 1$}
+		      2 - 1                     & = 1 = 1^2
+		      \intertext{Para $n = k+1$ asumiendo que se cumple en $n=k$}
+		      \sum_{i = 1}^{k+1} 2i - 1 & = 2(k+1) - 1 + \sum_{i = 1}^{k} 2i - 1                \\
+		                                & = 2k + 2 - 1 + k^2                                    \\
+		                                & = k^2 +2k +1                                          \\
+		                                & = (k+1)^2
+	      \end{alignat*}
+	      \marginpar{\vspace{-1.7\baselineskip}$\Box$}
+	\item [] \textbf{Punto 7: Demostrar por inducción, ¿Qué sucede cuando $n=0$ ?}
+	      \begin{alignat*}{2}
+		      \sum_{i = 1}^{n} 3 + 5i   & = \frac{5n^2 + 11n}{2}\ ,\ \forall n \in \mathbb{N}\, \vert\, n \geq 1 \\
+		      \intertext{Caso base, $n = 1$}
+		      3+5 = 8                   & = \frac{5 + 11}{2}
+		      \intertext{Para $n = k+1$ asumiendo que se cumple en $n=k$}
+		      \sum_{i = 1}^{k+1} 3 + 5i & = \frac{5k^2 + 11k}{2} + 3 + 5(k+1)                                    \\
+		                                & = \frac{5k^2 + 11k + 6 + 10(k+1)}{2}                                   \\
+		                                & = \frac{5k^2 + 11k + 6 + 10k + 10}{2}                                  \\
+		                                & = \frac{5k^2 + 10k + 5 + 11k + 11}{2}                                  \\
+		                                & = \frac{5(k+1)^2 + 11(k+1)}{2}
+	      \end{alignat*}
+	      \marginpar{\vspace{-1.7\baselineskip}$\Box$}
+	      En el caso de $n = 0$ el valor de la suma debería ser $3$, sin embargo, usando la propiedad, el resultado es $0$, por lo que es correcto afirmar que se cumple desde el $1$.
+	\item [] \textbf{Punto 8: Demostrar la propiedad, justificar si se cumple o no en $n < 4$}
+	      \begin{alignat*}{2}
+		      2^n                 & \geq n + 12 \ ,\ \forall n \in \mathbb{N} \, \vert\, n \geq 4
+		      \intertext{Caso base, $n = 4$}
+		      16                  & \geq 16
+		      \intertext{Para $n = k+1$ asumiendo que se cumple en $n=k$}
+		      2^{k + 1}           & = 2 \cdot 2^k                                                 \\
+		                          & \geq 2(k + 12)                                                \\
+		                          & \geq 2k + 24                                                  \\
+		                          & \geq (k+1) + 12 + k + 11
+		      \intertext{Como $k \geq 4$ entonces:}
+		      (k+1) + 12 + k + 11 & \geq (K + 1) + 12
+		      \intertext{Por transitividad...}
+		      2^{k+1}             & \geq (k+1) + 12
+	      \end{alignat*}
+	      \marginpar{\vspace{-2\baselineskip}$\Box$}
+	      En el caso de $n<4$ la propiedad no se cumple, la mejor forma de entender esto, es mirando la propiedad como una proposición compuesta, entonces, al ser verdadera, negar una de sus partes cambia su valor lógico a falso.
+	\item[] \textbf{Punto 9: Demostrar por inducción}
+		\begin{alignat*}{2}
+			\left(\sum_{i = 1}^{n} i\right)^2 & = \sum_{i=1}^{n} i^3\ ,\ \forall n \in \mathbb{N}\, \vert\, n \geq 1
+			\intertext{Caso base, $n=1$}
+			1^2                               & = 1^3
+			\intertext{Para $n = k+1$ asumiendo que se cumple en $n=k$}
+			\left(\sum_{i = 1}^{n} i\right)^2 & = \left[\frac{(n)(n+1)}{2}\right]^2                                  \\
+			\sum_{i=1}^{k+1} i^3              & = \left[\frac{k(k+1)}{2}\right]^2 + (k+1)^3                          \\
+			                                  & = \frac{k^2 (k+1)^2 + 4(k+1)^3}{4}                                   \\
+			                                  & = \frac{(k+1)^2\left[k^2 + 4(k+1)\right]}{2}                         \\
+			                                  & = \frac{(k+1)^2\left[k^2 + 4k + 4\right]}{2}                         \\
+			                                  & = \frac{(k+1)^2(k+2)^2}{4}                                           \\
+			                                  & =\left[\frac{(k+1)(k+2)}{2}\right]^2
+		\end{alignat*}
+		\marginpar{\vspace{-1.5\baselineskip}$\Box$}
+	\item[] \textbf{Punto 12: Demostrar por inducción}
+		\begin{alignat*}{2}
+			\prod_{i=2}^{n} \left(1 - \frac{1}{i^2}\right)   & = \frac{n + 1}{2n}\ ,\ \forall n \in \mathbb{N}\, \vert\, n \geq 2
+			\intertext{Caso base, $n = 2$}
+			1-\frac{1}{4}                                    & = \frac{3}{4}
+			\intertext{Para $n = k+1$ asumiendo que se cumple en $n=k$}
+			\prod_{i=2}^{k+1} \left(1 - \frac{1}{i^2}\right) & = \left(1 - \frac{1}{(k+1)^2}\right)\prod_{i=2}^{k} \left(1 - \frac{1}{i^2}\right) \\
+			                                                 & =\left(1 - \frac{1}{(k+1)^2}\right)\left(\frac{k+1}{2k}\right)                     \\
+			                                                 & =\frac{k+1}{2k} - \frac{k+1}{2k(k+1)^2}                                            \\
+			                                                 & =\frac{(k+1)^2 - 1}{2k(k+1)}                                                       \\
+			                                                 & =\frac{k^2 + 2k}{2k(k+1)}                                                          \\
+			                                                 & =\frac{k+2}{2(k+1)}
+		\end{alignat*}
+		\marginpar{\vspace{-1.5\baselineskip}$\Box$}
+	\item[] \textbf{Punto 13: Demostrar por inducción}
+		\begin{alignat*}{2}
+			\sum_{i=0}^{n} ar^i            & = \frac{a(1-r^{n+1})}{1-r}\ ,\ \forall a, n, r \in \mathbb{N}\, \vert\, r \neq 1
+			\intertext{Caso base, $n = 0$}
+			ar^0 =                         & \frac{a(1-r)}{1-r} = a
+			\intertext{Para $n = k+1$ asumiendo que se cumple en $n=k$}
+			ar^{k+1} + \sum_{i=0}^{k} ar^i & = \frac{a(1-r^{k+1})}{1-r} + ar^{k+1}                                            \\
+			                               & = \frac{a(1-r^{k+1}) + (1-r)ar^{k+1}}{1-r}                                       \\
+			                               & = \frac{a(1 - r^{k+1} + r^{k+1} - r^{k+2})}{1-r}                                 \\
+			                               & = \frac{a(1 - r^{k+2})}{1-r}
+		\end{alignat*}
+		\marginpar{\vspace{-1.5\baselineskip}$\Box$}
+	\item[] \textbf{Punto 16: ($F(n) $: sucesión de Fibonacci) Demostrar}
+	\item a)
+	      \begin{alignat*}{2}
+		      \sum_{i=1}^{n} F(2(n-1) + 1) & = F(2n)\ ,\ \forall n \in \mathbb{N}\, \vert\, n \geq 1
+		      \intertext{Caso base, $n = 1$}
+		      F(1)                         & = F(2)
+		      \intertext{Para $n = k+1$ asumiendo que se cumple en $n=k$}
+		      F(2k) + F(2(k) + 1)          & = F(2k + 2)                                             \\
+		                                   & = F(2(k+1))
+	      \end{alignat*}
+	      \marginpar{\vspace{-1.5\baselineskip}$\Box$}
+	\item b)
+	      \begin{alignat*}{2}
+		      \sum_{i=0}^{n} F(2i)      & = F(2n + 1) -1\ ,\ \forall n \in \mathbb{N}\, \vert\, n \geq 0
+		      \intertext{Caso base, $n=0$}
+		      F(0) =                    & 0 = F(1) - 1
+		      \intertext{Para $n = k+1$ asumiendo que se cumple en $n=k$}
+		      F(2k + 1) - 1 + F(2k + 2) & = F(2k + 3) - 1                                                \\
+		                                & = F(2(k+1) + 1) -1
+	      \end{alignat*}
+	\item[] \textbf{{Punto 19: Demostrar por inducción}}
+		\begin{alignat*}{2}
+			\begin{pmatrix}
+				1 & 1 \\
+				1 & 0
+			\end{pmatrix}^n
+			 & =
+			\begin{pmatrix}
+				F(n+1) & F(n)   \\
+				F(n)   & F(n-1)
+			\end{pmatrix}
+			\ ,\ \forall n \in \mathbb{N}\, \vert\, n \geq 1
+			\intertext{Caso base, $n=1$}
+			\begin{pmatrix}
+				1 & 1 \\
+				1 & 0
+			\end{pmatrix}
+			 & =
+			\begin{pmatrix}
+				F(2) & F(1) \\
+				F(1) & F(0)
+			\end{pmatrix}
+			\intertext{Para $n = k+1$ asumiendo que se cumple en $n=k$}
+			\begin{pmatrix}
+				F(k+1) & F(k)   \\
+				F(k)   & F(k-1)
+			\end{pmatrix}
+			\begin{pmatrix}
+				1 & 1 \\
+				1 & 0
+			\end{pmatrix}
+			 & =
+			\begin{pmatrix}
+				F(k+1) + F(k) & F(k) + F(k-1) \\
+				F(k + 1)      & F(k)
+			\end{pmatrix}
+			\\
+			 & = \begin{pmatrix}
+				     F(k+2) & F(k+1) \\
+				     F(k+1) & F(k)
+			     \end{pmatrix}
+		\end{alignat*}
+		\marginpar{\vspace{-1.5\baselineskip}$\Box$}
+	\item[] \textbf{Punto 21: Proponer un caso base y demostrar con inducción}
+		\begin{alignat*}{2}
+			2^n     & < n! \ ,\ \forall n \in \mathbb{N} \, \vert\, n \geq 4
+			\intertext{Caso base, $n=4$}
+			16      & < 24
+			\intertext{Para $n=k+1$ asumiendo que se cumple en $n=k$}
+			2^{k+1} & = 2(2^k)                                               \\
+			        & < 2k!                                                  \\
+			(k+1)!  & = (k+1)k!                                              \\
+			(k+1)!  & > 2k!                                                  \\
+			2^{k+1} & < 2k! < (k+1)!                                         \\
+			2^{k+1} & < (k+1)!
+		\end{alignat*}
+		\marginpar{\vspace{-1.5\baselineskip}$\Box$}
+	\item[] \textbf{Punto 22: Demostrar}
+		\begin{itemize}
+			\item a)
+			      \begin{alignat*}{2}
+				      \binom{n}{k}   & = \binom{n}{n-k}                        \\
+				      \intertext{Caso base, $n = 0$}
+				      \binom{0}{0}   & = \binom{0}{0}
+				      \intertext{Para $n = c+1$ asumiendo que se cumple en $n = c$}
+				      \binom{c+1}{k} & = \binom{c}{k-1} + \binom{c}{k}         \\
+				                     & = \binom{c}{c - (k-1)} + \binom{c}{c-k} \\
+				                     & = \binom{c+1}{c+1-k}
+			      \end{alignat*}
+			      \marginpar{\vspace{-1.5\baselineskip}$\Box$}
+			\item b)
+			      \begin{alignat*}{2}
+				      \binom{n}{k}                 & = \frac{n}{k} \binom{n-1}{k-1} \ ,\ \forall n, k \in \mathbb{N}\, \vert\, 0 \leq k \leq n \\
+				      \frac{n}{k} \binom{n-1}{k-1} & = \frac{n}{k} \, \frac{(n-1)!}{(n-k)!(k-1)!}                                              \\
+				                                   & = \frac{n!}{(n-k)!k!}                                                                     \\
+				                                   & = \binom{n}{k}
+			      \end{alignat*}
+			      \marginpar{\vspace{-1.5\baselineskip}$\Box$}
+		\end{itemize}
+	\item[] \textbf{Punto 31: demostrar por inducción}
+		\begin{alignat*}{2}
+			\forall n \,\vert\, n\in \mathbb{N} : (\exists m \,\vert\, m \in \mathbb{N} \wedge 11^{n} - 4^{n} & = 7m )
+			\intertext{Caso base, $n = 0$}
+			11 - 4                                                                                            & = 7                       \\
+			7                                                                                                 & = 7n \tag*{\textit{true}}
+			\intertext{Para $n = k+1$ asumiendo que se cumple en $n = k$}
+			11^{k+1} - 4^{k+1}                                                                                & = 11(11^k) - 4(4^k)       \\
+			                                                                                                  & = 11(11^k) - (11-7)(4^k)  \\
+			                                                                                                  & = 11(11^k - 4^k) + 7(4^k) \\
+			                                                                                                  & = 7m_1 + 7m_2             \\
+			                                                                                                  & = 7m_3
+		\end{alignat*}
+		\marginpar{\vspace{-1.5\baselineskip}$\Box$}
+	\item[] \textbf{Punto 32: demostrar}
+		\begin{alignat*}{2}
+			\forall n\, \vert\, n \in \mathbb{N} : (\exists m \,\vert\, m \in \mathbb{N} \wedge x^n - 1 = m(x-1))
+			\intertext{Caso base, $n = 0$}
+			x - 1       & = x - 1 \tag*{\textit{true}}
+			\intertext{Para $n = k+1$ asumiendo que se cumple en $n = k$}
+			x^{k+1} - 1 & = m(x-1) + x^k(x-1)          \\
+			            & = (x-1)(m + x^k)             \\
+			            & =(x-1)c
+		\end{alignat*}
+		\marginpar{\vspace{-1.5\baselineskip}$\Box$}
+	\item[] \textbf{Punto 34: Demostrar o refutar}
+		\begin{alignat*}{2}
+			\forall n \,\vert\, n \in \mathbb{N} : (\exists m \,\vert\, m\in \mathbb{N} \wedge n^4 - n = 4m)
+			\intertext{En los naturales, puede que $n$ sea par o impar por lo que:}
+			\intertext{Para $n$ par}
+			(2k)^4 - 2k & = 16k - 2k \\
+			            & = 14k
+			14k         & \neq 4m
+			\intertext{Con esto ya queda demostrado que no se cumple la propiedad}
+		\end{alignat*}
+\end{itemize}
+\section{Sección 0.3}
+\begin{itemize}
+	\item[] \textbf{Punto 1: Nombrar todos los teoremas}
+		\begin{center}
+			\begin{NiceTabular}{l l}
+				0. cabcba & axioma \\
+				1. cbaca  & R3, 0  \\
+				2. caca   & R3, 1  \\
+				3. aca    & R3, 2  \\
+				4. cac    & R1, 3  \\
+				5. ca     & R3, 4  \\
+				6. a      & R3, 5  \\
+				7. c      & R1, 6
+			\end{NiceTabular}
+		\end{center}\ \\
+		Todos los pasos a partir del paso 1 son teoremas de este sistema formal.
+	\item[] \textbf{Punto 2: Nombrar todos los teoremas}
+		\begin{center}
+			\begin{NiceTabular}{l l}
+				0. abccba & axioma \\
+				1. cbabab & R1, 0  \\
+				2. babca  & R3, 1  \\
+				3. caabba & R2, 2  \\
+				4. bbaca  & R3, 3  \\
+				5. caabba & R2, 4
+			\end{NiceTabular}
+		\end{center}
+		Todos los pasos a partir del paso 1 hasta el 4 son teoremas, desde ese punto se repite el procedimiento que hay desde el paso 3
+	\item[] \textbf{Punto 3: Justificar que} $\nvdash_{\textrm{\tiny{ADD}}}$ a), b), c)
+
+		Funciones auxiliares:
+		\begin{equation*}
+			C(n|) :=
+			\begin{cases}
+				C(n) + 1 \\
+				C(|) = 1
+			\end{cases}
+		\end{equation*}
+		Propiedad de ADD:
+		\[P(\phi) : C(x) + C(y) = C(z)\]
+		\begin{proof} $P(\phi)$\\
+			En los axiomas de ADD:
+
+			\begin{alignat*}{2}
+				| + |       & = ||    \\
+				C(|) + C(|) & = C(||) \\
+				2           & = 2
+			\end{alignat*}
+			En las reglas de inferencia de ADD:
+			\begin{alignat*}{2}
+				\intertext{Regla 1:}
+				x| + y          & = z|  \tag*{\textrm{Definición de R1}}                                              \\
+				C(x|) + C(y)    & = C(z|) \tag*{\textrm{Aplicación de $C(n)$}}                                        \\
+				C(x) + 1 + C(y) & = C(z) + 1  \tag*{\textrm{Definición de $C(n|)$}}                                   \\
+				C(x) + C(y)     & = C(z)  \tag*{\textrm{Aritmética}}                                                  \\
+				C(z)            & = C(z) \tag*{\textrm{\textit{true}}}
+				\intertext{Regla 2:}
+				y + x =         & z = x + y                                                                           \\
+				C(y)  + C(x)    & = C(x) + C(y) \tag*{\textrm{Aplicación de $C(n)$ y transitividad de $a=b$}}         \\
+				C(x) + C(y)     & = C(x) + C(y) \tag*{\textrm{Propiedad conmutativa de los naturales (rango de $C$)}}
+			\end{alignat*}
+		\end{proof}
+		\begin{itemize}
+			\item a) $| + | = |$
+			      \begin{alignat*}{2}
+				      P[\textrm{a)}] & :                                  \\
+				      C(|) + C(|)    & = C(||)                            \\
+				      2              & = 1 \tag*{\textrm{\textit{false}}}
+			      \end{alignat*}
+			\item b) $|| + | = ||||$
+			      \begin{alignat*}{2}
+				      p[b)]        & :                                  \\
+				      C(||) + C(|) & = C(||||)                          \\
+				      3            & = 4 \tag*{\textrm{\textit{false}}}
+			      \end{alignat*}
+			\item c) $| + || = ||||$
+			      \begin{alignat*}{2}
+				      P[c)]        & :                                  \\
+				      C(|) + C(||) & = C(||||)                          \\
+				      3            & = 4 \tag*{\textrm{\textit{false}}}
+			      \end{alignat*}
+		\end{itemize}
+	\item[] \textbf{Punto 4: Proponer el sistema MULT}
+
+		Símbolos = $\{|, \times, =, +\}$
+
+		Axiomas: $(| \times | = |)$
+
+		Reglas de inferencia:
+
+		Este sistema hereda todo el sistema ADD\dots
+		\begin{alignat*}{2}
+			x \times y                & = z                                 \\
+			\makebox[1cm]{\hrulefill} & \makebox[1cm]{\hrulefill} \tag*{R1} \\
+			y \times x                & = z                                 \\[1cm]
+			x \times y                & = z                                 \\
+			\makebox[1cm]{\hrulefill} & \makebox[1cm]{\hrulefill} \tag*{R2} \\
+			x \times y|               & = x + z
+		\end{alignat*}
+		\begin{itemize}
+			\item \textbf{Demostrar que} $\vdash_{\textrm{\tiny{MULT}}} || \times ||| = ||||||$
+			      \begin{center}
+				      \begin{NiceTabular}{l l}
+					      0. $| \times | = |$         & axioma                                                       \\
+					      1. $| \times || = ||$       & R2$_{\textrm{\tiny{MULT}}}$ \& R1$_{\textrm{\tiny{ADD}}}$, 0 \\
+					      2. $| \times ||| = |||$     & R2$_{\textrm{\tiny{MULT}}}$ \& R1$_{\textrm{\tiny{ADD}}}$, 1 \\
+					      3. $||| \times | = |||$     & R1$_{\textrm{\tiny{MULT}}}$, 0                               \\
+					      4. $||| \times || = ||||||$ & R2$_{\textrm{\tiny{MULT}}}$ \& R1$_{\textrm{\tiny{ADD}}}$, 3 \\
+					      5. $|| \times ||| = ||||||$ & R1$_{\textrm{\tiny{MULT}}}$, 4
+				      \end{NiceTabular}
+			      \end{center}
+		\end{itemize}
+\end{itemize}
+\section{Sección 0.4}
+\begin{itemize}
+	\item[] \textbf{Punto 5: Demostrar teoremas y una propiedad}
+		\begin{itemize}
+			\item a) Teoremas
+			      \begin{itemize}
+				      \item 1)$\vdash_{\textrm{\tiny{PR}}}((())())$
+				            \begin{center}
+					            \begin{NiceTabular}{l l}
+						            0. $()$       & axioma    \\
+						            1. $(())$     & Add, 0    \\
+						            2. $(())(())$ & Double, 1 \\
+						            3. $(())()$   & Omit, 2   \\
+						            4. $((())())$ & Add, 3
+					            \end{NiceTabular}
+				            \end{center}
+				      \item 2) $\vdash_{\textrm{\tiny{PR}}} (())()()()$
+				            \begin{center}
+					            \begin{NiceTabular}{l l}
+						            0. $()$           & axioma    \\
+						            1. $(())$         & Add, 0    \\
+						            3. $(())(())$     & Double, 1 \\
+						            4. $(())()$       & Omit, 3   \\
+						            5. $(())()(())()$ & Double, 4 \\
+						            6. $(())()()()$   & Omit, 5
+					            \end{NiceTabular}
+				            \end{center}
+				      \item 3) $\vdash_{\textrm{\tiny{PR}}} ()(()())()$
+				            \begin{center}
+					            \begin{NiceTabular}{l l}
+						            0. ()               & axioma    \\
+						            1. ()()             & Double, 0 \\
+						            2. (()())           & Add, 1    \\
+						            3. (()())(()())     & Double, 2 \\
+						            4. (())(()())       & Omit, 3   \\
+						            5. ()(()())         & Omit, 4   \\
+						            6. ()(()())()(()()) & Double, 5 \\
+						            7. ()(()())()(())   & Omit, 6   \\
+						            8. ()(()())()()     & Omit, 7   \\
+						            9. ()(()())()       & Omit, 8
+					            \end{NiceTabular}
+				            \end{center}
+			      \end{itemize}
+			\item b) Propiedad $$P[\phi] : I[\phi] = D[\phi]$$
+			      Funciones auxiliares:
+			      \begin{equation*}
+				      I[\Psi\mathnormal{(}] :=
+				      \begin{cases}
+					      I[\Psi] + 1           \\
+					      I[\mathnormal{(}] = 1 \\
+					      I[\mathnormal{)}] = 0
+				      \end{cases}
+			      \end{equation*}
+			      \begin{equation*}
+				      D[\Psi\mathnormal{)}] :=
+				      \begin{cases}
+					      I[\Psi] + 1           \\
+					      I[\mathnormal{)}] = 1 \\
+					      I[\mathnormal{(}] = 0
+				      \end{cases}
+			      \end{equation*}
+			      \begin{proof} $P[\phi]$
+				      \begin{alignat*}{2}
+					      \intertext{En axiomas:}
+					      ()                  & \, \tag*{axioma}                                                  \\
+					      I[()]               & = D[()] \tag*{aplicación de I, D}                                 \\
+					      1 + 0               & = 0 + 1                                                           \\
+					      1                   & = 1 \tag*{\textit{true}}
+					      \intertext{En Add:}
+					      (\phi)              & =\, \tag*{Definición de Add}                                      \\
+					      I[(\phi)]           & = D[(\phi)] \tag*{aplicación de I, D}                             \\
+					      I[\phi] + 1         & = D[\phi] + 1                                                     \\
+					      I[\phi]             & = D[\phi] \tag*{\textit{true} (por hipótesis de inducción)}
+					      \intertext{En Omit:}
+					      \phi \phi           & \, \tag*{definición de Omit}                                      \\
+					      I[\phi \phi]        & = D[\phi \phi] \tag*{aplicación de I,D}                           \\
+					      I[\phi] + I[\phi]   & = D[\phi] + D[\phi] \tag*{Por la definición recursiva de I, D}    \\
+					      I[\phi]             & = D[\phi] \tag*{\textit{true} (por hipótesis de inducción)}
+					      \intertext{En Omit:}
+					      \phi\psi            & \, \tag*{Definición de Omit}                                      \\
+					      I[\phi\psi] - I[()] & = D[\phi\psi] - D[()] \tag*{Definición de Omit, I, D}             \\
+					      I[\phi] + I[\psi]   & = D[\phi] + D[\psi] \tag*{$P[()]$ y definición recursiva de I, D} \\
+					                          & \equiv \textrm{\textit{true}} \tag*{Por hipótesis de inducción}
+				      \end{alignat*}
+			      \end{proof}
+		\end{itemize}
+	\item[] \textbf{Punto 8}
+		\begin{itemize}
+			\item a) Demostrar que cualquier teorema de EVEN tiene una cantidad par de |
+			      \begin{alignat*}{2}
+				      P(\phi)                            & : C(\phi) = 2n\ ,\ \forall n \in \mathbb{N}\, \vert\, n \geq 1
+				      \intertext{En axiomas}
+				      C(||)                              & = 2n                                                                                                                                                                     \\
+				      2                                  & = 2n \tag*{\textit{true}}
+				      \intertext{Definición de cualquier $\phi$ mediante Pile:}
+				      \vdash_{\textrm{\tiny{EVEN}}} \phi & \equiv \left[\left(\exists \psi\, \vert\, \vdash_{\textrm{\tiny{EVEN}}} \psi \wedge \textrm{Pile}[\psi] = \phi\right) \vee \left(\textrm{Pile}[||] = \phi\right) \right]
+				      \intertext{En Pile:}
+				      C(\phi||)                          & = 2n                                                                                                                                                                     \\
+				      C(\phi) + 2                        & = 2n \tag*{\textit{true} (por definición de $\phi$, $2$ es par)}
+			      \end{alignat*}
+			\item b) Demostrar que cualquier fórmula con cantidad par de | es teorema de EVEN\\
+			      Por la misma definición de $\phi$, se puede ver que es cierta la proposición b)
+			\item c) Demostrar que EVEN es decidible\\
+			      Al tener la función C, y poder compararla con $2n$, está claro que EVEN es decidible.
+			\item d) Cambiar el axioma para generar ODD, que representa los impares positivos\\
+			      Axioma = |
+
+			      Con esto se cumple la sucesión de los impares ($S_n = 2n + 1$)
+		\end{itemize}
+	\item[] \textbf{Punto 10}
+		\begin{itemize}
+			\item a) Demostrar teoremas
+			      \begin{itemize}
+				      \item 1) $abccccba$
+				            \begin{center}
+					            \begin{NiceTabular}{l l}
+						            0. $cc$       & axioma   \\
+						            1. $cccc$     & Add c, 0 \\
+						            2. $bccccb$   & Add b, 1 \\
+						            3. $abccccba$ & Add a, 2
+					            \end{NiceTabular}
+				            \end{center}
+				      \item 2)$abcccba$
+				            \begin{center}
+					            \begin{NiceTabular}{l l}
+						            0. $c$       & axioma   \\
+						            1. $ccc$     & Add c, 0 \\
+						            2. $bcccb$   & Add b, 1 \\
+						            3. $abcccba$ & Add a, 2
+					            \end{NiceTabular}
+				            \end{center}
+			      \end{itemize}
+			\item b) Demostrar que todo teorema de PAL es palíndromo
+			      \begin{alignat*}{2}
+				      p(\phi)                   & \equiv \left[\left(\exists \psi\, \vert\, \vdash_{\textrm{\tiny{PAL}}} \psi \wedge \textrm{Regla\_inferencia}(\psi) = \phi\right)\right. \\
+				                                & \qquad \vee \left(\exists \psi\, \vert\, \psi \in \textrm{axiomas} \wedge \textrm{Regla\_inferencia}(\psi) \phi\right)                   \\
+				                                & \qquad \left.\vee (\phi \in \textrm{axiomas})\right]
+				      \intertext{En axiomas:}
+				      \phi \in \textrm{axiomas} & \Rightarrow (P(\phi) \equiv \textrm{\textit{true}})
+				      \intertext{En Add a:}
+				      P(a \phi a)               & \equiv \textrm{\textit{true}} \tag*{Por recurrencia de $P(\phi)$}
+				      \intertext{En Add b:}
+				      P(b \phi b)               & \equiv \textrm{\textit{true}} \tag*{Por recurrencia de $P(\phi)$}
+				      \intertext{En Add c:}
+				      P(c \phi c)               & \equiv \textrm{\textit{true}} \tag*{Por recurrencia de $P(\phi)$}
+			      \end{alignat*}
+			\item c) Demostrar que todo palíndromo sobre a, b, c es teorema de PAL\\
+			      Por la misma recurrencia de la propiedad se demuestra.
+		\end{itemize}
+	\item[] \textbf{Punto 12}
+		\begin{itemize}
+			\item a) Demostrar teoremas
+			      \begin{itemize}
+				      \item 1) $\circ \circ \circ \circ $
+				            \begin{center}
+					            \begin{NiceTabular}{l l}
+						            0. $\circ$                   & axioma \\
+						            1. $\circ \circ$             & R3, 0  \\
+						            2. $\circ \circ \circ$       & R3, 1  \\
+						            3. $\circ \circ \circ \circ$ & R3, 2
+					            \end{NiceTabular}
+				            \end{center}
+				      \item 2) $\circ \circ \bullet \circ \bullet$
+				            \begin{center}
+					            \begin{NiceTabular}{l l}
+						            0. $\circ$                             & axioma \\
+						            1. $\circ \circ$                       & R3, 0  \\
+						            2. $\circ \bullet \bullet$             & R4, 1  \\
+						            3. $\circ \circ \bullet \bullet$       & R2, 2  \\
+						            4. $\circ \circ \bullet \circ \bullet$ & R1, 3
+					            \end{NiceTabular}
+				            \end{center}
+				      \item 3) $\circ \circ \circ \bullet \bullet \circ \bullet \circ \bullet$
+				            \begin{center}
+					            \begin{NiceTabular}{l l}
+						            0. $\circ$                                                         & axioma \\
+						            1. $\bullet \bullet$                                               & R4, 0  \\
+						            2. $\bullet \circ \bullet$                                         & R2, 1  \\
+						            3. $\circ \bullet \circ \bullet$                                   & R2, 2  \\
+						            4. $\circ \circ \bullet \circ \bullet$                             & R3, 3  \\
+						            5. $\circ \circ \circ \bullet \circ \bullet$                       & R3, 4  \\
+						            6. $\circ \circ \circ \circ \bullet \circ \bullet$                 & R3, 5  \\
+						            7. $\circ \circ \circ \circ \circ \bullet \circ \bullet$           & R3, 6  \\
+						            8. $\circ \circ \circ \bullet \bullet \circ \bullet \circ \bullet$ & R4, 7
+					            \end{NiceTabular}
+				            \end{center}
+			      \end{itemize}
+			\item b) Demostrar que el número de $\bullet$ es par para cualquier teorema de COFFEE\\
+			      Funciones y definiciones auxiliares:
+			      \begin{equation*}
+				      C(\phi \bullet) :=
+				      \begin{cases}
+					      C(\phi) + 1    \\
+					      C(\bullet) = 1 \\
+					      C(\circ) = 0
+				      \end{cases}
+			      \end{equation*}
+			      \begin{equation*}
+				      \xi = \left[\textrm{R\_inferencia}(\psi) \vee \circ \right]
+			      \end{equation*}
+			      \begin{alignat*}{2}
+				      \intertext{Propiedad:}
+				      P(\xi)                                 & : C(\xi) = 2n \ ,\ \forall n \in \mathbb{N}\, \vert\, n \geq 0
+				      \intertext{En axiomas:}
+				      \circ \tag*{axioma}                                                                                                                                                                                                \\
+				      C(\circ)                               & = 0
+				      0 = 2n \tag*{\textit{true}}
+				      \intertext{En R1}
+				      \phi \bullet \circ \psi \tag*{definición de R1}                                                                                                                                                                    \\
+				      C(\phi \bullet \circ \psi)             & = C(\phi) + C(\psi) + 1                                                                                                                                                   \\
+				      \makebox[7cm]{\hrulefill}              & \makebox[7cm]{\hrulefill}                                                                                                                                                 \\
+				      (C(\phi) = 2n + 1 \vee C(\psi) = 2n+1) & \wedge \lnot (C(\phi) = 2n + 1 \wedge C(\psi) = 2n+1) \tag*{Por recursividad de $\xi$, $\bullet$ hace parte de $\phi$ o de $\psi$ para que cumplan la condición de $\xi$} \\
+				      \makebox[7cm]{\hrulefill}              & \makebox[7cm]{\hrulefill}                                                                                                                                                 \\
+				      C(\phi) + C(\psi) + 1                  & = 2n \tag*{\textit{true}}
+				      \intertext{En R2}
+				      \phi \circ \bullet \psi \tag*{definición de R1}                                                                                                                                                                    \\
+				      C(\phi \circ \bullet \psi)             & = C(\phi) + C(\psi) + 1                                                                                                                                                   \\
+				      \makebox[7cm]{\hrulefill}              & \makebox[7cm]{\hrulefill}                                                                                                                                                 \\
+				      (C(\phi) = 2n + 1 \vee C(\psi) = 2n+1) & \wedge \lnot (C(\phi) = 2n + 1 \wedge C(\psi) = 2n+1) \tag*{Por recursividad de $\xi$, $\bullet$ hace parte de $\phi$ o de $\psi$ para que cumplan la condición de $\xi$} \\
+				      \makebox[7cm]{\hrulefill}              & \makebox[7cm]{\hrulefill}                                                                                                                                                 \\
+				      C(\phi) + C(\psi) + 1                  & = 2n \tag*{\textit{true}}
+				      \intertext{En R3}
+				      \circ \circ \tag*{definición de R3}                                                                                                                                                                                \\
+				      C(\circ \circ)                         & = 0                                                                                                                                                                       \\
+				      0                                      & = 2n \tag*{\textit{true}}
+				      \intertext{En R4}
+				      \bullet \bullet \tag*{definición de R4}                                                                                                                                                                            \\
+				      C(\bullet \bullet)                     & = 2                                                                                                                                                                       \\
+				      2                                      & = 2n \tag*{\textit{true}}
+			      \end{alignat*}
+		\end{itemize}
+\end{itemize}
+\end{document}
