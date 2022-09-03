@@ -1,19 +1,12 @@
 
-!Tarea1/build/
 !Tarea1/build/*.pdf*
-!taller01/build/
 !taller01/build/*.pdf*
 
-!Tarea02/build/
 !Tarea02/build/*.pdf*
-!Taller02/build/
 !Taller02/build/*.pdf*
 
-!tarea03/build/
 !tarea03/build/*.pdf*
-!taller03/build/
 !taller03/build/*.pdf*
 
-!tarea04/build/
 !tarea04/build/*.pdf*
 
