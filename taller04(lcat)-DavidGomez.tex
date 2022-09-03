@@ -1,0 +1,121 @@
+\documentclass{article}
+
+% Librerías:
+\usepackage{amsmath, mathtools, amssymb, mathrsfs, amsthm, nicematrix, array}
+\usepackage{lmodern, graphicx, fancyhdr}
+\usepackage[margin = 2cm, top = 2.5cm, includefoot]{geometry}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{shapes, fit, tikzmark}
+\usepackage{color, colortbl}
+\usepackage[most]{tcolorbox}
+
+% Configuraciones:
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{55.34027pt}
+\rhead{\textit{David Gómez}}
+\lhead{\includegraphics[width = 4cm]{\logo}}
+\lfoot{Página \thepage}
+\rfoot{Taller 02}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{rojoEci}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\hyphenpenalty=10000
+
+\newcommand{\logo}{C:/Users/usuario/Documents/U/logo-eci.jpg}
+
+\newcommand{\q}[1]{``#1''}
+\newcommand{\und}[2]{#1\textbf{\_}#2}
+\newcommand{\boolun}[2][]{H_{#2}(#1)}
+\newcommand{\boolbin}[3]{H_{#1}(#2, #3)}
+\newcommand{\val}[2]{\mathbf{#1}[#2]}
+
+\newlength{\unit}
+\setlength{\unit}{1ex}
+
+\newcommand\drawCodeBox[3][1.5]{%
+\begin{tikzpicture}[remember picture,overlay]
+  \coordinate (start) at ([yshift = 2\unit]pic cs:#2);
+  \coordinate (end) at ([yshift = -#1\unit]pic cs:#3);
+  \node[inner sep=2pt,draw=black,fit=(start) (end)] {};
+\end{tikzpicture}
+}
+
+\newcolumntype{L}{>{$}l<{$}} 
+
+
+\newenvironment{logic}[1][0]{
+    \setlength{\extrarowheight}{3pt}
+    \setcounter{row}{-1}
+    \begin{tcolorbox}[demo, title =]
+    \begin{center}
+    \begin{NiceTabular}{>{\stepcounter{row}\therow.} l *{#1}{r} L r l *{#1}{l} }
+}{
+    \end{NiceTabular}
+    \end{center}
+    \end{tcolorbox}
+}
+
+\tcbset{demo/.style={
+    enhanced, title=title,
+    attach boxed title to top
+    left = {xshift = .5pt, yshift = -\tcboxedtitleheight -.5pt},
+    top = 1pt,
+    coltitle = black,
+    colback = defini,
+    colframe = defini,
+    arc = 0mm,
+    outer arc = 0mm,
+    boxed title style={
+        colback = white,
+        colframe = deftitlmarg,
+        boxrule = .5pt,
+        arc = 0mm,
+        outer arc = 0mm
+    }
+}}
+
+% Colores
+\definecolor{rojoEci}{RGB}{225, 70, 49}
+\definecolor{defini}{HTML}{ede9e6}
+\definecolor{deftitlmarg}{HTML}{cfcfcf}
+
+% Documento
+\begin{document}
+
+
+
+\newcounter{row}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+
+        \textbf{\Huge{Tarea 04}}
+
+        \vspace{1.5cm}
+
+        \textbf{\large{David Gómez}}
+
+        \vspace{4cm}
+
+        \includegraphics[width=\textwidth]{\logo}
+
+        \vspace{5cm}
+
+        Matemáticas\linebreak
+        Escuela Colombiana de Ingeniería Julio Garavito\linebreak
+        Colombia\linebreak
+        \today
+
+    \end{center}
+\end{titlepage}
+\clearpage
+\tableofcontents
+\clearpage
+\end{document}
