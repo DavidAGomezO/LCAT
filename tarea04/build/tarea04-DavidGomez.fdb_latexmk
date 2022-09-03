@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1662094061 "c:/Users/usuario/Documents/U/LCAT/tarea04/tarea04-DavidGomez.tex" "build/tarea04-DavidGomez.pdf" "tarea04-DavidGomez" 1662094064
+["pdflatex"] 1662180646 "c:/Users/usuario/Documents/U/LCAT/tarea04/tarea04-DavidGomez.tex" "build/tarea04-DavidGomez.pdf" "tarea04-DavidGomez" 1662180650
   "C:/Users/usuario/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1661996645 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/usuario/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs10.tfm" 1656829209 688 37338d6ab346c2f1466b29e195316aa4 ""
   "C:/Users/usuario/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs5.tfm" 1656829210 684 3a51bd4fd9600428d5264cf25f04bb9a ""
@@ -48,6 +48,7 @@
   "C:/Users/usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbxi10.pfb" 1256929440 112766 6259d69aa3d87a505f375e49d8f6bf3a ""
   "C:/Users/usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb" 1256929440 30388 702fae6a5f0e6e9c48a1d872b442ffcf ""
   "C:/Users/usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb" 1256929440 119235 05e5c8d6d60439433e50047898c2c0e0 ""
+  "C:/Users/usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb" 1256929440 121145 00b210fbe9efd7ce850c04e64670de9a ""
   "C:/Users/usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb" 1256929440 112593 fda2373ba4420af33949610de4c28fe8 ""
   "C:/Users/usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb" 1256929440 27863 09ce3735688ffde955e72da27c95b61a ""
   "C:/Users/usuario/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb" 1256929440 27941 d1f5d03f61a46c3fcc3a2ba904ddda52 ""
@@ -245,11 +246,11 @@
   "C:/Users/usuario/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/usuario/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
   "C:/Users/usuario/Documents/U/logo-eci.jpg" 1660270736 49895 8a92d6420e2b9f88f2e3dd92493c2435 ""
-  "build/tarea04-DavidGomez.aux" 1662094063 48390 58599e7981794b0eff34dd32d18f3d97 "pdflatex"
-  "build/tarea04-DavidGomez.out" 1662094063 2372 13c1366ed362b77c534efbf7ae1ffdbf "pdflatex"
-  "build/tarea04-DavidGomez.toc" 1662094063 2034 476dab82d5a8789c3a7ac33c11492d74 "pdflatex"
-  "c:/Users/usuario/Documents/U/LCAT/tarea04/tarea04-DavidGomez.tex" 1662094057 19196 c57f1c2d3e8ef360ae45af021856e50c ""
-  "tarea04-DavidGomez.tex" 1662094057 19196 c57f1c2d3e8ef360ae45af021856e50c ""
+  "build/tarea04-DavidGomez.aux" 1662180650 66668 a0c993738c07bccf057c001b036bb7c6 "pdflatex"
+  "build/tarea04-DavidGomez.out" 1662180650 3240 debf16bf8cbe49231e5c94a17c434fda "pdflatex"
+  "build/tarea04-DavidGomez.toc" 1662180650 2752 f70faad8815c40273e8ffad1ae31f51e "pdflatex"
+  "c:/Users/usuario/Documents/U/LCAT/tarea04/tarea04-DavidGomez.tex" 1662180642 25587 b837cf7d8558d0a22d8c02ea9ac61e88 ""
+  "tarea04-DavidGomez.tex" 1662180642 25587 b837cf7d8558d0a22d8c02ea9ac61e88 ""
   (generated)
   "build/tarea04-DavidGomez.aux"
   "build/tarea04-DavidGomez.log"

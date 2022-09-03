@@ -119,6 +119,16 @@
 \tableofcontents
 \clearpage
 
+\section{Justificaciones extra: }
+
+\begin{tcolorbox}[demo, title = Metateorema SS]
+    \vspace*{1cm}
+    1. $\val{v}{\phi} = \mathtt{T}$ Es una proposicón $X_1$\\[3pt]
+        1.1. $\val{v}{\phi} = \mathtt{F}$ es igual a la proposición $(\neg X_1)$\\[3pt]
+    2. $\val{v}{\phi} = \mathtt{F}$ Es una proposicón $X_2$\\[3pt]
+        2.1. $\val{v}{\phi} = \mathtt{T}$ es igual a la proposición $(\neg X_2)$\\[3pt]
+    3. Los conectores usados en las definiciones y metateoremas sobre valuaciones pueden ser reemplazados  por conectores lógicos.
+\end{tcolorbox}
 \section{Sección 2.3}
 
 \subsection{Punto 1}
@@ -362,7 +372,7 @@ Se tiene de entrada que \textit{false}, al ser una constante, no hace de operado
 \end{logic}
 
 \subsection{Punto 8}
-\subsection{a)}
+\subsubsection{a)}
 \begin{logic}
     & \text{Si }\vDash  (\phi \to \psi) \text{ y } \vDash(\psi \to \tau)\text{ , entonces } \vDash (\phi \to \tau) & Enunciado\\
     & ((\val{v}{(\phi \to \psi)} = \mathtt{T}) \wedge (\val{v}{(\psi \to \tau)} = \mathtt{T})) \implies (\val{v}{(\phi \to \tau)} = \mathtt{T}) & Def. (p0)\\
@@ -376,7 +386,7 @@ Se tiene de entrada que \textit{false}, al ser una constante, no hace de operado
     & \therefore \qquad \text{Si }\vDash  (\phi \to \psi) \text{ y } \vDash(\psi \to \tau)\text{ , entonces } \vDash (\phi \to \tau) & Enunciado\\
 \end{logic}
 
-\subsection{b)}
+\subsubsection{b)}
 
 \begin{logic}
     & \text{Si } \vDash (\phi \to \psi) \text{ y } \vDash (\phi) \text{ , entonces } \vDash (\psi) & Enunciado\\
@@ -390,4 +400,107 @@ Se tiene de entrada que \textit{false}, al ser una constante, no hace de operado
     \hline
     & \therefore \qquad \text{Si } \vDash (\phi \to \psi) \text{ y } \vDash (\phi) \text{ , entonces } \vDash (\psi) & Enunciado
 \end{logic}
+
+\subsubsection{c)}
+
+\begin{logic}
+    & \text{Si } \vDash (\phi \to \psi) \text{ y } \vDash(\psi \equiv \tau) \text{ , entonces } \vDash (\phi \to \tau) & Enunciado\\
+    & ((\val{v}{(\phi \to \psi)} = \mathtt{T}) \land (\val{v}{(\psi \equiv \tau)} = \mathtt{T})) \implies (\val{v}{(\phi \to \tau)} = \mathtt{T}) & Def. (p0)\\
+    & (\exists \mathbf{v} \, \vert\, \val{v}{(\phi \to \tau)} = \mathtt{T}) & suposición, MT 2.19 N 2.20\\
+    & (\val{v}{\phi} = \mathtt{T}) \land (\val{v}{\tau} = \mathtt{F}) & MT 2.23 ($\to$) (p2)\\
+    & \text{Se tiene que } ((\val{v}{(\phi \to \psi)} = \mathtt{T}) \land (\val{v}{(\psi \equiv \tau)} = \mathtt{T}))\\
+    & \val{v}{\psi} = \mathtt{F} & MT 2.23 ($\equiv$) (p4, p3)\\
+    & \val{v}{(\phi \to \psi)} = \mathtt{F} & MT 2.23 ($\to$) (p5, p3)\\
+    & \text{Contradicción} & (p6, p3)\\
+    \hline
+    & \therefore \qquad \text{Si } \vDash (\phi \to \psi) \text{ y } \vDash(\psi \equiv \tau) \text{ , entonces } \vDash (\phi \to \tau)
+\end{logic}
+
+\subsubsection{d)}
+
+\begin{logic}
+    & \text{Si } \vDash (\phi \equiv \psi) \text{ y } \vDash (\psi \to \tau) \text{ , entonces } \vDash (\phi \to \tau) & Enunciado\\
+    & ((\val{v}{(\phi \equiv \psi)} = \mathtt{T}) \land (\val{v}{(\psi \to \tau)} = \mathtt{T})) \implies (\val{v}{(\phi \to \tau)} = \mathtt{T}) & Def. (p0)\\
+    & (\exists \mathbf{v}\, \vert\, \val{v}{(\phi \to \tau)} = \mathtt{F}) & suposición, MT 2.19 N 2.20\\
+    & (\val{v}{\phi} = \mathtt{T}) \land (\val{v}{\tau} = \mathtt{F}) & MT 2.23 ($\to$) (p2)\\
+    & \text{Se tiene que } ((\val{v}{(\phi \equiv \psi)} = \mathtt{T}) \land (\val{v}{(\psi \to \tau)} = \mathtt{T}))\\
+    & \val{v}{\psi} = \mathtt{T} & MT 2.23 ($\equiv$), (p4, p3)\\
+    & \val{v}{(\psi \to \tau)} = \mathtt{F} & MT 2.23 ($\to$), (p5, p3)\\
+    & \text{Contradicción} & (p6, p3)\\
+    \hline
+    & \therefore \qquad \text{Si } \vDash (\phi \equiv \psi) \text{ y } \vDash (\psi \to \tau) \text{ , entonces } \vDash (\phi \to \tau)
+\end{logic}
+
+\subsection{Punto 9}
+
+\subsubsection{a)}
+
+\begin{logic}
+    & \phi \text{ Es insatisfacible si y solo si } \vDash(\phi \equiv \textrm{\textit{false}}) & Enunciado\\[0.3cm]
+    & \tikzmark{AA7} \text{Si } \phi \text{ Es insatisfacible, entonces } \vDash (\phi \equiv \textrm{\textit{false}}) & demostración 1\\
+    & \val{v}{\phi} = \mathtt{F} & MT 2.19 N 2.20\\
+    & \val{v}{\textrm{\textit{false}}} = \mathtt{F} & Def 2.18 (\textit{false})\\
+    & \val{v}{\phi} = \val{v}{\textrm{\textit{false}}} & (p3, p2)\\
+    & \val{v}{(\phi \equiv \textrm{\textit{false}})} = \mathtt{T} & MT 2.23 ($\equiv$) (p4) & \tikzmark{BB7}\\[0.4cm]
+    & \tikzmark{AA8} \text{Si } \vDash (\phi \equiv \textrm{\textit{false}}) \text{ entonces } \phi \text{ Es insatisfacible} & demostración 2\\
+    & \val{v}{(\phi \equiv \textrm{\textit{false}})} = \mathtt{T} & MT 2.19 N 2.20\\
+    & \val{v}{\phi} = \val{v}{\textrm{\textit{false}}} & MT 2.23 ($\equiv$) (p7)\\
+    & \val{v}{\phi} = \mathtt{F} & Def. 2.18 (\textit{false}) & \tikzmark{BB8} \\[0.4cm]
+    \hline
+    & \therefore \qquad \phi \text{ Es insatisfacible si y solo si } \vDash(\phi \equiv \textrm{\textit{false}})
+\end{logic}
+\drawCodeBox{AA7}{BB7}
+\drawCodeBox{AA8}{BB8}
+
+\subsubsection{b)}
+
+\begin{logic}
+    & \phi \text{ Es insatisfacible si y solo si } \vDash (\neg \phi) & Enunciado\\
+    & \tikzmark{AA9} \text{Si } \phi \text{ es insatisfacible, entonces } \vDash (\neg \phi) & demostración 1\\
+    & \val{v}{\phi} = \mathtt{F} & MT 2.19 N 2.20\\
+    & \boolun{\neg}{\val{v}{\phi}} = \mathtt{T} & doble negación (p2)\\
+    & \val{v}{(\neg \phi)} = \mathtt{T} && \tikzmark{BB9} \\[0.4cm]
+    & \tikzmark{AA} \text{Si } \vDash (\neg \phi) \text{ , entonces } \phi \text{ es insatisfacible} & demostración 2\\
+    & \val{v}{(\neg \phi)} = \mathtt{T} & MT 2.19 N 2.20\\
+    & \val{v}{\phi} = \mathtt{F} & MT 2.23 ($\neg$) (p6) & \tikzmark{BB}\\[0.4cm]
+    \hline
+    & \therefore \qquad \phi \text{ Es insatisfacible si y solo si } \vDash (\neg \phi)
+\end{logic}
+\drawCodeBox{AA9}{BB9}
+\drawCodeBox{AA}{BB}
+
+\subsection{Punto 10}
+
+\subsubsection{a)}
+
+\begin{logic}
+    & \vDash (\phi \equiv \psi) \text{ si y solo si } \vDash (\phi) \text{ y } \vDash (\psi) & Enunciado\\
+    & \text{Si } \vDash (\phi \equiv \psi) \text{ entonces } \vDash(\phi) \text{ y } \vDash(\psi) & demostración 1\\
+    & \val{v}{(\phi \equiv \psi)} = \mathtt{T} & MT 2.19 N 2.20\\
+    & \val{v}{\phi} = \val{v}{\psi} & MT 2.23 ($\equiv$) (p2)\\
+    & \text{Tomando } \mathbf{v} \, \vert\, \val{v}{\phi} = \mathtt{F} & MT 2.19 N 2.20\\
+    & \val{v}{\psi} = \mathtt{F} & MT 2.23 ($\equiv$) (p4, p3)\\
+    \hline
+    & \therefore \qquad \text{No se cumple el enunciado}
+\end{logic}
+\subsubsection{b)}
+
+\begin{logic}
+    & \vDash (\phi \land \psi) \text{ si y solo si } \vDash(\phi) \text{ y } \vDash(\psi) & Enunciado\\[0.4cm]
+    & \tikzmark{a} \text{Si } \vDash (\phi \land \psi) \text{ , entonces } \vDash(\phi) \text{ y } \vDash(\psi) & demostración 1\\
+    & \val{v}{(\phi \land \psi)} = \mathtt{T} & MT 2.19 N 2.20\\
+    & (\val{v}{\phi} = \mathtt{T}) \land (\val{v}{\phi} = \mathtt{T}) & MT 2.23 ($\land$) (p2)\\
+    & \vDash(\phi) \text{ y } \vDash(\psi) & Def. (p4) &\tikzmark{b}\\[0.4cm]
+    & \tikzmark{a0} \text{Si } \vDash(\phi) \text{ y } \vDash(\psi) \text{ , entonces } \vDash (\phi \land \psi) & demostración 2\\
+    & (\val{v}{\phi} = \mathtt{T}) \land (\val{v}{\psi} = \mathtt{T}) & Def. (p5)\\
+    & (\val{v}{(\phi \land \psi)} = \mathtt{T}) & MT 2.23 ($\land$) (p6) & \tikzmark{b0}\\[0.4cm]
+    \hline
+    & \therefore \qquad \vDash (\phi \land \psi) \text{ si y solo si } \vDash(\phi) \text{ y } \vDash(\psi) & Enunciado
+\end{logic}
+\drawCodeBox{a}{b}
+\drawCodeBox{a0}{b0}
+
+
+
+
 \end{document}
