@@ -1,0 +1,26 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Punto 1: tabla de verdad y función}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}$p = \phi $}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}$(p \equiv r) = \phi $}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}$((p \to (\lnot q)) \to r) = \phi $}{2}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}$((p \to q) \vee ((\lnot p) \to (\lnot q))) = \phi $}{2}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}$(p \to (q \to p)) = \phi $}{3}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}$((p \vee r) \wedge (p \to q)) = \phi $}{3}{subsection.1.6}%
+\contentsline {subsection}{\numberline {1.7}$(\lnot ((r \to (r \wedge (p \vee s))) \equiv (\lnot ((p \to q) \vee (r \wedge (\lnot r)))))) = \phi $}{3}{subsection.1.7}%
+\contentsline {section}{\numberline {2}Punto 2: Tabla de verdad}{4}{section.2}%
+\contentsline {section}{\numberline {3}Punto 3: Justificar que la implicación no es asociativa}{5}{section.3}%
+\contentsline {section}{\numberline {4}Punto 4: Tabla de verdad}{5}{section.4}%
+\contentsline {section}{\numberline {5}Punto 5: Nuevo conector}{5}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Definir $*$ en conectores lógicos clásicos}{5}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Hallar una proposición equivalente a $(\lnot p)$ usando únicamente $\{p, *\}$}{6}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Hallar una proposición equivalente a $(p \wedge q)$ usando únicamente $\{p, q, *\}$}{6}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Justificar o refutar propiedades de $*$}{6}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}Conmutativa}{6}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}Asociativa}{6}{subsubsection.5.4.2}%
+\contentsline {section}{\numberline {6}Punto 6: Nuevo conector}{7}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Definir $*$ en conectores lógicos clásicos}{7}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Justificar o refutar propiedades de $*$}{7}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1}Asociativa}{7}{subsubsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.2}Transitiva}{8}{subsubsection.6.2.2}%
+\contentsline {section}{\numberline {7}Punto 7: considere las valuaciones $\mathbf {v}$ y $\mathbf {w}$ \dots }{8}{section.7}%
+\contentsline {section}{\numberline {8}Punto 8: Demuestre que $\mathbf {v}[\phi ] \not = \mathbf {v}[(\lnot \phi )]$ para cualquier valuación $\mathbf {v}$}{8}{section.8}%
