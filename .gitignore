@@ -1,12 +1,12 @@
+/*
 
-!Tarea1/build/*.pdf*
-!taller01/build/*.pdf*
+!.gitignore
 
-!Tarea02/build/*.pdf*
-!Taller02/build/*.pdf*
+!*.tex*
 
-!tarea03/build/*.pdf*
-!taller03/build/*.pdf*
+!/build
 
-!tarea04/build/*.pdf*
+/build/*
+
+!/build/*.pdf
 
