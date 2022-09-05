@@ -2,7 +2,7 @@
 
 % Librerías:
 \usepackage{amsmath, mathtools, amssymb, mathrsfs, amsthm, nicematrix, array}
-\usepackage{lmodern, graphicx, fancyhdr}
+\usepackage{lmodern, graphicx, fancyhdr, ifthen, etoolbox}
 \usepackage[margin = 2cm, top = 2.5cm, includefoot]{geometry}
 \usepackage{xcolor}
 \usepackage[hidelinks]{hyperref}
@@ -48,17 +48,45 @@
 
 \newcolumntype{L}{>{$}l<{$}} 
 
+\newlength{\logicv}
+\setlength{\logicv}{.1cm}
+\newenvironment{logicenv}[2][0]{
+  %begin
+  \begin{tcolorbox}[demo, title = #2]
+  \vspace*{#1\logicv}
+}{
+  %end
+  \end{tcolorbox}
+  \vspace*{-.5cm}
+}
 
+\newenvironment{subproofill}[1][0]{
+  %begin
+  \begin{tcolorbox}[demo, title = ]
+    \vspace*{-#1\logicv}
+}{
+  %end
+  \end{tcolorbox}
+  \vspace*{-.5cm}
+}
+
+
+\newenvironment{subproof}[2][0]{
+  %begin
+  \begin{tcolorbox}[demo, title = #2, colframe = black]
+  \vspace*{#1\logicv}
+}{
+  %end
+  \end{tcolorbox}
+}
 \newenvironment{logic}[1][0]{
     \setlength{\extrarowheight}{3pt}
     \setcounter{row}{-1}
-    \begin{tcolorbox}[demo, title =]
     \begin{center}
     \begin{NiceTabular}{>{\stepcounter{row}\therow.} l *{#1}{r} L r l *{#1}{l} }
 }{
     \end{NiceTabular}
     \end{center}
-    \end{tcolorbox}
 }
 
 \tcbset{demo/.style={
@@ -66,6 +94,7 @@
     attach boxed title to top
     left = {xshift = .5pt, yshift = -\tcboxedtitleheight -.5pt},
     top = 1pt,
+    boxrule = .65pt,
     coltitle = black,
     colback = defini,
     colframe = defini,
@@ -80,6 +109,8 @@
     }
 }}
 
+
+
 % Colores
 \definecolor{rojoEci}{RGB}{225, 70, 49}
 \definecolor{defini}{HTML}{ede9e6}
@@ -93,29 +124,476 @@
 \newcounter{row}
 
 \begin{titlepage}
-    \begin{center}
-        \vspace*{1cm}
+	\begin{center}
+		\vspace*{1cm}
 
-        \textbf{\Huge{Tarea 04}}
+		\textbf{\Huge{Tarea 04}}
 
-        \vspace{1.5cm}
+		\vspace{1.5cm}
 
-        \textbf{\large{David Gómez}}
+		\textbf{\large{David Gómez}}
 
-        \vspace{4cm}
+		\vspace{4cm}
 
-        \includegraphics[width=\textwidth]{\logo}
+		\includegraphics[width=\textwidth]{\logo}
 
-        \vspace{5cm}
+		\vspace{5cm}
 
-        Matemáticas\linebreak
-        Escuela Colombiana de Ingeniería Julio Garavito\linebreak
-        Colombia\linebreak
-        \today
+		Matemáticas\linebreak
+		Escuela Colombiana de Ingeniería Julio Garavito\linebreak
+		Colombia\linebreak
+		\today
 
-    \end{center}
+	\end{center}
 \end{titlepage}
 \clearpage
 \tableofcontents
 \clearpage
+
+\section{Punto 1}
+\subsection{a)}
+\begin{tcolorbox}[demo, title = a)]
+	\vspace*{1cm}
+	\begin{logic}[2]
+		&&& ((\phi \lor (\psi \equiv \tau)) \equiv ((\phi \lor \psi) \equiv (\phi \lor \psi))) & Enunciado\\
+		&&& \val{v}{(\phi \lor (\psi \equiv \tau))} = \val{v}{((\phi \lor \psi) \equiv (\phi \lor \psi))} & MT 2.23 ($\equiv$) (p0)\\[0.4cm]
+		&\tikzmark{A}                    && \val{v}{(\phi \lor (\psi \equiv \tau))} = \mathtt{T} & Suposición 1\\
+		&&& \val{v}{\phi} = \mathtt{T} \text{ o } \val{v}{(\psi \equiv \tau)} = \mathtt{T}\\[0.4cm]
+		&&\tikzmark{A0}       &  \val{v}{\phi} = \mathtt{T} & Suposición 1.1 \\
+		&&& \val{v}{((\phi \lor \psi) \equiv (\phi \lor \psi))} = \mathtt{T} & MT 2.23 ($\lor$, $\equiv$) (p2, p4) && \tikzmark{B0}\\[0.4cm]
+		&&\tikzmark{A1}       & \val{v}{\phi} = \mathtt{F} \text{ y } \val{v}{(\psi \equiv \tau)} = \mathtt{T} & Suposición 1.2\\
+		&&& \tikzmark{A2} \val{v}{\psi} = \mathtt{T} & Suposición 1.2.1\\
+		&&& \val{v}{\tau} = \mathtt{T} & MT 2.23 ($\equiv$) (p7)\\
+		&&& \val{v}{((\phi \lor \psi) \equiv (\phi \lor \psi))} = \mathtt{T} & MT 2.23 ($\equiv$, $\lor$) (p8, p7) & \tikzmark{B2}\\[0.3cm]
+		&&& \tikzmark{A3} \val{v}{\psi} = \mathtt{F} & Suposición 1.2.2\\
+		&&& \val{v}{\tau} = \mathtt{F} & MT 2.23 ($\equiv$) (p10)\\
+		&&& \val{v}{((\phi \lor \psi) \equiv (\phi \lor \psi))} = \mathtt{F} & MT 2.23 ($\equiv$, $\lor$) (p10, p11, p6) & \tikzmark{B3} & \tikzmark{B1} & \tikzmark{B}\\[0.6cm]
+		&\tikzmark{A4}                  && \val{v}{(\phi \lor (\psi \equiv \tau))} = \mathtt{F} & Suposición 2\\
+		&&& \val{v}{\phi} = \mathtt{F} \text{ y } \val{v}{(\psi \equiv \tau)} = \mathtt{F} & MT 2.23 ($\lor$) (p13)\\
+		&&\tikzmark{A5}     &  \val{v}{\psi} = \mathtt{T} & Suposición 2.1\\
+		&&& \val{v}{\tau} = \mathtt{F} & MT 2.23 ($\equiv$) (p15, 14)\\
+		&&& \val{v}{((\phi \lor \psi) \equiv (\phi \lor \psi))} = \mathtt{F} & MT 2.23 ($\equiv$, $\lor$) (p16, p15, p14) && \tikzmark{B5}\\[0.6cm]
+		&&\tikzmark{A6}     & \val{v}{\psi} = \mathtt{F} & Suposición 2.2\\
+		&&& \val{v}{\tau} = \mathtt{T} &  MT 2.23 ($\equiv$) (p18, 14)\\
+		&&& \val{v}{((\phi \lor \psi) \equiv (\phi \lor \psi))} = \mathtt{F} & MT 2.23 ($\equiv$, $\lor$) (p19, p18, p14) && \tikzmark{B6} & \tikzmark{B4}\\[0.7cm]
+		\hline
+		&&& \therefore \qquad ((\phi \lor (\psi \equiv \tau)) \equiv ((\phi \lor \psi) \equiv (\phi \lor \psi)))
+
+
+	\end{logic}
+\end{tcolorbox}
+\drawCodeBox[2]{A0}{B0}
+\drawCodeBox{A2}{B2}
+\drawCodeBox{A3}{B3}
+\drawCodeBox[3]{A1}{B1}
+\drawCodeBox[3]{A5}{B5}
+\drawCodeBox[3]{A6}{B6}
+\drawCodeBox[4]{A}{B}
+\drawCodeBox[4]{A4}{B4}
+
+\subsection{b)}
+
+\begin{tcolorbox}[demo, title = b)]
+	% demostración principal
+	\begin{logic}
+		&((\phi \to (\psi \to \tau)) \equiv ((\phi \to \psi) \to (\phi \to \tau))) & Enunciado\\
+		&\val{v}{(\phi \to (\psi \to \tau))} = \val{v}{((\phi \to \psi) \to (\phi \to \tau))} & MT 2.23 ($\equiv$)(p0)\\
+		&\text{Suposición 1}\\
+		&\text{Suposición 2}\\
+		\hline
+		& \therefore \qquad ((\phi \to (\psi \to \tau)) \equiv ((\phi \to \psi) \to (\phi \to \tau)))
+	\end{logic}
+\end{tcolorbox}
+\vspace*{-0.5cm}
+% sub-prueba no.1
+\begin{tcolorbox}[demo, title = ]
+	\begin{tcolorbox}[demo, title = Suposición 1, colframe = black]
+		\begin{logic}
+			& \val{v}{(\phi  \to (\psi \to \tau))} = \mathtt{F}\\
+			& \val{v}{\phi} = \mathtt{T} \text{ y } \val{v}{(\psi \to \tau)} = \mathtt{F} & MT 2.23 ($\to$)(p0)\\
+			& \val{v}{\psi} = \mathtt{T} \text{ y } \val{v}{\tau} = \mathtt{F} & MT 2.23 ($\to$)(p1)\\
+			& \val{v}{(\phi \to \psi)} = \mathtt{T} & MT 2.23 ($\to$)(p2, p1)\\
+			& \val{v}{(\phi \to \tau)} = \mathtt{F} & MT 2.23 ($\to$)(p2, p1)\\
+			& \val{v}{((\phi \to \psi) \to (\phi \to \tau))} = \mathtt{F} & MT 2.23 ($\to$)(p3, p4)\\
+			& \val{v}{(\phi  \to (\psi \to \tau))} = \val{v}{((\phi \to \psi) \to (\phi \to \tau))} & (p5, p0)
+		\end{logic}
+	\end{tcolorbox}
+\end{tcolorbox}
+\vspace*{-.5cm}
+% sub-prueba no.2
+\begin{tcolorbox}[demo, title = ]
+	\begin{tcolorbox}[demo, title = Suposición 2, colframe = black]
+		\begin{logic}
+			&\val{v}{(\phi \to (\psi \to \tau))} = \mathtt{T}\\
+			&\val{v}{\phi} = \mathtt{F} \text{ o } \val{v}{(\psi \to \tau)} = \mathtt{T} & MT 2.23 ($\to$)(p0)\\
+			& \text{Suposición 2.1}\\
+			& \text{Suposición 2.2}
+		\end{logic}
+	\end{tcolorbox}
+\end{tcolorbox}
+\vspace*{-.5cm}
+
+% sub-sub-prueba 2.1
+\begin{tcolorbox}[demo, title = ]
+	\begin{tcolorbox}[demo, title = ]
+		\begin{tcolorbox}[demo, title = suposición 2.1, colframe = black]
+			\vspace*{0.3cm}
+			\begin{logic}
+				&\val{v}{\phi} = \mathtt{F}\\
+				& \val{v}{(\phi \to \psi)} = \mathtt{T} & MT 2.23 ($\to$)(p0)\\
+				& \val{v}{(\phi \to \tau)} = \mathtt{T} & MT 2.23 ($\to$)(p0)\\
+				& \val{v}{((\phi \to \psi) \to (\phi \to \tau))} = \mathtt{T} & MT 2.23 ($\to$)(p2, p1)\\
+				& \val{v}{(\phi  \to (\psi \to \tau))} = \val{v}{((\phi \to \psi) \to (\phi \to \tau))} & (p0 Suposición 2, p3)
+			\end{logic}
+		\end{tcolorbox}
+	\end{tcolorbox}
+\end{tcolorbox}
+\vspace*{-.5cm}
+
+
+% sub-sub-prueba 2.2
+\begin{tcolorbox}[demo, title = ]
+	\begin{tcolorbox}[demo, title = ]
+		\begin{tcolorbox}[demo, title = Suposición 2.2, colframe = black]
+			\vspace*{0.3cm}
+			\begin{logic}
+				&\val{v}{\phi} = \mathtt{T} \text{ y } \val{v}{(\psi \to \tau)} = \mathtt{T}\\
+				&\val{v}{\psi} = \mathtt{F} \text{ o } \val{v}{\tau} = \mathtt{T} & MT 2.23 ($\to$)(p0)\\
+				& \text{Suposición 2.2.1}\\
+				& \text{Suposición 2.2.2}
+			\end{logic}
+		\end{tcolorbox}
+	\end{tcolorbox}
+\end{tcolorbox}
+\vspace*{-.5cm}
+
+% sub(3) prueba 2.2.1
+
+\begin{tcolorbox}[demo, title = ]
+	\begin{tcolorbox}[demo, title = ]
+		\begin{tcolorbox}[demo, title =]
+			\begin{tcolorbox}[demo, title = Suposición 2.2.1,  colframe = black]
+				\vspace*{0.3cm}
+				\begin{logic}
+					&\val{v}{\psi} = \mathtt{F}\\
+					&\val{v}{(\phi \to \psi)} = \mathtt{F} & MT 2.23 ($\to$)(p0 Suposición 2.2, p0)\\
+					& \val{v}{((\phi \to \psi) \to (\phi \to \tau))} = \mathtt{T} & MT 2.23 ($\to$)(p1)\\
+					& \val{v}{(\phi  \to (\psi \to \tau))} = \val{v}{((\phi \to \psi) \to (\phi \to \tau))} & (p0 Suposición 2, p2)
+				\end{logic}
+			\end{tcolorbox}
+		\end{tcolorbox}
+	\end{tcolorbox}
+\end{tcolorbox}
+\vspace*{-.5cm}
+
+% sub(3) prueba 2.2.2
+
+\begin{tcolorbox}[demo, title = ]
+	\begin{tcolorbox}[demo, title = ]
+		\begin{tcolorbox}[demo, title =]
+			\begin{tcolorbox}[demo, title = Suposición 2.2.2, colframe = black]
+				\vspace*{0.3cm}
+				\begin{logic}
+					& \val{v}{\psi} = \mathtt{T} \text{ y } \val{v}{\tau} = \mathtt{T}\\
+					& \val{v}{(\phi \to \psi)} = \mathtt{T} & MT 2.23 ($\to$)(p0 Suposición 2.2, p0)\\
+					& \val{v}{(\phi \to \tau)} = \mathtt{T} & MT 2.23 ($\to$)(p0 Suposición 2.2, p0)\\
+					& \val{v}{((\phi \to \psi) \to (\phi \to \tau))} = \mathtt{T} & MT 2.23 ($\to$)(p2, p1)\\
+					& \val{v}{(\phi  \to (\psi \to \tau))} = \val{v}{((\phi \to \psi) \to (\phi \to \tau))} & (p0 Suposición 2, p3)
+				\end{logic}
+			\end{tcolorbox}
+		\end{tcolorbox}
+	\end{tcolorbox}
+\end{tcolorbox}
+
+\section{Punto 2}
+\begin{tcolorbox}[demo, title = {$((\neg (p \lor q)) \to p) = \phi$}]
+  \begin{logic}
+    & \phi \text{ es satisfacible pero no tautología} & Enunciado\\
+    & \text{demostración 1}\\
+    & \text{demostración 2}\\
+    \hline
+    & \therefore \qquad \phi \text{ es satisfacible pero no tautología}
+  \end{logic}
+  % demostración 1
+  \begin{tcolorbox}[demo, title = demostración 1, colframe = black]
+    \begin{logic}
+      & (\exists \mathbf{v}\, \vert\, \val{v}{\phi} = \mathtt{T}) & Enunciado\\
+      & \val{v}{((\neg (p \lor q)) \to p)} = \mathtt{T} & Def(p0)\\
+      & \val{v}{(\neg (p \lor q))} = \mathtt{F} \text{ o } \val{v}{p} = \mathtt{T} & MT 2.23 ($\to$)(p1)\\
+      & \val{v}{(p \lor q)} = \mathtt{T} \text{ o } \val{v}{p} = \mathtt{T} & MT 2.23 ($\neg$)(p2)\\
+      & \val{v}{p} = \mathtt{T} \text{ o } \val{v}{q} = \mathtt{T} \text{ o } \val{v}{p} = \mathtt{T} & MT 2.23 ($\lor$)(p3)\\
+      & \mathbf{v} = \{p \mapsto \mathtt{T}, q \mapsto \mathtt{T}\} & Suposición (p4)
+    \end{logic}
+  \end{tcolorbox}
+  
+  % demostración 2
+  \begin{tcolorbox}[demo, title = demostración 2, colframe = black]
+    \begin{logic}
+      & (\exists \mathbf{v}\, \vert\, \val{v}{\phi} = \mathtt{F}) & Enunciado\\
+      & \val{v}{((\neg (p \lor q)) \to p)} = \mathtt{F} & Def. (p0)\\
+      & \val{v}{(\neg (p \lor q))} = \mathtt{T} \text{ y } \val{v}{p} = \mathtt{F} & MT 2.23 ($\to$)(p1)\\
+      & \val{v}{(p \lor q)} = \mathtt{F} \text{ y } \val{v}{p} = \mathtt{F} & MT 2.23 ($\neg$)(p2)\\
+      & \val{v}{p} = \mathtt{F} \text{ y } \val{v}{q} = \mathtt{F} \text{ y } \val{v}{p} = \mathtt{F} & MT 2.23 ($\lor$)(p3)\\
+      & \mathbf{v} = \{p \mapsto \mathtt{F}, q \mapsto \mathtt{F}\}
+    \end{logic}
+  \end{tcolorbox}
+\end{tcolorbox}
+
+\section{Punto 3}
+\begin{itemize}
+  \item $\phi$ tiene a $\lor$ como único conector lógico.
+  \begin{tcolorbox}[demo, title = primer inciso]
+    \begin{logic}
+      & \phi = (\psi \lor \tau) & Enunciado\\
+      & \vDash \phi & Enunciado\\
+      & (\exists \mathbf{v} \, \vert\, \val{v}{\phi} = \mathtt{F}) & Suposición\\
+      & \val{v}{(\psi \lor \tau)} = \mathtt{F} & Def.(p2)\\
+      & \val{v}{\psi} = \mathtt{F} \text{ o } \val{v}{\tau} = \mathtt{F} & MT 2.23 ($\lor$)(p3)\\
+      & \not\vDash \phi & (p4, p2)
+    \end{logic}
+  \end{tcolorbox}
+  \item $\phi$ tiene a $\land$ como único conector lógico.
+  \begin{tcolorbox}[demo, title = primer inciso]
+    \begin{logic}
+      & \phi = (\psi \land \tau) & Enunciado\\
+      & \vDash \phi & Enunciado\\
+      & (\exists \mathbf{v} \, \vert\, \val{v}{\phi} = \mathtt{F}) & Suposición\\
+      & \val{v}{(\psi \land \tau)} = \mathtt{F} & Def.(p2)\\
+      & \val{v}{\psi} = \mathtt{F} \text{ y } \val{v}{\tau} = \mathtt{F} & MT 2.23 ($\land$)(p3)\\
+      & \not\vDash \phi & (p4, p2)
+    \end{logic}
+  \end{tcolorbox}
+\end{itemize}
+
+\section{Punto 4}
+
+\begin{logicenv}[4]{$\vDash (\phi \equiv \psi)$ sii $(\phi \to \psi)$ y $(\phi \gets \psi)$}
+  \begin{logic}
+    & \text{demostración 1}\\
+    & \text{demostración 2}\\
+    \hline
+    & \therefore \qquad \vDash (\phi \equiv \psi)$ sii $(\phi \to \psi)$ y $(\phi \gets \psi)
+  \end{logic}
+\end{logicenv}
+
+% demostración 1
+\begin{subproofill}
+  \begin{subproof}[3]{demostración 1}
+    \begin{logic}
+      & \text{Si } \vDash (\phi \equiv \psi) \text{ ,entonces } \vDash (\phi \to \psi) \text{ y } \vDash (\phi \gets \psi)\\
+      & \vDash (\phi \equiv \psi) & Suposición\\
+      & \val{v}{(\phi \equiv \psi)} = \mathtt{T} & Def.(p1)\\
+      & \val{v}{\phi} = \val{v}{\psi} & MT 2.23 ($\equiv$)(p2)\\
+      & \text{Suposición 1}\\
+      & \text{Suposición 2}\\
+      \hline
+      & \therefore \qquad \text{Si } \vDash (\phi \equiv \psi) \text{ ,entonces } \vDash (\phi \to \psi) \text{ y } \vDash (\phi \gets \psi)
+    \end{logic}
+  \end{subproof}
+\end{subproofill}
+
+%% suposición 1
+\begin{subproofill}
+  \begin{subproofill}
+    \begin{subproof}{Suposición 1}
+      \begin{logic}
+        & \val{v}{\phi} = \mathtt{T}\\
+        & \val{v}{\psi} = \mathtt{T} & (p0, p3 demostración 1)\\
+        & \val{v}{(\phi \to \psi)} = \mathtt{T} & MTT 2.23 ($\to$)(p1, p0)\\
+        & \val{v}{(\phi \gets \psi)} = \mathtt{T} & MTT 2.23 ($\gets$)(p1, p0)
+      \end{logic}
+    \end{subproof}
+  \end{subproofill}
+\end{subproofill}
+
+%% suposición 2
+\begin{subproofill}
+  \begin{subproofill}
+    \begin{subproof}{Suposición 2}
+      \begin{logic}
+        & \val{v}{\phi} = \mathtt{F}\\
+        & \val{v}{\psi} = \mathtt{F} & (p0, p3 demostración 1)\\
+        & \val{v}{(\phi \to \psi)} = \mathtt{T} & MTT 2.23 ($\to$)(p1, p0)\\
+        & \val{v}{(\phi \gets \psi)} = \mathtt{T} & MTT 2.23 ($\gets$)(p1, p0)
+      \end{logic}
+    \end{subproof}
+  \end{subproofill}
+\end{subproofill}
+
+% demostración 2
+\begin{subproofill}
+  \begin{subproof}[3]{demostración 2}
+    \begin{logic}
+      & \text{Si } \vDash (\phi \to \psi) \text{ y } \vDash (\phi \gets \psi) \text{ , entonces } \vDash (\phi \equiv \psi)\\
+      & \vDash (\phi \to \psi) \text{ y } \vDash (\phi \gets \psi) & Suposición\\
+      & \val{v}{(\phi \to \psi)} = \mathtt{T} \text{ y } \val{v}{(\phi \gets \psi)} =\mathtt{T} & Def.(p1)\\
+      & (\val{v}{\phi} = \mathtt{F} \text{ o } \val{v}{\psi} = \mathtt{T}) \text{ y } (\val{v}{\phi} = \mathtt{T} \text{ o } \val{v}{\psi} = \mathtt{F}) & MT 2.23 ($\to$, $\gets$)(p2)\\
+      & \text{Suposición 1}\\
+      & \text{Suposición 2}\\
+      \hline
+      & \therefore \qquad \text{Si } \vDash (\phi \to \psi) \text{ y } \vDash (\phi \gets \psi) \text{ , entonces } \vDash (\phi \equiv \psi)
+    \end{logic}
+  \end{subproof}
+\end{subproofill}
+
+%% suposición 1
+\begin{subproofill}
+  \begin{subproofill}
+    \begin{subproof}{Suposición 1}
+      \begin{logic}
+        & \val{v}{\phi} = \mathtt{T}\\
+        & \val{v}{\psi} = \mathtt{T} & MT 2.23 ($\gets$)(p0, p3 demostración 2)\\
+        & \val{v}{\phi} = \val{v}{\psi} & (p1, p0)\\
+        & \val{v}{(\phi \equiv \psi)} = \mathtt{T} & MT 2.23 ($\equiv$)(p2)
+      \end{logic}
+    \end{subproof}
+  \end{subproofill}
+\end{subproofill}
+
+%% suposición 2
+\begin{subproofill}
+  \begin{subproofill}
+    \begin{subproof}{Suposición 2}
+      \begin{logic}
+        & \val{v}{\phi} = \mathtt{F}\\
+        & \val{v}{\psi} = \mathtt{F} & MT 2.23 ($\to$)(p0, p3 demostración 2)\\
+        & \val{v}{\phi} = \val{v}{\psi} & (p1, p0)\\
+        & \val{v}{(\phi \equiv \psi)} = \mathtt{T} & MT 2.23 ($\equiv$)(p2)
+      \end{logic}
+    \end{subproof}
+  \end{subproofill}
+\end{subproofill}
+
+\section{Punto 5}
+
+\begin{logicenv}{$\vDash (\phi \land \psi)$ sii $\vDash \phi$ y $\vDash \psi$}
+  \begin{logic}
+    & \text{demostración 1}\\
+    & \text{demostración 2}\\
+    \hline
+    & \therefore \qquad \vDash (\phi \land \psi) \text{ sii } \vDash \phi \text{ y } \vDash \psi
+  \end{logic}
+\end{logicenv}
+
+% demostración 1
+\begin{subproofill}
+  \begin{subproof}{demostración 1}
+    \begin{logic}
+      & \text{Si } \vDash (\phi \land \psi) \text{ , entonces } \vDash \phi \text{ y } \vDash \psi\\
+      & \vDash (\phi \land \psi) & Suposición\\
+      & \val{v}{(\phi \land \psi)} & Def.(p1)\\
+      & \val{v}{\phi} = \mathtt{T} \text{ y } \val{v}{\psi} = \mathtt{T} & MT 2.23 ($\land$)(p2)\\
+      & \vDash \phi \text{ y } \vDash \psi & Def.(p3)\\
+      \hline
+      & \therefore \qquad \text{Si } \vDash (\phi \land \psi) \text{ , entonces } \vDash \phi \text{ y } \vDash \psi
+    \end{logic}
+  \end{subproof}
+\end{subproofill}
+
+% demostración 2
+\begin{subproofill}
+  \begin{subproof}{demostración 2}
+    \begin{logic}
+      & \text{Si } \vDash \phi \text{ y } \vDash \psi \text{ , entonces } \vDash (\phi \land \psi)\\
+      & \vDash \phi \text{ y } \vDash \psi & Suposición\\
+      & \val{v}{\phi} = \mathtt{T} \text{ y } \val{v}{\psi} = \mathtt{T} & Def.(p1)\\
+      & \val{v}{(\phi \land \psi)} = \mathtt{T} & MTT 2.23 ($\land$)(p2)\\
+      & \vDash (\phi \land \psi) & Def.(p3)\\
+      \hline
+      & \text{Si } \vDash \phi \text{ y } \vDash \psi \text{ , entonces } \vDash (\phi \land \psi)
+    \end{logic}
+  \end{subproof}
+\end{subproofill}
+
+\section{Punto 6}
+%%%%%%%%%%%%%%%%%%
+%%% H A C E R %%%%
+%%%%%%%%%%%%%%%%%%
+
+\section{Punto 7}
+\begin{logicenv}{$\Gamma \cup \{\phi\} \vDash \psi \text{ sii } \Gamma \vDash (\phi \to \psi)$}
+  \begin{logic}
+    & \text{demostración 1}\\
+    & \text{demostración 2}\\
+    \hline
+    & \therefore \qquad \Gamma \cup \{\phi\} \vDash \psi \text{ sii } \Gamma \vDash (\phi \to \psi)
+  \end{logic}
+\end{logicenv}
+
+% demostración 1
+\begin{subproofill}
+  \begin{subproof}[3]{demostración 1}
+    \begin{logic}
+      & \text{Si } \Gamma \cup \{\phi\} \vDash \psi \text{ , entonces } \Gamma \vDash (\phi \to \psi)\\
+      & \Gamma \cup \{\phi\} \vDash \psi & Suposición\\
+      & \text{Existe }\mathbf{v} \text{ tal que} \mathbf{v} { satisface } \Gamma \cup \{\phi\} & Def(p1)\\
+      & \mathbf{v} \text{ satisface } \Gamma \text{ y a } \{\phi\} & $\Gamma \cup \{\phi\} := (\exists \xi \,\vert\, \xi \in \Gamma \land \xi \in \{\phi\})$\\
+      & \val{v}{\psi} = \mathtt{T} & Def.(p2, p1)\\
+      & \val{v}{\phi} = \mathtt{T} & Def.(p3)\\
+      & \val{v}{(\phi \to \psi)} = \mathtt{T} & MT 2.23 ($\to$)(p5, p4)\\
+      & \mathbf{v} \text{ satisface } \Gamma \text{ y a } (\phi \to \psi) & (p6, p3)\\
+      \hline
+      & \therefore \text{Si } \Gamma \cup \{\phi\} \vDash \psi \text{ , entonces } \Gamma \vDash (\phi \to \psi)
+    \end{logic}
+  \end{subproof}
+\end{subproofill}
+
+% demostración 2
+\begin{subproofill}
+  \begin{subproof}[3]{demostración 2}
+    \begin{logic}
+      & \text{Si } \Gamma \vDash (\phi \to \psi) \text{ , entonces } \Gamma \cup \{\phi\} \vDash \psi\\
+      & \Gamma \vDash (\phi \to \psi) & Suposición\\
+      & \text{Existe } \mathbf{v} \text{ tal que } \mathbf{v} \text{ satisface } \Gamma\\
+      & \val{v}{(\phi \to \psi)} = \mathtt{T} & Def.(p2, p1)\\
+      & \val{v}{\phi} = \mathtt{F} \text{ o } \val{v}{\psi} = \mathtt{T} & MT 2.23 ($\to$)(p3)\\
+      & \val{v}{\phi} = \mathtt{T} \text{ y } \val{v}{\psi} = \mathtt{T} & Suposición\\
+      & \mathbf{v} \text{ satisface } \Gamma \text{y a} \{\phi\}\\
+      \hline
+      & \therefore \qquad \text{Si } \Gamma \vDash (\phi \to \psi) \text{ , entonces } \Gamma \cup \{\phi\} \vDash \psi
+    \end{logic}
+  \end{subproof}
+\end{subproofill}
+
+
+\section{Punto 8}
+
+\begin{logicenv}[4]{$\text{Si } \Delta \not\vDash \phi \text{ y } \Gamma \subset \Delta \text{ , entonces } \Gamma \not\vDash \phi$}
+  \begin{logic}
+    & \text{Existe } \mathbf{v} \text{ tal que } \mathbf{v} \text{ satisface } \Delta \text{ y } \val{v}{\phi} = \mathtt{F}\\
+    & (\forall \xi \, \vert\, \xi \in \Delta : \xi \in \Gamma) & Def. ($\subset$)\\
+    & (\forall \xi \, \vert\, \xi \in \Delta : \val{v}{\xi} = \mathtt{T}) & Def. (p0)\\
+    & (\forall \xi \, \vert\, \xi \in \Gamma : \val{v}{\xi} = \mathtt{T}) & (p2, p1)\\
+    & \mathbf{v} \text{ satisface } \Gamma \text{ y } \val{v}{\phi} = \mathtt{F}\\
+    \hline
+    & \therefore \qquad \text{Si } \Delta \not\vDash \phi \text{ y } \Gamma \subset \Delta \text{ , entonces } \Gamma \not\vDash \phi
+  \end{logic}
+\end{logicenv}
+
+\section{Punto 9}
+
+\begin{itemize}
+  \item Si Pedro entiende matemáticas, entonces puede entender lógica. Pedro no entiende lógica. Consecuentemente, Pedro no entiende matemáticas.
+  \begin{logicenv}{Si Pedro...}
+    \begin{center}
+      \begin{tabular}{l c}
+        $p$ : & Pedro entiende matemáticas\\
+        $q$ : & Pedro puede entender lógica\\
+        \hline
+        & $\Gamma = \{(p \to q), (\neg q)\}, \phi = (\neg p)$
+      \end{tabular}
+    \end{center}
+    \begin{logic}
+      & \text{Existe } \mathbf{v} \text{ tal que } \mathbf{v} \text{ satisface } \Gamma & Suposición\\
+      & \val{v}{(p \to q)} = \mathtt{T} & Def.(p0)\\
+      & \val{v}{(\neg q)} = \mathtt{T} & Def(p0)\\
+      & \val{v}{q} = \mathtt{F} & MT 2.23 ($\neg$)(p2)\\
+      & \val{v}{p} = \mathtt{F} & MT 2.23 ($\to$)(p3, p1)\\
+      & \val{v}{(\neg p)} = \mathtt{T} & MTT 2.23 ($\neg$)(p4)\\
+      \hline
+      & \Gamma \vDash \phi
+    \end{logic}
+  \end{logicenv}
+  
+\end{itemize}
 \end{document}
