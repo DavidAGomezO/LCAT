@@ -34,6 +34,7 @@
 \newcommand{\boolun}[2][]{H_{#2}(#1)}
 \newcommand{\boolbin}[3]{H_{#1}(#2, #3)}
 \newcommand{\val}[2]{\mathbf{#1}[#2]}
+\newcommand{\setd}[1]{\{#1\}}
 
 \newlength{\unit}
 \setlength{\unit}{1ex}
@@ -506,9 +507,41 @@
 \end{subproofill}
 
 \section{Punto 6}
-%%%%%%%%%%%%%%%%%%
-%%% H A C E R %%%%
-%%%%%%%%%%%%%%%%%%
+\begin{logicenv}[4]{$\setd{(\phi \lor \psi), ((\neg \phi) \lor \tau)} \vDash (\psi \lor \tau)$}
+  \begin{logic}
+    & \text{Existe } \mathbf{v} \text{ tal que } \mathbf{v} \text{ satisface }\{(\phi \lor \psi	), ((\neg \phi) \lor \tau)\}\\
+    & \val{v}{(\phi \lor \psi)} = \mathtt{T} & Def.(p0)\\
+    & \val{v}{((\neg \phi) \lor \tau)} = \mathtt{T} & Def.(p0)\\
+    & \val{v}{\phi} =  \mathtt{T} \text{ o } \val{v}{\psi} = \mathtt{T} & MT 2.23 ($\lor$)(p1)\\
+    & \val{v}{(\neg \phi)} = \mathtt{T} \text{ o } \val{v}{\tau} = \mathtt{T} & MT 2.23 ($\lor$)(p2)\\
+    & \text{Suposición 1}\\
+    & \text{Suposición 2}\\
+    \hline
+    & \therefore \qquad \{(\phi \lor \psi	), ((\neg \phi) \lor \tau)\} \vDash (\psi \lor \tau)
+  \end{logic}
+\end{logicenv}
+  % Suposición 1
+  \begin{subproofill}
+    \begin{subproof}{Suposición 1}
+      \begin{logic}
+        & \val{v}{\phi} = \mathtt{T}\\
+        & \val{v}{(\neg \phi)} = \mathtt{F} & MT 2.23 ($\neg$)(p0)\\
+        & \val{v}{\tau} = \mathtt{T} & MT 2.23 ($\lor$)(p1, p4 Enunciado)\\
+        & \val{v}{(\psi \lor \tau)} = \mathtt{T} & MT 2.23 ($\lor$)(p2)
+      \end{logic}
+    \end{subproof}
+  \end{subproofill}
+
+  % Suposición 2
+  \begin{subproofill}
+    \begin{subproof}{Suposición 2}
+      \begin{logic}
+        & \val{v}{\phi} = \mathtt{F}\\
+        & \val{v}{\psi} = \mathtt{T} & MT 2.23($\lor$)(p0, p3 Enunciado)\\
+        & \val{v}{(\psi \lor \tau)} = \mathtt{T} & MT 2.23($\lor$)(p1)
+      \end{logic}
+    \end{subproof}
+  \end{subproofill}
 
 \section{Punto 7}
 \begin{logicenv}{$\Gamma \cup \{\phi\} \vDash \psi \text{ sii } \Gamma \vDash (\phi \to \psi)$}
@@ -561,7 +594,7 @@
 \begin{logicenv}[4]{$\text{Si } \Delta \not\vDash \phi \text{ y } \Gamma \subset \Delta \text{ , entonces } \Gamma \not\vDash \phi$}
   \begin{logic}
     & \text{Existe } \mathbf{v} \text{ tal que } \mathbf{v} \text{ satisface } \Delta \text{ y } \val{v}{\phi} = \mathtt{F}\\
-    & (\forall \xi \, \vert\, \xi \in \Delta : \xi \in \Gamma) & Def. ($\subset$)\\
+    & (\forall \xi \, \vert\, \xi \in \Gamma : \xi \in \Delta) & Def. ($\subset$)\\
     & (\forall \xi \, \vert\, \xi \in \Delta : \val{v}{\xi} = \mathtt{T}) & Def. (p0)\\
     & (\forall \xi \, \vert\, \xi \in \Gamma : \val{v}{\xi} = \mathtt{T}) & (p2, p1)\\
     & \mathbf{v} \text{ satisface } \Gamma \text{ y } \val{v}{\phi} = \mathtt{F}\\
@@ -570,13 +603,14 @@
   \end{logic}
 \end{logicenv}
 
+\clearpage
 \section{Punto 9}
 
 \begin{itemize}
   \item Si Pedro entiende matemáticas, entonces puede entender lógica. Pedro no entiende lógica. Consecuentemente, Pedro no entiende matemáticas.
   \begin{logicenv}{Si Pedro...}
     \begin{center}
-      \begin{tabular}{l c}
+      \begin{tabular}{l l}
         $p$ : & Pedro entiende matemáticas\\
         $q$ : & Pedro puede entender lógica\\
         \hline
@@ -594,6 +628,194 @@
       & \Gamma \vDash \phi
     \end{logic}
   \end{logicenv}
+  \vspace*{0.3cm}
+  \item Si llueve o cae nieve, entonces no hay electricidad. Llueve. Entonces, no habrá electricidad.
+  \begin{logicenv}[3]{Si llueve\dots No habrá electricidad}
+    \begin{center}  
+      \begin{tabular}{l l}
+        $p$ : & Llueve\\
+        $q$ : & Nieva\\
+        $r$ : & Hay electricidad\\
+        \hline
+        & $\Gamma = \setd{((p \lor q) \to (\neg r)), p}, \phi = r$
+      \end{tabular}
+    \end{center}
+    \begin{logic}
+      & \text{Existe } \mathbf{v} \text{ tal que } \mathbf{v} \text{ satisface } \Gamma & Suposición\\
+      & \val{v}{((p \lor q) \to (\neg r))} = \mathtt{T} & Def.(p0)\\
+      & \val{v}{p} = \mathtt{T} & Def.(p0)\\
+      & \val{v}{(p \lor q)} = \mathtt{T} & MT 2.23 ($\lor$)(p2)\\
+      & \val{v}{(\neg r)} = \mathtt{T} & MT 2.23 ($\to$)(p3, p1)\\
+      & \val{v}{r} = \mathtt{F} & MT 2.23 ($\neg$)(p4)
+    \end{logic}
+  \end{logicenv}
+
+  \vspace*{.3cm}
+  \item Si llueve o cae nieve, entonces no hay electricidad. Hay electricidad. Entonces no nevó.
+  \begin{logicenv}{Si llueve\dots No nevó}
+    \begin{center}  
+      \begin{tabular}{l l}
+        $p$ : & Llueve\\
+        $q$ : & Nieva\\
+        $r$ : & Hay electricidad\\
+        \hline
+        & $\Gamma = \setd{((p \lor q) \to (\neg r)), r}, \phi = (\neg q)$
+      \end{tabular}
+    \end{center}
+    \begin{logic}
+      & \text{Existe } \mathbf{v} \text{ tal que } \mathbf{v} \text{ satisface } \Gamma & Suposición\\
+      & \val{v}{((p \lor q) \to (\neg r))} = \mathtt{T} & Def.(p0)\\
+      & \val{v}{(r)} = \mathtt{T} & Def.(p0)\\
+      & \val{v}{(p \lor q)} = \mathtt{F} & MT 2.23 ($\to$)(p2, p1)\\
+      & \val{v}{p} = \mathtt{F} \text{ y } \val{v}{q} = \mathtt{F} & MT 2.23 ($\lor$)(p3)\\
+      & \val{v}{(\neg q)} = \mathtt{T} & MT 2.23 ($\neg$)(p4)
+    \end{logic} 
+  \end{logicenv}
+
+  \vspace*{.3cm}
+  \item Es peligroso conducir cuando está nevando. Esta nevando ahora. Sería peligroso conducir en este momento.
+  \begin{logicenv}{Es peligroso conducir\dots}
+    \begin{center}  
+      \begin{tabular}{l l}
+        $p$ : & Es peligroso conducir\\
+        $q$ : & Nieva\\
+        \hline
+        & $\Gamma = \setd{(p \gets q), q}, \phi = p$
+      \end{tabular}
+    \end{center}
+    \begin{logic}
+      & \text{Existe } \mathbf{v} \text{ tal que } \mathbf{v} \text{ satisface } \Gamma & Suposición\\
+      & \val{v}{(p \gets q)} = \mathtt{T} & Def.(p0)\\
+      & \val{v}{q} = \mathtt{T} & Def.(p0)\\
+      & \val{v}{p} = \mathtt{T} & MT 2.23($\gets$)(p2)
+    \end{logic} 
+  \end{logicenv}
+  \vspace*{.3cm}
+
+  \item Cuando llueve los árboles se mojan. Los árboles están húmedos esta mañana, así que llovió anoche.
+  \begin{logicenv}{Cuando llueve\dots}
+    \begin{center}  
+      \begin{tabular}{l l}
+        $p$ : & Llueve\\
+        $q$ : & Los árboles se mojan\\
+        \hline
+        & $\Gamma = \setd{(p \to q), p}, \phi = q$
+      \end{tabular}
+    \end{center}
+    \begin{logic}
+      & \text{Existe } \mathbf{v} \text{ tal que } \mathbf{v} \text{ satisface } \Gamma & Suposición\\
+      & \val{v}{(p \to q)} = \mathtt{T} & Def.(p0)\\
+      & \val{v}{p} = \mathtt{T} & Def.(p0)\\
+      & \val{v}{q} = \mathtt{T} & MT 2.23($\gets$)(p2)
+    \end{logic} 
+  \end{logicenv}
+  \vspace*{.3cm}
+
+  \item Un paraguas evita que se moje bajo la lluvia. Alicia tomó su paraguas y no se mojó. Probablemente estaba lloviendo.
   
+  \begin{logicenv}{Un paraguas\dots}
+    \begin{center}  
+      \begin{tabular}{l l}
+        $p$ : & Alicia toma su paraguas\\
+        $q$ : & Alicia se moja\\
+        $r$ : & Llueve\\
+        \hline
+        & $\Gamma = \setd{((p \land r) \to (\neg q)), (p \land (\neg q))}, \phi = (r \lor (\neg r))$
+      \end{tabular}
+    \end{center}
+    \begin{logic}
+      & \text{Existe } \mathbf{v} \text{ tal que } \mathbf{v} \text{ satisface } \Gamma & Suposición\\
+      & \val{v}{((p \land r) \to (\neg q))} = \mathtt{T} & Def.(p0)\\
+      & \val{v}{(p \land (\neg q))} = \mathtt{T} & Def.(p0)\\
+      & \val{v}{(r \lor (\neg r))} = \mathtt{T} & MT 2.23($\lor$), MT 2.19 N 2.20
+    \end{logic} 
+  \end{logicenv}
+  \vspace*{.3cm}
+  \item Las luces rojas previenen accidentes. Miguél no tuvo un accidente, por lo tanto, Miguél se detuvo en una luz roja.
+  
+  \begin{logicenv}{Las luces rojas\dots}
+    \begin{center}  
+      \begin{tabular}{l l}
+        $p$ : & Miguél tiene un accidente\\
+        $q$ : & Miguél se detiene en la luz roja\\
+        \hline
+        & $\Gamma = \setd{(q \to (\neg p)), q}, \phi = q$
+      \end{tabular}
+    \end{center}
+    \begin{logic}
+      & \text{Existe } \mathbf{v} \text{ tal que } \mathbf{v} \text{ satisface } \Gamma & Suposición\\
+      & \val{v}{(q \to (\neg p))} = \mathtt{T} & Def.(p0)\\
+      & \val{v}{q} = \mathtt{T} & Def.(p0)\\
+      & \val{v}{q} = \mathtt{F} & MT 2.23 ($\to$)(p2, p1)
+    \end{logic} 
+  \end{logicenv}
+  \vspace*{.3cm}
+
+  \item Si $sin(x)$ es diferenciable, entonces $sin(x)$ es continua. Si $sin(x)$ es continua, entonces $sin(x)$ es diferenciable. La función $sin(x)$ es diferenciable. Consecuentemente, la función $sin(x)$ es  integrable.
+  
+  \begin{logicenv}{Si $sin(x)$ \dots}
+    \begin{center}  
+      \begin{tabular}{l l}
+        $p$ : & $sin(x)$ es diferenciable\\
+        $q$ : & $sin(x)$ es continua\\
+        $r$ : & $sin(x)$ es integrable\\
+        \hline
+        & $\Gamma = \setd{(p \to q), (q \to p), p}, \phi = r$
+      \end{tabular}
+    \end{center}
+    \begin{logic}
+      & \text{Existe } \mathbf{v} \text{ tal que } \mathbf{v} \text{ satisface } \Gamma & Suposición\\
+      & \val{v}{(p \to q)} = \mathtt{T} & Def.(p0)\\
+      & \val{v}{(q \to p)} = \mathtt{T} & Def.(p0)\\
+      & \val{v}{p} = \mathtt{T} & Def.(p0)\\
+    \end{logic} 
+    Desde el punto de vista de la lógica (hasta el tema que hemos visto), la argumentación no es válida, sin embargo, es válida si es posible añadir el teorema fundamental del cálculo como razón para concluir $r$ .
+  \end{logicenv}
+  \vspace*{.3cm}
+  \item Si Gödel fuera presidente, entonces el Congreso presentaría leyes razonables. Gödel no es presidente. Por lo tanto, el Congreso no presenta leyes razonables.
+  
+  \begin{logicenv}{Si Gödel fuera presidente\dots}
+    \begin{center}  
+      \begin{tabular}{l l}
+        $p$ : & Gödel es presidente\\
+        $q$ : & El Congreso presenta leyes razonables\\
+        \hline
+        & $\Gamma = \setd{(p \to q), (\neg p)}, \phi = (\neg q)$
+      \end{tabular}
+    \end{center}
+    \begin{logic}
+      & \text{Existe } \mathbf{v} \text{ tal que } \mathbf{v} \text{ satisface } \Gamma & Suposición\\
+      & \val{v}{(p \to q)} = \mathtt{T} & Def.(p0)\\
+      & \val{v}{(\neg p)} = \mathtt{T} & Def.(p0)\\
+      & \val{v}{p} = \mathtt{F} & MT 2.23 ($\neg$)\\
+      & \val{v}{q} = \mathtt{F} \text{ o } \mathtt{T} & MT 2.23 ($\to$)(p3, p2)
+    \end{logic} 
+    La argumentación no es válida, y es una falacia.
+  \end{logicenv}
+  \vspace*{.3cm}
+  \item Si llueve, entonces no hay picnic. Si cae nieve, entonces no hay picnic. Llueve o cae nieve. Por lo tanto, no hay picnic.
+  
+  \begin{logicenv}[4]{Si llueve\dots no hay picnic}
+    \begin{center}  
+      \begin{tabular}{l l}
+        $p$ : & Llueve\\
+        $q$ : & Hay picnic\\
+        $r$ : & Nieva\\
+        \hline
+        & $\Gamma = \setd{(p \to (\neg q)), (r \to (\neg q)), (p \lor r)}, \phi = (\neg q)$
+      \end{tabular}
+    \end{center}
+    \begin{logic}
+      & \text{Existe } \mathbf{v} \text{ tal que } \mathbf{v} \text{ satisface } \Gamma & Suposición\\
+      & \val{v}{(p \to (\neg q))} = \mathtt{T} & Def.(p0)\\
+      & \val{v}{(r \to (\neg q))} = \mathtt{T} & Def.(p0)\\
+      & \val{v}{(p \lor r)} = \mathtt{T} & Def.(p0)\\
+      & \val{v}{p} = \mathtt{T} \text{ o } \val{v}{r} = \mathtt{T} & MT 2.23 ($\lor$)(p3)\\
+      & \val{v}{((\neg p) \land (\neg r))} = \mathtt{F} & MT 2.23 ($\lor$)\\
+      & (\not\exists \mathbf{v}\, \val\, \val{v}{p} = \mathtt{F} \text{ y } \val{v}{r} = \mathtt{F})\\
+      & \val{v}{(\neg q)} = \mathtt{T} & MT 2.23 ($\to$)(p6, p2, p1)
+    \end{logic} 
+  \end{logicenv}
+  \vspace*{.3cm}
 \end{itemize}
 \end{document}
