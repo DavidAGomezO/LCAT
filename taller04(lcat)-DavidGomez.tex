@@ -354,7 +354,7 @@
     \end{logic}
   \end{tcolorbox}
   \item $\phi$ tiene a $\land$ como único conector lógico.
-  \begin{tcolorbox}[demo, title = primer inciso]
+  \begin{tcolorbox}[demo, title = segundo inciso]
     \begin{logic}
       & \phi = (\psi \land \tau) & Enunciado\\
       & \vDash \phi & Enunciado\\
@@ -581,7 +581,7 @@
       & \val{v}{(\phi \to \psi)} = \mathtt{T} & Def.(p2, p1)\\
       & \val{v}{\phi} = \mathtt{F} \text{ o } \val{v}{\psi} = \mathtt{T} & MT 2.23 ($\to$)(p3)\\
       & \val{v}{\phi} = \mathtt{T} \text{ y } \val{v}{\psi} = \mathtt{T} & Suposición\\
-      & \mathbf{v} \text{ satisface } \Gamma \text{y a} \{\phi\}\\
+      & \mathbf{v} \text{ satisface } \Gamma \text{ y a} \{\phi\}\\
       \hline
       & \therefore \qquad \text{Si } \Gamma \vDash (\phi \to \psi) \text{ , entonces } \Gamma \cup \{\phi\} \vDash \psi
     \end{logic}
@@ -624,8 +624,6 @@
       & \val{v}{q} = \mathtt{F} & MT 2.23 ($\neg$)(p2)\\
       & \val{v}{p} = \mathtt{F} & MT 2.23 ($\to$)(p3, p1)\\
       & \val{v}{(\neg p)} = \mathtt{T} & MTT 2.23 ($\neg$)(p4)\\
-      \hline
-      & \Gamma \vDash \phi
     \end{logic}
   \end{logicenv}
   \vspace*{0.3cm}
@@ -812,7 +810,7 @@
       & \val{v}{(p \lor r)} = \mathtt{T} & Def.(p0)\\
       & \val{v}{p} = \mathtt{T} \text{ o } \val{v}{r} = \mathtt{T} & MT 2.23 ($\lor$)(p3)\\
       & \val{v}{((\neg p) \land (\neg r))} = \mathtt{F} & MT 2.23 ($\lor$)\\
-      & (\not\exists \mathbf{v}\, \val\, \val{v}{p} = \mathtt{F} \text{ y } \val{v}{r} = \mathtt{F})\\
+      & (\not\exists \mathbf{v}\, \vert\, \val{v}{p} = \mathtt{F} \text{ y } \val{v}{r} = \mathtt{F})\\
       & \val{v}{(\neg q)} = \mathtt{T} & MT 2.23 ($\to$)(p6, p2, p1)
     \end{logic} 
   \end{logicenv}
