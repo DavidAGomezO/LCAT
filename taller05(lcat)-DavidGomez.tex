@@ -309,5 +309,76 @@
 
 \section{Punto 5}
 
-El habitante $A$ dice \q{Yo dije que si no soy caballero entonces soy escudero, y si soy caballero entonces no soy escudero} 
+El habitante $A$ dice \q{Yo dije que si no soy caballero entonces soy escudero, y si soy caballero entonces no soy escudero}
+
+\section{Punto 6}
+
+\begin{logicenv}[5]{{$A$, $B$, $(a \equiv (\neg b)), (b \equiv (a \lor b))$}}
+  $A$ dice: \q{$B$ es escudero}\\
+  $B$ dice: \q{al menos uno de nosotros es caballero}\\
+  $\Gamma_0 = \{(a \equiv (\neg b)), (b \equiv (a \lor b)), a\}$\\
+  $\Gamma_1 = \{(a \equiv (\neg b)), (b \equiv (a \lor b)), (\neg a)\}$\\
+  \makebox[7cm]{\hrulefill}\\
+  $A$ es escudero y $B$ es caballero
+\end{logicenv}
+\begin{subproofill}
+  \begin{subproof}{Con $\Gamma_0$}
+    (\exists \mathbf{v} \, \vert\, \mathbf{v} \text{ satisface } \Gamma_0)\\
+    \val{v}{(a \equiv (\neg b))} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(b \equiv (a \lor b))} = \mathtt{T} & Def.(p0)\\
+    \val{v}{a} = \mathtt{T} & Def.(p0)\\
+    \val{v}{b} = \mathtt{F} & MTT 2.23 ($\equiv, \neg$)(p3, p1)\\
+    \val{v}{(a \lor b)} = \mathtt{T} & MT 2.23 ($\equiv$)(p4, p2)\\
+    \val{v}{a} = \mathtt{F} \text{ y } \val{v}{b} = \mathtt{F} & MT 2.23($\lor$)(p5)\\
+    \val{v}{a} = \mathtt{F} \text{ y } \val{v}{a} = \mathtt{T} & Contradicción (p6, p3)
+  \end{subproof}
+\end{subproofill}
+\begin{subproofill}
+  \begin{subproof}{Con $\Gamma_1$}
+    (\exists \mathbf{v}\, \vert\, \mathbf{v} \text{ satisface } \Gamma_1)\\
+    \val{v}{(a \equiv (\neg b))} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(b \equiv (a \lor b))} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(\neg a)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{a} = \mathtt{F} & MT 2.23($\neg$)(p3)\\
+    \val{v}{b} = \mathtt{T} & MT 2.23 ($\equiv$, $\neg$)(p4, p1)
+  \end{subproof}
+\end{subproofill}
+
+\section{Punto 7}
+
+\q{Soy caballero} , debido a que $\vDash (\phi \equiv \phi)$
+
+\section{Punto 8}
+
+\q{Soy escudero} , debido a que $(\phi \equiv (\neg \phi))$ es una contradicción
+
+\section{Punto 9}
+
+\begin{logicenv}[5]{Punto 23}
+  $C$ dijo: \q{A lo sumo uno de nosotros es caballero}\\
+  $\Gamma_0 = \{(c \equiv (a \land (\neg b) \land (\neg c)) \lor ((\neg a) \land b \land (\neg c)) \lor ((\neg a) \land (\neg b) \land c) \lor ((\neg a) \land (\neg b) \land (\neg c))), c\}$\\
+  $\Gamma_1 = \{(c \equiv (a \land (\neg b) \land (\neg c)) \lor ((\neg a) \land b \land (\neg c)) \lor ((\neg a) \land (\neg b) \land c) \lor ((\neg a) \land (\neg b) \land (\neg c))), (\neg c)\}$
+  \makebox[16.5cm]{\hrulefill}\\
+  $C$ es el único caballero, y por ende el único hombre lobo (tomando la suposición dada por el enunciado).
+\end{logicenv}
+\begin{subproofill}
+  \dots Tomando lo que dijo $C$ como $\phi$\dots
+  \begin{subproof}[5]{Con $\Gamma_0$}
+    (\exists \mathbf{v} \, \vert\, \mathbf{v} \text{ satisface } \Gamma_0)\\
+    \val{v}{(c \equiv \phi)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{c} = \mathtt{T} & Def(p0)\\
+    \val{v}{((\neg a) \land (\neg b) \land c)} = \mathtt{T} & MT 2.23($\equiv$, $\land$)(p2, p1)\\
+  \end{subproof}
+\end{subproofill}
+\begin{subproofill}
+  \begin{subproof}[5]{Con $\Gamma_1$}
+    (\exists \mathbf{v} \, \vert\, \mathbf{v} \text{ satisface } \Gamma_0)\\
+    \val{v}{(c \equiv \phi)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(\neg c)} = \mathtt{T} & Def(p0)\\
+    \val{v}{(a \land (\neg b) \land (\neg c))} = \mathtt{F} & MT 2.23($\equiv$, $\land$) (p2, p1)\\
+    \val{v}{(\neg c)} = \mathtt{F} & MTT 2.23 ($\land$)(p3)\\ 
+    \val{v}{(\neg c)} = \mathtt{F} \text{ y } \val{v}{(\neg c)} = \mathtt{T} & Contradicción (p4, p2)
+  \end{subproof} 
+\end{subproofill}
+
 \end{document}
