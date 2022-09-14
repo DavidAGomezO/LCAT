@@ -354,31 +354,81 @@ El habitante $A$ dice \q{Yo dije que si no soy caballero entonces soy escudero, 
 
 \section{Punto 9}
 
-\begin{logicenv}[5]{Punto 23}
-  $C$ dijo: \q{A lo sumo uno de nosotros es caballero}\\
-  $\Gamma_0 = \{(c \equiv (a \land (\neg b) \land (\neg c)) \lor ((\neg a) \land b \land (\neg c)) \lor ((\neg a) \land (\neg b) \land c) \lor ((\neg a) \land (\neg b) \land (\neg c))), c\}$\\
-  $\Gamma_1 = \{(c \equiv (a \land (\neg b) \land (\neg c)) \lor ((\neg a) \land b \land (\neg c)) \lor ((\neg a) \land (\neg b) \land c) \lor ((\neg a) \land (\neg b) \land (\neg c))), (\neg c)\}$
-  \makebox[16.5cm]{\hrulefill}\\
-  $C$ es el único caballero, y por ende el único hombre lobo (tomando la suposición dada por el enunciado).
+\begin{logicenv}[5]{Punto 9{, $A$, $B$, $C$}}
+  $A$ dice: \q{Yo soy hombre lobo}\\
+  $B$ dice: \q{Yo soy hombre lobo}\\
+  $C$ dice: \q{A lo sumo, uno de nosotros es caballero}\\
+  $\Gamma = \{(c \equiv ((a \land (\neg b) \land (\neg c)) \lor ((\neg a) \land b \land (\neg c)) \lor ((\neg a) \land (\neg b) \land c) \lor ((\neg a) \land (\neg b) \land (\neg c))))\}$\\
+  $\Gamma_0 = \Gamma \cup \{c\}$\\
+  $\Gamma_1 = \Gamma \cup \{(\neg c), a\}$\\
+  $\Gamma_2 = \Gamma \cup \{(\neg c), (\neg a)\}$
 \end{logicenv}
+
 \begin{subproofill}
   \dots Tomando lo que dijo $C$ como $\phi$\dots
-  \begin{subproof}[5]{Con $\Gamma_0$}
-    (\exists \mathbf{v} \, \vert\, \mathbf{v} \text{ satisface } \Gamma_0)\\
+  \begin{subproof}{Con $\Gamma_0$}
+    (\exists \mathbf{v}\, \vert\, \mathbf{v} \text{ satisface } \Gamma_0)\\
     \val{v}{(c \equiv \phi)} = \mathtt{T} & Def.(p0)\\
-    \val{v}{c} = \mathtt{T} & Def(p0)\\
-    \val{v}{((\neg a) \land (\neg b) \land c)} = \mathtt{T} & MT 2.23($\equiv$, $\land$)(p2, p1)\\
+    \val{v}{c} = \mathtt{T} & Def.(p0)\\
+    \val{v}{\phi} = \mathtt{T} & MT 2.23($\equiv$)(p2, p1)\\
+    \val{v}{((\neg a) \land (\neg b) \land c)} = \mathtt{T} & MT 2.23($\lor$)(p3, p1)\\
+    \mathbf{v}_0 = \{a \mapsto \mathtt{F}, b \mapsto \mathtt{F}, c \mapsto \mathtt{T}\}
+  \end{subproof}
+\end{subproofill}
+
+\begin{subproofill}
+  \begin{subproof}{Con $\Gamma_1$}
+    (\exists \mathbf{v}\, \vert\, \mathbf{v} \text{ satisface } \Gamma_0)\\
+    \val{v}{(c \equiv \phi)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(\neg c)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{a} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(\neg b)} = \mathtt{F} & MT 2.23($\land$)(p3, p2, p1)\\
+    \val{v}{b} = \mathtt{T} & MT 2.23($\neg$)(p4)\\
+    \mathbf{v}_1 = \{a \mapsto \mathtt{T}, b \mapsto \mathtt{T}, c \mapsto \mathtt{F}\}
+  \end{subproof}
+\end{subproofill}
+
+\begin{subproofill}
+  \begin{subproof}{Con $\Gamma_2$}
+    (\exists \mathbf{v}\, \vert\, \mathbf{v} \text{ satisface } \Gamma_0)\\
+    \val{v}{(c \equiv \phi)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(\neg c)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(\neg a)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{a} = \mathtt{F} & MT 2.23($\neg$)(p3)\\
+    \val{v}{b} = \mathtt{F} & MT 2.23($\lor$, $\land$)(p3, p2, p1)\\
+    \val{v}{(\neg b)} = \mathtt{F} & MT 2.23($\lor$, $\land$)(p3, p2, p1)\\
+    \val{v}{b} = \mathtt{F} \text{ y } \val{v}{b} = \mathtt{T} & Contradicción(p6, p5)
   \end{subproof}
 \end{subproofill}
 \begin{subproofill}
-  \begin{subproof}[5]{Con $\Gamma_1$}
-    (\exists \mathbf{v} \, \vert\, \mathbf{v} \text{ satisface } \Gamma_0)\\
-    \val{v}{(c \equiv \phi)} = \mathtt{T} & Def.(p0)\\
-    \val{v}{(\neg c)} = \mathtt{T} & Def(p0)\\
-    \val{v}{(a \land (\neg b) \land (\neg c))} = \mathtt{F} & MT 2.23($\equiv$, $\land$) (p2, p1)\\
-    \val{v}{(\neg c)} = \mathtt{F} & MTT 2.23 ($\land$)(p3)\\ 
-    \val{v}{(\neg c)} = \mathtt{F} \text{ y } \val{v}{(\neg c)} = \mathtt{T} & Contradicción (p4, p2)
-  \end{subproof} 
+  Debido a la suposición del enunciado \q{exáctamente uno entre $A$, $B$ y $C$ es hombre lobo}, hace que $\mathbf{v}_1$ no sea una respuesta posible.
+
+  Por consiguiente, $C$ es el único caballero, y el único hombre lobo.
 \end{subproofill}
 
+\section{Punto 10}
+Suponga que $\Gamma$ es un conjunto de proposiciones que especifica información dada acerca de un acertijo de
+la isla de caballeros y escuderos. Además, suponga que la variable proposicional $a$ modela la naturaleza
+de un habitante $A$ de la isla. Demuestre o refute:
+
+\subsection{a)}
+\begin{logicenv}[5]{{Si $A$ es caballero , entonces $\Gamma \vDash a$}}
+  \begin{logic}
+    A \text{ es caballero} & suposición\\
+    \val{v}{a} = \mathtt{T} & Def.(p0)\\
+    \mathbf{v} \text{ satisface } \Gamma & (p1)(contexto C \& E)\\
+    \Gamma \vDash a
+  \end{logic}
+\end{logicenv}
+
+
+\subsection{b)}
+\begin{logicenv}[5]{{Si $\Gamma \vDash a$ es caballero , entonces $A$}}
+  \begin{logic}
+    (\exists \mathbf{v}\, \vert\, \mathbf{v} \text{ satisface } \Gamma) & suposición\\
+    \Gamma \vDash a & suposición\\
+    \val{v}{a} = \mathtt{T} & Def.(p1, p0)\\
+    A \text{ es caballero} & (p2)(contexto C \& E)
+  \end{logic}
+\end{logicenv}
 \end{document}
