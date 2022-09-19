@@ -1,0 +1,278 @@
+\documentclass{article}
+
+% Librerías:
+\usepackage{amsmath, mathtools, amssymb, mathrsfs, amsthm, nicematrix, array}
+\usepackage{lmodern, graphicx, fancyhdr}
+\usepackage[margin = 2cm, top = 2.5cm, includefoot]{geometry}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{shapes, fit, tikzmark}
+\usepackage{color, colortbl}
+\usepackage[most]{tcolorbox}
+
+% Configuraciones:
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{55.34027pt}
+\rhead{\textit{David Gómez}}
+\lhead{\includegraphics[width = 4cm]{\logo}}
+\lfoot{Página \thepage}
+\rfoot{\titlename}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{rojoEci}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\hyphenpenalty=10000
+
+\newcommand{\logo}{C:/Users/usuario/Documents/U/logo-eci.jpg}
+
+\newcommand{\q}[1]{``#1''}
+\newcommand{\und}[2]{#1\textbf{\_}#2}
+\newcommand{\boolun}[2][]{H_{#2}(#1)}
+\newcommand{\boolbin}[3]{H_{#1}(#2, #3)}
+\newcommand{\val}[2]{\mathbf{#1}[#2]}
+
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\titlename}{Taller 06}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newlength{\unit}
+\setlength{\unit}{1ex}
+
+\newcommand\drawCodeBox[3][1.5]{%
+\begin{tikzpicture}[remember picture,overlay]
+  \coordinate (start) at ([yshift = 2\unit]pic cs:#2);
+  \coordinate (end) at ([yshift = -#1\unit]pic cs:#3);
+  \node[inner sep=2pt,draw=black,fit=(start) (end)] {};
+\end{tikzpicture}
+}
+
+\newcolumntype{L}{>{$}l<{$}} 
+
+
+\newlength{\logicv}
+\setlength{\logicv}{.1cm}
+\newenvironment{logicenv}[2][0]{
+  %begin
+  \begin{tcolorbox}[demo, title = #2]
+  \vspace*{#1\logicv}
+}{
+  %end
+  \end{tcolorbox}
+}
+
+\newenvironment{subproofill}[1][0]{
+  %begin
+  \begin{tcolorbox}[demo, title = ]
+    \vspace*{-#1\logicv}
+}{
+  %end
+  \end{tcolorbox}
+  \vspace*{-.5cm}
+}
+
+
+\newenvironment{subproof}[2][0]{
+  %begin
+  \begin{tcolorbox}[demo, title = #2, colframe = black]
+  \vspace*{#1\logicv}
+  \begin{logic}
+}{
+  %end
+  \end{logic}
+  \end{tcolorbox}
+}
+\newenvironment{logic}{
+    \setlength{\extrarowheight}{3pt}
+    \setcounter{row}{-1}
+    \begin{center}
+    \begin{NiceTabular}{>{\stepcounter{row}\therow.\hspace*{5pt}} L r }
+}{
+    \end{NiceTabular}
+    \end{center}
+}
+
+\tcbset{demo/.style={
+    enhanced, title=title,
+    attach boxed title to top
+    left = {xshift = .5pt, yshift = -\tcboxedtitleheight -.5pt},
+    top = 1pt,
+    boxrule = .65pt,
+    coltitle = black,
+    colback = defini,
+    colframe = defini,
+    arc = 0mm,
+    outer arc = 0mm,
+    boxed title style={
+        colback = white,
+        colframe = deftitlmarg,
+        boxrule = .5pt,
+        arc = 0mm,
+        outer arc = 0mm
+    }
+}}
+
+% Colores
+\definecolor{rojoEci}{RGB}{225, 70, 49}
+\definecolor{defini}{HTML}{ede9e6}
+\definecolor{deftitlmarg}{HTML}{cfcfcf}
+
+% Documento
+\begin{document}
+
+
+
+\newcounter{row}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+
+        \textbf{\Huge{\titlename}}
+
+        \vspace{1.5cm}
+
+        \textbf{\large{David Gómez}}
+
+        \vspace{4cm}
+
+        \includegraphics[width=\textwidth]{\logo}
+
+        \vspace{5cm}
+
+        Matemáticas\linebreak
+        Escuela Colombiana de Ingeniería Julio Garavito\linebreak
+        Colombia\linebreak
+        \today
+
+    \end{center}
+\end{titlepage}
+\clearpage
+\tableofcontents
+\clearpage
+
+\section{Punto 1}
+\begin{itemize}
+    \item $((p \land (\neg q)) \to r)$
+\begin{logicenv}{$\val{\overline{F_1}}{\phi}$}
+    \begin{equation*}
+        (((p \equiv q) \land (\neg (r \to s)) \to \textrm{\textit{false}}))
+    \end{equation*}
+\end{logicenv}
+
+\begin{logicenv}{$\val{\overline{F_2}}{\phi}$}
+    \begin{equation*}
+        (((p \equiv q) \land (\neg q)) \to r)
+    \end{equation*}
+\end{logicenv}
+
+\begin{logicenv}{$\val{\overline{F_3}}{\phi}$}
+    \begin{equation*}
+        ((p \land (\neg q)) \to \textrm{\textit{false}})
+    \end{equation*}
+\end{logicenv}
+
+\begin{logicenv}{$\val{\overline{F_4}}{\phi}$}
+    \begin{equation*}
+        (((p \equiv q) \land (\neg (r \to s))) \to r )
+    \end{equation*}
+\end{logicenv}
+
+\begin{logicenv}{$\val{\overline{F_5}}{\phi}$}
+    \begin{equation*}
+        ((p \land (\neg (r \to s))) \to \textrm{\textit{false}})
+    \end{equation*}
+\end{logicenv}
+
+\item $(p \to (q \to p))$
+\begin{logicenv}{$\val{\overline{F_1}}{\phi}$}
+    \begin{equation*}
+        ((p \equiv q) \to ((r \to s) \to (p \equiv q)))
+    \end{equation*}
+\end{logicenv}
+
+\begin{logicenv}{$\val{\overline{F_2}}{\phi}$}
+    \begin{equation*}
+        ((p \equiv q) \to (q \to (p \equiv q)))
+    \end{equation*}
+\end{logicenv}
+
+\begin{logicenv}{$\val{\overline{F_3}}{\phi}$}
+    \begin{equation*}
+        (p \to (q \to p))
+    \end{equation*}
+\end{logicenv}
+
+\begin{logicenv}{$\val{\overline{F_4}}{\phi}$}
+    \begin{equation*}
+        ((p \equiv q) \to ((r \to s) \to (p \equiv q)))
+    \end{equation*}
+\end{logicenv}
+
+\begin{logicenv}{$\val{\overline{F_5}}{\phi}$}
+    \begin{equation*}
+        (p \to ((r \to s) \to p))
+    \end{equation*}
+\end{logicenv}
+
+\item $(\neg ((r \land (r \gets (p \lor s))) \equiv (\neg ((p \to q) \lor (r \land (\neg r))))))$
+\begin{logicenv}{$\val{\overline{F_1}}{\phi}$}
+    \begin{equation*}
+        (\neg ((\textrm{\textit{false}} \land (\textrm{\textit{false}} \gets ((p \equiv q) \lor s))) \equiv (\neg (((p \equiv q) \to (r \to s)) \lor (\textrm{\textit{false}} \land (\neg \textrm{\textit{false}}))))))
+    \end{equation*}
+\end{logicenv}
+
+\begin{logicenv}{$\val{\overline{F_2}}{\phi}$}
+    \begin{equation*}
+        (\neg ((r \land (r \gets ((p \equiv q) \lor s))) \equiv (\neg (((p \equiv q) \to q) \lor (r \land (\neg r))))))
+    \end{equation*}
+\end{logicenv}
+
+\begin{logicenv}{$\val{\overline{F_3}}{\phi}$}
+    \begin{equation*}
+        (\neg ((\textrm{\textit{false}} \land (\textrm{\textit{false}} \gets (p \lor s))) \equiv (\neg ((p \to q) \lor (\textrm{\textit{false}} \land (\neg \textrm{\textit{false}}))))))
+    \end{equation*}
+\end{logicenv}
+
+\begin{logicenv}{$\val{\overline{F_4}}{\phi}$}
+    \begin{equation*}
+        (\neg ((r \land (r \gets ((p \equiv q) \lor s))) \equiv (\neg (((p \equiv q) \to (r \to s)) \lor (r \land (\neg r))))))
+    \end{equation*}
+\end{logicenv}
+
+\begin{logicenv}{$\val{\overline{F_5}}{\phi}$}
+    \begin{equation*}
+        (\neg ((\textrm{\textit{false}} \land (\textrm{\textit{false}} \gets ((p \lor s))) \equiv (\neg ((p \to (r \to s)) \lor (\textrm{\textit{false}} \land (\neg \textrm{\textit{false}})))))))
+    \end{equation*}
+\end{logicenv}
+\end{itemize}
+
+\section{Punto 2}
+\begin{itemize}
+    \item $\val{(\overline{F_1} \circ \overline{F_2})}{((p \land (\neg q)) \to r)}$
+    
+    \begin{logicenv}{punto 2}
+        \begin{alignat*}{2}
+            \val{\overline{F_1}}{\val{\overline{F_2}}{((p \land (\neg q)) \to r)}} &= \val{\overline{F_1}}{(((p \equiv q) \land (\neg q)) \to r)}\\
+            & = ((((p \equiv q) \equiv (r \to s)) \land (\neg (r \to s)) \to \textrm{\textit{false}}))
+        \end{alignat*}
+    \end{logicenv}
+
+    \item $\val{(\overline{F_3} \circ \overline{F_4})}{(p \to (q \to p))}$
+    
+    \begin{logicenv}{Punto 2}
+        \begin{alignat*}{2}
+            \val{\overline{F_3}}{\val{\overline{F_4}}{(p \to (q \to p))}} &= \val{\overline{F_3}}{((p \equiv q) \to ((r \to s) \to (p \equiv q)))}\\
+            & = ((p \equiv q) \to ((\textrm{\textit{false}} \to s) \to (p \equiv q)))
+        \end{alignat*}
+    \end{logicenv}
+\end{itemize}
+\end{document}
