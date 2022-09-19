@@ -274,5 +274,132 @@
             & = ((p \equiv q) \to ((\textrm{\textit{false}} \to s) \to (p \equiv q)))
         \end{alignat*}
     \end{logicenv}
+
+    \item $\val{(\overline{F_5} \circ \overline{F_1})}{(\neg ((r \land (r \gets (p \lor s))) \equiv (\neg ((p \to q) \lor (r \land (\neg r))))))}$
+    
+    \begin{logicenv}{punto 2}
+        \begin{alignat*}{2}
+            &\val{\overline{F_5}}{\val{\overline{F_1}}{(\neg ((r \land (r \gets (p \lor s))) \equiv (\neg ((p \to q) \lor (r \land (\neg r))))))}} \\
+            &= \val{\overline{F_5}}{(\neg ((\textrm{\textit{false}} \land (\textrm{\textit{false}} \gets ((p \equiv q) \lor s))) \equiv (\neg (((p \equiv q) \to (r \to s)) \lor (\textrm{\textit{false}} \land (\neg \textrm{\textit{false}}))))))}\\
+            &= (\neg ((\textrm{\textit{false}} \land (\textrm{\textit{false}} \gets ((p \equiv q) \lor s))) \equiv (\neg (((p \equiv q) \to (r \to s)) \lor (\textrm{\textit{false}} \land (\neg \textrm{\textit{false}}))))))
+        \end{alignat*}
+    \end{logicenv}
+
+    \item $\val{(\overline{F_2} \circ \overline{F_3})}{((p \land (\neg q)) \to r)}$
+    
+    \begin{logicenv}{Punto 2}
+        \begin{alignat*}{2}
+            \val{\overline{F_2}}{\val{\overline{F_3}}{((p \land (\neg q)) \to r)}} &= \val{\overline{F_2}}{((p \land (\neg q)) \to \textrm{\textit{false}})}\\
+            & = (((p \equiv q) \land (\neg q)) \to \textrm{\textit{false}})
+        \end{alignat*}
+    \end{logicenv}
+
+    \item $\val{(\overline{F_4} \circ \overline{F_5})}{(p \to (q \to p))}$
+    
+    \begin{logicenv}{Punto 2}
+        \begin{alignat*}{2}
+            \val{\overline{F_4}}{\val{\overline{F_5}}{(p \to (q \to p))}} &= \val{\overline{F_4}}{(p \to ((r \to s) \to p))}\\
+            & = ((p \equiv q) \to ((r \to s) \to (p \equiv q)))
+        \end{alignat*}
+    \end{logicenv}
+
+    \item $\val{(\overline{F_1} \circ \overline{F_3})}{(\neg ((r \land (r \gets (p \lor s))) \equiv (\neg ((p \to q) \lor (r \land (\neg r))))))}$
+    
+    \begin{logicenv}{Punto 2}
+        \begin{alignat*}{2}
+            &\val{\overline{F_1}}{\val{\overline{F_3}}{(\neg ((r \land (r \gets (p \lor s))) \equiv (\neg ((p \to q) \lor (r \land (\neg r))))))}} \\
+            &= \val{\overline{F_1}}{(\neg ((\textrm{\textit{false}} \land (\textrm{\textit{false}} \gets (p \lor s))) \equiv (\neg ((p \to q) \lor (\textrm{\textit{false}} \land (\neg \textrm{\textit{false}}))))))}\\
+            & = (\neg (\textrm{\textit{false}} \land (\textrm{\textit{false}} \gets ((p \equiv q) \lor s))) \equiv (\neg (((p \equiv q) \to (r \to s)) \lor (\textrm{\textit{false}} \land (\neg \textrm{\textit{false}})))))
+        \end{alignat*}
+    \end{logicenv}
 \end{itemize}
+
+\section{Punto 3}
+
+\begin{itemize}
+    \item $\val{(\overline{F_1} \circ \overline{F_2} \circ \overline{F_3})}{((p \land (\neg q)) \to r)}$
+    \begin{logicenv}{punto 3}
+        \begin{alignat*}{2}
+            \val{\overline{F_1}}{\val{\overline{F_2}}{\val{\overline{F_3}}{((p \land (\neg q)) \to r)}}} &= \val{\overline{F_1}}{\val{\overline{F_2}}{((p \land (\neg q)) \to \textrm{\textit{false}})}}\\
+            &= \val{\overline{F_1}}{(((p \equiv q) \land (\neg q)) \to \textrm{\textit{false}})}\\
+            &= ((((p \equiv q) \equiv (r \to s)) \land (\neg (r \to s)) \to \textrm{\textit{false}}))
+        \end{alignat*}
+    \end{logicenv}
+
+    \item $\val{(\overline{F_4} \circ \overline{F_5} \circ \overline{F_1})}{(p \to (q \to p))}$
+    \begin{logicenv}{punto 3}
+        \begin{alignat*}{2}
+            \val{\overline{F_4}}{\val{\overline{F_5}}{\val{\overline{F_1}}{(p \to (q \to p))}}} &= \val{\overline{F_4}}{\val{\overline{F_5}}{((p \equiv q) \to ((r \to s) \to (p \equiv q)))}}\\
+            &= \val{\overline{F_4}}{((p \equiv (r \to s)) \to ((\textrm{\textit{false}} \to s) \to (p \equiv (r \to s))))}\\
+            &= (((p \equiv q) \equiv (\textrm{\textit{false}} \to s)) \to ((\textrm{\textit{false}} \to s) \to (p \equiv (\textrm{\textit{false}} \to s))))
+        \end{alignat*}
+    \end{logicenv}
+
+    \item $\val{(\overline{F_2} \circ \overline{F_3} \circ \overline{F_4})}{(\neg ((r \land (r \gets (p \lor s))) \equiv (\neg ((p \to q) \lor (r \land (\neg r))))))}$
+    \begin{logicenv}{punto 3}
+        \begin{alignat*}{2}
+            &\val{\overline{F_2}}{\val{\overline{F_3}}{\val{\overline{F_4}}{(\neg ((r \land (r \gets (p \lor s))) \equiv (\neg ((p \to q) \lor (r \land (\neg r))))))}}}\\
+            &= \val{\overline{F_2}}{\val{\overline{F_3}}{(\neg ((r \land (r \gets (p \lor s))) \equiv (\neg (((p \equiv q) \to (r \to s)) \lor (r \land (\neg r))))))}}\\
+            &= \val{\overline{F_2}}{(\neg ((\textrm{\textit{false}} \land (\textrm{\textit{false}} \gets ((p \equiv q) \lor s))) \equiv (\neg (((p \equiv q) \to (\textrm{\textit{false}} \to s)) \lor (\textrm{\textit{false}} \land (\neg \textrm{\textit{false}}))))))}\\
+            &= (\neg ((\textrm{\textit{false}} \land (\textrm{\textit{false}} \gets (((p \equiv q) \equiv q) \lor s))) \equiv (\neg ((((p \equiv q) \equiv q) \to (\textrm{\textit{false}} \to s)) \lor (\textrm{\textit{false}} \land (\neg \textrm{\textit{false}}))))))
+        \end{alignat*}
+    \end{logicenv}
+
+    \item $\val{(\overline{F_5} \circ \overline{F_1} \circ \overline{F_2})}{((p \land (\neg q)) \to r)}$
+    \begin{logicenv}{punto 3}
+        \begin{alignat*}{2}
+            \val{\overline{F_5}}{\val{\overline{F_1}}{\val{\overline{F_2}}{((p \land (\neg q)) \to r)}}} &= \val{\overline{F_5}}{\val{\overline{F_1}}{(((p \equiv q) \land (\neg q)) \to r)}}\\
+            &= \val{\overline{F_5}}{((((p \equiv q) \equiv (r \to s)) \land (\neg (r \to s))) \to \textrm{\textit{false}})}\\
+            &= ((((p \equiv (r \to s)) \equiv (\textrm{\textit{false}} \to s)) \land (\neg (\textrm{\textit{false}} \to s))) \to \textrm{\textit{false}})
+        \end{alignat*}
+    \end{logicenv}
+
+    \item $\val{(\overline{F_3} \circ \overline{F_4} \circ \overline{F_5})}{(p \to (q \to p))}$
+    \begin{logicenv}{punto 3}
+        \begin{alignat*}{2}
+            \val{\overline{F_3}}{\val{\overline{F_4}}{\val{\overline{F_5}}{(p \to (q \to p))}}} &= \val{\overline{F_3}}{\val{\overline{F_4}}{(p \to ((r \to s) \to p))}}\\
+            &= \val{\overline{F_3}}{((p \equiv q) \to ((r \to s) \to (p \equiv q)))}\\
+            &= ((p \equiv q) \to ((\textrm{\textit{false}} \to s) \to (p \equiv q)))
+        \end{alignat*}
+    \end{logicenv}
+
+    \item $\val{(\overline{F_5} \circ \overline{F_3} \circ \overline{F_1})}{(\neg ((r \land (r \gets (p \lor s))) \equiv (\neg ((p \to q) \lor (r \land (\neg r))))))}$
+    \begin{logicenv}{punto 3}
+        \begin{alignat*}{2}
+            &\val{\overline{F_5}}{\val{\overline{F_3}}{\val{\overline{F_1}}{(\neg ((r \land (r \gets (p \lor s))) \equiv (\neg ((p \to q) \lor (r \land (\neg r))))))}}}\\
+            &= \val{\overline{F_5}}{\val{\overline{F_3}}{(\neg ((\textrm{\textit{false}} \land( \textrm{\textit{false}} \gets ((p \equiv q) \to (r \to s)) \lor (\textrm{\textit{false}} \land (\neg \textrm{\textit{false}}))))))}}\\
+            &= \val{\overline{F_5}}{(\neg ((\textrm{\textit{false}} \land (\textrm{\textit{false}} \gets ((p \equiv q) \lor s))) \equiv (\neg (((p \equiv q) \to (r \to s)) \lor (\textrm{\textit{false}} \land (\neg \textrm{\textit{false}}))))))}\\
+            &= (\neg ((\textrm{\textit{false}} \land (\textrm{\textit{false}} \gets ((p \equiv (r \to s)) \lor s))) \equiv (\neg (((p \equiv (r \to s)) \to (\textrm{\textit{false}} \to s)) \lor (\textrm{\textit{false}} \land (\neg \textrm{\textit{false}}))))))
+        \end{alignat*}
+    \end{logicenv}
+\end{itemize}
+
+\section{Punto 4}
+ \begin{logicenv}[6]{{$\mathbf{\overline{F}} = \{p \mapsto (p \equiv q), q \mapsto (r \to s), r \mapsto \textrm{\textit{false}}\}$}}
+    \begin{itemize}
+        \item $\val{\overline{F}}{((p \land (\neg q)) \to r)} = (((p \equiv q) \land (\neg (r \to s)) \to \textrm{\textit{false}}))$
+        \item $\val{\overline{F}}{(p \to (q \to p))} = ((p \equiv q) \to ((r \to s) \to (p \equiv q)))$
+        \item $\val{\overline{F}}{(\neg ((r \land (r \gets (p \lor s))) \equiv (\neg ((p \to q) \lor (r \land (\neg r))))))} = (\neg ((\textrm{\textit{false}} \land (\textrm{\textit{false}} \gets ((p \lor s))) \equiv (\neg ((p \to (r \to s)) \lor (\textrm{\textit{false}} \land (\neg \textrm{\textit{false}})))))))$
+    \end{itemize}
+\end{logicenv}
+
+\section{Punto 5}
+\begin{logicenv}[5]{punto 5}
+    \begin{itemize}
+        \item $(p \equiv r)[p, r := t, t] = (p \equiv p)\ ,\ \vDash (t \equiv t)$
+        \item $((p \land q) \lor ((\neg p) \land (\neg q)))[p, q := t, t] = ((t \land t) \lor ((\neg t) \land (\neg t)))\ ,\ \vDash ((t \land t) \lor ((\neg t) \land (\neg t)))$
+        \item $((p \lor r) \gets (p \land q))[p, q, r := t, t, t] = ((t \lor t) \gets (t \land t))\ ,\ \vDash ((t \lor t) \gets (t \land t))$
+    \end{itemize}
+\end{logicenv}
+
+\section{Punto 6}
+\begin{logicenv}{punto 6}
+    \begin{logic}
+        \gamma = \psi[q := r] & suposición\\
+        p, q, r \text{ son variables proposicionales distintas} & Enunciado\\
+        r \text{ no aparece en } \phi \text{ ni en } \psi & Enunciado\\
+        \phi[p := \gamma] = \phi[p := \psi][q := r] & (p0, p2)\\
+        \phi[p := \psi][q := r][q := \tau][r := q] = \phi[p, q := \psi, \tau] & (p2, p3)
+    \end{logic}
+\end{logicenv}
 \end{document}
