@@ -402,4 +402,16 @@
         \phi[p := \psi][q := r][q := \tau][r := q] = \phi[p, q := \psi, \tau] & (p2, p3)
     \end{logic}
 \end{logicenv}
+
+\section{Punto 7}
+
+\begin{logicenv}[5]{punto 7}
+    \begin{logic}
+        p, q \text{ variables distintas} & Enunciado\\
+        \phi, \psi \text{ proposiciones} & Enunciado\\
+        q \text{ puede aparecer en} \phi, \psi & Enunciado\\
+        \text{es posible que } ((\phi \to \psi) \equiv ((\neg \phi) \lor \psi)) \not= ((p \to q)\equiv ((\neg p) \lor q))[p := \phi][q := \psi]
+    \end{logic}
+    Este último paso se debe a que, en la parte derecha de la igualdad, la sustitución se hace en dos momentos. En el primer momento, se sustituye $p$ por $\phi$, y luego se sustituye $q$ por $\psi$. El problema se da con el paso 2, en el cual se menciona que $q$ puede aparecer en $\phi$ o en $\psi$. Es decir, al realizar la segunda sustitución, existe la posibilidad de cambiar lo que era $\phi$.
+\end{logicenv}
 \end{document}
