@@ -1,0 +1,149 @@
+\documentclass{article}
+
+% librerías:
+\usepackage{amsmath, mathtools, amssymb, mathrsfs, amsthm, multicol, nicematrix}
+\usepackage{lmodern, geometry, graphicx}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+
+%configuraciones:
+\setlength{\columnseprule}{1pt}
+\geometry{
+    left = 20mm,
+    right = 20mm,
+    top = 20mm
+}
+\hyphenpenalty=10000
+\graphicspath{ {C:/Users/usuario/Documents/U/} }
+
+%texto
+\begin{document}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1cm}
+
+		\textbf{\Large{Taller No.1}}
+
+		\vspace{1.5cm}
+
+		\textbf{David Gómez}
+
+		\vspace{5cm}
+
+		\includegraphics[width=\textwidth]{logo-eci.jpg}
+
+		\vspace{5cm}
+
+		Matemáticas\\
+		Escuela Colombiana de Ingeniería Julio Garavito\\
+		Colombia\\
+		\today
+
+	\end{center}
+\end{titlepage}
+
+\section{Punto 1}
+\begin{center}
+    \includegraphics[width=10cm]{diagonal.png}
+\end{center}
+La idea de este proceso es ver cómo se generan las diagonales de un polígono. Por lo que observé, en los primeros dos pasos de cualquier polígono de lados mayores que o iguales a 4, la cantidad de diagonales es $(l-3)$, de ahí en adelante, el número de diagonales va disminuyendo hasta llegar a $1$. La cantidad de pasos es $(l-2)$.
+
+Si se realiza el paso a paso con una figura de más lados (en mi caso usé un dodecaedro), y se escribe el número de diagonales obtenidas en cada paso se puede ver que la operación a realizar es la siguiente:
+\begin{alignat*}{2}
+    (l-3) + \sum_{i = 1}^{l-3} i &= (l-3) + \frac{(l-3)(l-2)}{2}\\
+    &= \frac{l^2 -2l -3l +6 + 2l -6}{2}\\
+    &= \frac{l(l-3)}{2}
+    \intertext{Por otro lado, si se intuye una función recursiva a partir de procesos como el ilustrado en la imágen, se llega a que la función $D$, la cual tiene de entrada el número de lados, y salida el número de diagonales, se puede definir como:}
+\end{alignat*}
+\vspace*{-1cm}
+\begin{equation*}
+    D(l) :=
+    \begin{cases}
+        D(l-1) + l-2\\
+        D(4) = 2
+    \end{cases}
+\end{equation*}
+En base a esto, procedo a afirmar que:
+\begin{alignat*}{2}
+    D(l) &= (l-3) + \sum_{i = 1}^{l-3} i\ ,\ \forall l\, \vert\, l\in \mathbb{N} \wedge l \geq 5\\
+    \intertext{Caso base, $n=5$}
+    D(5) &= (5-3) + \sum_{i = 1}^{5-3} i\\
+    D(4) + 3 &= (2) + \sum_{i = 1}^{2} i\\
+    2 + 3 &= 2 + 1 + 2\\
+    5 &= 5 \tag*{\textit{true}}
+    \intertext{Caso inductivo, $n = k+1$}
+    D(k+1) &= D(k) + (k-1)\\
+    &= \frac{k(k-3)}{2} + (k-1)\\
+    &= \frac{k^2 -3k +2k -2}{2}\\
+    &= \frac{k^2 - k - 2}{2}\\
+    &= \frac{k^2 + k - 2k - 2}{2}\\
+    &= \frac{k(k+1) - 2(k+1)}{2}\\
+    &= \frac{(k+1)(k-2)}{2} \tag*{$\Box$}
+\end{alignat*}
+\section{Punto 2}
+\begin{equation*}
+    v(n) :=
+    \begin{cases}
+        v(n-1)\,\left[1-\frac{K}{100}\right]\\
+        v(0) = v_0
+    \end{cases}
+\end{equation*}
+\begin{alignat*}{2}
+    v(0) &= v_0\\
+    v(1) &= v_0\,\left(1-\frac{K}{100}\right)\\
+    v(2) &= v_0\,\left(1-\frac{K}{100}\right)\,\left(1-\frac{K}{100}\right)\\
+    &\vdots\\
+    v(n) &= v_0\,\left(1-\frac{K}{100}\right)^n \ ,\ \forall n\,\vert\, n \in \mathbb{N} \wedge n \geq 1\\
+    \intertext{Caso base, $n=1$}
+    v(1) &= v_0 \,\left(1-\frac{K}{100}\right)\\
+    v_0\,\left(1-\frac{K}{100}\right) &= v_0 \,\left(1-\frac{K}{100}\right)\\
+    \intertext{Caso inductivo, $n = c+1$}
+    v(c+1) &= v(c)\,\left[1 - \frac{K}{100}\right]\\
+    &= v_0\,\left(1-\frac{K}{100}\right)^c\,\left(1-\frac{K}{100}\right)\\
+    &= v_0\,\left(1-\frac{K}{100}\right)^{c+1} \tag*{$\Box$}\\
+\end{alignat*}
+\section{Punto 3}
+\begin{equation*}
+    v(n) :=
+    \begin{cases}
+        v(n-1)\,\left[1-\frac{K}{100}\right] - C\\
+        v(0) = v_0
+    \end{cases}
+\end{equation*}
+\begin{alignat*}{2}
+    v(0) &= v_0\\
+    v(1) &= v_0\,\left(1-\frac{K}{100}\right) - C\\
+    v(2) &= v_0\left(1 - \frac{k}{100}\right)^2 - C\left(1 - \frac{k}{100}\right) - C\\
+    &\vdots\\
+    v(n) &= v_0\,\left(1-\frac{K}{100}\right)^n - C \sum_{i=0}^{n-1}\left(1 - \frac{k}{100}\right)^i \ ,\ \forall n\,\vert\, n \in \mathbb{N} \wedge n \geq 1\\
+    \intertext{Caso base, $n=1$}
+    v(1) &= v_0 \,\left(1-\frac{K}{100}\right) - C\\
+    v_0\,\left(1-\frac{K}{100}\right) -C &= v_0 \,\left(1-\frac{K}{100}\right) - C\\
+    \intertext{Caso inductivo, $n = u+1$}
+    v(u+1) &= v(u)\,\left[1 - \frac{K}{100}\right]-C\\
+    &=\left(v_0\left(1-\frac{K}{100}\right)^u - C \sum_{i=0}^{u-1}\left(1 - \frac{k}{100}\right)^i\right)\left(1-\frac{K}{100}\right) - C\\
+    &= v_0\left(1-\frac{K}{100}\right)^{u+1} - C \sum_{i=0}^{u-1}\left(1 - \frac{k}{100}\right)^{i+1} - C\\
+    &= v_0\left(1-\frac{K}{100}\right)^{u+1} - C \sum_{i=0}^{u}\left(1 - \frac{k}{100}\right)^{i} \tag*{$\Box$}
+\end{alignat*}
+\section{Punto 4}
+\begin{equation*}
+    C(\psi I) :=
+    \begin{cases}
+        C(\psi) + 1\\
+        C(I) = 1
+    \end{cases}
+\end{equation*}
+\begin{alignat*}{2}
+    P(x\phi y)&: C(y) = 2(C(x)) - 1\\
+    \intertext{En axiomas}
+    IDI \tag*{Axioma}\\
+    C(I) &= 2C(I) - 1\\
+    1 &= 2 - 1\\
+    1 &= 1 \tag*{\textit{true}}\\
+    \intertext{En R1}
+    xIDyII \tag*{Definición de R1}
+    C(yII) &= 2C(xI) - 1\\
+    C(y) + 2 &= 2C(x) + 2 - 1\\
+    C(y) &= 2C(x) - 1 \tag*{\textit{true} (por hipótesis de inducción)}
+\end{alignat*}
+\end{document}

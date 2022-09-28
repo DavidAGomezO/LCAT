@@ -1,0 +1,466 @@
+\documentclass{article}
+
+% Librerías:
+\usepackage{amsmath, mathtools, amssymb, mathrsfs, amsthm, nicematrix}
+\usepackage{lmodern, graphicx, fancyhdr}
+\usepackage[margin = 2cm, top = 2.5cm, includefoot]{geometry}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{shapes, snakes, fit, tikzmark}
+\usepackage{color, colortbl}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+% Configuraciones:
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{55.34027pt}
+\rhead{\textit{David Gómez}}
+\lhead{\includegraphics[width = 4cm]{\logo}}
+\lfoot{Página \thepage}
+\rfoot{Taller 02}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{rojoEci}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\hyphenpenalty=10000
+
+\newcommand{\logo}{C:/Users/usuario/Documents/U/logo-eci.jpg}
+
+\newcommand{\q}[1]{``#1''}
+\newcommand{\und}[2]{#1\textbf{\_}#2}
+
+\newcommand\drawCodeBox[2]{%
+\begin{tikzpicture}[remember picture,overlay]
+  \coordinate (start) at ([yshift = 2ex]pic cs:#1);
+  \coordinate (end) at ([yshift = -1.5ex]pic cs:#2);
+  \node[inner sep=2pt,draw=black,fit=(start) (end)] {};
+\end{tikzpicture}
+}
+
+\newcommand\drawCodeLine[2]{%
+\begin{tikzpicture}[remember picture,overlay]
+  \coordinate (start) at ([yshift = 2ex]pic cs:#1);
+  \coordinate (end) at ([yshift = -1.5ex]pic cs:#2);
+  \node[inner sep=0pt,draw=black,fit=(start) (end)] {};
+\end{tikzpicture}
+}
+
+\tcbset{metateorema/.style={
+    enhanced, title=title,
+    attach boxed title to top
+    left = {xshift = .5pt, yshift = -\tcboxedtitleheight -.5pt},
+    top = 1pt,
+    coltitle = black,
+    colback = defini,
+    colframe = defini,
+    arc = 0mm,
+    outer arc = 0mm,
+    boxed title style={
+        colback = white,
+        colframe = deftitlmarg,
+        boxrule = .5pt,
+        arc = 0mm,
+        outer arc = 0mm
+    }
+}}
+
+% Colores
+\definecolor{rojoEci}{RGB}{225, 70, 49}
+\definecolor{defini}{HTML}{ede9e6}
+\definecolor{deftitlmarg}{HTML}{cfcfcf}
+
+% Documento
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+
+        \textbf{\Huge{Taller 03}}
+
+        \vspace{1.5cm}
+
+        \textbf{\large{David Gómez}}
+
+        \vspace{4cm}
+
+        \includegraphics[width=\textwidth]{\logo}
+
+        \vspace{5cm}
+
+        Matemáticas\linebreak
+        Escuela Colombiana de Ingeniería Julio Garavito\linebreak
+        Colombia\linebreak
+        \today
+
+    \end{center}
+\end{titlepage}
+\clearpage
+\tableofcontents
+\clearpage
+
+\section{Punto 1: tabla de verdad y función}
+\subsection{$p = \phi$}
+\begin{center}
+    \begin{NiceTabular}{|c|}
+        \hline
+        $p$\\
+        \hline
+        \texttt{F}\\
+        \texttt{T}\\
+        \hline
+    \end{NiceTabular}
+\end{center}
+\begin{alignat*}{2}
+    &H_{\phi}(\mathtt{T}) = \mathtt{T}\\
+    &H_{\phi}(\mathtt{F}) = \mathtt{F}
+\end{alignat*}
+\subsection{$(p \equiv r) = \phi$}
+\begin{center}
+    \begin{NiceTabular}{|c|c|c|}
+        \hline
+        $p$ & $r$ & $(p \equiv r)$\\
+        \hline
+        \ttfamily F   &   \ttfamily F  &    \ttfamily  T\\
+        \ttfamily F   &   \ttfamily T   &   \ttfamily F\\
+        \ttfamily T   &   \ttfamily F   &   \ttfamily F\\
+        \ttfamily T   &   \ttfamily T   &   \ttfamily T\\
+        \hline
+    \end{NiceTabular}
+\end{center}
+\begin{alignat*}{2}
+    & H_{\phi}(\mathtt{F}, \mathtt{T}) = H_{\phi}(\mathtt{T}, \mathtt{F}) = \mathtt{F}\\
+    & H_{\phi}(\mathtt{F}, \mathtt{F}) = H_{\phi}(\mathtt{T}, \mathtt{T}) = \mathtt{F}
+\end{alignat*}
+\subsection{$((p \to (\lnot q)) \to r) = \phi$}
+\begin{center}
+    \begin{NiceTabular}{|c|c|c|c|c|c|}
+        \hline
+        $p$ & $q$ & $r$ & $(\lnot q)$ & $(p \to (\lnot q))$ & $((p \to (\lnot q)) \to r)$\\
+        \hline
+        \ttfamily F & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F \\
+        \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T \\
+        \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily F \\
+        \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T \\
+        \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F \\
+        \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T \\
+        \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily F & \ttfamily T \\
+        \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T \\
+        \hline
+    \end{NiceTabular}
+\end{center}
+\begin{alignat*}{2}
+    & H_{\phi}(\mathtt{F}, \mathtt{F}, \mathtt{T}) = H_{\phi}(\mathtt{F}, \mathtt{T}, \mathtt{T}) = H_{\phi}(\mathtt{T}, \mathtt{F}, \mathtt{T}) = H_{\phi}(\mathtt{T}, \mathtt{T}, \mathtt{F}) = H_{\phi}(\mathtt{T}, \mathtt{T}, \mathtt{T})\\
+    &H_{\phi}(\mathtt{F}, \mathtt{F}, \mathtt{F}) = H_{\phi}(\mathtt{F}, \mathtt{T}, \mathtt{F}) = H_{\phi}(\mathtt{T}, \mathtt{F}, \mathtt{F})
+\end{alignat*}
+\subsection{$((p \to q) \vee ((\lnot p) \to (\lnot q))) = \phi$}
+\begin{center}
+    \begin{NiceTabular}{|c|c|c|c|c|c|c|}
+        \hline
+        $p$ & $q$ & $(\lnot p)$ & $(\lnot q)$ & $(p \to q)$ & $((\lnot p) \to (\lnot q))$ & $((p \to q) \vee ((\lnot p) \to (\lnot q)))$\\
+        \hline
+        \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T\\
+        \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily T\\
+        \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T\\
+        \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T\\
+        \hline
+    \end{NiceTabular}
+\end{center}
+\begin{alignat*}{2}
+    & H_{\phi}(\mathtt{F}, \mathtt{F}) = H_{\phi}(\mathtt{F}, \mathtt{T}) = H_{\phi}(\mathtt{T}, \mathtt{F}) = H_{\phi}(\mathtt{T}, \mathtt{T}) = \mathtt{T}
+\end{alignat*}
+\subsection{$(p \to (q \to p)) = \phi$}
+\begin{center}
+    \begin{NiceTabular}{|c|c|c|c|}
+        \hline
+        $p$ & $q$ & $(q \to p)$ & $(p \to (q \to p))$\\
+        \hline
+        \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily T\\
+        \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily T\\
+        \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T\\
+        \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T\\
+        \hline
+    \end{NiceTabular}
+\end{center}
+\begin{alignat*}{2}
+    & H_{\phi}(\mathtt{F}, \mathtt{F}) = H_{\phi}(\mathtt{F}, \mathtt{T}) = H_{\phi}(\mathtt{T}, \mathtt{F}) = H_{\phi}(\mathtt{T}, \mathtt{T}) = \mathtt{T}
+\end{alignat*}
+\subsection{$((p \vee r) \wedge (p \to q)) = \phi$}
+\begin{center}
+    \begin{NiceTabular}{|c|c|c|c|c|c|}
+        \hline
+        $p$ & $q$ & $r$ & $(p \vee r)$ & $(p \to q)$ & $((p \vee r) \wedge (p \to q))$\\
+        \hline
+        \ttfamily F & \ttfamily F & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily F\\
+        \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T\\
+        \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily F\\
+        \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T\\
+        \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily F\\
+        \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F\\
+        \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T\\
+        \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T\\
+        \hline
+    \end{NiceTabular}
+\end{center}
+\begin{alignat*}{2}
+    &H_{\phi}(\mathtt{F}, \mathtt{F}, \mathtt{F}) = H_{\phi}(\mathtt{F}, \mathtt{T}, \mathtt{F}) = H_{\phi}(\mathtt{T}, \mathtt{F}, \mathtt{F}) = H_{\phi}(\mathtt{T}, \mathtt{F}, \mathtt{T}) = \mathtt{F}\\
+    &H_{\phi}(\mathtt{F}, \mathtt{F}, \mathtt{T}) = H_{\phi}(\mathtt{F}, \mathtt{T}, \mathtt{T}) = H_{\phi}(\mathtt{T}, \mathtt{T}, \mathtt{F}) = H_{\phi}(\mathtt{T}, \mathtt{T}, \mathtt{T}) = \mathtt{T}
+\end{alignat*}
+\subsection{$(\lnot((r \to (r \wedge (p \vee s))) \equiv (\lnot((p \to q) \vee (r \wedge (\lnot r)))))) = \phi$}
+
+Debido a la longitud de la proposición, decidí añadir subíndices a los conectores, para así no tener que hacer mención de las variables que hacen parte del mismo:
+
+$$(\lnot_{0}((r \to_{2} (r \wedge_{3} (p \vee_{4} s))) \equiv_{1} (\lnot_{2}((p \to_{4} q) \vee_{3} (r \wedge_{4} (\lnot_{5} r))))))$$
+
+\begin{center}
+    \begin{NiceTabular}{|c|c|c|c|c|}
+        \hline
+        Posición & $p$ & $q$ & $r$ & $s$\\
+        \hline
+        \ttfamily 0  & \ttfamily F & \ttfamily F & \ttfamily  F & \ttfamily F\\
+        \ttfamily 1  & \ttfamily F & \ttfamily F & \ttfamily  F & \ttfamily T\\
+        \ttfamily 2  & \ttfamily F & \ttfamily F & \ttfamily  T & \ttfamily F\\
+        \ttfamily 3  & \ttfamily F & \ttfamily F & \ttfamily  T & \ttfamily T\\
+        \ttfamily 4  & \ttfamily F & \ttfamily T & \ttfamily  F & \ttfamily F\\
+        \ttfamily 5  & \ttfamily F & \ttfamily T & \ttfamily  F & \ttfamily T\\
+        \ttfamily 6  & \ttfamily F & \ttfamily T & \ttfamily  T & \ttfamily F\\
+        \ttfamily 7  & \ttfamily F & \ttfamily T & \ttfamily  T & \ttfamily T\\
+        \ttfamily 8  & \ttfamily T & \ttfamily F & \ttfamily  F & \ttfamily F\\
+        \ttfamily 9  & \ttfamily T & \ttfamily F & \ttfamily  F & \ttfamily T\\
+        \ttfamily 10 & \ttfamily T & \ttfamily F & \ttfamily  T & \ttfamily F\\
+        \ttfamily 11 & \ttfamily T & \ttfamily F & \ttfamily  T & \ttfamily T\\
+        \ttfamily 12 & \ttfamily T & \ttfamily T & \ttfamily  F & \ttfamily F\\
+        \ttfamily 13 & \ttfamily T & \ttfamily T & \ttfamily  F & \ttfamily T\\
+        \ttfamily 14 & \ttfamily T & \ttfamily T & \ttfamily  T & \ttfamily F\\
+        \ttfamily 15 & \ttfamily T & \ttfamily T & \ttfamily  T & \ttfamily T\\
+        \hline
+    \end{NiceTabular}
+\end{center}
+\begin{center}
+    \begin{NiceTabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        Posición & $\lnot_{5}$ & $\vee_{4}$ & $\to_{4}$ & $\wedge_{4}$ & $\wedge_{3}$ & $\vee_{3}$ & $\to_{2}$ & $\lnot_{2}$ & $\equiv_{1}$ & $\lnot_{0}$\\
+        \hline
+        \ttfamily 0  &  \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T\\
+        \ttfamily 1  &  \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T\\
+        \ttfamily 2  &  \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily F\\
+        \ttfamily 3  &  \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T\\
+        \ttfamily 4  &  \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T\\
+        \ttfamily 5  &  \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T\\
+        \ttfamily 6  &  \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily F\\
+        \ttfamily 7  &  \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T\\
+        \ttfamily 8  &  \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily F\\
+        \ttfamily 9  &  \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily F\\
+        \ttfamily 10 &  \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily F\\
+        \ttfamily 11 &  \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily F\\
+        \ttfamily 12 &  \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T\\
+        \ttfamily 13 &  \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T\\
+        \ttfamily 14 &  \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T\\
+        \ttfamily 15 &  \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T\\
+        \hline
+    \end{NiceTabular}
+\end{center}
+\begin{alignat*}{2}
+    &H_{\phi}(\mathtt{F}, \mathtt{F}, \mathtt{F}, \mathtt{F}) = 
+    H_{\phi}(\mathtt{F}, \mathtt{F}, \mathtt{F}, \mathtt{T}) = 
+    H_{\phi}(\mathtt{F}, \mathtt{F}, \mathtt{T}, \mathtt{F}) = 
+    H_{\phi}(\mathtt{F}, \mathtt{T}, \mathtt{F}, \mathtt{F}) = 
+    H_{\phi}(\mathtt{F}, \mathtt{T}, \mathtt{F}, \mathtt{T}) =
+    H_{\phi}(\mathtt{F}, \mathtt{T}, \mathtt{T}, \mathtt{T})\\ 
+    &\hspace{2cm} = H_{\phi}(\mathtt{T}, \mathtt{T}, \mathtt{F}, \mathtt{F}) = 
+    H_{\phi}(\mathtt{T}, \mathtt{T}, \mathtt{F}, \mathtt{T}) = 
+    H_{\phi}(\mathtt{T}, \mathtt{T}, \mathtt{T}, \mathtt{F}) = 
+    H_{\phi}(\mathtt{T}, \mathtt{T}, \mathtt{T}, \mathtt{T}) = \mathtt{T}\\[1cm]
+    &H_{\phi}(\mathtt{F}, \mathtt{F}, \mathtt{T}, \mathtt{F}) =
+    H_{\phi}(\mathtt{T}, \mathtt{F}, \mathtt{F}, \mathtt{F}) =
+    H_{\phi}(\mathtt{T}, \mathtt{T}, \mathtt{F}, \mathtt{T}) =
+    H_{\phi}(\mathtt{T}, \mathtt{F}, \mathtt{T}, \mathtt{F}) =
+    H_{\phi}(\mathtt{T}, \mathtt{F}, \mathtt{T}, \mathtt{T}) = \mathtt{F}
+\end{alignat*}
+\section{Punto 2: Tabla de verdad}
+
+$((p \vee (q \vee r)) \equiv ((p \vee q) \vee r))$
+\begin{center}
+    \begin{NiceTabular}{|c|c|c|c|c|c|c|c|}
+        \hline
+        $p$ & $q$ & $r$ & $(q \vee r)$ & $(p \vee q)$ & $(p \vee (q \vee r))$ & $((p \vee q) \vee r)$ & $((p \vee (q \vee r)) \equiv ((p \vee q) \vee r))$\\
+        \hline
+        \ttfamily F & \ttfamily F & \ttfamily F & \ttfamily F & \ttfamily F & \ttfamily F & \ttfamily F & \ttfamily T\\
+        \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T\\
+        \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T\\
+        \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T\\
+        \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T\\
+        \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T\\
+        \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T\\
+        \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T\\
+        \hline
+    \end{NiceTabular}
+\end{center}
+\clearpage
+\section{Punto 3: Justificar que la implicación no es asociativa}
+\begin{alignat*}{2}
+    (\forall \phi, \psi, \tau \in \mathbb{B} &: ((\phi \to \psi) \to \tau )\equiv (\phi \to (\psi \to \tau))) \tag*{propiedad a refutar}\\
+    (\exists \phi, \psi, \tau \in \mathbb{B} &: \mathbf{v}[((\phi \to \psi) \to \tau )] \not= \mathbf{v}[(\phi \to (\psi \to \tau))]) \tag*{negación de la propiedad}\\
+    \makebox[3cm]{\hrulefill}& \makebox[6.5cm]{\hrulefill}\\
+    \mathbf{v}[((\phi \to \psi) \to \tau)] &= \mathtt{F} \tag*{suposición}\\
+    \equiv\\
+    (\mathbf{v}[(\phi \to \psi)] &= \mathtt{T}) \wedge (\mathbf{v}[\tau] = \mathtt{F}) \tag*{Metateorema 2.23}\\
+    \equiv\\
+    ((\mathbf{v}[\phi] = \mathtt{F}) &\vee (\mathbf{v}[\psi] = \mathtt{T})) \wedge (\mathbf{v}[\tau] = \mathtt{F})\\[0.4cm]
+    \tikzmark{A}\text{Tomando } \mathbf{v} &= \{\phi  \mapsto \mathtt{F}, \psi \mapsto \mathtt{T}, \tau \mapsto \mathtt{F}\} \tikzmark{B}\\[0.4cm]
+    \mathbf{v}[(\phi \to (\psi \to \tau))] &= H_{\to}[\mathtt{F}, \mathbf{v}[(\psi \to \tau)]]\\
+    &= H_{\to}[\mathtt{F}, H_{\to}(\mathtt{T}, \mathtt{F})]\\
+    &=H_{\to}[\mathtt{F}, \mathtt{F}]\\
+    &= \mathtt{T}\\
+    \makebox[3cm]{\hrulefill}& \makebox[6.5cm]{\hrulefill}\\
+    \therefore (\exists \phi, \psi, \tau \in \mathbb{B} &: \mathbf{v}[((\phi \to \psi) \to \tau )] \not= \mathbf{v}[(\phi \to (\psi \to \tau))]) \tag*{por suposición}
+\end{alignat*}
+\drawCodeBox{A}{B}
+\section{Punto 4: Tabla de verdad}
+
+$(((p \to q) \wedge (\lnot \textrm{\textit{true}})) \equiv (r \vee q))$
+
+\begin{center}
+    \begin{NiceTabular}{|c|c|c|c|c|c|c|c|c|}
+        \hline
+        $p$ & $q$ & $r$ & \textit{true} & $(\lnot \textrm{\textit{true}})$ & $(p \to q)$ & $(r \vee q)$ & $((p \to q) \wedge (\lnot \textrm{\textit{true}}))$ & $(((p \to q) \wedge (\lnot \textrm{\textit{true}})) \equiv (r \vee q))$\\
+        \hline
+        \ttfamily F & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T\\
+        \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F\\
+        \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F\\
+        \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F\\
+        \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily F & \ttfamily F & \ttfamily T\\
+        \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily F\\
+        \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F\\
+        \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F\\
+        \hline
+    \end{NiceTabular}
+\end{center}
+\section{Punto 5: Nuevo conector}
+\subsection{Definir $*$ en conectores lógicos clásicos}
+\begin{alignat*}{2}
+    H_{*}(\phi, \psi) &= H_{\lnot}[H_{\vee} (\phi , \psi)]\\
+    \makebox[1.5cm]{\hrulefill}& \makebox[2.5cm]{\hrulefill}\\
+    (\phi * \psi)  &\equiv (\lnot (\phi \vee \psi)) 
+\end{alignat*}
+\subsection{Hallar una proposición equivalente a $(\lnot p)$ usando únicamente $\{p, *\}$}
+\begin{alignat*}{2}
+    (\phi * \psi)  &\equiv (\lnot (\phi \vee \psi)) \tag*{sub-punto 1}\\
+    (p \vee p) &\equiv p \tag*{tabla de verdad}\\
+    \makebox[1.3cm]{\hrulefill}&\makebox[2.3cm]{\hrulefill}\\
+    (p * p) &\equiv (\lnot p)
+\end{alignat*}
+\subsection{Hallar una proposición equivalente a $(p \wedge q)$ usando únicamente $\{p, q, *\}$}
+\begin{alignat*}{2}
+    (\phi * \psi)  &\equiv (\lnot (\phi \vee \psi)) \tag*{sub-punto 1}\\
+    (p * p) &\equiv (\lnot p) \tag*{sub-punto 2}\\
+    (\lnot (\phi \vee \psi)) &\equiv ((\lnot \phi) \wedge (\lnot \psi)) \tag*{tabla de verdad}\\
+    \makebox[2.5cm]{\hrulefill}&\makebox[3cm]{\hrulefill}\\
+    ((p * p) * (q * q)) &\equiv (p \wedge q)
+\end{alignat*}
+\subsection{Justificar o refutar propiedades  de $*$}
+
+\begin{tcolorbox}[metateorema, title = Metateorema 2.23 para $*$]
+    \vspace*{1cm}
+    $\mathbf{v}[(\phi * \psi)] = \mathtt{T}$ si y solo si $\mathbf{v}[\phi] = \mathtt{F}$ y $\mathbf{v}[\psi] = \mathtt{F}$ ; de lo contrario $\mathbf{v}[(\phi * \psi)] = \mathtt{F}$
+\end{tcolorbox}
+
+\subsubsection{Conmutativa}
+\begin{alignat*}{2}
+    (\forall \phi, \psi \in \mathbb{B} &: \mathbf{v}[(\phi * \psi)] = \mathbf{v}[(\psi * \phi)]) \tag*{def. propiedad conmutativa}\\
+    \mathbf{v}[(\phi * \psi)] &= \mathtt{T} \tag*{suposición}\\
+    (\mathbf{v}[\phi] = \mathtt{F}) &\wedge (\mathbf{v}[\psi] = \mathtt{F})\\
+    (\mathbf{v}[\psi] = \mathtt{F}) &\wedge (\mathbf{v}[\phi] = \mathtt{F}) \tag*{Propiedad conmutativa de $\wedge$}\\
+    \mathbf{v}[(\psi * \phi)] &= \mathtt{T} \tag*{Metateorema 2.23}\\
+    \makebox[2.5cm]{\hrulefill}&\makebox[4.5cm]{\hrulefill}\\
+    (\forall \phi, \psi \in \mathbb{B} &: \mathbf{v}[(\phi * \psi)] = \mathbf{v}[(\psi * \phi)]) \tag*{Es conmutativa}
+    \intertext{Se puede ver que cualquier otra valuación cumple la propiedad (negar el metatorema y aplicar propiedad conmutativa sobre $\vee$)}
+\end{alignat*}
+
+\subsubsection{Asociativa}
+\begin{alignat*}{2}
+    (\forall \phi, \psi, \tau \in \mathbb{B} &: \mathbf{v}[(\phi * \psi) * \tau] = \mathbf{v}[(\phi * (\psi	 * \tau))]) \tag*{def. propiedad asociativa}\\
+    \mathbf{v}[(\phi * \psi) * \tau] &= \mathtt{T} \tag*{suposición}\\
+    (\mathbf{v}[(\phi * \psi)] = \mathtt{F}) &\wedge (\mathbf{v}[\tau] = \mathtt{F})\\
+    (\mathbf{v}[\phi] = \mathtt{T} \vee \mathbf{v}[\psi] = \mathtt{T}) &\wedge (\mathbf{v}[\tau] = \mathtt{F})\\
+    \intertext{Tomando $\mathbf{v} = \{\phi \mapsto \mathtt{T}, \psi \mapsto \mathtt{T}, \tau \mapsto \mathtt{F}\}$}
+    \mathbf{v}[(\phi * (\psi * \tau))] &= H_{*}[\phi, (\psi * \tau)]\\
+    &= H_{*}[\mathtt{T}, H_{*}(\mathtt{T}, \mathtt{F})]\\
+    &= H_{*}[\mathtt{T}, \mathtt{F}]\\
+    &= \mathtt{F}\\
+    \makebox[3cm]{\hrulefill}&\makebox[6cm]{\hrulefill}\\
+    \therefore (\exists \phi, \psi, \tau \in \mathbb{B} &: \mathbf{v}[(\phi * \psi) * \tau] \not= \mathbf{v}[(\phi * (\psi * \tau))]) \tag*{No es asociativa}
+\end{alignat*}
+
+\section{Punto 6: Nuevo conector}
+\subsection{Definir $*$ en conectores lógicos clásicos}
+\begin{alignat*}{2}
+    H_{*}(\phi, \psi) &= H_{\lnot}[H_{\gets}(\phi, \psi)]\\
+    \makebox[1.5cm]{\hrulefill}&\makebox[2.5cm]{\hrulefill}\\
+    (\phi * \psi) &\equiv (\lnot (\phi \gets \psi))
+\end{alignat*}
+
+\subsection{Justificar o refutar propiedades de $*$}
+\begin{tcolorbox}[metateorema, title = Metateorema 2.23 para $*$]
+        \vspace*{1cm}
+        $\mathbf{v}[(\phi * \psi) = \mathtt{T}$ si y solo si $\mathbf{v}[\phi] = \mathtt{F}$ y $\mathbf{v}[\psi] = \mathtt{T}$ ; de lo contrario $\mathbf{v}[(\phi * \psi)] = \mathtt{F}$]
+\end{tcolorbox}
+\subsubsection{Asociativa}
+
+\begin{alignat*}{2}
+    (\forall \phi, \psi, \tau \in \mathbb{B} &: \mathbf{v}[(\phi * \psi) * \tau] = \mathbf{v}[(\phi * (\psi	 * \tau))]) \tag*{def. propiedad asociativa}\\
+    \mathbf{v}[(\phi * \psi) * \tau] &= \mathtt{T} \tag*{suposición}\\
+    (\mathbf{v}[\phi] = \mathtt{F}) &\wedge (\mathbf{v}[\psi] = \mathtt{T})\\
+    (\mathbf{v}[\psi] = \mathtt{T}) &\wedge (\mathbf{v}[\phi] = \mathtt{F}) \tag*{Propiedad conmutativa de $\wedge$}\\
+    \mathbf{v}[(\psi * \phi)] &= \mathtt{F}\\
+    \makebox[2.5cm]{\hrulefill}&\makebox[5.5cm]{\hrulefill}\\
+    \therefore (\exists \phi, \psi, \tau \in \mathbb{B} &: \mathbf{v}[(\phi * \psi) * \tau] \not= \mathbf{v}[(\phi * (\psi * \tau))]) \tag*{No es asociativa}
+\end{alignat*}
+
+\subsubsection{Transitiva}
+
+\begin{alignat*}{2}
+    \tikzmark{A}(\forall \phi, \psi, \tau \in \mathbb{B} &: ((\mathbf{v}[(\phi * \psi)] = \mathtt{T}) \wedge (\mathbf{v}[(\psi * \tau)] = \mathtt{T})) \Rightarrow (\mathbf{v}[(\phi * \tau)] = \mathtt{T}))\\
+    &\wedge\\ 
+    (\forall \phi, \psi, \tau \in \mathbb{B} &: ((\mathbf{v}[(\phi * \psi)] = \mathtt{F}) \wedge (\mathbf{v}[(\psi * \tau)] = \mathtt{F})) \Rightarrow (\mathbf{v}[(\phi * \tau)] = \mathtt{F}))\tag*{def. propiedad transitiva}\tikzmark{B}\\[0.3cm]
+    (\mathbf{v}[(\phi * \psi)] = \mathtt{T}) &\wedge (\mathbf{v}[(\psi * \tau)] = \mathtt{T})\tag*{suposición}\\
+    ((\mathbf{v}[\phi] = \mathtt{F}) \wedge (\mathbf{v}[\psi] = \mathtt{T})) &\wedge ((\mathbf{v}[\psi] = \mathtt{F}) \wedge (\mathbf{v}[\tau] = \mathtt{T}))\\
+    (\mathbf{v}[\phi] = \mathtt{F}) &\wedge \textrm{\textit{false}} \wedge (\mathbf{v}[\tau] = \mathtt{T}) \tag*{Propiedad asociativa de $\wedge$}\\
+    &\textrm{\textit{false}}\\
+    \makebox[4cm]{\hrulefill}&\makebox[9.5cm]{\hrulefill}\\
+    \tikzmark{C}(\exists \phi, \psi, \tau \in \mathbb{B} &: ((\mathbf{v}[(\phi * \psi)] = \mathtt{T}) \wedge (\mathbf{v}[(\psi * \tau)] = \mathtt{T})) \not\Rightarrow (\mathbf{v}[(\phi * \tau)] = \mathtt{T}))\\
+    &\vee\\ 
+    (\exists \phi, \psi, \tau \in \mathbb{B} &: ((\mathbf{v}[(\phi * \psi)] = \mathtt{F}) \wedge (\mathbf{v}[(\psi * \tau)] = \mathtt{F})) \not\Rightarrow (\mathbf{v}[(\phi * \tau)] = \mathtt{F}))\tag*{No es transitiva}\tikzmark{D}
+\end{alignat*}
+\drawCodeBox{A}{B}
+\drawCodeBox{C}{D}
+
+\section{Punto 7: considere las valuaciones $\mathbf{v}$ y $\mathbf{w}$ \dots}
+\begin{alignat*}{2}
+    \mathbf{v} &= \{p \mapsto \mathtt{T},\ q \mapsto \mathtt{F},\ r \mapsto \mathtt{F},\ \dots\}\\
+    \mathbf{w} &= \{p \mapsto \mathtt{T},\ q \mapsto \mathtt{F},\ r \mapsto \mathtt{T},\ \dots\}
+\end{alignat*}
+
+Demostrar que $\mathbf{v}[(p \equiv (\lnot q))] = \mathbf{w}[(p \equiv (\lnot q))]$
+
+\begin{alignat*}{2}
+    \intertext{Tomando $\mathbf{v}$ ...}
+    \mathbf{v}[(p \equiv (\lnot q))] &= H_{\equiv}[p, (\lnot q)]\\
+    &= H_{\equiv}[\mathbf{v}[p], H_{\lnot}(\mathbf{v}[q])]\\
+    &= H_{\equiv}[\mathbf{w}[p], H_{\lnot}(\mathbf{w}[q])]\\
+    &= \mathbf{w}[(p \equiv (\lnot q))]
+\end{alignat*}
+
+\section{Punto 8: Demuestre que $\mathbf{v}[\phi] \not= \mathbf{v}[(\lnot \phi)]$ para cualquier valuación $\mathbf{v}$}
+
+\begin{alignat*}{2}
+    \mathbf{v}[(\phi \equiv (\lnot \phi))] &= \mathtt{F} \tag*{Enunciado/ proposición a probar}\\
+    \mathbf{v}[\phi] &\not= \mathbf{v}[(\lnot \phi)] \tag*{negación de Metateorema 2.23}\\[-.4cm]
+    \makebox[2.5cm]{\hrulefill}&\makebox[1.9cm]{\hrulefill}\\
+    \therefore \mathbf{v}[(\phi \equiv (\lnot \phi))] &= \mathtt{F}
+\end{alignat*}
+
+\end{document}

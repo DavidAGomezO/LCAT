@@ -1,0 +1,425 @@
+\documentclass{article}
+
+% Librerías:
+\usepackage{amsmath, mathtools, amssymb, mathrsfs, amsthm, nicematrix}
+\usepackage{lmodern, graphicx, fancyhdr}
+\usepackage[margin = 2cm, top = 2.5cm, includefoot]{geometry}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{shapes, snakes, fit, tikzmark}
+\usepackage{color, colortbl}
+
+% Configuraciones:
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{55.34027pt}
+\rhead{\textit{David Gómez}}
+\lhead{\includegraphics[width = 4cm]{\logo}}
+\lfoot{Página \thepage}
+\rfoot{Taller 02}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{rojoEci}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\hyphenpenalty=10000
+
+\newcommand{\logo}{C:/Users/usuario/Documents/U/logo-eci.jpg}
+
+\newcommand{\q}[1]{``#1''}
+\newcommand{\und}[2]{#1\textbf{\_}#2}
+
+\newcommand\drawCodeBox[2]{%
+\begin{tikzpicture}[remember picture,overlay]
+  \coordinate (start) at ([yshift = 2ex]pic cs:#1);
+  \coordinate (end) at ([yshift = -1.5ex]pic cs:#2);
+  \node[inner sep=2pt,draw=black,fit=(start) (end)] {};
+\end{tikzpicture}
+}
+
+% Colores
+\definecolor{rojoEci}{RGB}{225, 70, 49}
+
+
+% Documento
+\begin{document}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1cm}
+
+		\textbf{\Huge{Tarea 03}}
+
+		\vspace{1.5cm}
+
+		\textbf{\large{David Gómez}}
+
+		\vspace{4cm}
+
+		\includegraphics[width=\textwidth]{\logo}
+
+		\vspace{5cm}
+
+		Matemáticas\\
+		Escuela Colombiana de Ingeniería Julio Garavito\\
+		Colombia\\
+		\today
+
+	\end{center}
+\end{titlepage}
+\clearpage
+\tableofcontents
+\clearpage
+\section{Sección 2.1}
+\subsection{Punto 1: Nombre todas las funciones booleanas unarias}
+\begin{itemize}
+	\item $H_{\lnot}$
+	\item $H_{\textrm{\textit{false}}}$
+	\item $H_{\textrm{\textit{true}}}$
+\end{itemize}
+\subsection{Punto 3: Demuestre que $H_{\not\equiv} = (H_{\lnot} \circ H_{\equiv})$}
+\begin{NiceTabular}{| c | c | c |}
+	\hline
+	$\phi$      & $\psi$      & $(\phi \not\equiv \psi)$ \\
+	\hline
+	\ttfamily T & \ttfamily T & \ttfamily F              \\
+	\ttfamily T & \ttfamily F & \ttfamily T              \\
+	\ttfamily F & \ttfamily T & \ttfamily T              \\
+	\ttfamily F & \ttfamily F & \ttfamily F              \\
+	\hline
+\end{NiceTabular}
+\hspace*{1cm}
+\begin{NiceTabular}{| c | c | c |}
+	\hline
+	$\phi$      & $\psi$      & $(\phi \equiv \psi)$ \\
+	\hline
+	\ttfamily T & \ttfamily T & \ttfamily T          \\
+	\ttfamily T & \ttfamily F & \ttfamily F          \\
+	\ttfamily F & \ttfamily T & \ttfamily F          \\
+	\ttfamily F & \ttfamily F & \ttfamily T          \\
+	\hline
+\end{NiceTabular}
+\hspace*{1cm}
+\begin{NiceTabular}{| c | c | c | c |}
+	\hline
+	$\phi$      & $\psi$      & $(\phi \equiv \psi)$ & $(\lnot(\phi \equiv \psi))$ \\
+	\hline
+	\ttfamily T & \ttfamily T & \ttfamily T          & \ttfamily F                 \\
+	\ttfamily T & \ttfamily F & \ttfamily F          & \ttfamily T                 \\
+	\ttfamily F & \ttfamily T & \ttfamily F          & \ttfamily F                 \\
+	\ttfamily F & \ttfamily F & \ttfamily T          & \ttfamily T                 \\
+	\hline
+\end{NiceTabular}
+\\[-0.4cm]
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[node distance = 2cm, every node/.style={transform shape}]
+		\node[draw] (a) at (-6.5,0) {$H_{\not\equiv}$};
+		\node[draw] (b) at (3.7,0) {$H_{\lnot} \circ H_{\equiv}$};
+		\node[draw = none] (c) at (7,0){};
+		%
+		\draw (a) -- (b);
+		\draw (a) -- (-6.5, 1);
+		\draw (b) -- (3.7, 1);
+	\end{tikzpicture}
+\end{figure}
+\\
+\subsection{Punto 4: Tabla de verdad}
+\subsubsection{a) $(\textrm{\textit{true}} \not\equiv \textrm{\textit{false}})$}
+\begin{center}
+    \begin{NiceTabular}{|c|c|c|}
+        \hline
+        \textit{true} & \textit{false} & $(\textrm{\textit{true}} \not\equiv \textrm{\textit{false}})$ \\
+        \hline
+        \ttfamily T   & \ttfamily F    & \ttfamily T                                                   \\
+        \hline
+    \end{NiceTabular}
+\end{center}
+\subsubsection{d) $(p \wedge (\lnot q))$}
+\begin{center}
+    \begin{NiceTabular}{|c|c|c|c|}
+        \hline
+        $p$         & $q$         & $(\lnot q)$ & $(p \wedge (\lnot q))$ \\
+        \hline
+        \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily T            \\
+        \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F            \\
+        \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily F            \\
+        \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily F            \\
+        \hline
+    \end{NiceTabular}
+\end{center}
+\subsubsection{j) $((p \wedge q) \to p)$}
+\begin{center}
+    \begin{NiceTabular}{|c|c|c|c|c|}
+        \hline
+        $p$         & $q$         & $(p \wedge q)$ & $((p \wedge q) \to p)$ \\
+        \hline
+        \ttfamily T & \ttfamily T & \ttfamily T    & \ttfamily T            \\
+        \ttfamily T & \ttfamily F & \ttfamily F    & \ttfamily T            \\
+        \ttfamily F & \ttfamily T & \ttfamily F    & \ttfamily F            \\
+        \ttfamily F & \ttfamily F & \ttfamily F    & \ttfamily T            \\
+        \hline
+    \end{NiceTabular}
+\end{center}
+\subsubsection{k) $(p \to (p \wedge q))$}
+\begin{center}
+    \begin{NiceTabular}{|c|c|c|c|}
+        \hline
+        $p$         & $q$         & $(p \wedge q)$ & $(p \to (p \wedge q))$ \\
+        \hline
+        \ttfamily T & \ttfamily T & \ttfamily T    & \ttfamily T            \\
+        \ttfamily T & \ttfamily F & \ttfamily F    & \ttfamily F            \\
+        \ttfamily F & \ttfamily T & \ttfamily F    & \ttfamily T            \\
+        \ttfamily F & \ttfamily F & \ttfamily F    & \ttfamily T            \\
+        \hline
+    \end{NiceTabular}
+\end{center}
+\subsubsection{m) $((p \equiv (q \equiv r)) \equiv ((p \equiv q) \equiv r))$}
+\begin{center}
+    \begin{NiceTabular}{|c|c|c|c|c|c|c|c|}
+        \hline
+        $p$         & $q$         & $r$         & $(q \equiv r)$ & $(p \equiv q)$ & $(p \equiv (q \equiv r))$ & $((p \equiv q) \equiv r)$ & $((p \equiv (q \equiv r)) \equiv ((p \equiv q) \equiv r))$ \\
+        \hline
+        \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T    & \ttfamily T    & \ttfamily T               &  \ttfamily T              & \ttfamily T\\
+        \ttfamily T & \ttfamily T & \ttfamily F & \ttfamily F    & \ttfamily T    & \ttfamily F               &  \ttfamily F              & \ttfamily T\\
+        \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily F    & \ttfamily F    & \ttfamily F               &  \ttfamily F              & \ttfamily T\\
+        \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T    & \ttfamily F    & \ttfamily T               &  \ttfamily T              & \ttfamily T\\
+        \ttfamily F & \ttfamily T & \ttfamily T & \ttfamily T    & \ttfamily F    & \ttfamily F               &  \ttfamily F              & \ttfamily T\\
+        \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily F    & \ttfamily F    & \ttfamily T               &  \ttfamily T              & \ttfamily T\\
+        \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily F    & \ttfamily T    & \ttfamily T               &  \ttfamily T              & \ttfamily T\\
+        \ttfamily F & \ttfamily F & \ttfamily F & \ttfamily T    & \ttfamily T    & \ttfamily F               &  \ttfamily F              & \ttfamily T\\
+        \hline
+    \end{NiceTabular}
+\end{center}
+\subsection{Punto 5: Comparar $(p \wedge q)$ y $((p \vee q) \equiv (p \equiv q))$}
+\begin{center}
+    \begin{NiceTabular}{|c|c|c|c|c|c|c|}
+        \hline
+        $p$ & $q$ & $(p\wedge q)$ & $(p\vee q)$ & $(p\equiv q)$ & $((p \vee q) \equiv (p \equiv q))$ & $((p\wedge q) \equiv ((p \vee q) \equiv (p \equiv q)))$\\
+        \hline
+        \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T & \ttfamily T\\
+        \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T\\
+        \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily F & \ttfamily T\\
+        \ttfamily F & \ttfamily F & \ttfamily F & \ttfamily F & \ttfamily T & \ttfamily F & \ttfamily T\\
+        \hline
+    \end{NiceTabular}
+\end{center}
+\subsection{Punto 8: Una no tautología}
+\hspace*{1cm}
+$(((p \vee q) \to r) \equiv ((p \to q) \wedge (q \to r)))$
+\begin{center}
+    \begin{NiceTabular}{|c|c|c|c|c|c|c|c|c|}
+        \hline
+        $p$ & $q$ & $r$ & $(p \vee q)$ & $((p \vee q) \to r)$  & $(p \to q)$ & $(q \to r)$ & $((p \to q) \wedge (q \to r))$ & $(((p \vee q) \to r) \equiv ((p \to q) \wedge (q \to r)))$\\
+        \hline
+        \ttfamily T &\ttfamily T &\ttfamily T &        \ttfamily T &                \ttfamily T &    \ttfamily T &       \ttfamily T &             \ttfamily T & \ttfamily T \\
+        \ttfamily T &\ttfamily T &\ttfamily F &        \ttfamily T &                \ttfamily F &    \ttfamily T &       \ttfamily F &             \ttfamily F & \ttfamily T \\
+        \ttfamily T &\ttfamily F &\ttfamily T &        \ttfamily T &                \ttfamily T &    \ttfamily F &       \ttfamily T &             \ttfamily F & \ttfamily F \\
+        \ttfamily T &\ttfamily F &\ttfamily F &        \ttfamily T &                \ttfamily F &    \ttfamily F &       \ttfamily T &             \ttfamily F & \ttfamily T \\
+        \ttfamily F &\ttfamily T &\ttfamily T &        \ttfamily T &                \ttfamily T &    \ttfamily T &       \ttfamily T &             \ttfamily T & \ttfamily T \\
+        \ttfamily F &\ttfamily T &\ttfamily F &        \ttfamily T &                \ttfamily F &    \ttfamily T &       \ttfamily F &             \ttfamily F & \ttfamily T \\
+        \ttfamily F &\ttfamily F &\ttfamily T &        \ttfamily F &                \ttfamily T &    \ttfamily T &       \ttfamily T &             \ttfamily T & \ttfamily T \\
+        \ttfamily F &\ttfamily F &\ttfamily F &        \ttfamily F &                \ttfamily T &    \ttfamily T &       \ttfamily T &             \ttfamily T & \ttfamily T \\
+        \hline
+    \end{NiceTabular}
+\end{center}
+\subsection{Punto 9}
+\subsubsection{a) Definir las relaciones}
+\begin{itemize}
+    \item $R_{\equiv}$
+    \begin{equation*}
+        R_{\equiv} := \{(x, y) \in \mathbb{B}^2\, \vert\, H_{\equiv}(x, y) = \texttt{T}\}
+    \end{equation*}
+    \item $R_{\not\equiv}$
+    \begin{equation*}
+        R_{\not\equiv} := \{(x, y) \in \mathbb{B}^2\, \vert\, H_{\not\equiv}(x, y) = \texttt{T}\}
+    \end{equation*}
+    \item $R_{\vee}$
+    \begin{equation*}
+        R_{\vee} := \{(x, y) \in \mathbb{B}^2\, \vert\, H_{\vee}(x, y) = \texttt{T}\}
+    \end{equation*}
+    \item $R_{\wedge}$
+    \begin{equation*}
+        R_{\wedge} := \{(x, y) \in \mathbb{B}^2\, \vert\, H_{\wedge}(x, y) = \texttt{T}\}
+    \end{equation*}
+    \item $R_{\to}$
+    \begin{equation*}
+        R_{\to} := \{(x, y) \in \mathbb{B}^2\, \vert\, H_{\to}(x, y) = \texttt{T}\}
+    \end{equation*}
+    \item $R_{\gets}$
+    \begin{equation*}
+        R_{\gets} := \{(x, y) \in \mathbb{B}^2\, \vert\, H_{\gets}(x, y) = \texttt{T}\}
+    \end{equation*}
+\end{itemize}
+\subsubsection{b) Investigar cuando una relación binaria es...}
+
+Supóngase $\mathbb{A}$ un conjunto no vacío y se define la relación $R_{\sim}(x, y) := \{(x, y) \in \mathbb{A}^2 \, \vert\, x \sim y\}$
+\begin{itemize}
+    \item Asociativa:
+    $(\forall x, y, z \in \mathbb{A} : (x \sim y) \sim z = x \sim (y \sim z))$
+    \item Conmutativa:
+    $(\forall x, y \in \mathbb{A} : x \sim y = y \sim x)$
+    \item Reflexiva:
+    $(\forall x \in \mathbb{A} : x \sim x)$
+    \item Irreflexiva:
+    $(\forall x \in \mathbb{A} : (x, x) \notin R_{\sim})$
+    \item Asimétrica:
+    $(\forall x, y \in \mathbb{A} : ((x, y) \in R_{\sim}) \Rightarrow ((y, x) \notin R_{\sim}))$
+    \item Antisimétrica:
+    $(\forall x, y \in \mathbb{A} : (x \sim y) \Rightarrow x = y)$
+    \item Idempotente:
+    $(\forall x \in \mathbb{A} : x \sim x = x)$
+    \item Transitiva:
+    $(\forall x, y, z \in \mathbb{A} : ((x \sim y) \wedge (y \sim z)) \Rightarrow (x \sim z))$
+\end{itemize}
+\subsubsection{c) Clasificar las relaciones lógicas}
+\begin{itemize}
+    \item $R_{\equiv}$
+    \begin{itemize}
+        \item Asociativa
+        \item Conmutativa
+        \item Reflexiva
+        \item Transitiva
+    \end{itemize}
+    \item $R_{\not\equiv}$
+    \begin{itemize}
+        \item Conmutativa
+        \item Irreflexiva
+    \end{itemize}
+    \item $R_{\vee}$
+    \begin{itemize}
+        \item Asociativa
+        \item Conmutativa
+        \item Reflexiva
+        \item Idempotente
+        \item Transitiva
+    \end{itemize}
+    \item $R_{\wedge}$
+    \begin{itemize}
+        \item Asociativa
+        \item Conmutativa
+        \item Reflexiva
+        \item Idempotente
+        \item Transitiva
+    \end{itemize}
+    \item $R_{\to}$
+    \begin{itemize}
+        \item Reflexiva
+        \item Transitiva
+    \end{itemize}
+    \item $R_{\gets}$
+    \begin{itemize}
+        \item Reflexiva
+        \item Transitiva
+    \end{itemize}
+\end{itemize}
+\subsection{Punto 13: Considere 4 cartas...}
+Si suponemos el conjunto letras en las cartas $\mathbb{L} = \{\textrm{A}, \textrm{B}, \textrm{C}, \dots , \textrm{Z}\}$, el conjunto de las vocales $\mathbb{V} = \{\textrm{A}, \textrm{E}, \textrm{I}, \textrm{O}, \textrm{U}\}$ , el conjunto de números en las cartas (naturales) $\mathbb{N}$ , la sucesión de los pares $\{S_n\}\ ,\ S_n = 2n\ ,\ n\in \mathbb{N}$ y la sucesión de los impares $\{U_n\}\ ,\ U_n = 2n - 1\ ,\ n \in \mathbb{N}$ entonces el enunciado dice que:
+$$(\forall x, y \in \mathbb{L} \times \mathbb{N} : (x \in \mathbb{V}) \to (y \in \{S_n\}))$$
+Por contradicción se tendría entonces
+\begin{alignat*}{2}
+    (\lnot (\forall x, y \in \mathbb{L} \times \mathbb{N} &: (x \in \mathbb{V}) \to (y \in \{S_n\})))\\
+    (\exists x, y \in \mathbb{L} \times \mathbb{N} &: (\lnot ((x \in \mathbb{V}) \to (y \in \{S_n\}))))\\
+    (\exists x, y \in \mathbb{L} \times \mathbb{N} &: (x \in \mathbb{V}) \wedge (y \notin \{S_n\}))\\
+    (\exists x, y \in \mathbb{L} \times \mathbb{N} &: (x \in \mathbb{V}) \wedge (y \in \{U_n\}))
+\end{alignat*}
+Ya que también se tiene que $((p \to q) \wedge p) \therefore q$ , Entonces hay que voltear la carta de la cual se puede ver la \q{A} y la carta de la cual se puede ver el 3.
+La primera debido a que se debe comprobar que el antecedente con valor verdadero equivalga al consecuente con valor verdadero.
+La segunda debido a que se debe comprobar que la negación a la proposición tenga un valor falso, y a su vez cumpla con $((p \to q) \wedge (\lnot q)) \therefore (\lnot p)$
+
+\subsection{Punto 14: Juana quiere ir de compras...}
+\begin{center}
+    \begin{NiceTabular}{l l}
+        $p$ &: podar el césped\\
+        $l$ &: lavar y secar los platos\\
+        $t$ &: doblar las toallas de la cocina\\
+        $d$ &: limpiar el polvo\\
+        $f$ &: fregar los pisos\\
+        $h$ &: hacer mercado\\
+        $r$ &: recoger la ropa de la lavandería\\
+        $q$ &: ir de compras\\
+    \end{NiceTabular}
+\end{center}
+\subsubsection{a) Especificar las opciones}
+$((p \vee (l \wedge t) \vee d \vee f \vee (h \wedge r)) \equiv q)$
+\subsubsection{b) Suponiendo que...}
+Se tiene entonces:
+\begin{center}
+    \begin{NiceTabular}{l l}
+        $((p \vee (l \wedge t) \vee d \vee f \vee (h \wedge r)) \equiv q)$ & Hipótesis\\
+        $(\lnot d)$ & Hipótesis\\
+        $(\lnot f)$ & Hipótesis\\
+        $(\lnot p)$ & Hipótesis\\
+        $(\lnot l)$ & Hipótesis\\
+        $t$ & Hipótesis\\
+        $(h)$ & Hipótesis\\
+        $(\lnot r)$ & Hipótesis\\
+        \hline
+        $(((\textrm{\textit{false}} \vee (\textrm{\textit{false}} \wedge \textrm{\textit{true}}) \vee \textrm{\textit{false}} \vee \textrm{\textit{false}} \vee (\textrm{\textit{true}} \wedge \textrm{\textit{false}}) )) \equiv q)$ & Aplicación del valor de verdad de las hipótesis\\
+        $((\textrm{\textit{false}} \vee \textrm{\textit{false}} \vee \textrm{\textit{false}} \vee \textrm{\textit{false}} \vee \textrm{\textit{false}}) \equiv q)$ & Aplicación de tabla de verdad\\
+        $(\textrm{\textit{false}} \equiv q)$ & Aplicación de tabla de verdad\\
+        $(\lnot q)$ & definición de equivalencia\\
+        \hline
+        \hline
+        $\therefore$ Juana no puede ir de compras
+    \end{NiceTabular}
+\end{center}
+\section{Sección 2.2}
+\subsection{Punto 1: Considere la proposición $\phi$ ...}
+$$\phi = ((((\lnot p)\vee q)\equiv(r \to p))\gets(q \vee (\lnot (q \wedge q))))$$
+\subsubsection{a) proponga una valuación $\mathbf{v}$ tal que $\mathbf{v}(\phi) = \mathtt{T}$ }
+
+\begin{alignat*}{2}
+    (\mathbf{v}[(((\lnot p)\vee q)\equiv(r \to p))] = \mathtt{T}) &\vee (\mathbf{v}[(q \vee (\lnot (q \wedge q)))] = \mathtt{F}) \tag*{negación de Metateorema 2.23}\\
+    (\mathbf{v}[((\lnot p) \vee q)] = \mathbf{v}[(r \to p)]) &\vee (\mathbf{v}[q] = \mathbf{v}[(\lnot (q \wedge q))] = \mathtt{F})\\
+    \intertext{El antecedente siempre será verdad, por lo que hay que llegar a que la consecuencia también lo sea...}
+    (\mathbf{v}[(\lnot p)] = \mathtt{T} \vee \mathbf{v}(q) = \mathtt{T})  &\wedge (\mathbf{v}[r] = \mathtt{F} \vee \mathbf{v}[p] = \mathtt{T})\\
+    \intertext{Tomando $p \mapsto \mathtt{T}$ una posible valuación sería:}
+    \bar{\mathbf{v}}[\phi] &= \{p \mapsto \mathtt{T}, q \mapsto \mathtt{T}, r \mapsto \mathtt{T}\}
+\end{alignat*}
+\subsubsection{b)  proponga una valuación $\mathbf{w}$ tal que $\mathbf{w}(\phi) = \mathtt{F}$ }
+Tomando lo obtenido en el punto anterior, entonces:
+$$\bar{\mathbf{w}}[\phi] = \{p \mapsto \mathtt{T}, q \mapsto \mathtt{F}, r \mapsto \mathtt{T} \}$$
+\subsection{Punto 6: Demostrar}
+\begin{alignat*}{2}
+    \mathbf{v}[(\phi \equiv \phi)] &= \mathtt{T} \tag*{Enunciado/ proposición a probar}\\
+    \mathbf{v}[\phi] &= \mathbf{v}[\phi] \tag*{Metateorema 2.23}\\[-0.4cm]
+    \makebox[1.5cm]{\hrulefill}&\makebox[1.3cm]{\hrulefill}\\
+    \therefore \mathbf{v}[(\phi \equiv \phi)] &= \mathtt{T}
+\end{alignat*}
+\subsection{Punto 7: Demostrar}
+\begin{alignat*}{2}
+    \mathbf{v}[(\phi \equiv (\lnot \phi))] &= \mathtt{F} \tag*{Enunciado/ proposición a probar}\\
+    \mathbf{v}[\phi] &\not= \mathbf{v}[(\lnot \phi)] \tag*{negación de Metateorema 2.23}\\[-.4cm]
+    \makebox[2cm]{\hrulefill}&\makebox[1.9cm]{\hrulefill}\\
+    \therefore \mathbf{v}[(\phi \equiv (\lnot \phi))] &= \mathtt{F}
+\end{alignat*}
+\clearpage
+\subsection{Punto 8: Demostrar}
+\begin{alignat*}{2}
+    \mathbf{v}[(\phi \vee (\lnot \phi))] &= \mathtt{T} \tag*{Enunciado/ proposición a probar}\\
+    (\mathbf{v}[\phi] = \mathtt{T}) &\vee (\mathbf{v}[\lnot \phi] = \mathtt{T})\tag*{negación de Metateorema 2.23}
+    \intertext{Tomando $\phi \mapsto \mathtt{T}$}
+    \mathbf{v}[\lnot \phi] &= \mathtt{F}\\
+    H_{\vee}(\mathtt{T}, \mathtt{F}) &= \mathtt{T}
+    \intertext{Tomando $\phi \mapsto \mathtt{F}$}
+    \mathbf{v}[\lnot \phi] &= \mathtt{T}\\
+    H_{\vee}(\mathtt{F}, \mathtt{T}) &= \mathtt{T}\\[-.4cm]
+    \makebox[2cm]{\hrulefill}&\makebox[1cm]{\hrulefill}\\
+    \therefore \mathbf{v}[(\phi \vee (\lnot \phi))] &= \mathtt{T}
+\end{alignat*}
+\subsection{Punto 9: Demostrar}
+\begin{alignat*}{2}
+    \mathbf{v}[(\phi \wedge (\lnot \phi))] &= \mathtt{T} \tag*{Enunciado/ proposición a probar}\\
+    (\mathbf{v}[\phi] = \mathtt{F}) &\vee (\mathbf{v}[\lnot \phi] = \mathtt{F})\tag*{negación de Metateorema 2.23}
+    \intertext{Tomando $\phi \mapsto \mathtt{T}$}
+    \mathbf{v}[\lnot \phi] &= \mathtt{F}\\
+    H_{\wedge}(\mathtt{T}, \mathtt{F}) &= \mathtt{F}
+    \intertext{Tomando $\phi \mapsto \mathtt{F}$}
+    \mathbf{v}[\lnot \phi] &= \mathtt{T}\\
+    H_{\wedge}(\mathtt{F}, \mathtt{T}) &= \mathtt{F}\\[-.4cm]
+    \makebox[2cm]{\hrulefill}&\makebox[1cm]{\hrulefill}\\
+    \therefore \mathbf{v}[(\phi \vee (\lnot \phi))] &= \mathtt{F}
+\end{alignat*}
+\end{document} 

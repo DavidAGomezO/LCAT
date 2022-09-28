@@ -1,0 +1,509 @@
+\documentclass{article}
+
+% Librerías:
+\usepackage{amsmath, mathtools, amssymb, mathrsfs, amsthm, nicematrix, array}
+\usepackage{lmodern, graphicx, fancyhdr}
+\usepackage[margin = 2cm, top = 2.5cm, includefoot]{geometry}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{shapes, fit, tikzmark}
+\usepackage{color, colortbl}
+\usepackage[most]{tcolorbox}
+
+% Configuraciones:
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{55.34027pt}
+\rhead{\textit{David Gómez}}
+\lhead{\includegraphics[width = 4cm]{\logo}}
+\lfoot{Página \thepage}
+\rfoot{Taller 02}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{rojoEci}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\hyphenpenalty=10000
+
+\newcommand{\logo}{C:/Users/usuario/Documents/U/logo-eci.jpg}
+
+\newcommand{\q}[1]{``#1''}
+\newcommand{\und}[2]{#1\textbf{\_}#2}
+\newcommand{\boolun}[2][]{H_{#2}(#1)}
+\newcommand{\boolbin}[3]{H_{#1}(#2, #3)}
+\newcommand{\val}[2]{\mathbf{#1}[#2]}
+
+\newlength{\unit}
+\setlength{\unit}{1ex}
+
+\newcommand\drawCodeBox[3][1.5]{%
+\begin{tikzpicture}[remember picture,overlay]
+  \coordinate (start) at ([yshift = 2\unit]pic cs:#2);
+  \coordinate (end) at ([yshift = -#1\unit]pic cs:#3);
+  \node[inner sep=2pt,draw=black,fit=(start) (end)] {};
+\end{tikzpicture}
+}
+
+\newcolumntype{L}{>{$}l<{$}} 
+
+
+\newenvironment{logic}[1][0]{
+    \setlength{\extrarowheight}{3pt}
+    \setcounter{row}{-1}
+    \begin{tcolorbox}[demo, title =]
+    \begin{center}
+    \begin{NiceTabular}{>{\stepcounter{row}\therow.} l *{#1}{r} L r l *{#1}{l} }
+}{
+    \end{NiceTabular}
+    \end{center}
+    \end{tcolorbox}
+}
+
+\tcbset{demo/.style={
+    enhanced, title=title,
+    attach boxed title to top
+    left = {xshift = .5pt, yshift = -\tcboxedtitleheight -.5pt},
+    top = 1pt,
+    coltitle = black,
+    colback = defini,
+    colframe = defini,
+    arc = 0mm,
+    outer arc = 0mm,
+    boxed title style={
+        colback = white,
+        colframe = deftitlmarg,
+        boxrule = .5pt,
+        arc = 0mm,
+        outer arc = 0mm
+    }
+}}
+
+% Colores
+\definecolor{rojoEci}{RGB}{225, 70, 49}
+\definecolor{defini}{HTML}{ede9e6}
+\definecolor{deftitlmarg}{HTML}{cfcfcf}
+
+% Documento
+\begin{document}
+
+
+
+\newcounter{row}
+
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1cm}
+
+		\textbf{\Huge{Tarea 04}}
+
+		\vspace{1.5cm}
+
+		\textbf{\large{David Gómez}}
+
+		\vspace{4cm}
+
+		\includegraphics[width=\textwidth]{\logo}
+
+		\vspace{5cm}
+
+		Matemáticas\linebreak
+		Escuela Colombiana de Ingeniería Julio Garavito\linebreak
+		Colombia\linebreak
+		\today
+
+	\end{center}
+\end{titlepage}
+\clearpage
+\tableofcontents
+\clearpage
+
+\section{Justificaciones extra: }
+
+\begin{tcolorbox}[demo, title = Metateorema SS]
+    \vspace*{1cm}
+    1. $\val{v}{\phi} = \mathtt{T}$ Es una proposicón $X_1$\\[3pt]
+        1.1. $\val{v}{\phi} = \mathtt{F}$ es igual a la proposición $(\neg X_1)$\\[3pt]
+    2. $\val{v}{\phi} = \mathtt{F}$ Es una proposicón $X_2$\\[3pt]
+        2.1. $\val{v}{\phi} = \mathtt{T}$ es igual a la proposición $(\neg X_2)$\\[3pt]
+    3. Los conectores usados en las definiciones y metateoremas sobre valuaciones pueden ser reemplazados  por conectores lógicos.
+\end{tcolorbox}
+\section{Sección 2.3}
+
+\subsection{Punto 1}
+
+\subsubsection{a) $\vDash ((\phi \equiv \psi) \equiv (\psi \equiv \phi))$ }
+\begin{logic}
+	& \val{v}{((\phi \equiv \psi) \equiv (\psi \equiv \phi))} = \mathtt{T} & Enunciado\\
+	& \val{v}{((\phi \equiv \psi) \equiv (\psi \equiv \phi))} = \mathtt{F} & suposición (intento por contradicción)\\
+	& \val{v}{(\phi \equiv \psi)} \not= \val{v}{(\psi \equiv \phi)}\\[0.3cm]
+	& \tikzmark{A} (\val{v}{(\phi \equiv \psi)} = \mathtt{T}) \wedge (\val{v}{(\psi \equiv \phi)} = \mathtt{F}) & suposición 1, MT 2.20\\
+	& (\val{v}{\phi} = \val{v}{\psi}) \wedge (\val{v}{\psi} \not= \val{v}{\phi}) & MT 2.23 ($\equiv$)\\
+	& \textrm{Contradicción} &&\tikzmark{B} \\[0.4cm]
+	& \tikzmark{C} (\val{v}{(\phi \equiv \psi)} = \mathtt{F}) \wedge (\val{v}{(\psi \equiv \phi)} = \mathtt{T}) & suposición 2\\
+	& (\val{v}{\phi} \not= \val{v}{\psi}) \wedge (\val{v}{\psi} = \val{v}{\phi}) & MT 2.23 ($\equiv$)\\
+	& \textrm{Contradicción} &&\tikzmark{D} \\[0.4cm]
+	\hline
+	&\therefore \qquad \vDash ((\phi \equiv \psi) \equiv (\psi \equiv \phi))
+\end{logic}
+\drawCodeBox{A}{B}
+\drawCodeBox{C}{D}
+
+\subsubsection{b) $\vDash ((\phi \equiv \textrm{\textit{true}}) \equiv \phi)$}
+
+\begin{logic}
+    & \val{v}{((\phi \equiv \textrm{\textit{true}}) \equiv \phi)} = \mathtt{T} & Enunciado\\
+    & \val{v}{((\phi \equiv \textrm{\textit{true}}) \equiv \phi)} = \mathtt{F} & suposición (intento por contradicción)\\
+    & \val{v}{(\phi \equiv \textrm{\textit{true}})} \not= \val{v}{\phi}\\[0.3cm]
+    & \tikzmark{A1} (\val{v}{(\phi \equiv \textrm{\textit{true}})} = \mathtt{T}) \wedge (\val{v}{\phi} = \mathtt{F}) & suposición 1, MT 2.20\\
+    & (\val{v}{\phi} = \val{v}{\textrm{\textit{true}}}) \wedge (\val{v}{\phi}) = \mathtt{F} & MT 2.23\\
+    & (\val{v}{\phi} = \mathtt{T}) \wedge (\val{v}{\phi} = \mathtt{F})\\
+    & \textrm{Contradicción} && \tikzmark{B1}\\[0.4cm]
+    & \tikzmark{A2} (\val{v}{(\phi \equiv \textrm{\textit{true}})} = \mathtt{F}) \wedge (\val{v}{\phi} = \mathtt{T}) & suposición 2, MT 2.20\\
+    & (\val{v}{\phi} \not= \val{v}{\textrm{\textit{true}}}) \wedge (\val{v}{\phi}) = \mathtt{T} & MT 2.23\\
+    & (\val{v}{\phi} = \mathtt{F}) \wedge (\val{v}{\phi} = \mathtt{T})\\
+    & \textrm{Contradicción} && \tikzmark{B2}\\[0.4cm]
+    \hline
+    &\therefore \qquad \vDash ((\phi \equiv \textrm{\textit{true}}) \equiv \phi)
+\end{logic}
+\drawCodeBox{A1}{B1}
+\drawCodeBox{A2}{B2}
+
+\subsubsection{f) $ \vDash ((\phi \vee \textrm{\textit{false}}) \equiv \phi)$}
+
+\begin{logic}
+    & \val{v}{((\phi \vee \textrm{\textit{false}}) \equiv \phi)} = \mathtt{T} & Enunciado\\
+    & \val{v}{((\phi \vee \textrm{\textit{false}}) \equiv \phi)} = \mathtt{F} & suposición (intento por contradicción)\\
+    & \val{v}{(\phi \vee \textrm{\textit{false}})} \not= \val{v}{\phi}\\[0.3cm]
+    & \tikzmark{A3} (\val{v}{(\phi \vee \textrm{\textit{false}})} = \mathtt{T}) \wedge (\val{v}{\phi} = \mathtt{F}) & suposición 1, MT 2.20\\
+    & ((\val{v}{\phi} = \mathtt{T}) \vee (\val{v}{\textrm{\textit{false}}} = \mathtt{T})) \wedge (\val{v}{\phi} = \mathtt{F}) & MT 2.23\\
+    & (\val{v}{\phi} = \mathtt{T}) \wedge (\val{v}{\phi} = \mathtt{F})\\
+    & \textrm{Contradicción} && \tikzmark{B3}\\[0.4cm]
+    & \tikzmark{A4} (\val{v}{(\phi \vee \textrm{\textit{false}})} = \mathtt{F}) \wedge (\val{v}{\phi} = \mathtt{T}) & suposición 2, MT 2.20\\
+    & ((\val{v}{\phi} = \mathtt{F}) \wedge (\val{v}{\textrm{\textit{false}}} = \mathtt{F})) \wedge (\val{v}{\phi} = \mathtt{T}) & MT 2.23\\
+    & (\val{v}{\phi} = \mathtt{F}) \wedge (\val{v}{\phi} = \mathtt{T}) & simplificación (8)\\
+    & \textrm{Contradicción} && \tikzmark{B4}\\[0.4cm]
+    \hline
+    & \therefore \qquad \vDash ((\phi \vee \textrm{\textit{false}}) \equiv \phi)
+\end{logic}
+\drawCodeBox{A3}{B3}
+\drawCodeBox{A4}{B4}
+
+\subsubsection{g) $\vDash ((\phi \vee \phi) \equiv \phi)$}
+
+\begin{logic}[1]
+                        && \val{v}{((\phi \vee \phi) \equiv \phi)} = \mathtt{T} & Enunciado\\
+                        && \val{v}{((\phi \vee \phi) \equiv \phi)} = \mathtt{F} & suposición (intento por contradicción)\\
+                        && \val{v}{(\phi \vee \phi)} \not= \val{v}{\phi} & MT 2.23 ($\equiv$)\\[0.3cm]
+    &\tikzmark{A5}       & (\val{v}{(\phi \vee \phi)} = \mathtt{T}) \wedge (\val{v}{\phi} = \mathtt{F}) & suposición 1, MT 2.20\\
+                        && ((\val{v}{\phi} = \mathtt{T}) \vee (\val{v}{\phi} = \mathtt{T})) \wedge (\val{v}{\phi} = \mathtt{F}) & MT 2.20\\[0.3cm]
+                        && \tikzmark{A6}((\val{v}{\phi} = \mathtt{T}) \wedge (\val{v}{\phi} = \mathtt{T})) \wedge (\val{v}{\phi} = \mathtt{F}) & suposición 1.1\\
+                        && \textrm{Contradicción} && \tikzmark{B6}\\[0.3cm]
+                        && \tikzmark{A7}((\val{v}{\phi} = \mathtt{F}) \wedge (\val{v}{\phi} = \mathtt{T})) \wedge (\val{v}{\phi} = \mathtt{F}) & suposición 1.2\\
+                        && \textrm{Contradicción} && \tikzmark{B7}\\[0.3cm]
+                        && \tikzmark{A8}((\val{v}{\phi} = \mathtt{F}) \wedge (\val{v}{\phi} = \mathtt{T})) \wedge (\val{v}{\phi} = \mathtt{F}) & suposición 1.3\\
+                        && \textrm{Contradicción} && \tikzmark{B8} & \tikzmark{B5}\\[0.6cm]
+    &\tikzmark{A9}       & (\val{v}{(\phi \vee \phi)} = \mathtt{F}) \wedge (\val{v}{\phi} = \mathtt{T}) & suposición 2, MT 2.20\\
+                        && ((\val{v}{\phi} = \mathtt{F}) \wedge (\val{v}{\phi} = \mathtt{F})) \wedge (\val{v}{\phi} = \mathtt{T}) & MT 2.23\\
+                        && \textrm{Contradicción} &&&\tikzmark{B9}\\[0.4cm]
+                        \hline
+                        && \therefore \qquad \vDash ((\phi \vee \phi) \equiv \phi)
+
+\end{logic}
+
+\drawCodeBox[3]{A5}{B5}
+\drawCodeBox{A6}{B6}
+\drawCodeBox{A7}{B7}
+\drawCodeBox{A8}{B8}
+\drawCodeBox{A9}{B9}
+
+\subsubsection{k) $\vDash (\neg (\phi \land (\neg \phi)))$}
+
+\begin{logic}
+    & \val{v}{(\neg (\phi \land (\neg \phi)))} = \mathtt{T} & Enunciado\\
+    & \val{v}{(\neg (\phi \land (\neg \phi)))} = \mathtt{F} & suposición (intento por contradicción)\\
+    & \val{v}{(\phi \land (\neg \phi))} = \mathtt{T} & MT 2.23 ($\neg$)\\
+    & (\val{v}{\phi} = \mathtt{T}) \land (\val{v}{(\neg \phi)} = \mathtt{T}) & MT 2.23 ($\land$)\\
+    & (\val{v}{\phi} = \mathtt{T}) \land (\val{v}{\phi} = \mathtt{F}) & MT 2.23 ($\neg$)\\
+    & \textrm{Contradicción}\\
+    \hline
+    &\therefore \qquad \vDash (\neg (\phi \land (\neg \phi)))
+\end{logic}
+
+\subsubsection{l) $\vDash (\phi \to (\psi \to \phi))$}
+
+\begin{logic}
+    & \val{v}{(\phi \to (\psi \to \phi))} = \mathtt{T} & Enunciado\\
+    & \val{v}{(\phi \to (\psi \to \phi))} = \mathtt{F} & suposición (intento por contradicción)\\
+    & (\val{v}{\phi} = \mathtt{T}) \land (\val{v}{(\psi \to \phi)} = \mathtt{F}) & MT 2.23 ($\to$)\\
+    & (\val{v}{\phi} = \mathtt{T}) \land ((\val{v}{\psi} = \mathtt{T}) \land ((\val{v}{\phi} = \mathtt{F}))) & MT 2.23 ($\to$)\\
+    &\textrm{Contradicción}\\
+    \hline
+    & \therefore \qquad (\phi \to (\psi \to \phi))
+\end{logic}
+
+\subsubsection{n) $\vDash ((\phi \to \psi) \equiv ((\neg \psi) \to (\neg \phi)))$}
+
+\begin{logic}
+    & \val{v}{((\phi \to \psi) \equiv ((\neg \psi) \to (\neg \phi)))} = \mathtt{T} & Enunciado\\
+    & \val{v}{(\phi \to \psi)} = \val{v}{((\neg \psi) \to (\neg \phi))} & MT 2.23 ($\equiv$)\\
+    & \textrm{Partiendo de } (\phi \to \psi)\\
+    & \tikzmark{AA} \val{v}{(\phi \to \psi)} = \mathtt{F} & suposición 1\\
+    & (\val{v}{\phi} = \mathtt{T}) \land (\val{v}{\psi} = \mathtt{F}) & MT 2.23 ($\to$)\\
+    & (\val{v}{\psi} = \mathtt{F}) \land (\val{v}{\phi} = \mathtt{T}) & Conmutativa de $\land$\\
+    & (\boolun[\val{v}{\psi}]{\neg} = \mathtt{T}) \land (\boolun[\val{v}{\phi}]{\neg} = \mathtt{F}) & Doble negación (5)\\
+    & (\val{v}{(\neg \psi)} = \mathtt{T}) \land (\val{v}{(\neg \phi)}) = \mathtt{F} & Def. 2.18 ($\neg$)\\
+    & \val{v}{((\neg \psi) \to (\neg \phi))} = \mathtt{F} & MT 2.23 ($\to$) &\tikzmark{BB}\\[0.3cm]
+    & \tikzmark{AA0} \val{v}{(\phi \to \psi)} = \mathtt{T} & suposición 2\\
+    & (\val{v}{\phi} = \mathtt{F}) \lor (\val{v}{\psi} = \mathtt{T}) & MTT 2.23 ($\to$)\\
+    & (\val{v}{\psi} = \mathtt{T}) \lor (\val{v}{\phi} = \mathtt{F}) & Conmutativa de $\lor$\\
+    & (\boolun[\val{v}{\psi}]{\neg} = \mathtt{F}) \lor (\boolun[\val{v}{\phi}]{\neg} = \mathtt{T}) & Doble negación (10)\\
+    & (\val{v}{(\neg \psi)} = \mathtt{F}) \lor (\val{v}{(\neg \phi)}) = \mathtt{T} & Def. 2.18 ($\neg$)\\
+    & \val{v}{((\neg \psi) \to (\neg \phi))} = \mathtt{T} & MT 2.23 ($\to$) &\tikzmark{BB0}\\[0.4cm]
+    \hline
+    & \therefore \qquad \vDash ((\phi \to \psi) \equiv ((\neg \psi) \to (\neg \phi)))
+\end{logic}
+
+\drawCodeBox{AA}{BB}
+\drawCodeBox{AA0}{BB0}
+
+\subsection{Punto 2}
+\subsubsection{b) $((\neg p) \lor q)$}
+
+\begin{logic}
+    & (\exists \mathbf{v}, \mathbf{w} \, \vert \, (\val{v}{((\neg p) \lor q)} = \mathtt{T}) \land (\val{w}{((\neg p) \lor q)} = \mathtt{F})) & Enunciado\\[0.3cm]
+    & \tikzmark{AA1} \val{v}{((\neg p) \lor q)} = \mathtt{T} & suposición 1\\
+    & (\val{v}{(\neg p)} = \mathtt{T}) \lor (\val{v}{q} = \mathtt{T}) & MT 2.23 ($\lor$)\\
+    & (\val{v}{p} = \mathtt{F}) \lor (\val{v}{q} = \mathtt{T}) & Doble negación (2)\\
+    & \qquad \mathbf{v} = \{p \mapsto \mathtt{F}, q \mapsto \mathtt{T}\}\\
+    & (\exists \mathbf{v} \, \vert\, \val{v}{((\neg p) \lor q)} = \mathtt{T}) && \tikzmark{BB1}\\[0.4cm]
+    & \tikzmark{AA2} \val{w}{((\neg p) \lor q)} = \mathtt{F} & suposición 2\\
+    & (\val{w}{(\neg p)} = \mathtt{F}) \land (\val{w}{q} = \mathtt{F}) & MT 2.23 ($\lor$)\\
+    & (\val{w}{p} = \mathtt{T}) \land (\val{w}{q} = \mathtt{F}) & Doble negación (2)\\
+    & \qquad \mathbf{w} = \{p \mapsto \mathtt{T}, q \mapsto \mathtt{F}\}\\
+    & (\exists \mathbf{w} \, \vert\, \val{w}{((\neg p) \lor q)} = \mathtt{f}) && \tikzmark{BB2}\\[0.4cm]
+    \hline
+    & \therefore \qquad (\exists \mathbf{v}, \mathbf{w} \, \vert \, (\val{v}{((\neg p) \lor q)} = \mathtt{T}) \land (\val{w}{((\neg p) \lor q)} = \mathtt{F}))
+\end{logic}
+
+\drawCodeBox{AA1}{BB1}
+\drawCodeBox{AA2}{BB2}
+
+\subsubsection{d) $(\neg (p \land (\neg q)))$}
+
+\begin{logic}
+    & (\exists \mathbf{v}, \mathbf{w} \, \vert\, (\val{v}{(\neg (p \land (\neg q)))} = \mathtt{T}) \land (\val{w}{(\neg (p \land (\neg q)))} = \mathtt{F})) & Enunciado\\[0.3cm]
+    & \tikzmark{AA3} \val{v}{(\neg (p \land (\neg q)))} = \mathtt{F} & suposición 1\\
+    & \val{v}{(p \land (\neg q))} = \mathtt{T} & Def. 2.18 ($\neg$)\\
+    & (\val{v}{p} = \mathtt{T}) \land (\val{v}{(\neg q)} = \mathtt{T}) & MT 2.23 ($\land$)\\
+    & (\val{v}{p} = \mathtt{T}) \land (\val{v}{q} = \mathtt{F}) & Def. 2.18 ($\neg$)\\
+    & \qquad \mathbf{v} = \{p \mapsto \mathtt{T}, q \mapsto \mathtt{F}\}\\
+    & (\exists \mathbf{v} \, \vert\, \val{v}{(\neg (p \land (\neg q)))} = \mathtt{T}) && \tikzmark{BB3}\\[0.4cm]
+    & \tikzmark{AA4} \val{w}{(\neg (p \land (\neg q)))} = \mathtt{T} & suposición 2\\
+    & \val{w}{(p \land (\neg q))} = \mathtt{F} & Def. 2.18 ($\neg$)\\
+    & (\val{w}{p} = \mathtt{F}) \lor (\val{w}{(\neg q)} = \mathtt{F})\\
+    & (\val{w}{p} = \mathtt{F}) \lor (\val{w}{q} = \mathtt{T}) & Def. 2.18 ($\neg$)\\
+    & \qquad \mathbf{w} = \{p \mapsto \mathtt{F}, q \mapsto \mathtt{T}\}\\
+    & (\exists \mathbf{w} \, \vert\, \val{w}{(\neg (p \land (\neg q)))} = \mathtt{T}) && \tikzmark{BB4}\\[0.4cm]
+    \hline
+    & \therefore \qquad (\exists \mathbf{v}, \mathbf{w} \, \vert\, (\val{v}{(\neg (p \land (\neg q)))} = \mathtt{T}) \land (\val{w}{(\neg (p \land (\neg q)))} = \mathtt{F}))
+\end{logic}
+\drawCodeBox{AA3}{BB3}
+\drawCodeBox{AA4}{BB4}
+
+\subsection{Punto 3}
+\begin{alignat*}{2}
+    \bullet & (\phi \land (\neg \phi))\\
+    \bullet & ((\phi \to \psi) \equiv (\phi \land (\neg \psi)))\\
+    \bullet & ((\phi \gets \psi) \equiv ((\neg \phi) \land \psi))
+\end{alignat*}
+
+\subsection{Punto 6}
+\subsubsection{b)}
+
+Se tiene de entrada que \textit{false}, al ser una constante, no hace de operador entre 2 proposiciones, por lo que la única opción es:
+\begin{logic}
+    & \vDash (\textrm{\textit{false}}) & suposición/ enunciado\\
+    & \val{v}{\textrm{\textit{false}}} = \mathtt{T} & Def.(p0)\\
+    & \mathtt{F} = \mathtt{T} & Def. 2.18 ($\textrm{\textit{false}}$) (p1)\\
+    & \textrm{Contradicción}\\
+    \hline
+    &\therefore \qquad \textrm{No existe dicha proposición mencionada en el enunciado}
+\end{logic}
+
+\subsubsection{d)}
+
+\begin{logic}
+    & \vDash (\phi \not\equiv \psi) & suposición/ enunciado\\
+    & \val{v}{(\phi \not\equiv \psi)} = \mathtt{T} & Def.(p0)\\
+    & \val{v}{(\phi \not\equiv \psi)} = \mathtt{F} & suposición (intento por contradicción)\\
+    & \val{v}{\phi} = \val{v}{\psi} & MT 2.23 ($\not\equiv$) (p2)\\[0.3cm]
+    & \tikzmark{AA5} \val{v}{\phi} = \mathtt{T} & suposición 1 , MT 2.19 N 2.20\\
+    & \val{v}{\psi} = \mathtt{T} & p(3, 4)&\tikzmark{BB5}\\[0.4cm]
+    \hline
+    &\therefore \qquad (\exists \mathbf{v}\, \vert\, \val{v}{(\phi \not\equiv \psi)} = \mathtt{F})
+\end{logic}
+\drawCodeBox{AA5}{BB5}
+
+\subsubsection{f)}
+
+\begin{logic}
+    & \vDash (\phi \land \psi) & suposición/ enunciado\\
+    & \val{v}{(\phi \land \psi)} = \mathtt{T} & Def.(p0)\\
+    & \val{v}{(\phi \land \psi)} = \mathtt{F} & suposición (intento por contradicción)\\
+    & (\val{v}{\phi} = \mathtt{F}) \lor (\val{v}{\psi} = \mathtt{F}) & MT 2.23 (p2)\\[0.3cm]
+    & \tikzmark{AA6} \val{v}{\phi} = \mathtt{F} & suposición 1, MT 2.19 N 2.20\\
+    & \val{v}{(\phi \land \psi)} = \mathtt{F} & MT 2.23, p4 & \tikzmark{BB6}\\[0.4cm]
+    \hline
+    & \therefore \qquad (\exists \mathbf{v} \, \vert\, \val{v}{(\phi \land \psi)} = \mathtt{F})
+\end{logic}
+\drawCodeBox{AA6}{BB6}
+
+\subsubsection{g)}
+
+\begin{logic}
+    & \vDash (\phi \to \psi) & suposición/ enunciado\\
+    & \val{v}{(\phi \to \psi)} = \mathtt{T} & Def.(p0)\\
+    & \val{v}{(\phi \to \psi)} = \mathtt{F} & suposición (intento por contradicción)\\
+    & (\val{v}{\phi} = \mathtt{T}) \land (\val{v}{\psi} = \mathtt{F})\\
+    \hline
+    & \therefore \qquad (\exists \mathbf{v}\, \vert\, \val{v}{(\phi \to \psi)} = \mathtt{F})
+\end{logic}
+
+\subsection{Punto 8}
+\subsubsection{a)}
+\begin{logic}
+    & \text{Si }\vDash  (\phi \to \psi) \text{ y } \vDash(\psi \to \tau)\text{ , entonces } \vDash (\phi \to \tau) & Enunciado\\
+    & ((\val{v}{(\phi \to \psi)} = \mathtt{T}) \wedge (\val{v}{(\psi \to \tau)} = \mathtt{T})) \implies (\val{v}{(\phi \to \tau)} = \mathtt{T}) & Def. (p0)\\
+    & (\exists \mathbf{v}\, \vert\, \val{v}{(\phi \to \tau)} = \mathtt{F}) & suposición , MT 2.19 N 2.20 ($\to$) (p1)\\
+    & (\val{v}{\phi} = \mathtt{T}) \land (\val{v}{\tau} = \mathtt{F}) & MT 2.23 ($\to$) (p2)\\
+    & \text{se tiene que } ((\val{v}{(\phi \to \psi)} = \mathtt{T}) \wedge (\val{v}{(\psi \to \tau)} = \mathtt{T}))\\
+    & \val{v}{\phi} = \mathtt{T} & Caso ($\textrm{\textit{true}} \to \xi$) (p4 , p3)\\
+    & \val{v}{\tau} = \mathtt{T} & Caso ($\textrm{\textit{true}} \to \xi$) (p4 , p5)\\
+    & \text{Contradicción} & (p6, p3)\\
+    \hline
+    & \therefore \qquad \text{Si }\vDash  (\phi \to \psi) \text{ y } \vDash(\psi \to \tau)\text{ , entonces } \vDash (\phi \to \tau) & Enunciado\\
+\end{logic}
+
+\subsubsection{b)}
+
+\begin{logic}
+    & \text{Si } \vDash (\phi \to \psi) \text{ y } \vDash (\phi) \text{ , entonces } \vDash (\psi) & Enunciado\\
+    & ((\val{v}{(\phi \to \psi)} = \mathtt{T}) \land (\val{v}{\phi} = \mathtt{T})) \implies (\val{v}{\psi} = \mathtt{T}) & Def.(p0)\\
+    & (\exists \mathbf{v}\, \vert\, \val{v}{\psi} = \mathtt{F}) & suposición, MT 2.19 N 2.20\\
+    & \text{Se tiene que } ((\val{v}{(\phi \to \psi)} = \mathtt{T}) \land (\val{v}{\phi} = \mathtt{T}))\\
+    & ((\val{v}{\phi} = \mathtt{F}) \lor (\val{v}{\psi} = \mathtt{T})) \land (\val{v}{\phi} = \mathtt{T}) & MT 2.23 ($\to$) (p3)\\
+    & \text{Nótese que por un lado (mediante $\lor$) } (\val{v}{\phi} = \mathtt{F}) \text{ y por otro } (\val{v}{\phi} = \mathtt{T})\\
+    & \val{v}{\psi} = \mathtt{T} & Caso ($ \textrm{\textit{false}} \lor \xi$)\\
+    & \text{Contradicción} & (p6, p2)\\
+    \hline
+    & \therefore \qquad \text{Si } \vDash (\phi \to \psi) \text{ y } \vDash (\phi) \text{ , entonces } \vDash (\psi) & Enunciado
+\end{logic}
+
+\subsubsection{c)}
+
+\begin{logic}
+    & \text{Si } \vDash (\phi \to \psi) \text{ y } \vDash(\psi \equiv \tau) \text{ , entonces } \vDash (\phi \to \tau) & Enunciado\\
+    & ((\val{v}{(\phi \to \psi)} = \mathtt{T}) \land (\val{v}{(\psi \equiv \tau)} = \mathtt{T})) \implies (\val{v}{(\phi \to \tau)} = \mathtt{T}) & Def. (p0)\\
+    & (\exists \mathbf{v} \, \vert\, \val{v}{(\phi \to \tau)} = \mathtt{T}) & suposición, MT 2.19 N 2.20\\
+    & (\val{v}{\phi} = \mathtt{T}) \land (\val{v}{\tau} = \mathtt{F}) & MT 2.23 ($\to$) (p2)\\
+    & \text{Se tiene que } ((\val{v}{(\phi \to \psi)} = \mathtt{T}) \land (\val{v}{(\psi \equiv \tau)} = \mathtt{T}))\\
+    & \val{v}{\psi} = \mathtt{F} & MT 2.23 ($\equiv$) (p4, p3)\\
+    & \val{v}{(\phi \to \psi)} = \mathtt{F} & MT 2.23 ($\to$) (p5, p3)\\
+    & \text{Contradicción} & (p6, p3)\\
+    \hline
+    & \therefore \qquad \text{Si } \vDash (\phi \to \psi) \text{ y } \vDash(\psi \equiv \tau) \text{ , entonces } \vDash (\phi \to \tau)
+\end{logic}
+
+\subsubsection{d)}
+
+\begin{logic}
+    & \text{Si } \vDash (\phi \equiv \psi) \text{ y } \vDash (\psi \to \tau) \text{ , entonces } \vDash (\phi \to \tau) & Enunciado\\
+    & ((\val{v}{(\phi \equiv \psi)} = \mathtt{T}) \land (\val{v}{(\psi \to \tau)} = \mathtt{T})) \implies (\val{v}{(\phi \to \tau)} = \mathtt{T}) & Def. (p0)\\
+    & (\exists \mathbf{v}\, \vert\, \val{v}{(\phi \to \tau)} = \mathtt{F}) & suposición, MT 2.19 N 2.20\\
+    & (\val{v}{\phi} = \mathtt{T}) \land (\val{v}{\tau} = \mathtt{F}) & MT 2.23 ($\to$) (p2)\\
+    & \text{Se tiene que } ((\val{v}{(\phi \equiv \psi)} = \mathtt{T}) \land (\val{v}{(\psi \to \tau)} = \mathtt{T}))\\
+    & \val{v}{\psi} = \mathtt{T} & MT 2.23 ($\equiv$), (p4, p3)\\
+    & \val{v}{(\psi \to \tau)} = \mathtt{F} & MT 2.23 ($\to$), (p5, p3)\\
+    & \text{Contradicción} & (p6, p3)\\
+    \hline
+    & \therefore \qquad \text{Si } \vDash (\phi \equiv \psi) \text{ y } \vDash (\psi \to \tau) \text{ , entonces } \vDash (\phi \to \tau)
+\end{logic}
+
+\subsection{Punto 9}
+
+\subsubsection{a)}
+
+\begin{logic}
+    & \phi \text{ Es insatisfacible si y solo si } \vDash(\phi \equiv \textrm{\textit{false}}) & Enunciado\\[0.3cm]
+    & \tikzmark{AA7} \text{Si } \phi \text{ Es insatisfacible, entonces } \vDash (\phi \equiv \textrm{\textit{false}}) & demostración 1\\
+    & \val{v}{\phi} = \mathtt{F} & MT 2.19 N 2.20\\
+    & \val{v}{\textrm{\textit{false}}} = \mathtt{F} & Def 2.18 (\textit{false})\\
+    & \val{v}{\phi} = \val{v}{\textrm{\textit{false}}} & (p3, p2)\\
+    & \val{v}{(\phi \equiv \textrm{\textit{false}})} = \mathtt{T} & MT 2.23 ($\equiv$) (p4) & \tikzmark{BB7}\\[0.4cm]
+    & \tikzmark{AA8} \text{Si } \vDash (\phi \equiv \textrm{\textit{false}}) \text{ entonces } \phi \text{ Es insatisfacible} & demostración 2\\
+    & \val{v}{(\phi \equiv \textrm{\textit{false}})} = \mathtt{T} & MT 2.19 N 2.20\\
+    & \val{v}{\phi} = \val{v}{\textrm{\textit{false}}} & MT 2.23 ($\equiv$) (p7)\\
+    & \val{v}{\phi} = \mathtt{F} & Def. 2.18 (\textit{false}) & \tikzmark{BB8} \\[0.4cm]
+    \hline
+    & \therefore \qquad \phi \text{ Es insatisfacible si y solo si } \vDash(\phi \equiv \textrm{\textit{false}})
+\end{logic}
+\drawCodeBox{AA7}{BB7}
+\drawCodeBox{AA8}{BB8}
+
+\subsubsection{b)}
+
+\begin{logic}
+    & \phi \text{ Es insatisfacible si y solo si } \vDash (\neg \phi) & Enunciado\\
+    & \tikzmark{AA9} \text{Si } \phi \text{ es insatisfacible, entonces } \vDash (\neg \phi) & demostración 1\\
+    & \val{v}{\phi} = \mathtt{F} & MT 2.19 N 2.20\\
+    & \boolun{\neg}{\val{v}{\phi}} = \mathtt{T} & doble negación (p2)\\
+    & \val{v}{(\neg \phi)} = \mathtt{T} && \tikzmark{BB9} \\[0.4cm]
+    & \tikzmark{AA} \text{Si } \vDash (\neg \phi) \text{ , entonces } \phi \text{ es insatisfacible} & demostración 2\\
+    & \val{v}{(\neg \phi)} = \mathtt{T} & MT 2.19 N 2.20\\
+    & \val{v}{\phi} = \mathtt{F} & MT 2.23 ($\neg$) (p6) & \tikzmark{BB}\\[0.4cm]
+    \hline
+    & \therefore \qquad \phi \text{ Es insatisfacible si y solo si } \vDash (\neg \phi)
+\end{logic}
+\drawCodeBox{AA9}{BB9}
+\drawCodeBox{AA}{BB}
+
+\subsection{Punto 10}
+
+\subsubsection{a)}
+
+\begin{logic}
+    & \vDash (\phi \equiv \psi) \text{ si y solo si } \vDash (\phi) \text{ y } \vDash (\psi) & Enunciado\\
+    & \text{Si } \vDash (\phi \equiv \psi) \text{ entonces } \vDash(\phi) \text{ y } \vDash(\psi) & demostración 1\\
+    & \val{v}{(\phi \equiv \psi)} = \mathtt{T} & MT 2.19 N 2.20\\
+    & \val{v}{\phi} = \val{v}{\psi} & MT 2.23 ($\equiv$) (p2)\\
+    & \text{Tomando } \mathbf{v} \, \vert\, \val{v}{\phi} = \mathtt{F} & MT 2.19 N 2.20\\
+    & \val{v}{\psi} = \mathtt{F} & MT 2.23 ($\equiv$) (p4, p3)\\
+    \hline
+    & \therefore \qquad \text{No se cumple el enunciado}
+\end{logic}
+\subsubsection{b)}
+
+\begin{logic}
+    & \vDash (\phi \land \psi) \text{ si y solo si } \vDash(\phi) \text{ y } \vDash(\psi) & Enunciado\\[0.4cm]
+    & \tikzmark{a} \text{Si } \vDash (\phi \land \psi) \text{ , entonces } \vDash(\phi) \text{ y } \vDash(\psi) & demostración 1\\
+    & \val{v}{(\phi \land \psi)} = \mathtt{T} & MT 2.19 N 2.20\\
+    & (\val{v}{\phi} = \mathtt{T}) \land (\val{v}{\phi} = \mathtt{T}) & MT 2.23 ($\land$) (p2)\\
+    & \vDash(\phi) \text{ y } \vDash(\psi) & Def. (p4) &\tikzmark{b}\\[0.4cm]
+    & \tikzmark{a0} \text{Si } \vDash(\phi) \text{ y } \vDash(\psi) \text{ , entonces } \vDash (\phi \land \psi) & demostración 2\\
+    & (\val{v}{\phi} = \mathtt{T}) \land (\val{v}{\psi} = \mathtt{T}) & Def. (p5)\\
+    & (\val{v}{(\phi \land \psi)} = \mathtt{T}) & MT 2.23 ($\land$) (p6) & \tikzmark{b0}\\[0.4cm]
+    \hline
+    & \therefore \qquad \vDash (\phi \land \psi) \text{ si y solo si } \vDash(\phi) \text{ y } \vDash(\psi) & Enunciado
+\end{logic}
+\drawCodeBox{a}{b}
+\drawCodeBox{a0}{b0}
+
+
+\section{Sección 2.4}
+
+\subsection{Punto 2}
+\subsubsection{a)}
+
+\end{document}

@@ -1,0 +1,434 @@
+\documentclass{article}
+
+% Librerías:
+\usepackage{amsmath, mathtools, amssymb, mathrsfs, amsthm, nicematrix, array}
+\usepackage{lmodern, graphicx, fancyhdr}
+\usepackage[margin = 2cm, top = 2.5cm, includefoot]{geometry}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{shapes, fit, tikzmark}
+\usepackage{color, colortbl}
+\usepackage[most]{tcolorbox}
+
+% Configuraciones:
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{55.34027pt}
+\rhead{\textit{David Gómez}}
+\lhead{\includegraphics[width = 4cm]{\logo}}
+\lfoot{Página \thepage}
+\rfoot{\titlename}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{rojoEci}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\hyphenpenalty=10000
+
+\newcommand{\logo}{C:/Users/usuario/Documents/U/logo-eci.jpg}
+
+\newcommand{\q}[1]{``#1''}
+\newcommand{\und}[2]{#1\textbf{\_}#2}
+\newcommand{\boolun}[2][]{H_{#2}(#1)}
+\newcommand{\boolbin}[3]{H_{#1}(#2, #3)}
+\newcommand{\val}[2]{\mathbf{#1}[#2]}
+
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\titlename}{Taller 05}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newlength{\unit}
+\setlength{\unit}{1ex}
+
+\newcommand\drawCodeBox[3][1.5]{%
+\begin{tikzpicture}[remember picture,overlay]
+  \coordinate (start) at ([yshift = 2\unit]pic cs:#2);
+  \coordinate (end) at ([yshift = -#1\unit]pic cs:#3);
+  \node[inner sep=2pt,draw=black,fit=(start) (end)] {};
+\end{tikzpicture}
+}
+
+\newcolumntype{L}{>{$}l<{$}} 
+
+
+\newlength{\logicv}
+\setlength{\logicv}{.1cm}
+\newenvironment{logicenv}[2][0]{
+  %begin
+  \begin{tcolorbox}[demo, title = #2]
+  \vspace*{#1\logicv}
+}{
+  %end
+  \end{tcolorbox}
+  \vspace*{-.5cm}
+}
+
+\newenvironment{subproofill}[1][0]{
+  %begin
+  \begin{tcolorbox}[demo, title = ]
+    \vspace*{-#1\logicv}
+}{
+  %end
+  \end{tcolorbox}
+  \vspace*{-.5cm}
+}
+
+
+\newenvironment{subproof}[2][0]{
+  %begin
+  \begin{tcolorbox}[demo, title = #2, colframe = black]
+  \vspace*{#1\logicv}
+  \begin{logic}
+}{
+  %end
+  \end{logic}
+  \end{tcolorbox}
+}
+\newenvironment{logic}{
+    \setlength{\extrarowheight}{3pt}
+    \setcounter{row}{-1}
+    \begin{center}
+    \begin{NiceTabular}{>{\stepcounter{row}\therow.\hspace*{5pt}} L r }
+}{
+    \end{NiceTabular}
+    \end{center}
+}
+
+\tcbset{demo/.style={
+    enhanced, title=title,
+    attach boxed title to top
+    left = {xshift = .5pt, yshift = -\tcboxedtitleheight -.5pt},
+    top = 1pt,
+    boxrule = .65pt,
+    coltitle = black,
+    colback = defini,
+    colframe = defini,
+    arc = 0mm,
+    outer arc = 0mm,
+    boxed title style={
+        colback = white,
+        colframe = deftitlmarg,
+        boxrule = .5pt,
+        arc = 0mm,
+        outer arc = 0mm
+    }
+}}
+
+% Colores
+\definecolor{rojoEci}{RGB}{225, 70, 49}
+\definecolor{defini}{HTML}{ede9e6}
+\definecolor{deftitlmarg}{HTML}{cfcfcf}
+
+% Documento
+\begin{document}
+
+
+
+\newcounter{row}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+
+        \textbf{\Huge{\titlename}}
+
+        \vspace{1.5cm}
+
+        \textbf{\large{David Gómez}}
+
+        \vspace{4cm}
+
+        \includegraphics[width=\textwidth]{\logo}
+
+        \vspace{5cm}
+
+        Matemáticas\linebreak
+        Escuela Colombiana de Ingeniería Julio Garavito\linebreak
+        Colombia\linebreak
+        \today
+
+    \end{center}
+\end{titlepage}
+\clearpage
+\tableofcontents
+\clearpage
+
+\section{Punto 1}
+
+\begin{logicenv}[5]{Punto 1{ , ($A$ , $B$)}}
+    $A$ dice: \q{nosotros tenemos la misma naturaleza}\\
+    $\Gamma_0 = \{(a \equiv (a \equiv b)), a\}$\\
+    $\Gamma_1 = \{(a \equiv (a \equiv b)), (\neg a)\}$\\
+    \makebox[8cm]{\hrulefill}\\
+    No es posible determinar la naturaleza de $A$ y $B$
+\end{logicenv}
+% Sub(1) prueba 1
+\begin{subproofill}
+  \begin{subproof}{Con $\Gamma_0$}
+    (\exists \mathbf{v}\, \vert\, \mathbf{v} \text{ satisface } \Gamma_0)\\
+    \val{v}{(a \equiv (a \equiv b))} = \mathtt{T} & Def.(p0)\\
+    \val{v}{a} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(a \equiv b)} = \mathtt{T} & MT 2.23($\equiv$)(p1, p2)\\
+    \val{v}{b} = \mathtt{T} & MTT 2.23 ($\equiv$)(p3, p2)
+  \end{subproof}
+\end{subproofill}
+
+% Sub(1) prueba 2
+\begin{subproofill}
+  \begin{subproof}{Con $\Gamma_1$}
+    (\exists \mathbf{v}\, \vert\, \mathbf{v} \text{ satisface } \Gamma_1)\\
+    \val{v}{(a \equiv (a \equiv b))} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(\neg a)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(a \equiv b)} = \mathtt{F} & MT 2.23($\equiv$)(p2, p1)\\
+    \val{v}{a} \not= \val{v}{b} & MT 2.23($\equiv$)(p3)\\
+    \val{v}{b} = \mathtt{T} & (p4, p2)
+  \end{subproof}
+\end{subproofill}
+
+\section{Punto 2}
+
+\begin{logicenv}[5]{Punto 2 { , ($A$ , $B$)}}
+  $A$ dice: \q{al menos uno de nosotros es caballero}\\
+  $\Gamma_0 = \{(a \equiv (a \lor b)), a\}$\\
+  $\Gamma_1 = \{(a \equiv (a \lor b)), (\neg a)\}$\\
+  \makebox[7.5cm]{\hrulefill}\\
+  No se puede determinar la naturaleza de $A$ y $B$
+\end{logicenv}
+\begin{subproofill}
+  \begin{subproof}{Con $\Gamma_0$}
+    (\exists \mathbf{v}\, \vert\, \mathbf{v} \text{ satisface } \Gamma_0)\\
+    \val{v}{(a \equiv (a \lor b))} = \mathtt{T} & Def.(p0)\\
+    \val{v}{a} = \mathtt{T} & Def.(p0)\\
+  \end{subproof}
+\end{subproofill}
+\begin{subproofill}
+  \begin{subproof}{Con $\Gamma_1$}
+    (\exists \mathbf{v}\, \vert\, \mathbf{v} \text{ satisface } \Gamma_0)\\
+    \val{v}{(a \equiv (a \lor b))} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(\neg a)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{a}  = \mathtt{F} \text{ y } \val{v}{b} = \mathtt{F}
+  \end{subproof}
+\end{subproofill}
+
+\section{Punto 3}
+
+\begin{logicenv}[5]{punto 3{, ($A$ , $B$ , $C$)}}
+  $A$ dice: \q{$B$ es escudero}\\
+  $B$ dice: \q{$A$ y $C$ son del mismo tipo}\\
+  $\Gamma_0 = \{(a \equiv (\neg b)), (b \equiv (a \equiv c)), a\}$\\
+  $\Gamma_1 = \{(a \equiv (\neg b)), (b \equiv (a \equiv c)), (\neg a)\}$\\
+  \makebox[7cm]{\hrulefill}\\
+  $C$ es escudero
+\end{logicenv}
+\begin{subproofill}
+  \begin{subproof}{Con $\Gamma_0$}
+    (\exists \mathbf{v}, \vert\, \mathbf{v} \text{ satisface } \Gamma_0)\\
+    \val{v}{(a \equiv (\neg b))} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(b \equiv (a \equiv c))} = \mathtt{T} & Def.(p0)\\
+    \val{v}{a} = \mathtt{T} & Def.(p0)\\
+    \val{v}{a} = \val{v}{(\neg b)} & MT 2.23($\equiv$)(p2)\\
+    \val{v}{b} = \val{v}{(a \equiv c)} & MT 2.23($\equiv$)(p3)\\
+    \val{v}{b} = \mathtt{F} & MT 2.23($\equiv$, $\neg$)(p4, p3)\\
+    \val{v}{a} \not= \val{v}{c} & MT 2.23($\equiv$)(p6, p5)\\
+    \val{v}{c} = \mathtt{F} & (p7, p3)
+  \end{subproof}
+\end{subproofill}
+\begin{subproofill}
+  \begin{subproof}{Con $\Gamma_1$}
+    (\exists \mathbf{v}, \vert\, \mathbf{v} \text{ satisface } \Gamma_1)\\
+    \val{v}{(a \equiv (\neg b))} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(b \equiv (a \equiv c))} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(\neg a)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{b} = \mathtt{T} & MT 2.23($\equiv$, $\neg$)(p3, p1)\\
+    \val{v}{a} = \val{v}{c} & MT 2.23($\equiv$)(p4, p2)\\
+    \val{v}{c} = \mathtt{F} & MT 2.23($\neg$)(p5, p3)
+  \end{subproof}
+\end{subproofill}
+
+\section{Punto 4}
+
+\begin{logicenv}[5]{Punto 4{, ($A$, $B$, $C$)}}
+  $A$ dice: \q{$B$ y $C$ son de la misma naturaleza}\\
+  $\Gamma_0 = \{(a \equiv (b \equiv c)), a, b\}$\\
+  $\Gamma_1 = \{(a \equiv (b \equiv c)), a, (\neg b)\}$\\
+  $\Gamma_2 = \{(a \equiv (b \equiv c)), (\neg a), b\}$\\
+  $\Gamma_0 = \{(a \equiv (b \equiv c)), (\neg a), (\neg b)\}$\\
+  \makebox[7cm]{\hrulefill}\\
+  $C$ responderá \q{sí}
+\end{logicenv}
+\begin{subproofill}
+  \begin{subproof}{Con $\Gamma_0$}
+    (\exists \mathbf{v} \, \vert\, \mathbf{v} \text{ satisface } \Gamma_0)\\
+    \val{v}{(a \equiv (b \equiv c))} = \mathtt{T} & Def.(p0)\\
+    \val{v}{a} = \mathtt{T} & Def.(p0)\\
+    \val{v}{b} = \mathtt{T} & Def.(p0)\\
+    \val{v}{c} = \mathtt{T} & MT 2.23($\equiv$)(p3, p2, p1)\\
+    \text{$C$ respondería sí}
+  \end{subproof}
+\end{subproofill}
+
+\begin{subproofill}
+  \begin{subproof}{Con $\Gamma_1$}
+    (\exists \mathbf{v} \, \vert\, \mathbf{v} \text{ satisface } \Gamma_1)\\
+    \val{v}{(a \equiv (b \equiv c))} = \mathtt{T} & Def.(p0)\\
+    \val{v}{a} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(\neg b)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{c} = \mathtt{F} & MT 2.23($\equiv$, $\neg$)(p3, p2, p1)\\
+    \text{$C$ respondería sí}
+  \end{subproof}
+\end{subproofill}
+
+\begin{subproofill}
+  \begin{subproof}{Con $\Gamma_2$}
+    (\exists \mathbf{v} \, \vert\, \mathbf{v} \text{ satisface } \Gamma_0)\\
+    \val{v}{(a \equiv (b \equiv c))} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(\neg a)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{b} = \mathtt{T} & Def.(p0)\\
+    \val{v}{c} = \mathtt{F} & MT 2.23($\equiv$, $\neg$)(p3, p2, p1)\\
+    \text{$C$ respondería sí}
+  \end{subproof}
+\end{subproofill}
+
+\begin{subproofill}
+  \begin{subproof}{Con $\Gamma_3$}
+    (\exists \mathbf{v} \, \vert\, \mathbf{v} \text{ satisface } \Gamma_0)\\
+    \val{v}{(a \equiv (b \equiv c))} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(\neg a)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(\neg b)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{c} = \mathtt{T} & MT 2.23($\equiv$, $\neg$)(p3, p2, p1)\\
+    \text{$C$ respondería sí}
+  \end{subproof}
+\end{subproofill}
+
+\section{Punto 5}
+
+El habitante $A$ dice \q{Yo dije que si no soy caballero entonces soy escudero, y si soy caballero entonces no soy escudero}
+
+\section{Punto 6}
+
+\begin{logicenv}[5]{{$A$, $B$, $(a \equiv (\neg b)), (b \equiv (a \lor b))$}}
+  $A$ dice: \q{$B$ es escudero}\\
+  $B$ dice: \q{al menos uno de nosotros es caballero}\\
+  $\Gamma_0 = \{(a \equiv (\neg b)), (b \equiv (a \lor b)), a\}$\\
+  $\Gamma_1 = \{(a \equiv (\neg b)), (b \equiv (a \lor b)), (\neg a)\}$\\
+  \makebox[7cm]{\hrulefill}\\
+  $A$ es escudero y $B$ es caballero
+\end{logicenv}
+\begin{subproofill}
+  \begin{subproof}{Con $\Gamma_0$}
+    (\exists \mathbf{v} \, \vert\, \mathbf{v} \text{ satisface } \Gamma_0)\\
+    \val{v}{(a \equiv (\neg b))} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(b \equiv (a \lor b))} = \mathtt{T} & Def.(p0)\\
+    \val{v}{a} = \mathtt{T} & Def.(p0)\\
+    \val{v}{b} = \mathtt{F} & MTT 2.23 ($\equiv, \neg$)(p3, p1)\\
+    \val{v}{(a \lor b)} = \mathtt{T} & MT 2.23 ($\equiv$)(p4, p2)\\
+    \val{v}{a} = \mathtt{F} \text{ y } \val{v}{b} = \mathtt{F} & MT 2.23($\lor$)(p5)\\
+    \val{v}{a} = \mathtt{F} \text{ y } \val{v}{a} = \mathtt{T} & Contradicción (p6, p3)
+  \end{subproof}
+\end{subproofill}
+\begin{subproofill}
+  \begin{subproof}{Con $\Gamma_1$}
+    (\exists \mathbf{v}\, \vert\, \mathbf{v} \text{ satisface } \Gamma_1)\\
+    \val{v}{(a \equiv (\neg b))} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(b \equiv (a \lor b))} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(\neg a)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{a} = \mathtt{F} & MT 2.23($\neg$)(p3)\\
+    \val{v}{b} = \mathtt{T} & MT 2.23 ($\equiv$, $\neg$)(p4, p1)
+  \end{subproof}
+\end{subproofill}
+
+\section{Punto 7}
+
+\q{Soy caballero} , debido a que $\vDash (\phi \equiv \phi)$
+
+\section{Punto 8}
+
+\q{Soy escudero} , debido a que $(\phi \equiv (\neg \phi))$ es una contradicción
+
+\section{Punto 9}
+
+\begin{logicenv}[5]{Punto 9{, $A$, $B$, $C$}}
+  $A$ dice: \q{Yo soy hombre lobo}\\
+  $B$ dice: \q{Yo soy hombre lobo}\\
+  $C$ dice: \q{A lo sumo, uno de nosotros es caballero}\\
+  $\Gamma = \{(c \equiv ((a \land (\neg b) \land (\neg c)) \lor ((\neg a) \land b \land (\neg c)) \lor ((\neg a) \land (\neg b) \land c) \lor ((\neg a) \land (\neg b) \land (\neg c))))\}$\\
+  $\Gamma_0 = \Gamma \cup \{c\}$\\
+  $\Gamma_1 = \Gamma \cup \{(\neg c), a\}$\\
+  $\Gamma_2 = \Gamma \cup \{(\neg c), (\neg a)\}$
+\end{logicenv}
+
+\begin{subproofill}
+  \dots Tomando lo que dijo $C$ como $\phi$\dots
+  \begin{subproof}{Con $\Gamma_0$}
+    (\exists \mathbf{v}\, \vert\, \mathbf{v} \text{ satisface } \Gamma_0)\\
+    \val{v}{(c \equiv \phi)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{c} = \mathtt{T} & Def.(p0)\\
+    \val{v}{\phi} = \mathtt{T} & MT 2.23($\equiv$)(p2, p1)\\
+    \val{v}{((\neg a) \land (\neg b) \land c)} = \mathtt{T} & MT 2.23($\lor$)(p3, p1)\\
+    \mathbf{v}_0 = \{a \mapsto \mathtt{F}, b \mapsto \mathtt{F}, c \mapsto \mathtt{T}\}
+  \end{subproof}
+\end{subproofill}
+
+\begin{subproofill}
+  \begin{subproof}{Con $\Gamma_1$}
+    (\exists \mathbf{v}\, \vert\, \mathbf{v} \text{ satisface } \Gamma_0)\\
+    \val{v}{(c \equiv \phi)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(\neg c)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{a} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(\neg b)} = \mathtt{F} & MT 2.23($\land$)(p3, p2, p1)\\
+    \val{v}{b} = \mathtt{T} & MT 2.23($\neg$)(p4)\\
+    \mathbf{v}_1 = \{a \mapsto \mathtt{T}, b \mapsto \mathtt{T}, c \mapsto \mathtt{F}\}
+  \end{subproof}
+\end{subproofill}
+
+\begin{subproofill}
+  \begin{subproof}{Con $\Gamma_2$}
+    (\exists \mathbf{v}\, \vert\, \mathbf{v} \text{ satisface } \Gamma_0)\\
+    \val{v}{(c \equiv \phi)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(\neg c)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{(\neg a)} = \mathtt{T} & Def.(p0)\\
+    \val{v}{a} = \mathtt{F} & MT 2.23($\neg$)(p3)\\
+    \val{v}{b} = \mathtt{F} & MT 2.23($\lor$, $\land$)(p3, p2, p1)\\
+    \val{v}{(\neg b)} = \mathtt{F} & MT 2.23($\lor$, $\land$)(p3, p2, p1)\\
+    \val{v}{b} = \mathtt{F} \text{ y } \val{v}{b} = \mathtt{T} & Contradicción(p6, p5)
+  \end{subproof}
+\end{subproofill}
+\begin{subproofill}
+  Debido a la suposición del enunciado \q{exáctamente uno entre $A$, $B$ y $C$ es hombre lobo}, hace que $\mathbf{v}_1$ no sea una respuesta posible.
+
+  Por consiguiente, $C$ es el único caballero, y el único hombre lobo.
+\end{subproofill}
+
+\section{Punto 10}
+Suponga que $\Gamma$ es un conjunto de proposiciones que especifica información dada acerca de un acertijo de
+la isla de caballeros y escuderos. Además, suponga que la variable proposicional $a$ modela la naturaleza
+de un habitante $A$ de la isla. Demuestre o refute:
+
+\subsection{a)}
+\begin{logicenv}[5]{{Si $A$ es caballero , entonces $\Gamma \vDash a$}}
+  \begin{logic}
+    A \text{ es caballero} & suposición\\
+    \val{v}{a} = \mathtt{T} & Def.(p0)\\
+    \mathbf{v} \text{ satisface } \Gamma & (p1)(contexto C \& E)\\
+    \Gamma \vDash a
+  \end{logic}
+\end{logicenv}
+
+
+\subsection{b)}
+\begin{logicenv}[5]{{Si $\Gamma \vDash a$ es caballero , entonces $A$}}
+  \begin{logic}
+    (\exists \mathbf{v}\, \vert\, \mathbf{v} \text{ satisface } \Gamma) & suposición\\
+    \Gamma \vDash a & suposición\\
+    \val{v}{a} = \mathtt{T} & Def.(p1, p0)\\
+    A \text{ es caballero} & (p2)(contexto C \& E)
+  \end{logic}
+\end{logicenv}
+\end{document}

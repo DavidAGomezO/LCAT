@@ -1,0 +1,14 @@
+*
+
+!/*
+
+!.gitignore
+
+!*.tex
+
+!/build
+
+/build/*
+
+!/build/*.pdf
+

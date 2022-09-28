@@ -1,0 +1,294 @@
+\documentclass{article}
+
+% Librerías:
+\usepackage{amsmath, mathtools, amssymb, mathrsfs, amsthm, nicematrix}
+\usepackage{lmodern, graphicx, fancyhdr}
+\usepackage[margin = 2cm, top = 2.5cm, includefoot]{geometry}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows}
+\usepackage{color, colortbl}
+
+% Configuraciones:
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{55.34027pt}
+\rhead{\textit{David Gómez}}
+\lhead{\includegraphics[width = 4cm]{\logo}}
+\lfoot{Página \thepage}
+\rfoot{Taller 02}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{rojoEci}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\hyphenpenalty=10000
+
+\newcommand{\logo}{C:/Users/usuario/Documents/U/logo-eci.jpg}
+
+\newcommand{\q}[1]{``#1''}
+\newcommand{\und}[2]{#1\textbf{\_}#2}
+
+% Colores
+\definecolor{rojoEci}{RGB}{225, 70, 49}
+
+
+% Documento
+\begin{document}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1cm}
+
+		\textbf{\Huge{Taller 02}}
+
+		\vspace{1.5cm}
+
+		\textbf{\large{David Gómez}}
+
+		\vspace{4cm}
+
+		\includegraphics[width=\textwidth]{\logo}
+
+		\vspace{5cm}
+
+		Matemáticas\\
+		Escuela Colombiana de Ingeniería Julio Garavito\\
+		Colombia\\
+		\today
+
+	\end{center}
+\end{titlepage}
+\clearpage
+\tableofcontents
+\clearpage
+\section{Punto 1}
+\begin{itemize}
+	\item Es peligroso conducir cuando está nevando. Esta nevando ahora. Sería peligroso conducir en este momento..
+	      \begin{center}
+		      \begin{NiceTabular}{l l}
+			      $p$ & : Es peligroso conducir           \\
+			      $q$ & : Nieva                           \\
+			      \hline
+			          & $(p \gets q)$, $q$, $(p \gets q)$
+		      \end{NiceTabular}
+	      \end{center}
+	\item Cuando llueve los árboles se mojan. Los árboles están húmedos esta mañana, así que llovió anoche.
+	      \begin{center}
+		      \begin{NiceTabular}{l l}
+			      $p$ & : Llueve                    \\
+			      $q$ & : Los árboles están húmedos \\
+			      \hline
+			          & $(p \to q)$, $(q \gets p)$
+		      \end{NiceTabular}
+	      \end{center}
+	\item Un paraguas evita que se moje bajo la lluvia. Alicia tomó su paraguas y no se mojó. Probablemente estaba lloviendo.
+	      \begin{center}
+		      \begin{NiceTabular}{l l}
+			      $p$ & : Alicia tiene/ toma su paraguas                          \\
+			      $q$ & : Alicia se moja bajo la lluvia                           \\
+			      $r$ & : Llueve                                                  \\
+			      \hline
+			          & $(p \to q)$, $(p \wedge (\lnot q))$, $(r \vee (\lnot r))$
+		      \end{NiceTabular}
+	      \end{center}
+	\item Las luces rojas previenen accidentes. Miguel no tuvo un accidente, por lo tanto, Miguel se detuvo en una luz roja.
+	      \begin{center}
+		      \begin{NiceTabular}{l l}
+			      $p$ & : Miguel se detiene en las luces rojas   \\
+			      $q$ & : Miguel tiene un accidente              \\
+			      \hline
+			          & $(p \to (\lnot q))$, $(\lnot q) \gets p$
+		      \end{NiceTabular}
+	      \end{center}
+\end{itemize}
+\section{Punto 2}
+\begin{itemize}
+	\item If there is a purple elephant in the hall, then I am a giant turkey. There is a purple elephant in the hall, therefore, I'm a giant turkey.
+	      \begin{center}
+		      \begin{NiceTabular}{l l}
+			      $p$ & : There is a purple elephant in the hall \\
+			      $q$ & : I am a giant turkey                    \\
+			      \hline
+			          & $(p \to q)$, $p$, $q$
+		      \end{NiceTabular}
+	      \end{center}
+	\item Liliane is Patrick's sister, and Patrick is Sylvie's brother. Therefore, Liliane is Sylvie's sister.
+	      \begin{center}
+		      \begin{NiceTabular}{l l}
+			      $p$ & : Liliane is Patrick's sister \\
+			      $q$ & : Patrick is Sylvie's brother \\
+			      $r$ & : Liliane is Sylvie's sister  \\
+			      \hline
+			          & $(p \wedge q)$, $r$
+		      \end{NiceTabular}
+	      \end{center}
+	\item If you smoke pot, even only once in your life, you are very likely to start using heroin. You do smoke pot, and therefore, you will probably start using heroin.
+	      \begin{center}
+		      \begin{NiceTabular}{l l}
+			      $p$ & : You smoke pot                                            \\
+			      $q$ & : You start using heroin                                   \\
+			      \hline
+			          & $(p \to (q \vee (\lnot q)))$, $(p \to (q \vee (\lnot q)))$
+		      \end{NiceTabular}
+	      \end{center}
+	      \clearpage
+	\item If you are a conident driver and have never been in an accident, then driving over the speed limit is not dangerous for you or others. You are a conident driver and have never been in an accident Doubtless, then, driving over the speed limit is not dangerous for you or others.
+	      \begin{center}
+		      \begin{NiceTabular}{l l}
+			      $p$ & : You are a confident driver                                                                     \\
+			      $q$ & : You have never been in an accident                                                             \\
+			      $r$ & : You driving over speed limit is dangerous for you                                              \\
+			      $s$ & : You driving over speed limit is dangerous for others                                           \\
+			      \hline
+			          & $((p \wedge (\lnot q)) \to (\lnot (r \vee s)))$, $((p \wedge (\lnot q)) \to (\lnot (r \vee s)))$
+		      \end{NiceTabular}
+	      \end{center}
+	\item We left our parrot in the house this morning. The nearest neighbor lives one kilometer away. When we got home from work, the parrot was gone. It's most probable that our neighbor stole the parrot.
+	      \begin{center}
+		      \begin{NiceTabular}{l l}
+			      $p$ & : our parrot is in the house                   \\
+			      $q$ & : The nearest neighbor live one kilometer away \\
+			      $r$ & : Our neighbor steals our parrot               \\
+			      \hline
+			          & $p$, $q$, $(\lnot p)$, $(r \vee (\lnot r))$
+		      \end{NiceTabular}
+	      \end{center}
+\end{itemize}
+\section{Punto 3}
+\begin{itemize}
+	\item Pamina es instructora de yoga, miembro de "People for the Ethical Treatment of Animals" y miembro de "Hogtown Granary Food Co-op". Papagena es instructora de yoga, miembro de "People for the Ethical Treatment of Animals" y miembro de "Hogtown Granary Food Co-op". Papagena es vegetariana. Por lo tanto, Pamina es vegetariana.
+	      \begin{center}
+		      \begin{NiceTabular}{l l}
+			      $p$ & : Pamina es instructora de yoga                                        \\
+			      $q$ & : Pamina es miembro de "People for the Ethical Treatment of Animals"   \\
+			      $r$ & : Pamina es miembro de "Hogtown Granary Food Co-op"                    \\
+			      $s$ & : Pamina es vegetariana                                                \\
+			      $t$ & : Papagena es instructora de yoga                                      \\
+			      $u$ & : Papagena es miembro de "People for the Ethical Treatment of Animals" \\
+			      $v$ & : Papagena es miembro de "Hogtown Granary Food Co-op"                  \\
+			      $w$ & : Papagena es vegetariana                                              \\
+			      \hline
+			          & $((p \wedge q) \wedge r)$, $((t \wedge u) \wedge v)$, $w$, $s$
+		      \end{NiceTabular}
+	      \end{center}
+	\item Dos de los últimos tres ladrones referidos eran escolares ausentes. Fred acababa de ser referido por robar en una tienda. Es muy probable que Fred también sea un escolar ausente.
+	      \begin{center}
+		      \begin{NiceTabular}{l l}
+			      $p$ & : Dos de los últimos tres ladrones referidos son escolares ausentes \\
+			      $q$ & : Fred es referido por robar en una tienda                          \\
+			      $r$ & : Fred es un escolar ausente                                        \\
+			      \hline
+			          & $p$, $q$, $r$
+		      \end{NiceTabular}
+	      \end{center}
+\end{itemize}
+\clearpage
+\section{Punto 4}
+\begin{itemize}
+	\item There's been a popular revolutionary uprising in Tunisia, which is a North African Arab nation. There's been a popular revolutionary uprising in Libya, also a North African Arab nation. There's been a popular revolutionary uprising in Egypt, another North African Arab nation. There's been a popular revolutionary uprising in Bahrain, yet another North African Arab nation. Finally, there's been a popular revolutionary uprising in Iran, which is an Arab nation. So there will be a popular revolutionary uprising in at least one other Arab country in the next few years.
+	      \begin{center}
+		      \begin{NiceTabular}{l l}
+			      $p_0$ & : There's a popular revolutionary uprising in Tunisia                               \\
+			      $p_1$ & : Tunsia is a North African Arab nation                                             \\
+			      $q_0$ & : There's a popular revolutionary uprising in Libya                                 \\
+			      $q_1$ & : Libya is a North African Arab nation                                              \\
+			      $r_0$ & : There's a popular revolutionary uprising in Egypt                                 \\
+			      $r_1$ & : Egypt is a North African Arab nation                                              \\
+			      $s_0$ & : There's a popular revolutionary uprising in Bahrain                               \\
+			      $s_1$ & : Bahrain is a North African Arab nation                                            \\
+			      $t$   & : There is a revolutionary uprising in an Arab country                              \\
+			      \hline
+			            & $(p_0 \wedge p_1)$, $(q_0 \wedge q_1)$, $(r_0 \wedge r_1)$, $(s_0 \wedge s_1)$, $t$
+		      \end{NiceTabular}
+	      \end{center}
+\end{itemize}
+\section{Punto 5}
+\begin{itemize}
+	\item If students were environmentally aware, they would object to the endangering of any species of animal. The well-known Greenwood white squirrel has become endangered as it has disappeared from the Lander Campus because the building of the library destroyed its native habitat. No Lander students objected. Thus, Lander students are not environmentally aware.
+	      \begin{center}
+		      \begin{NiceTabular}{l l}
+			      $p$ & : The students are environmentally aware                          \\
+			      $q$ & : The students object to the endangering of any species of animal \\
+			      $r$ & : The Greenwood white squirrel is an endangered species of animal \\
+			      \hline
+			          & $(p \to q)$, $r$, $((\lnot q) \to (\lnot p))$
+		      \end{NiceTabular}
+	      \end{center}
+\end{itemize}
+\section{Punto 6}
+\begin{itemize}
+	\item If we set our ideals too High, then we will Not meet those ideals. If we do Not meet those ideals, then we are Less than we could be. If we are Less than we could be, then we Feel inferior. If we set ideals too High, then we Feel inferior.
+	      \begin{center}
+		      \begin{NiceTabular}{l l}
+			      $p$ & : We set our ideals too high                       \\
+			      $q$ & : We don't meet our ideals                         \\
+			      $r$ & : We are less than we could be                     \\
+			      $s$ & : We feel inferior                                 \\
+			      \hline
+			          & $(p \to q)$, $(q \to r)$, $(r \to s)$, $(p \to s)$
+		      \end{NiceTabular}
+	      \end{center}
+\end{itemize}
+\clearpage
+\section{Punto 7}
+\begin{itemize}
+	\item The graphical method of solving a system of equations is an approximation, since reading the point of intersection depends on the accuracy with which the lines are drawn and on the ability to interpret the coordinates of the point.
+	      \begin{center}
+		      \begin{NiceTabular}{l l}
+			      $p$ & : The graphical method of solving a system of equations is an approximation \\
+			      $q$ & : Read the point of intersection                                            \\
+			      $r$ & : The lines are drawn accurately                                            \\
+			      $s$ & : The interpreter has ability to interpret the coordinates of the point     \\
+			      \hline
+			          & $(p \gets (q \gets (r \wedge s)))$
+		      \end{NiceTabular}
+	      \end{center}
+\end{itemize}
+\section{Punto 8}
+\begin{itemize}
+	\item The Roman Empire crumbled to dust because it lacked the spirit of liberalism and free enterprise. The policy of interventionism and its political corollary, the Fuhrer principle, decomposed the mighty empire as they will by necessity always disintegrate and destroy any social entity
+	      \begin{center}
+		      \begin{NiceTabular}{l l}
+			      $p$ & : The roman empire crumbled to dust                                                \\
+			      $q$ & : The roman empire lacked the spirit of liberalism                                 \\
+			      $r$ & : The roman empire lacked free enterprise                                          \\
+			      $s$ & : The policy of interventionism                                                    \\
+			      $t$ & : The policy's political corollary                                                 \\
+			      $u$ & : the Fuhrer principle                                                             \\
+			      $v$ & : The mighty empire decompose                                                      \\
+			      $w$ & : By necessity they always disintegrate any social entity                          \\
+			      $x$ & : By necessity they always destroy any social entity                               \\
+			      \hline
+			          & $(p \gets (q \wedge r))$, $(((((s \wedge t) \wedge u) \wedge w) \wedge x) \to v )$
+		      \end{NiceTabular}
+	      \end{center}
+\end{itemize}
+\clearpage
+\section{Punto 9}
+\begin{itemize}
+	\item Americans today are some of the unhealthiest people on Earth. It seems like not a week goes by without some news story relating how we are the fattest country in the world. In addition to being overweight, we suffer from a number of other health problems. When I was conducting research for my speech, I read somewhere that heart attacks are the number one killer of men and the number two killer of women. Think about that. My uncle had a heart attack and had to be rushed to the hospital. They hooked him up to a bunch of different machines to keep him alive. We all thought he was going to die. He's ok now, but he has to take a bunch of pills every day and eat a special diet. Plus he had to pay thousands of dollars in medical bills. Wouldn't you like to know how to prevent this from happening to you?
+	      \begin{center}
+		      \begin{NiceTabular}{l l}
+			      $p$ & : Americans are some of the unhealthiest people on Earth                                                                 \\
+			      $q$ & : A week goes by without some news story relating how America is the fattest country in the world                        \\
+			      $r$ & : Americans are overweight                                                                                               \\
+			      $s$ & : Americans suffer from a number of other health problems                                                                \\
+			      $t$ & : Heart attacks are the number one killer of men                                                                         \\
+			      $u$ & : heart attacks are the number two killer of women                                                                       \\
+			      $v$ & : My uncle has a heart attack                                                                                            \\
+			      $w$ & : My uncle has to be rushed to the hospital                                                                              \\
+			      $x$ & : They hook my uncle up to a bunch of different machines to keep him alive                                               \\
+			      $y$ & : My uncle is going to die                                                                                               \\
+			      $z$ & : My uncle is ok                                                                                                         \\
+			      $a$ & : My uncle has to take a bunch of pills every day                                                                        \\
+			      $b$ & : he has to eat a special diet                                                                                           \\
+			      $c$ & : My uncle pays thousands of dollars in medical bills                                                                    \\
+			      $d$ & : You'd like to know to prevent heart attacks from happening to you                                                      \\
+			      \hline
+			          & $p$, $q$, $(r \wedge s)$, $(t \wedge u)$, $(v \wedge w)$, $x$, $y$, $(z \wedge (a \wedge b))$, $c$, $(d \vee (\lnot d))$
+		      \end{NiceTabular}
+	      \end{center}
+\end{itemize}
+\end{document}
