@@ -122,6 +122,8 @@
             Def.($\not\equiv$)\\
             ((\phi \not\equiv \psi) \not\equiv \tau)
     \end{derivation}
+    Por MT 4.21 se demuestra que\\
+    $\vdash_{\text{DS}} ((\phi \not\equiv (\psi \not\equiv \tau)) \equiv ((\phi \not\equiv \psi) \not\equiv \tau))$
 \end{logicenv}
 
 \section{Punto 4}
@@ -135,6 +137,8 @@
         Teo 4.6.2\\
         \textrm{\textit{true}}
     \end{derivation}
+    Por MT 4.21 se demuestra que\\
+    $\vdash_{\text{DS}} ((\phi \lor \textrm{\textit{true}}) \equiv \textrm{\textit{true}})$
 \end{logicenv}
 
 \section{Punto 5}
@@ -154,10 +158,12 @@
         Def.($\neg$)\\
         ((\phi \lor (\neg \psi)) \equiv \phi)
     \end{derivation}
+    Por MT 4.21 se demuestra que\\
+    $\vdash_{\text{DS}} ((\phi \lor \psi) \equiv ((\phi \lor (\neg \psi)) \equiv \phi))$
 \end{logicenv}
 
 \section{Punto 6}
-\begin{logicenv}[5]{$\vdash_{\text{DS}} ((\neg  (\phi \lor \psi)) \equiv ((\neg \phi) \land (\neg \psi)))$}
+\begin{logicenv}[2]{$\vdash_{\text{DS}} ((\neg  (\phi \lor \psi)) \equiv ((\neg \phi) \land (\neg \psi)))$}
     \begin{derivation}
         (\neg(\phi \lor \psi))\\
         Teo 4.19.4\\
@@ -179,23 +185,71 @@
         Def.($\land$)\\
         ((\neg \phi) \land (\neg \psi))
     \end{derivation}
+    Por MT 4.21 se demuestra que\\
+    $\vdash_{\text{DS}} ((\neg  (\phi \lor \psi)) \equiv ((\neg \phi) \land (\neg \psi)))$
 \end{logicenv}
 
 \section{Punto 7}
-\begin{logicenv}{$\vdash_{\text{DS}} ((\phi \land (\psi \not\equiv \tau)) \equiv ((\phi \land \psi) \not\equiv (\phi \land \tau)))$}
+\begin{logicenv}[2]{$\vdash_{\text{DS}} ((\phi \land (\psi \not\equiv \tau)) \equiv ((\phi \land \psi) \not\equiv (\phi \land \tau)))$}
     \begin{derivation}
             ((\phi \land \psi) \not\equiv (\phi \land \tau))\\
         Def.($\not\equiv$)\\
             ((\neg (\phi \land \psi)) \equiv (\phi \land \tau))\\
         Teo 4.15.4\\
             (\neg ((\phi \land \psi) \equiv (\phi \land \psi)))\\
-        Def.($\land$)\\
+        Def.($\land$), Lbz($\phi = (\neg (p \equiv (\phi \land \tau)))$), Lbz($\phi = (\neg ((\phi \equiv (\psi \equiv (\phi \lor \psi))) \equiv p))$)\\
             (\neg ((\phi \equiv (\psi \equiv (\phi \lor \psi))) \equiv (\phi \equiv (\tau \equiv (\phi \lor \tau)))))\\
-        Asociativa($\equiv$)\\
+        Asociativa($\equiv$), Leibniz($\phi = (\neg p)$)\\
             (\neg (\phi \equiv ((\psi \equiv (\phi \lor \psi)) \equiv (\phi \equiv (\tau \equiv (\phi \lor \tau))))))\\
-        Conmutativa($\equiv$)\\
+        Conmutativa($\equiv$), Leibniz($\phi = (\neg (\phi \equiv p))$)\\
             (\neg (\phi \equiv ((\phi \equiv (\tau \equiv (\phi \lor \tau))) \equiv (\psi \equiv (\phi \lor \psi)))))\\
-        Asociativa
+        Asociativa($\equiv$), Leibniz($\phi = (\neg (\phi \equiv p))$)\\
+            (\neg (\phi \equiv (\phi \equiv ((\tau \equiv (\phi \lor \tau)) \equiv (\psi \equiv (\phi \lor \psi))))))\\
+        Asociativa($\equiv$), Leibniz($\phi = (\neg p)$)\\
+            (\neg ((\phi \equiv \phi) \equiv ((\tau \equiv (\phi \lor \tau)) \equiv (\psi \equiv (\phi \lor \psi)))))\\
+        Teo 4.15.6, Teo 4.6.4\\
+            (\neg (\textrm{\textit{true}} \equiv ((\tau \equiv ((\neg (\neg \phi)) \lor \tau)) \equiv (\psi \equiv (\neg (\neg \phi)) \lor \psi))))\\
+        Distribución($\lor$, $\equiv$), Leibniz($\phi = (\neg (\textrm{\textit{true}} \equiv p))$)\\
+            (\neg (\textrm{\textit{true}} \equiv ((\tau \lor (\neg \phi)) \equiv (\psi \lor (\neg \phi)))))\\
+        Teo 4.15.2, Teo 4.15.4\\
+            (\textrm{\textit{false}} \equiv ((\tau \lor (\neg \phi)) \equiv (\psi \lor (\neg \phi))))\\
+        Def($\neg$), Conmutativa($\equiv$)\\
+            (\neg ((\tau \lor (\neg \phi)) \equiv (\psi \lor (\neg \phi))))\\
+        Distribución($\lor$, $\equiv$)\\
+            (\neg ((\neg \phi) \lor (\tau \equiv \psi)))\\
+        Teo 4.25.4, Teo 4.16.6\\
+            (\phi \land (\neg (\tau \equiv \psi)))\\
+        Conmutativa($\equiv$), Leibniz($\phi = (\phi \land (\neg p))$)\\
+            (\phi \land (\neg (\psi \equiv \tau)))\\
+        Def.($\equiv$), Teo 4.15.4\\
+            (\phi \land (\psi \not\equiv \tau))
     \end{derivation}
+    Por MT 4.21 y por conmutatividad de ($\equiv$) se demuestra que\\
+    $\vdash_{\text{DS}} ((\phi \land (\psi \not\equiv \tau)) \equiv ((\phi \land \psi) \not\equiv (\phi \land \tau)))$
+\end{logicenv}
+
+\section{Punto 8}
+\begin{logicenv}[2]{$\vdash_{\text{DS}} ((\phi \lor (\psi \land \tau)) \equiv ((\phi \lor \psi) \land (\phi \lor \tau)))$}
+    \begin{derivation}
+            (\phi \lor (\psi \land \tau))\\
+        Def.($\land$), Leibniz($\phi = (\phi \lor p)$)\\
+            (\phi \lor (\psi \equiv (\tau \equiv (\psi \lor \tau))))\\
+        Distribución($\lor$, $\equiv$)\\
+            ((\phi \lor \psi) \equiv (\phi \lor (\tau \equiv (\psi \lor \tau))))\\
+        Idempotencia($\lor$), Leibniz($\phi = ((\phi \lor \psi) \equiv ((\phi \lor \psi) \equiv (p \lor (\psi \lor \tau))))$)\\
+            ((\phi \lor \psi) \equiv ((\phi \lor \tau) \equiv ((\phi \lor \phi) \lor (\psi \lor \tau))))\\
+        Asociativa($\lor$), Leibniz($\phi = ((\phi \lor \psi) \equiv ((\phi \lor \psi) \equiv p))$)\\
+            ((\phi \lor \psi) \equiv ((\phi \lor \psi) \equiv (\phi \lor (\phi \lor (\psi \lor \tau)))))\\
+        Asociativa($\lor$), Leibniz($\phi = ((\phi \lor \psi) \equiv ((\phi \lor \psi) \equiv (\phi \lor p)))$)\\
+            ((\phi \lor \psi) \equiv ((\phi \lor \psi) \equiv (\phi \lor ((\phi \lor \psi) \lor \tau))))\\
+        Conmutativa($\lor$), Leibniz($\phi = ((\phi \lor \psi) \equiv ((\phi \lor \psi) \equiv (\phi \lor p)))$)\\
+            ((\phi \lor \psi) \equiv ((\phi \lor \psi) \equiv (\phi \lor (\tau \lor (\phi \lor \psi)))))\\
+        Asociativa($\lor$), Leibniz($\phi = ((\phi \lor \psi) \equiv ((\phi \lor \psi) \equiv p))$)\\
+            ((\phi \lor \psi) \equiv ((\phi \lor \psi) \equiv ((\phi \lor \tau) \lor (\phi \lor \psi))))\\
+        Def.($\land$)\\
+            ((\phi \lor \psi) \land (\phi \lor \psi))
+    \end{derivation}
+    Por MT 4.21 se demuestra que\\
+    $\vdash_{\text{DS}} ((\phi \lor (\psi \land \tau)) \equiv ((\phi \lor \psi) \land (\phi \lor \tau)))$
 \end{logicenv}
 \end{document}
