@@ -1,0 +1,300 @@
+\documentclass{article}
+
+% Librerías:
+\usepackage{amsmath, mathtools, amssymb, mathrsfs, amsthm, nicematrix, array, logicDG}
+\usepackage{lmodern, graphicx, fancyhdr}
+\usepackage[margin = 1cm, top = 2.5cm, bottom = 2.5cm, includefoot]{geometry}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{shapes, fit, tikzmark}
+\usepackage{color, colortbl}
+\usepackage[most]{tcolorbox}
+
+% Configuraciones:
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{72pt}
+\rhead{\textit{\author}}
+\lhead{\includegraphics[width = 4cm]{\logo}}
+\lfoot{Página \thepage}
+\rfoot{\titlename}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{rojoEci}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\hyphenpenalty=10000
+
+\newcommand{\logo}{C:/Users/usuario/Documents/U/logo-eci.jpg}
+
+\newcommand{\q}[1]{``#1''}
+\newcommand{\und}[2]{#1\textbf{\_}#2}
+\newcommand{\val}[2]{\mathbf{#1}[#2]}
+
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\titlename}{Tarea 09}%
+\renewcommand{\author}{David Gomez}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Colores
+\definecolor{rojoEci}{RGB}{225, 70, 49}
+\definecolor{defini}{HTML}{ede9e6}
+\definecolor{deftitlmarg}{HTML}{cfcfcf}
+
+% Documento
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+
+        \textbf{\Huge{\titlename}}
+
+        \vspace{1.5cm}
+
+        \textbf{\large{\author}
+}
+        \vspace{4cm}
+
+        \includegraphics[width=.8\textwidth]{\logo}
+
+        \vspace{4cm}
+
+        Matemáticas\linebreak
+        Escuela Colombiana de Ingeniería Julio Garavito\linebreak
+        Colombia\linebreak
+        \today
+
+    \end{center}
+\end{titlepage}
+\clearpage
+\tableofcontents
+\clearpage
+
+\section{Sección 4.6}
+\subsection{Punto 4}
+\begin{logicenv}{Teo 4.24.3}
+    \begin{derivation}
+            (\phi \land \textrm{\textit{true}})\\
+        Def.($\land$)\\
+            (\phi \equiv (\textrm{\textit{true}} \equiv (\phi \lor \textrm{\textit{true}})))\\
+        Teo 4.19.2, Leibniz($\phi = (\phi \equiv (\textrm{\textit{true}} \equiv p))$)\\
+            (\phi \equiv (\textrm{\textit{true}} \equiv \textrm{\textit{true}}))\\
+        Teo 4.6.2, Leibniz($\phi = (\phi \equiv p)$)\\
+            (\phi \equiv \textrm{\textit{true}})\\
+        Identidad($\equiv$)\\
+            \phi
+    \end{derivation}
+    Por MT 4.21 se demuestra que\\
+    $\vdash_{\text{DS}} ((\phi \land \textrm{\textit{true}}) \equiv \phi)$
+\end{logicenv}
+
+\subsection{Punto 5}
+\begin{logicenv}{Teo 4.24.4}
+    \begin{derivation}
+            (\phi \land \textrm{\textit{false}})\\
+        Def.($\land$)\\
+            (\phi \equiv (\textrm{\textit{false}} \equiv (\phi \lor \textrm{\textit{false}})))\\
+        Identidad($\lor$), Conmutativa($\equiv$), Leibniz($\phi = (\phi \equiv (\textrm{\textit{false}} \equiv p)$)\\
+            (\phi \equiv (\textrm{\textit{false}} \equiv \phi))\\
+        Def.($\neg$), Conmutativa($\equiv$), Leibniz($\phi = (\phi \equiv p)$)\\
+            (\phi \equiv (\neg \phi))\\
+        Teo 4.15.7\\
+            \textrm{\textit{false}}
+    \end{derivation}
+\end{logicenv}
+
+\subsection{Punto 6}
+\begin{logicenv}{Teo 4.25.5}
+    \begin{derivation}
+            (\phi \land \phi)\\
+        Def.($\land$)\\
+            (\phi \equiv (\phi \equiv (\phi \lor \phi)))\\
+        Asociativa($\equiv$)\\
+            ((\phi \equiv \phi) \equiv (\phi \lor \phi))\\
+        Idempotencia($\lor$), Leibniz($\phi = ((\phi \equiv \phi) \equiv p)$)\\
+            ((\phi \equiv \phi) \equiv \phi)\\\
+        Teo 4.6.3, Conmutativa($\equiv$)\\
+            (\phi \equiv \textrm{\textit{true}})\\
+        Identidad\\
+            \phi
+    \end{derivation}
+\end{logicenv}
+
+\subsection{Punto 8}
+\begin{logicenv}{Teo 4.25.1}
+    \begin{derivation}
+            (\phi \land (\neg \phi))\\
+        Def.($\land$)\\
+            (\phi \equiv ((\neg \phi) \equiv (\phi \lor (\neg \phi))))\\
+        Asociativa($\equiv$)\\
+            ((\phi \equiv (\neg \phi)) \equiv (\phi \lor (\neg \phi)))\\
+        Teo 4.19.1, Identidad, Leibniz($\phi = ((\phi \equiv (\neg \phi)) \equiv p)$)\\
+            ((\phi \equiv (\neg \phi)) \equiv \textrm{\textit{true}})\\
+        Teo 4.15.7, Conmutativa($\equiv$), Leibniz($\phi = (p \equiv \textrm{\textit{true}})$)\\
+            (\textrm{\textit{false}} \equiv \textrm{\textit{true}})\\
+        Identidad\\
+            \textrm{\textit{false}}
+    \end{derivation}
+\end{logicenv}
+
+\subsection{Punto 9}
+\begin{logicenv}{Teo 4.25.2}
+    \begin{derivation}
+        (\neg (\phi \land \psi))\\
+    Def.($\land$), Leibniz($\phi = (\neg p)$)\\
+        (\neg (\phi \equiv (\psi \equiv (\phi \lor \psi))))\\
+    Conmutativa($\lor$), Leibniz($\phi = (\neg (\phi \equiv p))$)\\
+        (\neg (\phi \equiv(\psi \equiv (\psi \lor \phi))))\\
+    Conmutativa($\equiv$), Leibniz($\phi = (\neg (\phi \equiv p))$)\\
+        (\neg (\phi \equiv ((\psi \lor \phi) \equiv \psi)))\\
+    Teo 4.15.6, Leibniz($\phi = (\neg (\phi \equiv ((\psi \lor p) \equiv \psi)))$)\\
+        (\neg (\phi \equiv ((\psi \lor (\neg (\neg \phi))) \equiv \psi)))\\
+    Teo 4.19.4, Leibniz($\phi = (\neg (\phi \equiv p))$)\\
+        (\neg (\phi \equiv (\psi \lor (\neg \phi))))\\
+    Conmutativa 4.15.4\\
+        ((\neg \phi) \equiv (\psi \lor (\neg \phi)))\\
+    Conmutativa($\lor$), Leibniz($\phi = ((\neg \phi) \equiv p)$)\\
+        ((\neg \phi) \equiv ((\neg \phi) \lor \psi))\\
+    Conmutativa($\equiv$)\\
+        (((\neg \phi) \lor \psi) \equiv (\neg \phi))\\
+    Teo 4.15.6, Leibniz($\phi = (((\neg \phi) \lor p) \equiv (\neg \phi))$)\\
+        (((\neg \phi) \lor (\neg(\neg \psi))) \equiv (\neg \phi))\\
+    Teo 4.19.4\\
+        ((\neg \phi) \lor (\neg \psi))
+    \end{derivation}
+\end{logicenv}
+
+\subsection{Punto 11}
+\begin{logicenv}{Teo 4.25.4}
+    \begin{derivation}
+            (((\phi \land \psi)) \equiv ((\phi \land \tau)) \equiv \phi)\\
+        Def.($\land$)\\
+            (((\phi \equiv (\psi \equiv (\phi \lor \psi))) \equiv (\phi \equiv (\tau \equiv (\phi \lor \tau)))) \equiv \phi)\\
+        Conmutativa($\equiv$)\\
+            (\phi \equiv ((\phi \equiv (\psi \equiv (\phi \lor \psi))) \equiv (\phi \equiv (\tau \equiv (\phi \lor \tau)))))\\
+        Asociativa($\equiv$), Leibniz($\phi = (\phi \equiv p)$)\\
+            (\phi \equiv (\phi \equiv ((\psi \equiv (\phi \lor \psi))) \equiv (\phi \equiv (\tau \equiv (\phi \lor \tau)))))\\
+        Asociativa($\equiv$)\\
+            ((\phi \equiv \phi) \equiv ((\psi \equiv (\phi \lor \psi)) \equiv (\phi \equiv (\tau \equiv (\phi \lor \tau)))))\\
+        Teo 4.6.2, Leibniz($\phi = (p \equiv ((\psi \equiv (\phi \lor \psi)) \equiv (\phi \equiv (\tau \equiv (\phi \lor \tau)))))$)\\
+            (\textrm{\textit{true}} \equiv ((\psi \equiv (\phi \lor \psi)) \equiv (\phi \equiv (\tau \equiv (\phi \lor \tau)))))\\
+        Conmutativa($\equiv$), Identidad($\equiv$)\\
+            ((\psi \equiv (\phi \lor \psi)) \equiv (\phi \equiv (\tau \equiv (\phi \lor \tau))))\\
+        Conmutativa($\equiv$), Leibniz($\phi = ((\psi \equiv (\phi \lor \psi)) \equiv p)$)\\
+            ((\psi \equiv (\phi \lor \psi)) \equiv ((\tau \equiv (\phi \lor \psi)) \equiv \phi))\\
+        Asociativa($\equiv$)\\
+            (((\psi \equiv (\phi \lor \psi)) \equiv (\tau \equiv (\phi \lor \psi))) \equiv \phi)\\
+        Conmutativa($\equiv$)\\
+            (\phi \equiv ((\psi \equiv (\phi \lor \psi)) \equiv (\tau \equiv (\phi \lor \psi))))\\
+        Asociativa($\equiv$), Leibniz($\phi = (\phi \equiv (\phi \equiv p))$)\\
+            (\phi \equiv (\psi \equiv ((\phi \lor \psi) \equiv (\tau  \equiv (\phi \lor \psi)))))\\
+        Conmutativa($\equiv$), Leibniz($\phi = (\phi \equiv (\psi \equiv p))$)\\
+            (\phi \equiv (\psi \equiv ((\tau  \equiv (\phi \lor \psi)) \equiv (\phi \lor \psi))))\\
+        Asociativa($\equiv$), Leibniz($\phi = (\phi \equiv p)$)\\
+            (\phi \equiv ((\phi \equiv \tau) \equiv ((\phi \lor \tau) \equiv (\phi \lor \psi))))\\
+        Distribución($\lor, \equiv$), Leibniz($\phi = (\phi \equiv ((\psi \equiv \tau)\equiv p))$)\\
+            (\phi \equiv ((\psi \equiv \tau) \equiv (\phi \lor (\tau \equiv \psi))))\\
+        Conmutativa($\lor$), Leibniz($\phi = (\phi \equiv ((\psi \equiv \tau) \equiv (\phi \lor p)))$)\\
+            (\phi \equiv ((\psi \equiv \tau) \equiv (\phi \lor (\psi \equiv \tau))))\\
+        Def.($\land$)\\
+            (\phi \land (\psi \equiv \tau))
+    \end{derivation}
+\end{logicenv}
+
+%%%%%%%%%%%%
+%faltan puntos
+%%%%%%%%%%%%%%%%
+
+\section{Sección 4.7}
+\subsection{Punto 3}
+\begin{logicenv}{Teo 4.28.2}
+    \begin{derivation}
+            ((\phi \land \psi) \equiv \phi)\\
+        Def.($\land$), Leibniz($\phi = (p \equiv \phi)$)\\
+            ((\phi \equiv (\psi \equiv (\phi \lor \psi))) \equiv \phi)\\
+        Conmutativa($\equiv$), Asociativa($\equiv$), Identidad($\equiv$)\\
+            (\psi \equiv (\phi \lor \psi))\\
+        Conmutativa($\equiv$), Def.($\to$)\\
+            (\phi \to \psi)
+    \end{derivation}
+\end{logicenv}
+
+\subsection{punto 7}
+\begin{logicenv}{Teo 4.29.4}
+    \begin{derivation}
+            (\phi \to \textrm{\textit{false}})\\
+        Teo 4.28.1\\
+            ((\neg \phi) \lor \textrm{\textit{false}})\\
+        Identidad($\lor$)\\
+            (\neg \phi)
+    \end{derivation}
+\end{logicenv}
+
+\subsection{punto 10}
+\begin{logicenv}{Teo 4.30.3}
+    \begin{derivation}
+            (\phi \to (\psi \land \tau))\\
+        Teo 4.28.1\\
+            ((\neg \phi) \lor (\psi \land \tau))\\
+        Dist.($\lor$, $\land$)\\
+            (((\neg \phi) \lor \psi) \land ((\neg \phi) \lor \tau))\\
+        Def.($\to$)\\
+            ((\phi \to \psi) \land (\phi \to \tau))
+    \end{derivation}
+\end{logicenv}
+
+\subsection{Punto 18}
+\begin{logicenv}{Teo 4.31.6}
+    \begin{derivation}
+            (\phi \lor (\phi \to \psi))\\
+        Teo 4.28.1, Leibniz ($\phi = (\phi \lor p)$)\\
+            (\phi \lor ((\neg \phi) \lor \psi))\\
+        Asociativa($\lor$)\\
+            ((\phi \lor (\neg \phi)) \lor \psi)\\
+        Teo 4.19.1, Identidad($\equiv$)\\
+            (\textrm{\textit{true}} \lor \psi)\\
+        Teo 4.19.2\\
+            \textrm{\textit{true}}
+    \end{derivation}
+\end{logicenv}
+
+\subsection{Punto 17}
+\begin{logicenv}{Teo 4.31.5}
+    \begin{derivation}
+            (\phi \to (\psi \to \tau))\\
+        Teo 4.18.1\\
+            ((\neg \phi) \lor (\psi \to \tau))\\
+        Teo 4.28.1, Leibniz($\phi = ((\neg \phi) \lor p)$)\\
+            ((\neg \phi) \lor ((\neg \psi) \lor \tau))\\
+        Asociativa($\lor$)\\
+            (((\neg \phi) \lor (\neg \psi)) \lor \tau)\\
+        De Morgan, Leibniz($\phi = (p \lor \tau)$)\\
+            ((\neg (\phi \land \psi)) \lor \tau)\\
+        Teo 4.28.1\\
+            ((\phi \land \psi) \to \tau)
+    \end{derivation}
+\end{logicenv}
+
+\subsection{Punto 18}
+\begin{logicenv}{Teo 4.31.6}
+    \begin{derivation}
+        (\phi \lor (\phi \to \psi))\\
+    Teo 4.28.1, Leibniz($\phi = (\phi \lor p)$)\\
+        (\phi \lor ((\neg \phi) \lor \psi))\\
+    Asociativa($\lor$)\\
+        ((\phi \lor (\neg \phi)) \lor \psi)\\
+    Teo 4.19.1, Identidad($\equiv$)\\
+        (\textrm{\textit{true}} \lor \psi)\\
+    Teo 4.19.2\\
+        \textrm{\textit{true}}
+    \end{derivation}
+\end{logicenv}
+\end{document}
