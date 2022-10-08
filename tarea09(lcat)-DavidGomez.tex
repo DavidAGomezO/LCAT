@@ -109,10 +109,12 @@
         Teo 4.15.7\\
             \textrm{\textit{false}}
     \end{derivation}
+    Por MT 4.21 se demuestra que\\
+    $\vdash_{\text{DS}} ((\phi \land \textrm{\textit{false}}) \equiv \textrm{\textit{false}})$
 \end{logicenv}
 
 \subsection{Punto 6}
-\begin{logicenv}{Teo 4.25.5}
+\begin{logicenv}{Teo 4.24.5}
     \begin{derivation}
             (\phi \land \phi)\\
         Def.($\land$)\\
@@ -126,6 +128,8 @@
         Identidad\\
             \phi
     \end{derivation}
+    Por MT 4.21 se demuestra que\\
+    $\vdash_{\text{DS}} ((\phi \land \phi) \equiv \phi)$
 \end{logicenv}
 
 \subsection{Punto 8}
@@ -143,6 +147,8 @@
         Identidad\\
             \textrm{\textit{false}}
     \end{derivation}
+    Por MT 4.21 se demuestra que\\
+    $\vdash_{\text{DS}} ((\phi \land (\neg \phi)) \equiv \textrm{\textit{false}})$
 \end{logicenv}
 
 \subsection{Punto 9}
@@ -170,6 +176,8 @@
     Teo 4.19.4\\
         ((\neg \phi) \lor (\neg \psi))
     \end{derivation}
+    Por MT 4.21 se demuestra que\\
+    $\vdash_{\text{DS}} ((\neg (\phi \land \psi)) \equiv ((\neg \phi) \lor (\neg \psi)))$
 \end{logicenv}
 
 \subsection{Punto 11}
@@ -207,6 +215,8 @@
         Def.($\land$)\\
             (\phi \land (\psi \equiv \tau))
     \end{derivation}
+    Por MT 4.21 y Conmutativa($\equiv$) se demuestra que\\
+    $\vdash_{\text{DS}} ((\phi \land (\psi \equiv \tau)) \equiv (((\phi \land \psi) \equiv (\phi \land \psi)) \equiv \phi))$
 \end{logicenv}
 
 %%%%%%%%%%%%
@@ -225,6 +235,8 @@
         Conmutativa($\equiv$), Def.($\to$)\\
             (\phi \to \psi)
     \end{derivation}
+    Por MT 4.21 y Conmutativa($\equiv$) se demuestra que\\
+    $\vdash_{\text{DS}} ((\phi \to \psi) \equiv ((\phi \land \psi) \equiv \phi))$
 \end{logicenv}
 
 \subsection{punto 7}
@@ -236,6 +248,8 @@
         Identidad($\lor$)\\
             (\neg \phi)
     \end{derivation}
+    Por MT 4.21 se demuestra que\\
+    $\vdash_{\text{DS}} ((\phi \to \textrm{\textit{false}}) \equiv (\neg \phi))$
 \end{logicenv}
 
 \subsection{punto 10}
@@ -249,21 +263,8 @@
         Def.($\to$)\\
             ((\phi \to \psi) \land (\phi \to \tau))
     \end{derivation}
-\end{logicenv}
-
-\subsection{Punto 18}
-\begin{logicenv}{Teo 4.31.6}
-    \begin{derivation}
-            (\phi \lor (\phi \to \psi))\\
-        Teo 4.28.1, Leibniz ($\phi = (\phi \lor p)$)\\
-            (\phi \lor ((\neg \phi) \lor \psi))\\
-        Asociativa($\lor$)\\
-            ((\phi \lor (\neg \phi)) \lor \psi)\\
-        Teo 4.19.1, Identidad($\equiv$)\\
-            (\textrm{\textit{true}} \lor \psi)\\
-        Teo 4.19.2\\
-            \textrm{\textit{true}}
-    \end{derivation}
+    Por MT 4.21 se demuestra que\\
+    $\vdash_{\text{DS}} ((\phi \to (\psi \to \tau)) \equiv ((\phi \to \psi) \land (\phi \to \tau)))$
 \end{logicenv}
 
 \subsection{Punto 17}
@@ -281,6 +282,8 @@
         Teo 4.28.1\\
             ((\phi \land \psi) \to \tau)
     \end{derivation}
+    Por MT 4.21 se demuestra que\\
+    $\vdash_{\text{DS}} ((\phi \to (\psi \to \tau)) \equiv ((\phi \land \psi) \to \tau))$
 \end{logicenv}
 
 \subsection{Punto 18}
@@ -296,5 +299,165 @@
     Teo 4.19.2\\
         \textrm{\textit{true}}
     \end{derivation}
+    Por MT 4.21 e Identidad($\equiv$) se demuestra que\\
+    $\vdash_{\text{DS}} (\phi \lor (\phi \to \psi))$
+\end{logicenv}
+
+\subsection{Punto 23}
+\label{Transitividad}
+\begin{logicenv}{Teo 4.33.2}
+    \begin{logic}
+        ((\phi \to \psi) \land (\phi \to \tau)) & Suposición del antecedente\\
+        (\phi \to \psi) & Debilitamiento(p0)\\
+        (\psi \to \tau) & Debilitamiento(p0)\\
+        ((\neg \phi) \lor \psi) & Teo 4.28.1, Ecuanimidad(p1)\\
+        ((\neg \psi) \lor \tau) & Teo 4.28.1, Ecuanimidad(p2)\\
+        (\psi \lor (\neg \phi)) & Conmutativa($\lor$)\\
+        ((\neg \phi) \lor \tau) & Corte(p5, p4)\\
+        (\phi \to \tau) & Teo 4.28.1, Ecuanimidad(p6)
+    \end{logic}
+    Así, tomando (p7, p0), se demuestra que $(((\phi \to \psi) \land (\phi \to \tau)) \to (\phi \to \tau))$
+\end{logicenv}
+
+\subsection{Punto 24}
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+\subsection{Punto 35}
+\begin{logicenv}{Teo 4.35.5}
+    \begin{derivation}
+            ((\phi \to \tau) \land (\psi \to \tau))\\
+        Teo 4.28.1\\
+            (((\neg \phi) \lor \tau) \land ((\neg \psi) \lor \tau))\\
+        Conmutativa($\lor$), Distribución($\lor$, $\land$)\\
+            (\tau \lor ((\neg \phi) \land (\neg \psi)))\\
+        Conmutativa($\lor$)\\
+            (((\neg \phi) \land (\neg \psi)) \lor \tau)\\
+        De Morgan\\
+            ((\neg (\phi \lor \psi)) \lor \tau)\\
+        Teo 4.28.1\\
+            ((\phi \lor \psi) \to \tau)
+    \end{derivation}
+    Por MT 4.21 y Conmutativa($\equiv$) se demuestra que\\
+    $\vdash_{\text{DS}} (((\phi \lor \psi) \to \tau) \equiv ((\phi \to \tau) \land (\psi \to \tau)))$
+\end{logicenv}
+
+\subsection{Punto 38}
+    \begin{logicenv}{Teo 4.36.3}
+        \begin{logic}
+            ((\phi \to \psi) \land (\psi \equiv \tau)) & Suposición del antecedente\\
+            (\phi \to \psi) & Debilitamiento(p0)\\
+            (\psi \equiv \tau) & Debilitamiento(p0)\\
+            ((\phi \to \psi) \equiv (\phi \to \tau)) & Leibniz($\phi = (\phi \to p)$)(p2)\\
+            (\phi \to \tau) & Ecuanimidad(p3,p1)
+        \end{logic}
+        Así, tomando (p4,p0), se demuestra que $(((\phi \to \psi) \land (\psi \equiv \tau)) \to (\phi \to \tau))$
+    \end{logicenv}
+
+\subsection{Punto 40}
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+\subsection{Punto 43}
+\begin{logicenv}{Modus Tollens}
+    \begin{logic}
+        (\phi \to \psi) & Hipótesis MTT\\
+        (\neg \psi) & Hipótesis MTT\\
+        ((\neg \phi) \lor \psi) & Teo 4.28.1, Ecuanimidad(p0)\\
+        (\psi \equiv \textrm{\textit{false}}) & Def.($\neg$), Ecuanimidad(p1)\\
+        ((\neg \phi) \lor \textrm{\textit{false}}) & Leibniz($\phi = ((\neg \phi) \lor p)$)(p3)\\
+        (\neg \phi) & Identidad($\lor$)
+    \end{logic}
+
+    En términos de causas y consecuencias, al tener que $a$ sucede a causa de $b$, y que es cierto que $a$ no sucede, entonces se puede decir que no ha ocurrido $b$. Análogamente, decir que en una fila de 2 fichas de dominó, si se sabe en que sentido se van a tirar, y la segunda no ha caído, se puede concluir que no se ha tirado la primera ficha.
+\end{logicenv}
+
+\subsection{Punto 44}
+\begin{logicenv}[10]{Transitividad - Silogísmo disyuntivo}
+    La regla de transitividad, hablando en términos de causas y consecuencias, dice:\\
+    Si $a$ sucede debido a $b$, y $b$ sucede debido a $c$, entonces $a$ sucede debido a $c$\\
+    Es decir, conecta el principio de una cadena de causa-consecuencia con su final.
+    La demostración y su relación con Corte se puede hallar en el \hyperref[Transitividad]{punto 23}
+\end{logicenv}
+
+\section{Sección 5.1}
+\subsection{Punto 1}
+\subsubsection{a}
+\begin{logicenv}[5]{a}
+    $\phi \lor \psi \lor \tau \equiv \phi \lor \psi \lor \tau$
+\end{logicenv}
+
+\subsubsection{f}
+\begin{logicenv}[5]{f}
+    $\neg \phi \equiv \phi \equiv \textrm{\textit{false}}$
+\end{logicenv}
+
+\subsubsection{m}
+\begin{logicenv}[5]{m}
+    $\phi \equiv \neg \phi \equiv \textrm{\textit{false}}$
+\end{logicenv}
+
+\subsubsection{t}
+\begin{logicenv}[5]{t}
+    $\phi \to \psi \equiv \phi \lor \psi \equiv \psi$
+\end{logicenv}
+
+\subsubsection{w}
+\begin{logicenv}[5]{w}
+    $\phi \to \psi \lor \tau \equiv (\phi \to \psi) \lor (\phi \to \tau)$
+\end{logicenv}
+
+\subsubsection{x}
+\begin{logicenv}[5]{x}
+    $\phi \to \psi \land \tau \equiv (\phi \to \psi) \land (\phi \to \tau)$
+\end{logicenv}
+
+\subsubsection{z}
+\begin{logicenv}[5]{z}
+    $\phi \lor \psi \to \phi \land \psi \equiv \phi \equiv \psi$
+\end{logicenv}
+
+\subsection{Punto 2}
+\subsubsection{a}
+\begin{logicenv}[5]{Es ambigüa}
+    \begin{gather*}
+        p \lor (q \land r)\\
+        (p \lor q) \land r
+    \end{gather*}
+\end{logicenv}
+
+\subsubsection{b}
+\begin{logicenv}[5]{Es ambigüa}
+    \begin{gather*}
+        p \land (q \lor r)\\
+        (p \land q) \lor r
+    \end{gather*}
+\end{logicenv}
+
+\subsubsection{c}
+\begin{logicenv}[5]{Es ambigüa}
+    \begin{gather*}
+        p \to (q \to r)\\
+        (p \to q) \to r
+    \end{gather*}
+\end{logicenv}
+
+\subsubsection{d}
+\begin{logicenv}[5]{Es ambigüa}
+    \begin{gather*}
+        p \to (q \gets r)\\
+        (p \to q) \gets r
+    \end{gather*}
+\end{logicenv}
+
+\subsubsection{e}
+\begin{logicenv}[5]{Es ambigüa}
+    \begin{gather*}
+        p \gets (q \to r)\\
+        (p \gets q) \to r
+    \end{gather*}
+\end{logicenv}
+
+\subsection{Punto 3}
+\begin{logicenv}[10]{No hay ambigüedad entre $\equiv$ y $\not\equiv$}
+    Debido a la definición de la discrepancia y teoremas del posicionamiento de una negación en una equivalencia
 \end{logicenv}
 \end{document}
