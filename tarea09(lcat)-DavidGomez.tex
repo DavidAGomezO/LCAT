@@ -219,9 +219,81 @@
     $\vdash_{\text{DS}} ((\phi \land (\psi \equiv \tau)) \equiv (((\phi \land \psi) \equiv (\phi \land \psi)) \equiv \phi))$
 \end{logicenv}
 
-%%%%%%%%%%%%
-%faltan puntos
-%%%%%%%%%%%%%%%%
+\subsection{punto 12}
+\begin{logicenv}{Teo 4.25.5}
+    \begin{derivation}
+            ((\phi \land \psi) \not\equiv (\phi \land \tau))\\
+        Def.($\land$)\\
+            ((\phi \equiv (\psi \equiv (\phi \lor \psi))) \not\equiv (\phi \equiv (\tau \equiv (\phi \lor \tau))))\\
+        Def.($\not\equiv$)\\
+            ((\neg (\phi \equiv (\psi \equiv (\phi \lor \psi)))) \equiv (\phi \equiv (\tau \equiv (\phi \lor \tau))))\\
+        Teo 4.15.4\\
+            (\neg ((\phi \equiv (\psi \equiv (\phi \lor \psi))) \equiv (\phi \equiv (\tau \equiv (\phi \lor \tau)))))\\
+        Conmutativa($\equiv$)\\
+            (\neg (((\psi \equiv (\phi \lor \psi)) \equiv \phi) \equiv (\phi \equiv (\tau \equiv (\phi \lor \tau)))))\\
+        Asociativa($\equiv$)\\
+            (\neg ((\psi \equiv (\phi \lor \psi)) \equiv (\phi \equiv (\phi \equiv (\tau \equiv (\phi \lor \tau))))))\\
+        Asociativa($\equiv$)\\
+            (\neg ((\psi \equiv (\phi \lor \psi)) \equiv ((\phi \equiv \phi) \equiv (\tau \equiv (\phi \lor \tau)))))\\
+        Conmutativa($\equiv$)\\
+            (\neg (((\phi \lor \psi) \equiv \psi) \equiv (\tau \equiv (\phi \lor \tau))))\\
+        Asociativa($\equiv$)\\
+            (\neg ((\phi \lor \psi) \equiv (\psi \equiv (\tau \equiv (\phi \lor \tau)))))\\
+        Asociativa($\equiv$)\\
+            (\neg ((\phi \lor \psi) \equiv ((\psi \equiv \tau) \equiv (\phi \lor \tau))))\\
+        Conmutativa($\equiv$)\\
+            (\neg ((\phi \lor \psi) \equiv ((\phi \lor \tau) \equiv (\psi \equiv \tau))))\\
+        Asociativa($\equiv$)\\
+            (\neg (((\phi \lor \psi) \equiv (\phi \lor \tau)) \equiv (\psi \equiv \tau)))\\
+        Dist.($\lor$, $\equiv$)\\
+            (\neg ((\phi \lor (\psi \equiv \tau)) \equiv (\psi \equiv \tau)))\\
+        Teo 4.19.4\\
+            (\neg (((\neg \phi) \lor (\psi \equiv \tau))))\\
+        Dist.($\neg$, $\lor$)\\
+            (\phi \land (\neg (\psi \equiv \tau)))\\
+        Teo 4.15.4, Def.($\not\equiv$)\\
+            (\phi \land (\psi \not\equiv \tau))
+    \end{derivation}
+    Por MT 4.21 y Conmutativa($\equiv$) se demuestra que\\
+    $\vdash_{\text{DS}}((\phi \land (\psi \not\equiv \psi)) \equiv ((\phi \land \psi) \not\equiv (\phi \land \tau)))$
+\end{logicenv}
+
+\subsection{Punto 16}
+\begin{logicenv}[5]{Debilitamiento}
+    \begin{logic}
+        (\phi \land \psi) & Hipótesis (Debilitamiento)\\
+        (\phi \equiv (\psi \equiv (\phi \lor \psi))) & Def.($\equiv$), Ecuanimidad(p0)\\
+        ((\phi \lor \phi) \equiv (\phi \lor (\psi \equiv (\phi \lor \psi)))) & Leibniz($\phi = (p \lor \phi)$)\\
+        ((\phi \lor (\psi \equiv (\phi \lor \psi))) \equiv ((\phi \lor \psi) \equiv (\phi \lor (\phi \lor \psi)))) & Dist.($\lor$, $\equiv$)\\
+        (((\phi \lor \psi) \equiv (\phi \lor (\phi \lor \psi))) \equiv ((\phi \lor \psi) \equiv ((\phi \lor \phi) \lor \psi))) & Asociativa($\lor$), Leibniz($\phi = ((\phi \lor \psi) \equiv p)$)\\
+        (((\phi \lor \psi) \equiv ((\phi \lor \phi) \lor \psi)) \equiv ((\phi \lor \psi) \equiv (\phi \lor \psi))) & Idempotencia($\lor$), Leibniz($\phi = ((\phi \lor \psi) \equiv p)$)\\
+        (((\phi \lor \psi) \equiv (\phi \lor \psi)) \equiv \textrm{\textit{true}}) & Teo 4.6.2\\
+        ((\phi \lor \phi) \equiv \textrm{\textit{true}}) & Transitividad(p6, p5, p4, p3, p2)\\
+        (\phi \lor \phi) & Identidad($\equiv$)(p7)\\
+        \phi & Idempotencia($\lor$)(p8)
+    \end{logic}
+    Debilitamiento permite quitar información de una conjunción. Puesto que esta es verdad únicamente cuando sus dos partes son verdaderas, se puede concluir cualquiera de ellas. 
+\end{logicenv}
+
+\subsection{Punto 17}
+\begin{logicenv}{Unión}
+    \begin{logic}
+        \phi & Hipótesis(Unión)\\
+        \psi & Hipótesis(Unión)\\
+        (\phi \equiv \textrm{\textit{true}}) & Identidad($\equiv$)(p0)\\
+        (\phi \lor (\phi \equiv \psi)) & Debilitamiento($\lor$)(p0)\\
+        ((\phi \lor (\phi \equiv \psi)) \equiv ((\phi \lor \phi) \equiv (\phi \lor \psi))) & Dist.($\lor$, $\equiv$)\\
+        (((\phi \lor \phi) \equiv (\phi \lor \psi)) \equiv (\phi \equiv (\phi \lor \psi))) & Idempotencia($\lor$), Leibniz($\phi = (\phi \lor p)$)\\
+        ((\phi \lor (\phi \equiv \psi)) \equiv (\phi \equiv (\phi \lor \psi))) & Transitividad(p5, p4, p3)\\
+        (\phi \equiv (\phi \lor \psi)) & Ecuanimidad(p6, p3)\\
+        (\psi \equiv \textrm{\textit{true}}) & Identidad($\equiv$)(p1)\\
+        ((\phi \equiv (\phi \lor \psi)) \equiv \textrm{\textit{true}}) & Identidad($\equiv$)(p7)\\
+        ((\phi \equiv (\phi \lor \psi)) \equiv \psi) & Transitividad(p9, p8)\\
+        (\psi \equiv (\phi \equiv (\phi \lor \psi))) & Conmutativa($\equiv$), Ecuanimidad(p10)\\
+        (\phi \land \psi) & Def.($\land$), Conmutativa($\lor$), Conmutativa($\land$), Ecuanimidad(p11)
+    \end{logic}
+    Unión permite juntar varias proposiciones las cuales se tienen como verdaderas. Puesto que la conjunción es verdadera cuando sus dos partes son verdaderas, es posible conectar dos proposiciones verdaderas mediante una conjunción.
+\end{logicenv}
 
 \section{Sección 4.7}
 \subsection{Punto 3}
@@ -307,7 +379,7 @@
 \label{Transitividad}
 \begin{logicenv}{Teo 4.33.2}
     \begin{logic}
-        ((\phi \to \psi) \land (\phi \to \tau)) & Suposición del antecedente\\
+        ((\phi \to \psi) \land (\psi \to \tau)) & Suposición del antecedente\\
         (\phi \to \psi) & Debilitamiento(p0)\\
         (\psi \to \tau) & Debilitamiento(p0)\\
         ((\neg \phi) \lor \psi) & Teo 4.28.1, Ecuanimidad(p1)\\
@@ -316,12 +388,27 @@
         ((\neg \phi) \lor \tau) & Corte(p5, p4)\\
         (\phi \to \tau) & Teo 4.28.1, Ecuanimidad(p6)
     \end{logic}
-    Así, tomando (p7, p0), se demuestra que $(((\phi \to \psi) \land (\phi \to \tau)) \to (\phi \to \tau))$
+    Así, tomando (p7, p0), se demuestra que $\vdash_\text{DS}(((\phi \to \psi) \land (\psi \to \tau)) \to (\phi \to \tau))$
 \end{logicenv}
 
 \subsection{Punto 24}
-%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%
+\begin{logicenv}[5]{Teo 4.33.3}
+    \begin{logic}
+        ((\phi \to \psi) \land (\psi \to \phi)) & Suposición del antecedente\\
+        (\phi \to \psi) & Debilitamiento($\land$)(p0)\\
+        (\psi \to \phi) & Debilitamiento($\land$)(p0)\\
+        ((\phi \lor \psi) \equiv \psi) & Def.($\to$), Ecuanimidad(p1)\\
+        ((\psi \land \phi) \equiv \psi) & Teo 4.28.2, Ecuanimidad(p2)\\
+        ((\phi \lor \psi) \equiv (\phi \land \psi)) & Transitividad(p4, p3), Conmutativa($\land$)\\
+        ((\phi \lor \psi) \equiv (\phi \equiv (\psi \equiv (\phi \lor \psi)))) & Def.($\land$), Leibniz($\phi = ((\phi \lor \psi) \equiv p)$), Ecuanimidad(p5)\\
+        ((\phi \lor \psi) \equiv ((\phi \equiv \psi) \equiv (\phi \lor \psi))) & Asociativa($\equiv$), Leibniz($\phi = ((\phi \lor \psi) \equiv p)$), Ecuanimidad(p6)\\
+        ((\phi \lor \psi) \equiv ((\phi \lor \psi) \equiv (\phi \equiv \psi))) & Conmutativa($\equiv$), Leibniz($\phi = ((\phi \lor \psi) \equiv p)$), Ecuanimidad(p7)\\
+        (((\phi \lor \psi) \equiv (\phi \lor \psi)) \equiv (\phi \equiv \psi)) & Asociativa($\equiv$)\\
+        (\textrm{\textit{true}} \equiv (\phi \equiv \psi)) & Teo 4.6.2, Leibniz($\phi = (p \equiv (\phi \equiv \psi))$), Ecuanimidad(p9)\\
+        (\phi \equiv \psi) & Identidad($\equiv$), Conmutativa($\equiv$)(p10)
+    \end{logic}
+    Así, tomando (p0, p11), se demuestra que $\vdash_\text{DS} (((\phi \to \psi) \land (\psi \to \phi)) \to (\phi \equiv \psi))$
+\end{logicenv}
 \subsection{Punto 35}
 \begin{logicenv}{Teo 4.35.5}
     \begin{derivation}
@@ -354,8 +441,33 @@
     \end{logicenv}
 
 \subsection{Punto 40}
-%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{a}
 %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{b}
+\begin{logicenv}[5]{$\vdash_\text{DS} ((\phi \to \psi) \to ((\phi \lor \tau) \to (\psi \lor \tau)))$}
+    \begin{align*}
+            \res{(\phi \to \psi)}\\
+        \why{Teo 4.28.1}\\
+            \res{((\neg \phi) \lor \psi)}\\
+        \why[\Rightarrow]{Debilitamiento($\lor$)}\\
+            \res{(((\neg \phi) \lor \psi) \lor \tau)}\\
+        \why{Asociativa($\lor$)}\\
+            \res{((\neg \phi) \lor (\psi \lor \tau))}\\
+        \why{Teo 4.19.4}\\
+            \res{((\phi \lor (\psi \lor \tau)) \equiv (\psi \lor \tau))}\\
+        \why{Asociativa($\lor$), Leibniz($\phi = (p \equiv (\psi \lor \tau))$)}\\
+            \res{(((\phi \lor \psi) \lor \tau) \equiv (\phi \lor \tau))}\\
+        \why{Idempotencia($\lor$), Leibniz($\phi = (((\phi \lor \psi) \lor p) \equiv (\phi \lor \tau))$)}\\
+            \res{(((\phi \lor \psi) \lor (\tau \lor \tau)) \equiv (\phi \lor \tau))}\\
+        \why{Asociativa($\lor$), Conmutativa($\lor$), Asociativa($\lor$)}\\
+            \res{(((\phi \lor \tau) \lor (\psi \lor \tau)) \equiv (\psi \lor \tau))}\\
+        \why{Def.($\to$)}\\
+            \res{((\phi \lor \tau) \to (\psi \to \tau))}
+    \end{align*}
+    Por MT 5.5.1 se demuestra que\\
+    $\vdash_\text{DS} ((\phi \to \psi) \to ((\phi \lor \tau) \to (\psi \lor \tau)))$
+\end{logicenv}
 \subsection{Punto 43}
 \begin{logicenv}{Modus Tollens}
     \begin{logic}
@@ -456,8 +568,19 @@
     \end{gather*}
 \end{logicenv}
 
-\subsection{Punto 3}
-\begin{logicenv}[10]{No hay ambigüedad entre $\equiv$ y $\not\equiv$}
-    Debido a la definición de la discrepancia y teoremas del posicionamiento de una negación en una equivalencia
+\subsection{Punto 5}
+\subsubsection{a}
+\begin{logicenv}{$\textrm{\textit{true}} \lor p \land q$}
+    \[\textrm{\textit{true}} \lor (p \land q)\]
+\end{logicenv}
+
+\subsubsection{b}
+\begin{logicenv}{$p \equiv p \lor q$}
+    \[(p \equiv p) \lor q\]
+\end{logicenv}
+
+\subsubsection{c}
+\begin{logicenv}{$p \to q \equiv r \equiv p \land q \equiv p \land r$}
+    
 \end{logicenv}
 \end{document}
