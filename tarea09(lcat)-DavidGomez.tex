@@ -11,8 +11,6 @@
 \usepackage{listings}
 \usepackage{tikz}
 \usetikzlibrary{shapes, fit, tikzmark}
-\usepackage{color, colortbl}
-\usepackage[most]{tcolorbox}
 
 % Configuraciones:
 \pagestyle{fancy}
@@ -409,6 +407,7 @@
     \end{logic}
     Así, tomando (p0, p11), se demuestra que $\vDash_\text{DS} (((\phi \to \psi) \land (\psi \to \phi)) \to (\phi \equiv \psi))$
 \end{logicenv}
+
 \subsection{Punto 35}
 \begin{logicenv}{Teo 4.35.5}
     \begin{derivation}
@@ -442,8 +441,9 @@
 
 \subsection{Punto 40}
 \subsubsection{a}
-%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%
+\begin{logicenv}[5]{$((\phi \to \psi) \to ((\phi \equiv \tau) \to (\psi \equiv \tau)))$}
+    No es teorema, por un solo caso $\mathbf{F} = \{\phi \mapsto \textit{false}\,,\,\psi \mapsto \textrm{\textit{true}}\,,\,\tau \mapsto \textit{false}\}$
+\end{logicenv}
 \subsubsection{c}
 \label{P40-c}
 \begin{logicenv}[5]{$\vDash_\text{DS} ((\phi \to \psi) \to ((\phi \lor \tau) \to (\psi \lor \tau)))$}
@@ -469,6 +469,7 @@
     Por MT 5.5.1 se demuestra que\\
     $\vDash_\text{DS} ((\phi \to \psi) \to ((\phi \lor \tau) \to (\psi \lor \tau)))$
 \end{logicenv}
+
 \subsection{Punto 43}
 \begin{logicenv}{Modus Tollens}
     \begin{logic}
@@ -591,7 +592,28 @@
     \end{logic}
 \end{logicenv}
 
+\subsubsection{c}
 
+\begin{logicenv}[5]{Si $\vdash_{\text{PM}} \phi$ entonces $\vdash_{\text{DS}}$}
+    Puesto que los axiomas de PM son teoremas en DS, significa que se puede comenzar una demostración en DS a partir de estos axiomas. Y ya que la regla de inferencia Modus Ponens aplica en DS, significa que cualquier teorema obtenido mediante las herramientas de PM puede ser obtenido en DS usando la misma estrategia.
+\end{logicenv}
+
+\subsection{d}
+\begin{logicenv}[5]{Si $\vdash_{\text{DS}}\phi$ entonces $\vdash_{\text{PM}} \phi$}
+    Si se toma la regla de Ecuanimidad de DS, por la definición de equivalencia usando implicaciones y la regla Debilitamiento($\land$), Es posible usar Ecuanimidad de la misma forma que Modus Ponens.\\
+    La regla de Leibniz de DS, por la definición de equivalencia usando implicaciones y la regla de Debilitamiento($\land$), Es posible usar Leibniz de la siguiente forma:
+    \begin{center}
+        \begin{NiceTabular}{l r}
+            $(\psi \to \tau)$ & \hspace*{-2cm}$(\tau \to \psi)$\\
+            \hline
+            \hspace*{.5cm}$(\phi[p:= \psi] \to \phi[p:= \tau])$\\
+            \hspace*{.5cm}$(\phi[p:= \tau] \to \phi[p:= \tau])$
+        \end{NiceTabular}
+    \end{center}
+    El único conector en DS que no se ve de forma clara como expresarse usando únicamente  $\lor$ y $\to$ es $\neg$. Pero se sabe que la negación es dar un valor de falsedad a una proposición. Y se sabe que una falsedad sería la negación de cualquier teorema o axioma, por lo que la negación usando su definición $((\neg \phi) \equiv (\phi \equiv \textrm{\textit{false}}))$ y tomando lo dicho para el uso de Ecuanimidad. se tiene entonces que la \q{traducción} de la negación a PM sería $(\phi \to \textrm{\textit{false}})$ (como ya se mencionó la idea en PM es que \textit{false} sea la negación de cualquier axioma o teorema).
+
+    Una vez \q{traducido} el sistema formal DS en términos de PM se puede afirmar que los teoremas de DS pueden ser obtenidos usando las herramientas de PM.
+\end{logicenv}
 
 \section{Sección 5.1}
 \subsection{Punto 1}
@@ -696,4 +718,13 @@
 \begin{logicenv}{$\neg p \land p \equiv p \to r$}
     \[\neg(p \land p \equiv p) \to r\]
 \end{logicenv}
+
+\begin{center}
+    \begin{tabular}{c c}
+        $(\psi \to \tau)$ & $(\tau \to \psi)$\\
+        \hline
+        $(\phi[p:= \psi] \to \phi[p:= \tau])$\\
+        $(\phi[p:= \tau] \to \phi[p:= \tau])$
+    \end{tabular}
+\end{center}
 \end{document}
