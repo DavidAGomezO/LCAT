@@ -93,7 +93,7 @@
             \phi
     \end{derivation}
     Por MT 4.21 se demuestra que\\
-    $\vdash_{\text{DS}} ((\phi \land \textrm{\textit{true}}) \equiv \phi)$
+    $\vDash_{\text{DS}} ((\phi \land \textrm{\textit{true}}) \equiv \phi)$
 \end{logicenv}
 
 \subsection{Punto 5}
@@ -110,7 +110,7 @@
             \textrm{\textit{false}}
     \end{derivation}
     Por MT 4.21 se demuestra que\\
-    $\vdash_{\text{DS}} ((\phi \land \textrm{\textit{false}}) \equiv \textrm{\textit{false}})$
+    $\vDash_{\text{DS}} ((\phi \land \textrm{\textit{false}}) \equiv \textrm{\textit{false}})$
 \end{logicenv}
 
 \subsection{Punto 6}
@@ -129,7 +129,7 @@
             \phi
     \end{derivation}
     Por MT 4.21 se demuestra que\\
-    $\vdash_{\text{DS}} ((\phi \land \phi) \equiv \phi)$
+    $\vDash_{\text{DS}} ((\phi \land \phi) \equiv \phi)$
 \end{logicenv}
 
 \subsection{Punto 8}
@@ -148,7 +148,7 @@
             \textrm{\textit{false}}
     \end{derivation}
     Por MT 4.21 se demuestra que\\
-    $\vdash_{\text{DS}} ((\phi \land (\neg \phi)) \equiv \textrm{\textit{false}})$
+    $\vDash_{\text{DS}} ((\phi \land (\neg \phi)) \equiv \textrm{\textit{false}})$
 \end{logicenv}
 
 \subsection{Punto 9}
@@ -177,7 +177,7 @@
         ((\neg \phi) \lor (\neg \psi))
     \end{derivation}
     Por MT 4.21 se demuestra que\\
-    $\vdash_{\text{DS}} ((\neg (\phi \land \psi)) \equiv ((\neg \phi) \lor (\neg \psi)))$
+    $\vDash_{\text{DS}} ((\neg (\phi \land \psi)) \equiv ((\neg \phi) \lor (\neg \psi)))$
 \end{logicenv}
 
 \subsection{Punto 11}
@@ -216,7 +216,7 @@
             (\phi \land (\psi \equiv \tau))
     \end{derivation}
     Por MT 4.21 y Conmutativa($\equiv$) se demuestra que\\
-    $\vdash_{\text{DS}} ((\phi \land (\psi \equiv \tau)) \equiv (((\phi \land \psi) \equiv (\phi \land \psi)) \equiv \phi))$
+    $\vDash_{\text{DS}} ((\phi \land (\psi \equiv \tau)) \equiv (((\phi \land \psi) \equiv (\phi \land \psi)) \equiv \phi))$
 \end{logicenv}
 
 \subsection{punto 12}
@@ -255,7 +255,7 @@
             (\phi \land (\psi \not\equiv \tau))
     \end{derivation}
     Por MT 4.21 y Conmutativa($\equiv$) se demuestra que\\
-    $\vdash_{\text{DS}}((\phi \land (\psi \not\equiv \psi)) \equiv ((\phi \land \psi) \not\equiv (\phi \land \tau)))$
+    $\vDash_{\text{DS}}((\phi \land (\psi \not\equiv \psi)) \equiv ((\phi \land \psi) \not\equiv (\phi \land \tau)))$
 \end{logicenv}
 
 \subsection{Punto 16}
@@ -308,7 +308,7 @@
             (\phi \to \psi)
     \end{derivation}
     Por MT 4.21 y Conmutativa($\equiv$) se demuestra que\\
-    $\vdash_{\text{DS}} ((\phi \to \psi) \equiv ((\phi \land \psi) \equiv \phi))$
+    $\vDash_{\text{DS}} ((\phi \to \psi) \equiv ((\phi \land \psi) \equiv \phi))$
 \end{logicenv}
 
 \subsection{punto 7}
@@ -321,7 +321,7 @@
             (\neg \phi)
     \end{derivation}
     Por MT 4.21 se demuestra que\\
-    $\vdash_{\text{DS}} ((\phi \to \textrm{\textit{false}}) \equiv (\neg \phi))$
+    $\vDash_{\text{DS}} ((\phi \to \textrm{\textit{false}}) \equiv (\neg \phi))$
 \end{logicenv}
 
 \subsection{punto 10}
@@ -336,7 +336,7 @@
             ((\phi \to \psi) \land (\phi \to \tau))
     \end{derivation}
     Por MT 4.21 se demuestra que\\
-    $\vdash_{\text{DS}} ((\phi \to (\psi \to \tau)) \equiv ((\phi \to \psi) \land (\phi \to \tau)))$
+    $\vDash_{\text{DS}} ((\phi \to (\psi \to \tau)) \equiv ((\phi \to \psi) \land (\phi \to \tau)))$
 \end{logicenv}
 
 \subsection{Punto 17}
@@ -355,7 +355,7 @@
             ((\phi \land \psi) \to \tau)
     \end{derivation}
     Por MT 4.21 se demuestra que\\
-    $\vdash_{\text{DS}} ((\phi \to (\psi \to \tau)) \equiv ((\phi \land \psi) \to \tau))$
+    $\vDash_{\text{DS}} ((\phi \to (\psi \to \tau)) \equiv ((\phi \land \psi) \to \tau))$
 \end{logicenv}
 
 \subsection{Punto 18}
@@ -372,7 +372,7 @@
         \textrm{\textit{true}}
     \end{derivation}
     Por MT 4.21 e Identidad($\equiv$) se demuestra que\\
-    $\vdash_{\text{DS}} (\phi \lor (\phi \to \psi))$
+    $\vDash_{\text{DS}} (\phi \lor (\phi \to \psi))$
 \end{logicenv}
 
 \subsection{Punto 23}
@@ -388,7 +388,7 @@
         ((\neg \phi) \lor \tau) & Corte(p5, p4)\\
         (\phi \to \tau) & Teo 4.28.1, Ecuanimidad(p6)
     \end{logic}
-    Así, tomando (p7, p0), se demuestra que $\vdash_\text{DS}(((\phi \to \psi) \land (\psi \to \tau)) \to (\phi \to \tau))$
+    Así, tomando (p7, p0), se demuestra que $\vDash_\text{DS}(((\phi \to \psi) \land (\psi \to \tau)) \to (\phi \to \tau))$
 \end{logicenv}
 
 \subsection{Punto 24}
@@ -407,7 +407,7 @@
         (\textrm{\textit{true}} \equiv (\phi \equiv \psi)) & Teo 4.6.2, Leibniz($\phi = (p \equiv (\phi \equiv \psi))$), Ecuanimidad(p9)\\
         (\phi \equiv \psi) & Identidad($\equiv$), Conmutativa($\equiv$)(p10)
     \end{logic}
-    Así, tomando (p0, p11), se demuestra que $\vdash_\text{DS} (((\phi \to \psi) \land (\psi \to \phi)) \to (\phi \equiv \psi))$
+    Así, tomando (p0, p11), se demuestra que $\vDash_\text{DS} (((\phi \to \psi) \land (\psi \to \phi)) \to (\phi \equiv \psi))$
 \end{logicenv}
 \subsection{Punto 35}
 \begin{logicenv}{Teo 4.35.5}
@@ -425,7 +425,7 @@
             ((\phi \lor \psi) \to \tau)
     \end{derivation}
     Por MT 4.21 y Conmutativa($\equiv$) se demuestra que\\
-    $\vdash_{\text{DS}} (((\phi \lor \psi) \to \tau) \equiv ((\phi \to \tau) \land (\psi \to \tau)))$
+    $\vDash_{\text{DS}} (((\phi \lor \psi) \to \tau) \equiv ((\phi \to \tau) \land (\psi \to \tau)))$
 \end{logicenv}
 
 \subsection{Punto 38}
@@ -444,8 +444,9 @@
 \subsubsection{a}
 %%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{b}
-\begin{logicenv}[5]{$\vdash_\text{DS} ((\phi \to \psi) \to ((\phi \lor \tau) \to (\psi \lor \tau)))$}
+\subsubsection{c}
+\label{P40-c}
+\begin{logicenv}[5]{$\vDash_\text{DS} ((\phi \to \psi) \to ((\phi \lor \tau) \to (\psi \lor \tau)))$}
     \begin{align*}
             \res{(\phi \to \psi)}\\
         \why{Teo 4.28.1}\\
@@ -466,7 +467,7 @@
             \res{((\phi \lor \tau) \to (\psi \to \tau))}
     \end{align*}
     Por MT 5.5.1 se demuestra que\\
-    $\vdash_\text{DS} ((\phi \to \psi) \to ((\phi \lor \tau) \to (\psi \lor \tau)))$
+    $\vDash_\text{DS} ((\phi \to \psi) \to ((\phi \lor \tau) \to (\psi \lor \tau)))$
 \end{logicenv}
 \subsection{Punto 43}
 \begin{logicenv}{Modus Tollens}
@@ -489,6 +490,108 @@
     Es decir, conecta el principio de una cadena de causa-consecuencia con su final.
     La demostración y su relación con Corte se puede hallar en el \hyperref[Transitividad]{punto 23}
 \end{logicenv}
+
+\subsection{Punto 45}
+\subsubsection{a}
+\begin{logicenv}{PM1 es tautología}
+    \begin{logic}
+        (\exists \mathbf{v} \, \vert\, \val{v}{((\phi \lor \phi) \to \phi)} = \mathtt{F}) & Intento por contradicción\\
+        \val{v}{((\phi \lor \phi) \to \phi)} = \mathtt{F} & Def.(p0)\\
+        \val{v}{(\phi \lor \phi)} = \mathtt{T} \text{ y } \val{v}{\phi} = \mathtt{F} & MT 2.23($\to$)(p1)\\
+        \val{v}{(\phi \lor \phi)} = \mathtt{F} & MT 2.23($\lor$)(p2)\\
+        \val{v}{(\phi \lor \phi)} = \mathtt{F} \text{ y } \val{v}{(\phi \lor \phi)} = \mathtt{F} & Contradicción (p3, p2)
+    \end{logic}
+    Por lo que $\vDash ((\phi \lor \phi) \to \phi)$
+\end{logicenv}
+
+\begin{logicenv}{PM2 es tautología}
+    \begin{logic}
+        (\exists \mathbf{v} \, \vert\, \val{v}{(\phi \to (\phi \lor \psi))} = \mathtt{F}) & Intento por contradicción\\
+        \val{v}{(\phi \to (\phi \lor \psi))} = \mathtt{F} & Def.(p0)\\
+        \val{v}{\phi} = \mathtt{T} \text{ y } \val{v}{(\phi \lor \psi)} = \mathtt{F} & MT 2.23($\to$)(p1)\\
+        \val{v}{\phi} = \mathtt{F} \text{ y } \val{v}{\psi} = \mathtt{F} & MT 2.23($\lor$)(p2)\\
+        \val{v}{\phi} = \mathtt{F} \text{ y } \val{v}{\phi} = \mathtt{T} & Contradicción (p3, p2)
+    \end{logic}
+    Por lo que $\vDash (\phi \to (\phi \lor \psi))$
+\end{logicenv}
+\begin{logicenv}{PM3 es tautología}
+    \begin{logic}
+        (\exists \mathbf{v} \, \vert\, \val{v}{((\phi \to \psi) \to ((\tau \lor \phi) \to (\tau \lor \psi)))} = \mathtt{F}) & Intento por contradicción\\
+        \val{v}{((\phi \to \psi) \to ((\tau \lor \phi) \to (\tau \lor \psi)))} = \mathtt{F} & Def.(p0)\\
+        \val{v}{(\phi \to \psi)} = \mathtt{T} \text{ y } \val{v}{((\tau \lor \phi) \to (\tau \lor \psi))} = \mathtt{F} & MT 2.23($\to$)(p0)\\
+        \val{v}{(\tau \lor \phi)} = \mathtt{T} \text{ y } \val{v}{(\tau \lor \psi)} = \mathtt{F} & MT 2.23($\to$)(p2)\\
+        \val{v}{\tau} = \mathtt{F} \land \val{v}{\psi} = \mathtt{F} & MT 2.23($\lor$)(p3)\\
+        \val{v}{\phi} = \mathtt{T} & MT 2.23($\lor$)(p4, p3)\\
+        \val{v}{\phi} = \mathtt{F} & MT 2.23($\to$)(p4, p2)\\
+        \val{v}{\phi} = \mathtt{F} \text{ y } \val{v}{\phi} = \mathtt{T} & Contradicción(p6, p5)
+    \end{logic}
+    Por lo que $\vDash ((\phi \to \psi) \to ((\tau \lor \phi) \to (\tau \lor \psi)))$
+\end{logicenv}
+
+\begin{logicenv}{PM4 es tautología}
+    \begin{logic}
+        (\exists \mathbf{v} \, \vert\, \val{v}{((\phi \lor \psi) \to (\psi \lor \phi))} = \mathtt{F}) & Intento por contradicción\\
+        \val{v}{((\phi \lor \psi) \to (\psi \lor \phi))} = \mathtt{F} & Def.(p0)\\
+        \val{v}{(\phi \lor \psi)} = \mathtt{T} \text{ y } \val{v}{(\psi \lor \phi)} = \mathtt{F} & MT 2.23($\to$)(p1)\\
+        \val{v}{\psi} = \mathtt{F} \text{ y } \val{v}{\phi} = \mathtt{F} & MT 2.23($\lor$)(p2)\\
+        \val{v}{(\phi \lor \psi)} = \mathtt{F} & MT 2.23($\lor$)(p3)\\
+        \val{v}{(\phi \lor \psi)} = \mathtt{T} \text{ y } \val{v}{(\phi \lor \psi)} = \mathtt{F} & Contradicción (p4, p2)
+    \end{logic}
+\end{logicenv}
+
+\subsubsection{b}
+\begin{logicenv}{PM1 es teorema en DS}
+    \begin{derivation}
+            ((\phi \lor \phi) \to \phi)\\
+        Idempotencia($\lor$)\\
+            (\phi \lor \phi)\\
+        Teo 4.28.1\\
+            ((\neg \phi) \lor \phi)\\
+        Teo 4.19.1, Identidad($\equiv$)\\
+            \textrm{\textit{true}}
+    \end{derivation}
+    Por MT 4.21 se demuestra que\\
+    $\vdash_{\text{DS}} ((\phi \lor \phi) \to \phi)$
+\end{logicenv}
+
+\begin{logicenv}{PM2 es teorema en DS}
+    \begin{derivation}
+            (\phi \to (\phi \lor \psi))\\
+        Teo 4.28.1\\
+            ((\neg \phi) \lor (\phi \lor \psi))\\
+        Asociativa($\lor$)\\
+            (((\neg \phi) \lor \phi) \lor \psi)\\
+        Teo 4.19.1, Identidad($\equiv$)\\
+            (\textrm{\textit{true}} \lor \psi)\\
+        Teo 4.19.1\\
+            \textrm{\textit{true}}
+    \end{derivation}
+    Por MT 4.21 se demuestra que\\
+    $\vdash_{\text{DS}} (\phi \to (\phi \lor \psi))$
+\end{logicenv}
+
+\begin{logicenv}[5]{PM3 es teorema en DS}
+    \hyperref[P40-c]{Punto 40.(b)}
+    \begin{derivation}
+            ((\phi \to \psi) \to ((\phi \lor \tau) \to (\psi \lor \tau)))\\
+        Conmutativa($\lor$), Leibniz($\phi = ((\phi \to \psi) \to (p \to (\psi \lor \tau)))$)\\
+            ((\phi \to \psi) \to ((\tau \lor \phi) \to (\psi \lor \tau)))\\
+        Conmutativa($\lor$), Leibniz($\phi = ((\phi \to \psi) \to ((\tau \lor \phi) \to p))$)\\
+            ((\phi \to \psi) \to ((\tau \lor \phi) \to (\tau \lor \psi)))
+    \end{derivation}
+    Por MT 4.21 se demuestra que\\
+    $\vdash_{\text{DS}} ((\phi \to \psi) \to ((\tau \lor \phi) \to (\tau \lor \psi)))$
+\end{logicenv}
+
+\begin{logicenv}[5]{PM4 es teorema en DS}
+    \begin{logic}
+        ((\phi \lor \psi) \equiv (\psi \lor \phi)) & Conmutativa($\lor$)\\
+        (((\phi \lor \psi) \to (\psi \lor \phi)) \land ((\psi \lor \phi) \equiv (\phi \lor \psi))) & Teo 4.33.3, Ecuanimidad(p0)\\
+        ((\phi \lor \psi) \to (\psi \lor \phi)) & Debilitamiento(p1)
+    \end{logic}
+\end{logicenv}
+
+
 
 \section{Sección 5.1}
 \subsection{Punto 1}
@@ -581,6 +684,16 @@
 
 \subsubsection{c}
 \begin{logicenv}{$p \to q \equiv r \equiv p \land q \equiv p \land r$}
-    
+    \[p \to (q \equiv R \equiv P \land q \equiv p \land r)\]
+\end{logicenv}
+
+\subsection{d}
+\begin{logicenv}{$p \equiv q \not\equiv r \gets \textrm{\textit{false}} \land p$}
+    \[(p \equiv q \not\equiv r) \gets \textrm{\textit{false}} \land p\]
+\end{logicenv}
+
+\subsection{e}
+\begin{logicenv}{$\neg p \land p \equiv p \to r$}
+    \[\neg(p \land p \equiv p) \to r\]
 \end{logicenv}
 \end{document}
