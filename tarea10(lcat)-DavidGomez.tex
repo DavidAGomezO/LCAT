@@ -1,0 +1,333 @@
+\documentclass{article}
+
+% Packages
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{logicDG}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+
+% Font
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+% Page configurations
+
+\geometry{
+    a4paper,
+    margin = 1cm,
+    top = 3cm,
+    bottom = 2.5cm,
+    headheight = 72pt
+}
+\newcommand{\logo}{C:/Users/usuario/Documents/U/logo-eci.jpg}
+\newcommand{\titlename}{Tarea 10}
+\renewcommand{\author}{David Gómez}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\author}
+\fancyhead[LE]{\nouppercase{\leftmark\hfill\rightmark}}
+\fancyhead[R]{\includegraphics[width = 4cm]{\logo}}
+\fancyfoot[C]{Página \thepage}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{rojoEci}\leaders\hrule height \headrulewidth\hfill}}
+
+\hyphenpenalty = 10000
+
+\setlength{\parindent}{0pt}
+
+% Colors
+\definecolor{rojoEci}{RGB}{225, 70, 49}
+
+% Documento
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+ 
+        \textbf{\fontsize{45}{\baselineskip}\selectfont{\titlename}}
+
+        \vspace{4cm}
+
+        {\Large Hecho por}
+
+        \vspace{1cm}
+
+        {\textbf{\LARGE\MakeUppercase{\author}}}
+
+        \vspace{2cm}
+
+        \includegraphics[width = .8\textwidth]{\logo}
+
+        \vspace{2cm}
+
+        {\Large Estudiante de Matemáticas\\[5pt]
+
+        Escuela Colombiana de Ingeniería Julio Garavito\\[5pt]
+
+        Colombia\\[5pt]
+
+        \today}
+             
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+\section{Sección 5.3}
+
+\subsection{Punto 5}
+\subsubsection{a}
+\begin{logicenv}{$\theo{}{DS}{\phi \to (\psi \to \phi)}$}
+    \begin{align*}
+            \res{\phi}\\
+        \why[\Rightarrow]{Debilitamiento($\lor$)}\\
+            \res{\phi \lor \neg \psi}\\
+        \why{Conmutativa($\lor$)}\\
+            \res{\neg \psi \lor \phi}\\
+        \why{Teo 4.28.1}\\
+            \res{\psi \to \phi}
+    \end{align*}
+    Por MT 5.5.1 se demuestra que\\
+    $\theo{}{DS}{\phi \to (\psi \to \phi)}$
+\end{logicenv}
+
+\subsubsection{b}
+\begin{logicenv}{$\theo{}{DS}{((\phi \to \psi) \to \phi) \to \phi}$}
+    \begin{align*}
+            \res{(\phi \to \psi) \to \phi}\\
+        \why{Teo 4.28.1}\\
+            \res{\neg(\phi \to \psi) \lor \phi}\\
+        \why{Dist($\neg$, $\to$), Leibniz($\phi = p \lor \phi)$}\\
+            \res{(\phi \land \neg \psi) \lor \phi}\\
+        \why{Dist($\lor$, $\land$)}\\
+            \res{(\phi \lor \phi) \land (\phi \lor \neg \psi)}\\
+        \why{Idempotencia($\lor$)}\\
+            \res{\phi \land (\phi \lor \neg \psi)}\\
+        \why[\Rightarrow]{Debilitamiento($\land$)}\\
+            \res{\phi}
+    \end{align*}
+    Por MT 5.5.1 se demuestra que\\
+    $\theo{}{DS}{((\phi \to \psi) \to \phi) \to \phi}$
+\end{logicenv}
+
+\subsubsection{c}
+\begin{logicenv}{$\theo{}{DS}{(\phi \to \psi) \to ((\psi \to \tau) \to (\phi \to \tau))}$}
+    \begin{align*}
+            \res{(\psi \to \tau) \to (\phi \to \tau)}\\
+        \why{Teo 4.28.1}\\
+            \res{\neg(\psi \to \tau) \lor (\phi \to \tau)}\\
+        \why{Teo 4.28.1 Leibniz($\phi = \neg(\psi \to \tau) \lor p$)}\\
+            \res{\neg(\psi \to \tau) \lor (\neg\phi \lor \tau)}\\
+        \why{Dist($\neg$, $\to$), Leibniz($\phi = p \lor (\neg\phi \lor \tau)$)}\\
+            \res{(\psi \land \neg\tau) \lor (\neg\phi \lor \tau)}\\
+        \why{Dist($\lor$, $\land$)}\\
+            \res{(\neg\phi \lor \tau \lor \psi) \land (\neg\phi \lor \tau \lor \neg\tau)}\\
+        \why{Teo 4.19.1, Identidad($\equiv$), Leibniz($\phi = (\neg\phi \lor \tau \lor \psi) \land (\neg\phi \lor p)$)}\\
+            \res{(\neg\phi \lor \tau \lor \psi) \land (\neg\phi \lor \text{\textit{true}})}\\
+        \why{Teo 4.19.1, Identidad($\equiv$), Leibniz($\phi = (\neg\phi \lor \tau \lor \psi) \land p$)}\\
+            \res{(\neg\phi \lor \tau \lor \psi) \land \text{\textit{true}}}\\
+        \why{Teo 4.24.3}\\
+            \res{\neg\phi \lor \tau \lor \psi}\\
+        \why[\Leftarrow]{Debilitamiento($\lor$)}\\
+            \res{\neg\phi \lor \psi}\\
+        \why{Teo 4.28.1}\\
+            \res{\phi \to \psi}
+    \end{align*}
+    Por MT 5.5.2, y Def($\gets$) se demuestra que\\
+    $\theo{}{DS}{(\phi \to \psi) \to ((\psi \to \tau) \to (\phi \to \tau))}$
+\end{logicenv}
+
+
+\subsection{Punto 6}
+
+\subsubsection{a}
+\begin{logicenv}{$\theo{}{DS}{(\phi \to \psi) \to (\phi \lor \tau \to \psi \lor \tau)}$}
+    \begin{align*}
+            \res{\phi \to \psi}\\
+        \why{Teo 4.28.1}\\
+            \res{\neg\phi \lor \psi}\\
+        \why[\Rightarrow]{Debilitamiento($\lor$)}\\
+            \res{\neg\phi \lor \psi \lor \tau}\\
+        \why{Teo 4.19.4}\\
+            \res{\phi \lor \psi  \lor \tau \equiv \psi \lor \tau}\\
+        \why{Idempotencia($\lor$), Leibniz($\phi = \phi \lor \psi \lor p \equiv \psi \lor \tau)$}\\
+            \res{\phi \lor \psi \lor \tau \lor \tau \equiv \psi \lor \tau}\\
+        \why{Conmutativa($\lor$)}\\
+            \res{\phi \lor \tau \lor \psi \lor \tau \equiv \psi \lor \tau}\\
+        \why{Def($\to$)}\\
+            \res{\phi \lor \tau \to \psi \lor \tau}
+    \end{align*}
+    Por MT 5.5.1 se demuestra que\\
+    $\theo{}{DS}{(\phi \to \psi) \to (\phi \lor \tau \to \psi \lor \tau)}$
+\end{logicenv}
+
+\subsubsection{b}
+\begin{logicenv}[2]{$\theo{}{DS}{(\phi \to \psi) \to (\phi \land \tau \to \psi \land \tau)}$}
+    \begin{align*}
+            \res{(\phi \land \tau) \to (\psi \land \tau)}\\
+        \why{Teo 4.28.1}\\
+            \res{\neg(\phi \land \tau) \lor (\psi \land \tau)}\\
+        \why{Dist($\neg$, $\land$), Leibniz($\phi = p \lor (\psi \land \tau)$)}\\
+            \res{\neg\phi \lor \neg\tau \lor (\psi \land \tau)}\\
+        \why{Dist($\lor$, $\land$), Leibniz($\phi = \neg\phi \lor p$)}\\
+            \res{\neg\phi \lor ((\neg\tau \lor \psi) \land (\neg\tau \lor \tau))}\\
+        \why{Teo 4.19.1, Identidad($\equiv$), Leibniz($\phi = \neg\phi \lor ((\neg\tau \lor \psi) \land p)$)}\\
+            \res{\neg\phi \lor ((\neg\tau \lor \psi) \land \text{\textit{true}})}\\
+        \why{Teo 4.24.3, Leibniz($\phi = \neg\phi \lor p$)}\\
+            \res{\neg\phi \lor \neg\tau \lor \psi}\\
+        \why[\Leftarrow]{Debilitamiento($\lor$)}\\
+            \res{\neg\phi \lor \psi}\\
+        \why{Teo 4.28.1}\\
+            \res{\phi \to \psi}
+    \end{align*}
+    Por MT 5.5.2, Def($\gets$) se demuestra que\\
+    $\theo{}{DS}{(\phi \to \psi) \to (\phi \land \tau \to \psi \land \tau)}$
+\end{logicenv}
+
+
+\section{Sección 5.4}
+\subsection{Punto 8}
+\subsubsection{a}
+\begin{logicenv}{Si {$\theo{\Gamma}{DS}{\phi}$ , entonces $\theo{\Gamma}{DS}{\phi \lor \psi}$}}
+    \begin{logic}
+        \theo{\Gamma}{DS}{\phi} & Suposición\\
+        \phi \to (\phi \lor \psi) & Def(Debilitamiento($\lor$))\\
+        \phi \lor \psi & Modus Ponens(p1, p0)
+    \end{logic}
+    El uso de Modus Ponens requiere que $\phi$ se tenga, pero se sabe que $\theo{\Gamma}{DS}{\phi}$, Por lo que, usando Transitividad($\to$)
+    $\theo{\Gamma}{DS}{\phi \lor \psi}$
+\end{logicenv}
+
+\subsubsection{b}
+\begin{logicenv}{Si $\theo{\Gamma}{DS}{\phi \land \psi}$ , entonces $\theo{\Gamma}{DS}{\phi}$}
+    \begin{logic}
+        \theo{\Gamma}{DS}{\phi \land \psi} & Suposición\\
+        (\phi \land \psi) \to \phi & Def(Debilitamiento($\land$))\\
+        \phi & Modus Ponens(p1, p0)
+    \end{logic}
+    El uso de Modus Ponens requiere que $\phi \land \psi$ se tenga, pero se sabe que $\theo{\Gamma}{DS}{\phi \land \psi}$, Por lo que, usando Transitividad($\to$) $\theo{\Gamma}{DS}{\phi}$
+\end{logicenv}
+
+\subsubsection{c}
+\begin{logicenv}[5]{Si $\theo{\Gamma}{DS}{\phi}$ y $\theo{\Gamma}{DS}{\psi}$ , entonces $\theo{\Gamma}{DS}{\phi \land \psi}$}
+    \begin{logic}
+        \theo{\Gamma}{DS}{\phi} \text{ y } \theo{\Gamma}{DS}{\psi} & Suposición\\
+        \Gamma \vDash \phi \text{ y } \Gamma \vDash \psi & Coherencia(p0)\\
+        (\exists \mathbf{v} \,\vert\, \forall x \in \Gamma : \val{v}{x} = \mathtt{T}) & Suposición($\Gamma$ es satisfacible)\\
+        \val{v}{\phi} = \mathtt{T} \text{ y } \val{v}{\psi} = \mathtt{T} & Def(p2)(p1)\\
+        \val{v}{\phi \land \psi} = \mathtt{T} & MT 2.23($\land$)(p3)\\
+        \Gamma \vDash \phi \land \psi & (p4, p3)\\
+        \theo{\Gamma}{DS}{\phi \land \psi} & Completitud(p5)
+    \end{logic}
+\end{logicenv}
+
+\subsection{Punto 10}
+\begin{logicenv}{$\theo{\Gamma}{DS}{\phi}$ sii $\Gamma \cup \{\neg\phi\}$ es insatisfacible}
+    \begin{logic}
+        \Gamma \text{ es satisfacible} & Suposición\\
+        \text{Demostración 1}\\
+        \text{Demostración 2}\\
+        \theo{\Gamma}{DS}{\phi} sii \Gamma \cup \{\neg\phi\} es insatisfacible
+    \end{logic}
+\end{logicenv}
+\begin{subproof}{Demostración 1}
+    Si $\theo{\Gamma}{DS}{\phi}$ , entonces $\Gamma \cup \{\neg\phi\}$ es insatisfacible
+    \begin{logic}
+        \theo{\Gamma}{DS}{\phi} & Suposición\\
+        \Gamma\vDash\phi & Coherencia(p0)\\
+        (\exists \mathbf{v} \,\vert\, \forall x \in \Gamma : \val{v}{x} = \mathtt{T}) & Def(p1)\\
+        \val{v}{\phi} = \mathtt{T} & (p2, p1)\\
+        \val{v}{\neg \phi} = \mathtt{F} & MT 2.23($\neg$)\\
+        \text{Demostración 1.1}\\
+        \Gamma \cup \{\neg\phi\} \text{ es insatisfacible} & (p5)
+    \end{logic}
+\end{subproof}
+\begin{subproof}[2]{Demostración 1.1}
+    \begin{logic}
+        \Gamma \cup \{\neg\phi\} \text{ es satisfacible} & Suposición\\
+        \Gamma \text{ es satisfacible y } \{\neg\phi\} \text{ es satisfacible} & (p0)\\
+        (\exists \mathbf{w} \,\vert\, \forall x \in \Gamma : \val{w}{x} = \mathtt{T}) & Def(p1)\\
+        (\exists \mathbf{w} \,\vert\, \forall x \in \{\neg\phi\} : \val{w}{x} = \mathtt{T}) & Def(p1)\\
+        \val{w}{\phi} = \mathtt{T} & (p1 Demostración 1)\\
+        \val{w}{\neg\phi} = \mathtt{T} & (p3)\\
+        \val{w}{\phi} = \mathtt{F} & MT 2.23($\neg$)(p5)\\
+        \val{w}{\phi} = \mathtt{T} \text{ y } \val{w}{\phi} = \mathtt{F} & Absurdo(p6, p4)
+    \end{logic}
+\end{subproof}
+
+\begin{subproof}{Demostración 2}
+    Si $\Gamma \cup \{\neg\phi\}$ es insatisfacible entonces $\theo{\Gamma}{DS}{\phi}$
+    \begin{logic}
+        \Gamma \cup \{\neg\phi\} \text{ es insatisfacible} & Suposición\\
+        (\forall \mathbf{v} : (\exists x \in \Gamma \,\vert\, \val{v}{x} = \mathtt{F})) & Def(p0)\\
+        \Gamma \text{ es satisfacible} & (p0 punto10)\\
+        \{\neg\phi\} \text{es insatisfacible} & (p2 ,p0)\\
+        \val{v}{\neg\phi} = \mathtt{F} & (p3)\\
+        \val{v}{\phi} = \mathtt{T} & MT 2.23($\neg$)(p4)\\
+        \Gamma\vDash\phi & (p5, p2)\\
+        \theo{\Gamma}{DS}{\phi} & Completitud(p6)
+    \end{logic}
+\end{subproof}
+
+\subsection{Punto 11}
+\subsubsection{a}
+\begin{logicenv}[5]{Si $\theo{\Gamma}{DS}{\phi \lor \psi}$ , entonces $\Gamma \cup \{\neg \phi\}$ o $\Gamma \cup \{\neg \psi\}$ es satisfacible}
+    \begin{logic}
+        \Gamma \text{ es satisfacible} & Suposición\\
+        \theo{\Gamma}{DS}{\phi \lor \psi} & Suposición\\
+        (\exists \mathbf{v} \,\vert\, \forall x \in \Gamma : \val{v}{x} = \mathtt{T}) & Def.(p0)\\
+        \Gamma\vDash \phi \lor \psi & Coherencia(p1)\\
+        \val{v}{\phi \lor \psi} = \mathtt{T} & (p3, p2)\\
+        \val{v}{\phi} = \mathtt{T} \text{ o } \val{v}{\psi} = \mathtt{T}\\
+        \text{Suposición 1}\\
+        \text{Suposición 2}\\
+        \text{Suposición 3}\\
+        \Gamma \cup \{\neg\phi\} \text{ o } \Gamma \cup \{\neg\psi\} \text{ es insatisfacible}
+    \end{logic}
+\end{logicenv}
+
+\begin{subproof}{Suposición 1}
+    \begin{logic}
+        \val{v}{\phi} = \mathtt{T} \text{ y } \val{v}{\psi} = \mathtt{T}\\
+        \Gamma \cup \{\neg\phi\} \text{ es insatisfacible} & (p0, p3 Punto 11)\\
+        \Gamma \cup \{\neg\psi\} \text{ es insatisfacible} & (p0, p3 Punto 11)
+    \end{logic}
+\end{subproof}
+\begin{subproof}{Suposición 2}
+    \begin{logic}
+        \val{v}{\phi} = \mathtt{T} \text{ y } \val{v}{\psi} = \mathtt{F}\\
+        \Gamma \cup \{\neg\phi\} \text{ es insatisfacible} & (p0, p3 Punto 11)\\
+        \Gamma \cup \{\neg\psi\} \text{ es satisfacible} & (p0, p3 Punto 11)
+    \end{logic}
+\end{subproof}
+\begin{subproof}{Suposición 3}
+    \begin{logic}
+        \val{v}{\phi} = \mathtt{F} \text{ y } \val{v}{\psi} = \mathtt{T}\\
+        \Gamma \cup \{\neg\phi\} \text{ es satisfacible} & (p0, p3 Punto 11)\\
+        \Gamma \cup \{\neg\psi\} \text{ es insatisfacible} & (p0, p3 Punto 11)
+    \end{logic}
+\end{subproof}
+
+
+\subsubsection{b}
+\begin{logicenv}[5]{Si $\theo{\Gamma}{DS}{\neg(\phi \lor \psi)}$ , entonces $\Gamma \cup \{\neg\phi, \neg\psi\}$ es satisfacible}
+    \begin{logic}
+        \Gamma \text{ es satisfacible} & Suposición\\
+        \theo{\Gamma}{DS}{\neg(\phi \lor \psi)} & Suposición\\
+        \Gamma\vDash \neg(\phi \lor \psi) & Coherencia(p1)\\
+        (\exists \mathbf{v} \,\vert\, \forall x \in \Gamma : \val{v}{x} = \mathtt{T}) & Def(p0)\\
+        \val{v}{\neg(\phi \lor \psi)} = \mathtt{T} & (p3, p2)\\
+        \val{v}{\neg\phi \land \neg\psi} = \mathtt{T} & Dist($\neg$, $\lor$)(p4)\\
+        \val{v}{\neg\phi} = \mathtt{T} \text{ y } \val{v}{\neg\psi} = \mathtt{T} & MT 2.23($\land$)(p5)\\
+        \Gamma \cup \{\neg\phi, \neg\psi\} \text{ es satisfacible} & (p4, p0)
+    \end{logic}
+\end{logicenv}
+
+\end{document}
