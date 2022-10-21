@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[twoside]{article}
 
 % Packages
 \usepackage{mathtools}
@@ -10,6 +10,7 @@
 \usepackage{geometry}
 \usepackage{fancyhdr}
 \usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
 
 % Font
 \usepackage{lmodern}
@@ -229,12 +230,12 @@
 \end{logicenv}
 
 \subsection{Punto 10}
-\begin{logicenv}{$\theo{\Gamma}{DS}{\phi}$ sii $\Gamma \cup \{\neg\phi\}$ es insatisfacible}
+\begin{logicenv}[5]{$\theo{\Gamma}{DS}{\phi}$ sii $\Gamma \cup \{\neg\phi\}$ es insatisfacible}
     \begin{logic}
         \Gamma \text{ es satisfacible} & Suposición\\
         \text{Demostración 1}\\
         \text{Demostración 2}\\
-        \theo{\Gamma}{DS}{\phi} sii \Gamma \cup \{\neg\phi\} es insatisfacible
+        \theo{\Gamma}{DS}{\phi} \text{ sii } \Gamma \cup \{\neg\phi\} \text{ es insatisfacible }
     \end{logic}
 \end{logicenv}
 \begin{subproof}{Demostración 1}
@@ -330,4 +331,98 @@
     \end{logic}
 \end{logicenv}
 
+
+\section{Sección 5.5}
+\subsection{Punto 19}
+\begin{logicenv}[5]{$\theo{\Gamma}{DS}{\psi \to \phi}$ sii $\theo{\Gamma}{DS}{\psi \land \neg\phi \to \neg\psi}$}
+    \begin{logic}
+        \Gamma \text{ es satisfacible} & Suposición\\
+        \text{Demostración 1}\\
+        \text{Demostración 2}\\
+        \theo{\Gamma}{DS}{\psi \to \phi} \text{ sii } \theo{\Gamma}{DS}{\psi \land \neg\phi \to \neg\psi}
+    \end{logic}
+\end{logicenv}
+\begin{subproof}{Si $\theo{\Gamma}{DS}{\psi \to \phi}$ , entonces $\theo{\Gamma}{DS}{\psi \land \neg\phi \to \neg\psi}$}
+    \begin{logic}
+        \theo{\Gamma}{DS}{\psi \to \phi} & Suposición\\ %0
+        \Gamma\vDash \psi \to \phi & Coherencia(p0)\\ %1
+        (\exists \mathbf{v} \,\vert\, \forall x \in \Gamma : \val{v}{x} = \mathtt{T}) & Def(p0 Punto 19)\\ %2
+        \val{v}{\psi \to \phi} = \mathtt{T} & (p2, p1)\\ %3
+        \val{v}{\psi \land \neg\phi \to \neg\psi} = \mathtt{T} & Lema 19.1.2(p3)\\ %4
+        \Gamma\vDash \psi \land \neg\phi \to \neg\psi (p4, p0)\\%5
+        \theo{\Gamma}{DS}{\psi \land \neg\phi \to \neg\psi} & Completitud(p5)
+    \end{logic}
+\end{subproof}
+\begin{subproof}{Si $\theo{\Gamma}{DS}{\psi \land \neg\phi \to \neg\psi}$ , entonces $\theo{\Gamma}{DS}{\psi \to \phi}$}
+    \begin{logic}
+        \theo{\Gamma}{DS}{\psi \land \neg\phi \to \neg\psi} & Suposición\\ %0
+        \Gamma\vDash \psi \land \neg\phi \to \neg\psi & Coherencia(p0)\\%1
+        (\exists \mathbf{v} \,\vert\, \forall x \in \Gamma : \val{v}{x} = \mathtt{T}) & Def(p0 Punto 19)\\%2
+        \val{v}{\psi \land \neg\phi \to \neg\psi} = \mathtt{T} & (p2, p1)\\%3
+        \val{v}{\psi \to \phi} = \mathtt{T} & Lema 19.1.1 (p3)\\%4
+        \Gamma\vDash \psi \to \phi & (p4, p0)\\%5
+        \theo{\Gamma}{DS}{\psi \to \phi} & Completitud(p5)
+    \end{logic}
+\end{subproof}
+\begin{subproof}{Lema 19.1}
+    \begin{derivation}
+            \psi \land \neg\phi \to \neg\psi\\
+        Dist($\neg$, $\to$)\\
+            \neg(\psi \to \phi) \to \neg\psi\\
+        Contrapositiva\\
+            \psi \to (\psi \to \phi)\\
+        Teo 4.31.5\\
+            (\psi \land \psi) \to \phi\\
+        Teo 4.24.5, Leibniz($\phi = p \to \phi$)\\
+            \psi \to \phi
+    \end{derivation}
+    \begin{itemize}
+        \item[.1] Por MT 4.21 se demuestra que $(\psi \land \neg\phi \to \neg\psi) \equiv (\psi \to \phi)$
+        \item[.2] Por Conmutativa($\equiv$) se demuestra que $(\psi \to \phi) \equiv (\psi \land \neg\phi \to \neg\psi)$
+    \end{itemize}
+\end{subproof}
+
+
+\subsection{Punto 26}
+\begin{logicenv}[5]{26}
+    ``Si $a, b \in \mathbb{Z}$ son tales que $par(ab)$, entonces al menos uno de $a$ y $b$ es par''
+
+    Sea $S_n$ el termino general de la sucesión que describe a los pares, se define el conjunto de los pares como:
+    \[\{S_n\} = \{2n, n \in \mathbb{Z}\}\]
+
+    Sea $U_n$ el termino general de la sucesión que describe a los impares, se define el conjunto de los impares como:
+    \[\{U_n\} = \{2n + 1, n \in \mathbb{Z}\}\]
+
+    \begin{logic}
+        a, b \in \mathbb{Z} \land ab \in \{S_n\} & Suposición\\%0
+        a, b \in \{U_n\} & Suposición\\%1
+        ab \in \{S_n\} & Debilitamiento($\land$)(p0)\\%2
+        a, b \in \mathbb{Z} & Debilitamiento($\land$)(p0)\\%3
+        ab = 2n \text(para algún $n$ entero) & (p2, p1)\\%4
+        a = 2c_0 + 1 & (p1)\\%5
+        b = 2c_1 + 1 & (p1)\\%6
+        ab = (2c_0 + 1)(2c_1 + 1) = 2(2c_0c_1 + c_0 + c_1) + 1 = 2c_2 + 1 &(p6, p5)\\%7
+        ab \in \{U_n\} & (p7)\\%8
+        ab \in \{U_n\} \land ab \in \{S_n\} & Contradicción (p8, p2)
+    \end{logic}
+    Por lo que se concluye $\neg(a, b \in \{U_n\})$, es decir\\
+    $a \in \{S_n\} \lor b \in \{S_n\}$
+\end{logicenv}
+
+\subsection{Punto 27}
+\begin{logicenv}[5]{27}
+    ``Si $a, b \in \mathbb{Z}$ son tales que $par(ab)$, entonces $a$ y $b$ son impares''
+
+    Sea $U_n$ el termino general de la sucesión que describe a los impares, se define el conjunto de los impares como:
+    \[\{U_n\} = \{2n + 1, n \in \mathbb{Z}\}\]
+
+    \begin{logic}
+        a, b \in \mathbb{Z} \land ab \in \{U_n\} & Suposición\\%0
+        a, b \in \{U_n\} & Debilitamiento($\land$)\\%1
+        a = 2k_0 + 1 & (p1)\\%2
+        b = 2k_1 + 1 & (p1)\\%3
+        ab = (2k_0 + 1)(2k_1 + 1) = 2(2k_0k_1 + k_0 + k_1) + 1 =2k_2 + 1 & (p3, p1)\\%4
+        ab \in \{U_n\} 
+    \end{logic}
+\end{logicenv}
 \end{document}
