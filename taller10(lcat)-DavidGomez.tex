@@ -1,0 +1,139 @@
+\documentclass[twoside]{article}
+
+% Packages
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{logicDG}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+% Font
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+% Page configurations
+
+\geometry{
+    a4paper,
+    margin = 1cm,
+    top = 3cm,
+    bottom = 2.5cm,
+    headheight = 72pt
+}
+\newcommand{\logo}{C:/Users/usuario/Documents/U/logo-eci.jpg}
+\title{Titulo}
+\author{Autor}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\author}
+\fancyhead[LE]{\nouppercase{\leftmark\hfill\rightmark}}
+\fancyhead[R]{\includegraphics[width = 4cm]{\logo}}
+\fancyfoot[C]{Página \thepage}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{rojoEci}\leaders\hrule height \headrulewidth\hfill}}
+
+\hyphenpenalty = 10000
+
+\setlength{\parindent}{0pt}
+
+\newcommand{\sect}[1]{\section*{#1} \addcontentsline{toc}{section}{#1}}
+\newcommand{\subsect}[1]{\subsubsection*{#1} \addcontentsline{toc}{subsubsection}{#1}}
+\newcommand{\subsubsect}[1]{\subsubsection*{#1} \addcontentsline{toc}{subsubsection}{#1}}
+
+% Colors
+\definecolor{rojoEci}{RGB}{225, 70, 49}
+
+% Documento
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+ 
+        \textbf{\fontsize{45}{\baselineskip}\selectfont{\@title}}
+
+        \vspace{4cm}
+
+        {\Large Hecho por}
+
+        \vspace{1cm}
+
+        {\textbf{\LARGE\MakeUppercase{\@author}}}
+
+        \vspace{2cm}
+
+        \includegraphics[width = .8\textwidth]{\logo}
+
+        \vspace{2cm}
+
+        {\Large Estudiante de Matemáticas\\[5pt]
+
+        Escuela Colombiana de Ingeniería Julio Garavito\\[5pt]
+
+        Colombia\\[5pt]
+
+        \today}
+             
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+\sect{Punto 1}
+\subsect{Teorema 4.33.3}
+\begin{logicenv}{Teo 4.33.3}
+    \begin{align*}
+            \res{(\phi \to \psi) \land (\psi \to \tau)}\\
+        \why{Teo 4.28.1}\\
+            \res{((\neg\phi \to \psi) \land (\neg\psi \lor \tau))}\\
+        \why[\Rightarrow]{Corte}\\
+            \res{\neg\phi \lor \tau}\\
+        \why{Teo 4.28.1}\\
+            \res{\phi \to \tau}
+    \end{align*}
+    Por MT 5.5.1 se demuestra que\\
+    $\theo{}{DS}{((\phi \to \psi) \land (\psi \to \tau)) \to (\phi \to \tau)}$
+\end{logicenv}
+
+\subsect{Teorema 4.36.2}
+\begin{logicenv}{Teo 4.36.2}
+    \begin{align*}
+            \res{(\phi \equiv \psi) \land (\psi \to \tau)}\\
+        \why{Def($\equiv$)}\\
+            \res{(\phi \to \psi) \land (\psi \to \phi) \land (\psi \to \tau)}\\
+        \why{Def.Transitividad($\to$)}\\
+            \res{(\psi \to \phi) \land (\phi \to \tau)}\\
+        \why{Debilitamiento($\land$)}\\
+            \res{\phi \to \tau}
+    \end{align*}
+    Por Mt 5.5.1 se demuestra que\\
+    $\theo{}{DS}{(\phi \equiv \psi) \land (\psi \to \tau) \to (\phi \to \tau)}$
+\end{logicenv}
+
+\sect{Punto 2}
+\subsect{Teorema 4.31.4}
+\begin{logicenv}{Teo 4.31.4}
+    \begin{logic}
+        \phi \equiv \psi & Suposición del antecedente\\%0
+        (\phi \to \psi) \land (\psi \to \phi) & Def($\equiv$), Ecuanimidad(p0)\\%1
+        \phi \to \psi & Debilitamiento($\land$)
+    \end{logic}
+    Por suposición del antecedente se demuestra que\\
+    $\theo{}{DS}{(\phi \equiv \psi) \to (\phi \to \psi)}$
+\end{logicenv}
+
+\subsect{Teorema 4.33.1}
+\begin{logicenv}{Teo 4.33.1}
+    \begin{logic}
+        \phi & Suposición del antecedente
+    \end{logic}
+    Por suposición del antecedente se demuestra que\\
+    $\theo{}{DS}{\phi \to \phi}$    
+\end{logicenv}
+\end{document}
