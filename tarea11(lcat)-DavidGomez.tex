@@ -1,0 +1,301 @@
+\documentclass[twoside]{article}
+
+% Packages
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{logicDG}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+\usepackage[hidelinks]{hyperref}
+
+% Font
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+% Page configurations
+
+\geometry{
+    a4paper,
+    margin = 2.5cm,
+    top = 4cm,
+    bottom = 2.5cm,
+    headheight = 72pt
+}
+\newcommand{\logo}{C:/Users/usuario/Documents/U/logo-eci.jpg}
+\renewcommand{\author}{David Gómez}
+\renewcommand{\title}{Tarea 11}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\author}
+\fancyhead[LE]{\title}
+\fancyhead[R]{\includegraphics[width = 4cm]{\logo}}
+\fancyfoot[C]{Página \thepage}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{rojoEci}\leaders\hrule height \headrulewidth\hfill}}
+
+\hyphenpenalty = 10000
+
+\setlength{\parindent}{0pt}
+
+\newcommand{\sect}[1]{\section*{#1} \addcontentsline{toc}{section}{#1}}
+\newcommand{\subsect}[1]{\subsubsection*{#1} \addcontentsline{toc}{subsubsection}{#1}}
+\newcommand{\subsubsect}[1]{\subsubsection*{#1} \addcontentsline{toc}{subsubsection}{#1}}
+
+% Colors
+\definecolor{rojoEci}{RGB}{225, 70, 49}
+
+% Documento
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+ 
+        \textbf{\fontsize{45}{\baselineskip}\selectfont{\title}}
+
+        \vspace{4cm}
+
+        {\Large Hecho por}
+
+        \vspace{1cm}
+
+        {\textbf{\LARGE\MakeUppercase{\author}}}
+
+        \vspace{2cm}
+
+        \includegraphics[width = .8\textwidth]{\logo}
+
+        \vspace{2cm}
+
+        {\Large Estudiante de Matemáticas\\[5pt]
+
+        Escuela Colombiana de Ingeniería Julio Garavito\\[5pt]
+
+        Colombia\\[5pt]
+
+        \today}
+             
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+\sect{Sección 6.1}
+\subsect{Punto 4}
+\begin{logicenv}[5]{Lógica aristotélica}
+    La lógica aristotélica tiene únicamente 4 posibles fórmulas, y en ellas se usa únicamente una variable junto a una propiedad que cumple o no.
+    \begin{gather*}
+        \mathcal{L} = (\mathcal{F}, \mathcal{P}, \mathcal{X})\\
+        \mathcal{F} = \varnothing\\
+        \mathcal{P} = P\\
+        \mathcal{X} = S
+    \end{gather*}
+    Ejemplo:\\
+    Universal afirmativo(A) = Todo $S$ es $P$\\
+    que escrito como fórmula queda: $\forall S (P(S))$
+\end{logicenv}
+
+\sect{Sección 6.2}
+% Sección 6.2: 2, 3
+\subsect{Punto 2}
+\begin{logicenv}[5]{Arbol de sintaxis de $n$ \hyperref[ej63]{Ejemplo 6.3}}
+    \begin{center}
+        \begin{tikzpicture}
+            \node{$n$};
+        \end{tikzpicture}
+    \end{center}
+\end{logicenv}
+\begin{logicenv}[5]{Árbol de sintaxis de $g(f(n), n)$ \hyperref[ej63]{Ejemplo 6.3}}
+    \begin{center}
+        \begin{tikzpicture}
+            \node {$g$}
+                child {node {$f$}
+                    child {node {$n$} }}
+                child {node {$n$}};
+        \end{tikzpicture}
+    \end{center}
+\end{logicenv}
+
+\begin{logicenv}[5]{Árbol de sintaxis de $f(g(f(n), n))$, \hyperref[ej63]{Ejemplo 6.3}}
+    \begin{center}
+        \begin{tikzpicture}
+            \node {$f$}
+                child {node {$g$}
+                    child {node {$f$}
+                        child {node{$n$}}}
+                    child {node {$n$}}};
+        \end{tikzpicture}
+    \end{center}
+\end{logicenv}
+
+\begin{logicenv}[10]{Ejemplo 6.3}
+    \label{ej63}
+    Sea $\mathcal{F} \ =\  \{n, f, g\}$ con \ $ar(n) \ =\  0$, \ $ar(f) \ =\  1$ y \ $ar(g) \ =\  2$. Entonces $n$, $g(f(n), n)$ y $f(g(f(n), n))$ son términos. Sin embargo las expresiones $n(f)$ , $g(f(n))$ y $g(f(n), n, n)$ no lo son ¿Por qué?
+\end{logicenv}
+
+\subsect{Punto 3}
+\begin{logicenv}[5]{3}
+    \begin{gather*}
+        a\\
+        b\\
+        c
+    \end{gather*}
+\end{logicenv}
+
+% Sección 6.3: 8, 10, 11, 12, 14, 16, 19
+\sect{Sección 6.3}
+\subsect{8}
+\subsubsect{a}
+\begin{logicenv}[10]{8.a}
+    María admira a todos los profesores.
+    \[(\forall x \,\vert\, P(x) : A(m, x))\]
+\end{logicenv}
+
+\subsubsect{b}
+\begin{logicenv}[10]{8.b}
+    Algún profesor admira a María.
+    \[(\exists x \,\vert\, P(x) : A(x, m))\]
+\end{logicenv}
+
+\subsubsect{c}
+\begin{logicenv}[10]{8.c}
+    \[A(m, m)\]
+\end{logicenv}
+
+\subsubsect{d}
+\begin{logicenv}[10]{8.d}
+    No todos los estudiantes asisten a todas las clases.
+    \[(\forall x \,\vert\, C(x) : (\exists y \,\vert\, E(x) : \neg B(y, x)))\]
+\end{logicenv}
+
+\subsubsect{e}
+\begin{logicenv}[10]{8.e}
+    Ninguna clase tuvo como asistentes a todos los estudiantes
+    \[\forall x \exists y (C(x) \land E(y) \land \neg B(y, x))\]
+\end{logicenv}
+
+\subsubsect{f}
+\begin{logicenv}[10]{8.f}
+    Ninguna clase tuvo como asistentes a estudiante alguno
+    \[(\forall x \forall y\,\vert\, C(x) \land E(y): \neg B(y, x))\]
+\end{logicenv}
+\subsect{10}
+\subsubsect{a}
+\begin{logicenv}{Todos tienen una madre}
+    \[\forall x \exists y (M(y, x))\]
+\end{logicenv}
+\subsubsect{b}
+\begin{logicenv}[5]{Todos tienen una madre y un padre}
+    \[\forall x \exists y \exists z (M(y, x) \land P(z, x))\]
+\end{logicenv}
+\subsubsect{c}
+\begin{logicenv}[5]{Quien sea que tiene una madre tiene un padre}
+    \[(\forall x\,\vert\, M(y, x) : P(z, x))\]
+\end{logicenv}
+\subsubsect{d}
+\begin{logicenv}{Juan es abuelo}
+    \begin{gather*}
+        \text{Juan} : j\\
+        P(x, y) \land P(j, x)
+    \end{gather*}
+\end{logicenv}
+
+\subsubsect{e}
+\begin{logicenv}{Ana y Jaime son primos}
+    \begin{gather*}
+        \text{Ana} : a\\
+        \text{Jaime} : j\\
+        (A(x, y) \lor H(x, y)) \land (M(x, a) \lor P(x, a)) \land (M(y, j) \lor P(y, j))
+    \end{gather*}
+\end{logicenv}
+
+\subsubsect{f}
+\begin{logicenv}[5]{Algunas madres son tias}
+    \[(\exists x \,\vert\, (M(y, z) \lor P(y, z)) : A(x, y) \land M(x, w))\]
+\end{logicenv}
+\subsubsect{g}
+\begin{logicenv}[5]{Ningún tío es padre}
+    \[(\forall x \,\vert\, ((P(y, z) \lor M(y, z)) \land H(x, y)) : \neg P(x, w))\]
+\end{logicenv}
+\subsubsect{h}
+\begin{logicenv}[5]{La abuela de nadie es padre de alguien}
+    \[\forall x \exists y (M(x, z) \land \neg M(z, w) \land P(x, y))\]
+\end{logicenv}
+\subsubsect{i}
+\begin{logicenv}{Juan y Juana son marido y mujer}
+    \begin{gather*}
+        \text{Juan} : j\\
+        \text{Juana} : ja\\
+        E(j, ja)
+    \end{gather*}
+\end{logicenv}
+\subsubsect{j}
+\begin{logicenv}{Carlos es el cuñado de Mónica}
+    \begin{gather*}
+        \text{Carlos} : c\\
+        \text{Mónica} : m\\
+        (H(x, m) \lor A(x, m)) \land E(c, m)
+    \end{gather*}
+\end{logicenv}
+
+\subsect{11}
+\subsubsect{a}
+\begin{logicenv}{Hay al menos dos elementos}
+    \[\exists x \exists y\]
+\end{logicenv}
+\subsubsect{b}
+\begin{logicenv}{Hay a lo sumo dos elementos}
+    \[\forall x (\exists y \land \neg \exists w)\]
+\end{logicenv}
+\subsubsect{c}
+\begin{logicenv}{Hay exactamente tres elementos}
+    \[\forall x \forall y \forall z (\neg \exists w)\]
+\end{logicenv}
+\subsubsect{d}
+\begin{logicenv}[5]{Para cualquier par de elementos, hay otro elemento distinto a ellos}
+    \[\forall x, \forall y (\exists w \land \neg P(x, w) \land \neg P(y, w))\]
+\end{logicenv}
+\subsect{12}
+\subsubsect{a}
+\begin{logicenv}[5]{Exactamente un elemento tiene la propiedad R}
+    \[(\exists x \,\vert\, P(x) : \neg \exists y \,\vert\,: P(x))\]
+\end{logicenv}
+\subsubsect{b}
+\begin{logicenv}[5]{Todos, excepto dos elementos tienen la propiedad R}
+    \[\exists y, z (\neg P(y) \land \neg P(z))\]
+\end{logicenv}
+\subsect{14}
+\begin{logicenv}{$\mathcal{L}$}
+    \begin{gather*}
+        \mathcal{F} = \emptyset\\
+        \mathcal{P} = \{E\}\\
+    \end{gather*}
+    Donde $ar(E) = 1$ y $E(x)$ simboliza ``la persona $x$ es egoísta''
+\end{logicenv}
+\subsubsect{a}
+\begin{logicenv}[5]{Todos los humanos son egoístas}
+    \[(\forall x\,\vert\,: E(x))\]
+\end{logicenv}
+\subsubsect{b}
+\begin{logicenv}[5]{Ningún humano es egoísta}
+    \[(\forall x \,\vert\,: \neg E(x))\]
+\end{logicenv}
+\subsubsect{c}
+\begin{logicenv}[5]{Algunos humanos son egoístas}
+    \[(\exists x\,\vert\, : E(x))\]
+\end{logicenv}
+\subsubsect{d}
+\begin{logicenv}[5]{Algunos humanos no son egoístas}
+    \[(\exists x \,\vert\,: \neg E(x))\]
+\end{logicenv}
+\subsect{16}
+
+\subsect{19}
+\end{document}
