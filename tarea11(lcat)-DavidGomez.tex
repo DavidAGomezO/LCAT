@@ -12,6 +12,7 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{trees}
+\usepackage{forest}
 \usepackage[hidelinks]{hyperref}
 
 % Font
@@ -296,6 +297,213 @@
     \[(\exists x \,\vert\,: \neg E(x))\]
 \end{logicenv}
 \subsect{16}
-
+\begin{logicenv}{$\mathcal{L}$}
+    \begin{gather*}
+        \mathcal{F} = \emptyset\\
+        \mathcal{P} = \{E, O\}
+    \end{gather*}
+    Donde $ar(E) = 1$, $ar(O) = 1$, $E(y)$ simboliza ``Usted engaña a $y$'' y $O(x)$ simboliza ``$x$ es una ocasión''.
+\end{logicenv}
+\subsubsect{a}
+\begin{logicenv}[5]{Usted puede engañar a algunos algunas veces}
+    \[\exists x \,\vert\, O(x) : E(y)\]
+\end{logicenv}
+\subsubsect{b}
+\begin{logicenv}[5]{Usted puede engañar a todos algunas veces}
+    \[\forall x \exists y (O(y) \land E(x))\]
+\end{logicenv}
+\subsubsect{c}
+\begin{logicenv}[5]{Usted no puede engañarlos a todos algunas veces}
+    \[\forall x \exists y (\neg E(x) \land O(y))\]
+\end{logicenv}
+\subsubsect{d}
+\begin{logicenv}[5]{Usted no puede engañar a alguien todas las veces}
+    \[\forall x \exists y (\neg E(y) \land O(x))\]
+\end{logicenv}
 \subsect{19}
+\begin{logicenv}[5]{19}
+    Tomando $\mathcal{L}_{19}$
+
+    \[(\forall t_0 \,\vert\, T(t_0) \land s_0 = \text{tarea}(t_0): s_1 = \text{inicio}(t_0) \land (\forall t_1 \,\vert\, t_1 \in \text{prer}(t_0) : C(t_1)))\]
+\end{logicenv}
+\vspace*{-.01cm}
+\begin{subproof}{$\mathcal{L}_{19}$}
+    \begin{gather*}
+        \mathcal{F} = \{\text{tarea}, \text{inicio}, \text{prer}\}\\
+    \mathcal{P} = \{T, C\}
+    \end{gather*}
+\end{subproof}
+
+% Sección 6.4: 3,4,5,6
+\sect{Sección 6.4}
+\subsect{Punto 3}
+\subsubsect{a}
+
+\subsubsect{b}
+\begin{logicenv}[5]{$S(m, x)$}
+    $x$ es libre
+\end{logicenv}
+\subsubsect{c}
+\begin{logicenv}[5]{$B(m, f(m))$}
+    No hay variables
+\end{logicenv}
+\subsubsect{d}
+\begin{logicenv}[5]{$B(x, y) \to \exists z S(z, y)$}
+    $x$ , $y$ son libres\\
+    $z$ es acotada
+\end{logicenv}
+\subsubsect{e}
+\begin{logicenv}[5]{$S(x, y) \to S(y, f(f(x)))$}
+    Todas las variables son libres
+\end{logicenv}
+\subsect{Punto 4}
+\subsubsect{a}
+\begin{logicenv}[5]{$P(c, c, d) \lor \forall x P(f(d), h(h(c, x), d), y)$}
+    todas las apariciones de $x$ son acotadas y todas las de $y$ son libres\\
+    el alcance de $\forall$ es a $x$
+\end{logicenv}
+\subsubsect{b}
+\begin{logicenv}[5]{$\exists y (P(x, y, x) \to \exists z Q(z, y, f(z)))$}
+    todas las apariciones de $y$ son acotadas por $\exists y$\\
+    todas las apariciones de $z$ son acotadas por $\exists z$\\
+    todas las apariciones de $x$ son libres
+\end{logicenv}
+\subsubsect{c}
+\begin{logicenv}[5]{$\exists y P(x, y, Z) \not\equiv \forall y Q(z, y, f(z))$}
+    $y$ es acotada en un momento por $\exists y$ y luego por $\forall y$\\
+    Todas las apariciones de $x$, $z$ son libres
+\end{logicenv}
+\subsubsect{d}
+\begin{logicenv}[5]{$\exists y (P(x, y, x) \not\equiv \forall y Q(z, y, f(z)))$}
+    $y$ es acotada en un momento por $\exists y$ y luego por $\forall y$\\
+    Todas las apariciones de $x$, $z$ son libres
+\end{logicenv}
+\subsubsect{e}
+\begin{logicenv}[5]{$\forall x \exists y P(x, y, x) \to \exists z Q(z, y, f(x))$}
+    $x$ es acotada por $\forall x$ y luego es libre\\
+    $z$ es acotada por $\exists z$\\
+    $y$ es libre
+\end{logicenv}
+\subsubsect{f}
+\begin{logicenv}[5]{$\forall z \exists y P(x, y, x) \to \exists z Q(z, y, f(x))$}
+    $y$ es acotada por $\exists y$  y luego es libre\\
+    $z$ es acotada por $\exists z$\\
+    $x$ es libre
+\end{logicenv}
+\subsubsect{g}
+\begin{logicenv}[5]{$\forall x (\exists y P(x, y, x) \land \exists z Q(z,  y, f(x)))$}
+    $x$ es acotada por $\forall x$\\
+    $y$ es acotada por $\exists y$ y luego es libre\\
+    $z$ es acotada por $\exists z$
+\end{logicenv}
+\subsubsect{h}
+\begin{logicenv}[5]{$\forall z (\exists y P(x, y, x) \land \exists z Q(z, y, f(x)))$}
+    $x$ es libre\\
+    $y$ es acotada por $\exists y$ y luego es libre\\
+    $z$ es acotada por $\exists z$
+\end{logicenv}
+\subsect{Punto 5}
+\subsubsect{a}
+\begin{logicenv}[5]{Arbol de sintaxis}
+    \begin{center}
+        \begin{forest}
+            for tree={parent anchor=south,child anchor=north}
+            [
+                $\exists x$
+                [
+                    $\land$
+                    [
+                        $P$
+                        [$y$]
+                        [$z$]
+                    ]
+                    [
+                        $\forall y$
+                        [
+                            $\lor$
+                            [
+                                $\neg$
+                                [
+                                    $Q$
+                                    [$y$]
+                                    [$x$]
+                                ]
+                            ]
+                            [
+                                $P$
+                                [$y$]
+                                [$z$]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        \end{forest}
+    \end{center}
+\end{logicenv}
+\subsubsect{b}
+\begin{logicenv}[5]{apariciones libres y acotadas}
+    $x$ es acotada por $\exists x$\\
+    $y$ es libre y luego acotada por $\forall y$\\
+    $z$ es libre
+\end{logicenv}
+\subsubsect{c}
+\begin{logicenv}[5]{c}
+    Sí, $y$ pues primero no se ve afectada en $P(y, z)$ por ningún cuantificador, sin embargo, luego se ve afectada en $\neg Q(y, x) \lor P(y, z)$ por $\forall y$
+\end{logicenv}
+\subsubsect{d}
+\begin{logicenv}[5]{d}
+    El alcance de $\exists x$ es $P(y, z) \land \forall y (\neg Q(y, x) \lor P(y, z))$
+\end{logicenv}
+\subsubsect{e}
+\begin{logicenv}[5]{e}
+    El alcance de $\forall y$ es $\neg Q(y, x) \lor P(y, z)$
+\end{logicenv}
+\subsubsect{f}
+\begin{logicenv}[5]{f}
+    $\exists x P(y, z) \land \forall y (\neg Q(y, x) \lor P(y, z))$
+    \begin{center}
+        \begin{forest}
+            for tree={parent anchor=south,child anchor=north}
+            [
+                $\land$
+                [
+                    $\exists x$
+                    [
+                        $P$
+                        [$y$]
+                        [$z$]
+                    ]
+                ]
+                [
+                    $\forall y$
+                    [
+                        $\lor$
+                        [
+                            $\neg$
+                            [
+                                $Q$
+                                [$y$]
+                                [$x$]
+                            ]
+                        ]
+                        [
+                            $P$
+                            [$y$]
+                            [$z$]
+                        ]
+                    ]
+                ]
+            ]
+        \end{forest}
+    \end{center}
+\end{logicenv}
+\subsect{Punto 6}
+\begin{logicenv}[10]{Definición de $quant(x, \phi)$}
+    Sea $\mathbb{C} = \{\equiv, \not\equiv, \land, \lor, \to, \gets\}$\\
+    Sea $fun(x)$ una función que encuentre el cuantificador más cercano a la izquierda de $x$ que tenga a $x$\\
+    Sea $op()$ una función que encuentre cualquier $c \in \mathbb{C}$\\
+    Sea $par(x)$ una función que encuentra la parentización de la sub-fórmula en la que se encuentra $x$
+    Si $op()$ retorna verdadero en el recorrido que hace $fun(x)$ y la posición retornada por $fun(x)$ no se encuentra inmediatamente a la izquierda de el primer paréntesis encontrado por $par(x)$, entonces $x$ es libre. 
+\end{logicenv}
 \end{document}
