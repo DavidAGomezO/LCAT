@@ -1,0 +1,196 @@
+\documentclass[twoside]{article}
+
+% Packages
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{logicDG}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+\usepackage{forest}
+\usepackage[hidelinks]{hyperref}
+
+% Font
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+% Page configurations
+
+\geometry{
+    a4paper,
+    margin = 2.5cm,
+    top = 4cm,
+    bottom = 2.5cm,
+    headheight = 72pt
+}
+\newcommand{\logo}{C:/Users/usuario/Documents/U/logo-eci.jpg}
+\renewcommand{\author}{David Gómez}
+\renewcommand{\title}{Taller 11}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\author}
+\fancyhead[LE]{\title}
+\fancyhead[R]{\includegraphics[width = 4cm]{\logo}}
+\fancyfoot[C]{Página \thepage}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{rojoEci}\leaders\hrule height \headrulewidth\hfill}}
+
+\hyphenpenalty = 10000
+
+\setlength{\parindent}{0pt}
+
+\newcommand{\sect}[1]{\section*{#1} \addcontentsline{toc}{section}{#1}}
+\newcommand{\subsect}[1]{\subsubsection*{#1} \addcontentsline{toc}{subsubsection}{#1}}
+\newcommand{\subsubsect}[1]{\subsubsection*{#1} \addcontentsline{toc}{subsubsection}{#1}}
+
+% Colors
+\definecolor{rojoEci}{RGB}{225, 70, 49}
+
+% Documento
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+ 
+        \textbf{\fontsize{45}{\baselineskip}\selectfont{\title}}
+
+        \vspace{4cm}
+
+        {\Large Hecho por}
+
+        \vspace{1cm}
+
+        {\textbf{\LARGE\MakeUppercase{\author}}}
+
+        \vspace{2cm}
+
+        \includegraphics[width = .8\textwidth]{\logo}
+
+        \vspace{2cm}
+
+        {\Large Estudiante de Matemáticas\\[5pt]
+
+        Escuela Colombiana de Ingeniería Julio Garavito\\[5pt]
+
+        Colombia\\[5pt]
+
+        \today}
+             
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+\sect{Punto 1}
+
+\begin{logicenv}[5]{Todos los latinos\dots}
+    \begin{gather*}
+        L(x) : \text{$x$ es latino}\\
+        N(x) : \text{$x$ es nórdico}\\
+        M(x) : \text{$x$ es mediterraneo}
+    \end{gather*}
+    \begin{align*}
+        (\forall x &\,\vert\, L(x) : M(x))\\
+        (\forall x & \,\vert\, N(x) : \neg M(x))\\
+        (\forall x & \,\vert\, M(x) : \neg L(x))
+    \end{align*}
+\end{logicenv}
+
+\sect{Punto 2}
+\begin{logicenv}{Todos los que no se presenten\dots}
+    \begin{gather*}
+        E(x) : \text{$x$ se presenta/ presenta el examen}\\
+        S(x) : \text{$x$ se presenta/ presenta el supletorio}\\
+        \text{Juan}: j
+    \end{gather*}
+    \begin{align*}
+        (\forall x &\,\vert\, \neg E(x) : S(x))\\
+        &\neg E(j)\\
+        &S(j)
+    \end{align*}
+\end{logicenv}
+
+\sect{Punto 3}
+\begin{logicenv}[5]{Los ánades no bailan\dots}
+    \begin{gather*}
+        A(x) : \text{$x$ es un ánade}\\
+        V(x) : \text{$X$ baila el vals}\\
+        O(x) : \text{$x$ es un oficial}\\
+        I(x) : \text{$x$ acepta una invitación a bailar el vals}\\
+        Av(x) : \text{$x$ es un ave de corral}\\
+        \mathbb{M} = \text{conjunto de ``mis'' aves de corral} 
+    \end{gather*}
+    \begin{align*}
+        (\forall x &\,\vert\, A(x) : \neg V(x))\\
+        (\forall x &\,\vert\, O(x) : I(x))\\
+        (\forall x &\,\vert\, x \in \mathbb{M} : A(x))\\
+        (\forall x & \,\vert\, x \in \mathbb{M} : \neg V(x))
+    \end{align*}
+\end{logicenv}
+
+\sect{Punto 4}
+\begin{logicenv}[5]{Lancelot ama a la Reina\dots}
+    \begin{gather*}
+        \text{Lancelot} : l\\
+        \text{Reina Ginebra} : g\\
+        F(x, y) : \text{$x$ es amigo de $y$}\\
+        \text{Rey Arturo} : a\\
+        L(x, y): \text{$x$ ama a $y$}
+    \end{gather*}
+    \begin{align*}
+        &L(l, g)\\
+        (\forall x &\,\vert\, F(x, l) : \neg L(l, x))\\
+        &F(a, l)\\
+        (\forall x, y &\,\vert\, (F(x, l) \land L(l, y)) : \neg L(x, y))\\
+        &\neg L(a, g)
+    \end{align*}
+\end{logicenv}
+
+\sect{Punto 5}
+\begin{logicenv}[5]{Todos confían en las personas\dots}
+    \begin{gather*}
+        C(x, y) : \text{$x$ confía en $y$}\\
+        D(x) : \text{$x$ es una deuda}\\
+        P(x, y) : \text{$x$ paga $y$}\\
+        \mathbb{F}_x : \text{Familia de $x$}
+    \end{gather*}
+    \begin{align*}
+        \forall x, y \exists z&((D(z) \land P(x, z)) \to  C(x, y))\\
+        (\forall x, y &\,\vert\, y \in \mathbb{F}_x : C(x, y))\\
+        (\forall x \exists y &\,\vert\,(\mathbb{F}_x \not= \emptyset \land D(Y)) : P(x, y))
+    \end{align*}
+\end{logicenv}
+
+\sect{Punto 6}
+\begin{logicenv}[5]{Hay un hombre que\dots}
+    \begin{gather*}
+        H(x) : \text{$x$ es un hombre}\\
+        D(x, y) : \text{$x$ desprecia a $y$}
+    \end{gather*}
+    \begin{align*}
+        \exists x \forall y &((H(x) \land H(y)) \to D(x, y))\\
+        \exists x \forall y &((H(x) \land H(y)) \to D(y, x))
+    \end{align*}
+\end{logicenv}
+
+\sect{Punto 7}
+\begin{logicenv}[5]{Las hienas\dots}
+    \begin{gather*}
+        H(x) : \text{$x$ es una hiena}\\
+        P(x) : \text{$x$ es peligroso}\\
+        G(x) : \text{$x$ es un gato}
+    \end{gather*}
+    \begin{align*}
+        (\forall x &\,\vert\, H(x) : P(x))\\
+        (\forall x &\,\vert\, G(x) : \neg P(x))\\
+        (\forall x &\,\vert\, G(x) : \neg H(x))
+    \end{align*}
+\end{logicenv}
+\end{document}
