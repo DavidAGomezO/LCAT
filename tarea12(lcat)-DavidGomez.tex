@@ -1,0 +1,741 @@
+\documentclass[twoside]{article}
+
+% Packages
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{logicDG}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{forest}
+
+% Font
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+% Page configurations
+
+\geometry{
+    a4paper,
+    margin = 2.5cm,
+    top = 4cm,
+    bottom = 2.5cm,
+    headheight = 72pt
+}
+\newcommand{\logo}{C:/Users/usuario/Documents/U/logo-eci.jpg}
+\renewcommand{\author}{David Gómez}
+\renewcommand{\title}{Tarea 12}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\author}
+\fancyhead[LE]{\title}
+\fancyhead[R]{\includegraphics[width = 4cm]{\logo}}
+\fancyfoot[C]{Página \thepage}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{rojoEci}\leaders\hrule height \headrulewidth\hfill}}
+
+\hyphenpenalty = 10000
+
+\setlength{\parindent}{0pt}
+
+\newcommand{\sect}[1]{\section*{#1} \addcontentsline{toc}{section}{#1}}
+\newcommand{\subsect}[1]{\subsection*{#1} \addcontentsline{toc}{subsection}{#1}}
+\newcommand{\subsubsect}[1]{\subsubsection*{#1} \addcontentsline{toc}{subsubsection}{#1}}
+
+\newcommand{\eq}{$=$}
+% Colors
+\definecolor{rojoEci}{RGB}{225, 70, 49}
+
+% Documento
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+ 
+        \textbf{\fontsize{45}{\baselineskip}\selectfont{\title}}
+
+        \vspace{4cm}
+
+        {\Large Hecho por}
+
+        \vspace{1cm}
+
+        {\textbf{\LARGE\MakeUppercase{\author}}}
+
+        \vspace{2cm}
+
+        \includegraphics[width = .8\textwidth]{\logo}
+
+        \vspace{2cm}
+
+        {\Large Estudiante de Matemáticas\\[5pt]
+
+        Escuela Colombiana de Ingeniería Julio Garavito\\[5pt]
+
+        Colombia\\[5pt]
+
+        \today}
+             
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+\sect{Sección 6.5}
+\subsect{Punto 1}
+\begin{logicenv}[5]{$F = \{x_0 \mapsto f(x_2), x_1 \mapsto h(x_0, x_3), x_8 \mapsto x_7\}$}
+    \begin{align*}
+        F(t)    & = F[h(x_0, g(x_1, x_0, x_2))]\\
+                & = h(F[x_0], F[g(x_1, x_0, x_2)])\\
+                & = h(f(x_2), g(F[x_1], F[x_0], F[x_2]))\\
+                & = h(f(x_2, g(h(x_0, x_3), f(x_2), x_2)))
+    \end{align*}
+\end{logicenv}
+
+\subsect{Punto 2}
+\subsubsect{a}
+\begin{logicenv}[5]{Árbol de sintaxis de $\phi$}
+    \begin{center}
+        \begin{forest}
+            [
+                $\land$
+                [
+                    $B$
+                    [
+                        $g$
+                        [$x_0$]
+                        [$x_1$]
+                    ]
+                    [
+                        $f$
+                        [$x_1$]
+                    ]
+                ]
+                [\textit{true}]
+            ]
+        \end{forest}
+    \end{center}
+\end{logicenv}
+
+\subsubsect{b}
+\begin{logicenv}[5]{Árbol de sintaxis con sustitución asociada de $\phi$}
+    \begin{center}
+        \begin{forest}
+            [
+                $\land$
+                [
+                    $B$
+                    [
+                        $g$
+                        [$x_0$]{
+                            \draw[dotted] (-1.8, -2.85) -- (-2.3, -2.85) node[anchor = east] {$f(x_2)$};
+                        }
+                        [$x_1$]{
+                            \draw[dotted] (-0.75, -3) -- (-0.75, -3.5) node[anchor = north] {$h(x_0, x_3)$};
+                        }
+                    ]
+                    [
+                        $f$
+                        [$x_1$]{
+                            \draw[dotted] (0.4, -2.85) -- (0.9, -2.85) node[anchor = west] {$h(x_0, x_3)$};
+                        }
+                    ]
+                ]
+                [\textit{true}]
+            ]
+            % \draw[help lines] (0,0) grid (-3,-5);
+        \end{forest}
+    \end{center}
+\end{logicenv}
+
+\subsubsect{c}
+\begin{logicenv}[5]{Árbol de sintaxis de la sustitución de $\phi$}
+    \begin{center}
+        \begin{forest}
+            [
+                $\land$
+                [
+                    $B$
+                    [
+                        $g$
+                        [
+                            $f$
+                            [$x_2$]
+                        ]
+                        [
+                            $h$
+                            [$x_0$]
+                            [$x_3$]
+                        ]
+                    ]
+                    [
+                        $f$
+                        [
+                            $h$
+                            [$x_0$]
+                            [$x_3$]
+                        ]
+                    ]
+                ]
+                [\textit{true}]
+            ]
+        \end{forest}
+    \end{center}
+\end{logicenv}
+
+\subsect{Punto 3}
+\subsubsect{a}
+\begin{logicenv}[5]{Árbol de sintaxis}
+    \begin{center}
+        \begin{forest}
+            [
+                $\equiv$
+                [
+                    $\forall x_0$
+                    [
+                        $P$
+                        [$x_0$]
+                        [
+                            $f$
+                            [$x_1$]
+                        ]
+                    ]
+                ]
+                [
+                    $\land$
+                    [
+                        $Q$
+                        [$x_1$]
+                        [
+                            $\exists x_1$
+                            [
+                                $P$
+                                [$x_2$]
+                                [$x_0$]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        \end{forest}
+    \end{center}
+\end{logicenv}
+
+\subsubsect{b}
+\begin{logicenv}[5]{Árbol de sintaxis con la sustitución asociada}
+    \begin{center}
+        \begin{forest}
+            [
+                $\equiv$
+                [
+                    $\forall x_0$
+                    [
+                        $P$
+                        [$x_0$]
+                        [
+                            $f$
+                            [$x_1$]
+                        ]
+                    ]
+                ]
+                [
+                    $\land$
+                    [
+                        $Q$
+                        [$x_1$]{
+                            \draw[dotted] (-0.7, -3.8) -- (-1.2, -3.8) node[anchor = east] {$h(x_0, x_3)$};
+                         }
+                        [
+                            $\exists x_1$
+                            [
+                                $P$
+                                [$x_2$]
+                                [$x_0$]{
+                                    \draw[dotted] (2, -4.8) -- (2.5, -4.8) node[anchor = west] {$f(x_2)$};
+                                }
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+            % \draw[help lines] (3,0) grid (-3,-5);
+        \end{forest}
+    \end{center}
+\end{logicenv}
+
+\subsubsect{c}
+\begin{logicenv}[5]{Árbol de sintaxis de la sustitución}
+    \begin{center}
+        \begin{forest}
+            [
+                $\equiv$
+                [
+                    $\forall x_0$
+                    [
+                        $P$
+                        [$x_0$]
+                        [
+                            $f$
+                            [
+                                $h$
+                                [$x_0$]
+                                [$x_3$]
+                            ]
+                        ]
+                    ]
+                ]
+                [
+                    $\land$
+                    [
+                        $Q$
+                        [$x_1$]
+                        [
+                            $\exists x_1$
+                            [
+                                $P$
+                                [$x_2$]
+                                [
+                                    $f$
+                                    [$x_2$]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        \end{forest}
+    \end{center}
+\end{logicenv}
+
+\subsect{Punto 4}
+\subsubsect{a}
+\begin{logicenv}[5]{$\phi = \forall x_2 (P(x_1, x_2) \to P(x_2, c))$}
+    \[\forall x_1 (P(x_1, x_2) \to P(x_2, c))\]
+\end{logicenv}
+
+\subsubsect{b}
+\begin{logicenv}[5]{$\phi = \forall x_2 P(x_1, x_2) \to P(x_2, c)$}
+    \[\forall x_2 P(x_1, x_2) \to P(f(x_1, x_2), c)\]
+\end{logicenv}
+
+\subsubsect{c}
+\begin{logicenv}[5]{$\phi = Q(x_3) \to \neg \forall x_1 \forall x_2 R(x_1, x_2, c)$}
+    \[Q(x_3) \to \neg \forall x_1 \forall x_2 R(x_1, x_2, c)\]
+\end{logicenv}
+
+\subsubsect{d}
+\begin{logicenv}[5]{$\phi = \forall x_1 Q(x_1) \to \forall x_2 P(x_1, x_2)$}
+    \[\forall x_1 Q(x_1) \to \forall x_2 P(x_1, x_2)\]
+\end{logicenv}
+
+\subsubsect{e}
+\begin{logicenv}[5]{$\phi = \forall x_2 (P(f(x_1, x_2), x_1) \equiv \forall x_1 S(x_3, g(x_1, x_2)))$}
+    \[\forall x_2 (P(f(x_1, x_2), x_1) \equiv \forall x_1 S(x_3, g(x_1, x_2)))\]
+\end{logicenv}
+
+
+\subsect{Punto 5}
+\subsubsect{a}
+$t$ es libre
+
+\subsubsect{b}
+$t$ es libre
+
+\subsubsect{c}
+$t$ es libre
+
+\subsubsect{d}
+$t$ es libre
+
+\subsubsect{e}
+$t$ es acotado
+
+\subsect{Punto 6}
+\subsubsect{a}
+\begin{logicenv}[5]{$\phi = \forall x_2 (P(x_2, f(x_1, x_2)) \lor Q(x_1))$}
+    \begin{align*}
+        \forall x_2 (P(x_2, f(f(x_1, x_2), x_2)) \lor Q(f(x_1, x_2)))\\
+        t \text{ es acotado}
+    \end{align*}
+\end{logicenv}
+
+\subsubsect{b}
+\begin{logicenv}[5]{$\phi = \forall x_2 P(x_2, f(x_1, x_2)) \lor Q(x_1)$}
+    \begin{align*}
+        \forall x_2 P(f(f(x_1, x_2), x_2), x_2) \lor Q(f(x_1, x_2))\\
+        t \text{ es acotada y luego libre}
+    \end{align*}
+\end{logicenv}
+
+\subsubsect{c}
+\begin{logicenv}[5]{$\phi = \forall x_1 \forall x_3 (Q(x_3) \not\equiv Q(x_1))$}
+    \begin{align*}
+        \forall x_1 \forall x_3 (Q(x_3) \not\equiv Q(x_1))\\
+        t \text{ es libre}
+    \end{align*}
+\end{logicenv}
+
+\subsubsect{d}
+\begin{logicenv}[5]{$\phi = \forall x_1 \forall x_3 Q(x_3) \not\equiv Q(x_1)$}
+    \begin{align*}
+        \forall x_1 \forall x_3 Q(x_3) \not\equiv Q(f(x_1, x_2))\\
+        t \text{ es libre}
+    \end{align*}    
+\end{logicenv}
+
+\subsubsect{e}
+\begin{logicenv}[5]{$\phi = \forall x_2 R(x_1, g(x_1), x_2) \to \forall x_3 Q(f(x_1, x_3))$}
+    \begin{align*}
+        \forall x_2 R(f(x_1, x_2), g(f(x_1, x_2)), x_2) \to \forall x_3 Q(f(f(x_1, x_2), x_3))\\
+        t \text{ es acotada y luego libre}
+    \end{align*}
+\end{logicenv}
+
+\subsect{Punto 10}
+\begin{logicenv}[5]{Si $x$ no ocurre libre en $\phi$, entonces $t$ es libre de $x$ en $x$ en $\phi$}
+    \begin{logic}
+        x \text{ no ocurre libre en } \phi\\%0
+        x \text{ es acotada en } \phi & p(0)\\%1
+        x \text{ no es sustituida para ningun} F\\%2
+        t \text{ es libre de $x$ puesto que no se realiza la sustitución}
+    \end{logic}
+\end{logicenv}
+
+\subsect{Punto 11}
+\begin{logicenv}[5]{$x$ es libre para $x$ en $\phi$}
+    \begin{logic}
+        \text{Suposición 1}\\
+        \text{Suposición 2}\\
+        x \text{ es libre de } x \text{ en } \phi & p1, p0
+    \end{logic}
+\end{logicenv}
+\begin{subproof}{Suposición 1}
+    \begin{logic}
+        x \text{ es libre en } \phi\\
+        \phi[x := x] \ x\text{ es libre de } x
+    \end{logic}
+\end{subproof}
+\begin{subproof}{Suposición 2}
+    \begin{logic}
+        x \text{ es acotada en } \phi\\
+        \text{ No se hace la sustitución a } x\\
+        x \text{ es libre de} x
+    \end{logic}
+\end{subproof}
+
+\sect{Sección 6.6}
+
+\subsect{Punto 2}
+\subsubsect{a}
+No es
+\subsubsect{b}
+\begin{logicenv}[5]{Árbol de sintaxis}
+    \begin{center}
+        \begin{forest}
+            [
+                \texttt{read}
+                [$a$]
+                [$0$]
+            ]
+        \end{forest}
+    \end{center}
+\end{logicenv}
+
+\subsubsect{c}
+\begin{logicenv}[5]{Árbol de sintaxis}
+    \begin{center}
+        \begin{forest}
+            [
+                \texttt{read}
+                [$a$]
+                [$0$]
+            ]
+        \end{forest}
+    \end{center}
+\end{logicenv}
+
+\subsubsect{d}
+\begin{logicenv}[5]{Árbol de sintaxis}
+    \begin{center}
+        \begin{forest}
+            [
+                \texttt{read}
+                [$a$]
+                [$i$]
+            ]
+        \end{forest}
+    \end{center}
+\end{logicenv}
+
+\subsubsect{e}
+\begin{logicenv}[5]{Árbol de sintaxis}
+    \begin{center}
+        \begin{forest}
+            [
+                \texttt{read}
+                [$a$]
+                [$i$]
+            ]
+        \end{forest}
+    \end{center}
+\end{logicenv}
+
+\subsect{Punto 9}
+\subsubsect{a}
+\begin{logicenv}[5]{$\forall i : I (a[i] = x)$}
+    \begin{center}
+        \begin{forest}
+            [
+                $\forall i : I$
+                [
+                    \eq
+                    [
+                        \texttt{read}
+                        [$a$]
+                        [$i$]
+                    ]
+                    [$x$]
+                ]
+            ]
+        \end{forest}
+    \end{center}
+\end{logicenv}
+
+\subsubsect{b}
+\begin{logicenv}[5]{$\forall i : I \leq i < \texttt{len}(a) \to a[i] = x$}
+    \begin{center}
+        \begin{forest}
+            [
+                $\forall i : I$
+                [
+                    $\to$
+                    [
+                        $\leq$
+                        [$0$]
+                        [
+                            $<$
+                            [$i$]
+                            [
+                                \texttt{len}
+                                [$a$]
+                            ]
+                        ]
+                    ]
+                    [
+                        \eq
+                        [
+                            \texttt{read}
+                            [$a$]
+                            [$i$]
+                        ]
+                        [$x$]
+                    ]
+                ]
+            ]
+        \end{forest}
+    \end{center}
+\end{logicenv}
+
+\subsubsect{c}
+\begin{logicenv}[5]{$\forall b: A (b[i] = x)$}
+    \begin{center}
+        \begin{forest}
+            [
+                $\forall b: A$
+                [
+                    \eq
+                    [
+                        \texttt{read}
+                        [$b$]
+                        [$i$]
+                    ]
+                    [$x$]
+                ]
+            ]
+        \end{forest}
+    \end{center}
+\end{logicenv}
+
+\subsubsect{d}
+\begin{logicenv}[5]{\texttt{len} $(a) > 1 \land \exists j : I \neg(a[0] \cdot a[j] = a[0])$}
+    \begin{center}
+        \begin{forest}
+            [
+                $\land$
+                [
+                    $>$
+                    [
+                        \texttt{len}
+                        [$a$]
+                    ]
+                    [$1$]
+                ]
+                [
+                    $\exists j : I$
+                    [
+                        $\neg$
+                        [
+                            \eq
+                            [
+                                $\cdot$
+                                [
+                                    \texttt{read}
+                                    [$a$]
+                                    [$0$]
+                                ]
+                                [
+                                    \texttt{read}
+                                    [$a$]
+                                    [$0$]
+                                ]
+                            ]
+                            [
+                                \texttt{read}
+                                [$a$]
+                                [$0$]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        \end{forest}
+    \end{center}
+\end{logicenv}
+
+\subsubsect{e}
+\begin{logicenv}[5]{$(\forall i:I \,\vert\, 0 < i < \texttt{len}(a) : a[i - 1] \leq a[i])$}
+    \begin{center}
+        \begin{forest}
+            [
+                $\forall i:I$
+                [
+                    $\to$
+                    [
+                        $<$
+                        [$0$]
+                        [
+                            $<$
+                            [$i$]
+                            [
+                                \texttt{len}
+                                [$a$]
+                            ]
+                        ]
+                    ]
+                    [
+                        $\leq$
+                        [
+                            \texttt{read}
+                            [$a$]
+                            [$i - 1$]
+                        ]
+                        [
+                            \texttt{read}
+                            [$a$]
+                            [$i$]
+                        ]
+                    ]
+                ]
+            ]
+        \end{forest}
+    \end{center}
+\end{logicenv}
+
+\subsect{Punto 11}
+\subsubsect{a}
+\begin{logicenv}[5]{El arreglo $a$ es decreciente}
+    \[a:A \land (\forall i:I \,\vert\, 0 \leq i < \texttt{len}(a) - 1 : a[i] > a[i + 1])\]
+\end{logicenv}
+
+\subsubsect{b}
+\begin{logicenv}[5]{Los arreglos $a$ y $b$ son distintos}
+    \[a, b: A \land (\neg(\texttt{len}(a) = \texttt{len}(b)) \lor (\forall i:I \,\vert\, 0 \leq i < \texttt{len}(a) : \neg(a[i] = b[i])))\]
+\end{logicenv}
+
+\subsubsect{c}
+\begin{logicenv}[5]{El arreglo $a$ no tiene puntos fijos}
+    \[a: A \land (\forall i:I \,\vert\, 0 \leq i < \texttt{len}(a) : \neg(i = a[i]))\]
+\end{logicenv}
+
+\subsubsect{d}
+\begin{logicenv}[5]{El arreglo $a$ no tiene elementos repetidos}
+    \[a:A \land (\forall i, j : I \,\vert\, 0 \leq i < \texttt{len}(a) \land 0 \leq j < \texttt{len}(a) \land \neg(i = j): \neg(a[i] = a[j]))\]
+\end{logicenv}
+
+\subsubsect{e}
+\begin{logicenv}[5]{El arreglo $a$ es la identidad}
+    \begin{align*}
+        a:A \land (\forall i:I \,\vert\, 0 \leq i < \texttt{len}(a): a[i] = 0)\\
+        a:A \land \texttt{len}(a) = 1 \land a[0] = 1
+    \end{align*}
+\end{logicenv}
+
+\subsect{Punto 12}
+\subsubsect{a}
+\begin{logicenv}[5]{$\exists x : V (\texttt{len}(a) = 2 \cdot x + 1)$}
+    Existe una variable tal que el doble de su valor más 1 es igual al número de elementos en $a$
+\end{logicenv}
+
+\subsubsect{b}
+\begin{logicenv}[5]{$\forall i:I \,\vert\, 0 \leq i < \texttt{len}(a) : a[i] = a[0]$}
+    Todos los valores de a son iguales
+\end{logicenv}
+
+\subsubsect{c}
+\begin{logicenv}[5]{$a[1] = 5 \land (\forall i:I \,\vert\, 0 \leq i < \texttt{len}(a) : a[i] = a[0])$}
+    El segundo valor de $a$ es $2$ y todos los valores de $a$ son iguales
+\end{logicenv}
+
+\subsubsect{d}
+\begin{logicenv}[5]{$(\exists i:I \,\vert\, 0 \leq i < \texttt{len}(a) : a[i] = -a[i])$}
+    Hay un elemento en $a$ que es igual a $0$
+\end{logicenv}
+
+\subsect{15}
+\subsubsect{a}
+\begin{logicenv}[5]{a}
+    El arreglo es creciente no monótono
+\end{logicenv}
+
+\subsubsect{b}
+\begin{logicenv}[5]{b}
+    $a:A$
+\end{logicenv}
+
+\subsect{Punto 16}
+\subsubsect{a}
+Sí
+\subsubsect{b}
+\begin{verbatim}
+    [1, 2, 1] ; [0, 1, 0] ; [0, 0, 0] son
+    [1, 2, 3] ; [4, 5, 6] ; [7, 8, 9] no son
+\end{verbatim}
+
+\subsubsect{c}
+\begin{logicenv}[5]{\texttt{pal}$(a)$}
+    \[\texttt{pal}(a) := (\forall i:I \,\vert\, 0 \leq i < \texttt{len}(a) : a[i] = a[\texttt{len}(a) - 1 - i])\]
+\end{logicenv}
+
+\subsect{Punto 17}
+\subsubsect{a}
+Sí
+\subsubsect{b}
+\begin{verbatim}
+    [1, 2, 1, 0, 1, 0] ; [0, 1, 0, 1, 2, 1] ; [0, 0, 0, 2, 3, 2] son
+    [1, 2, 3] ; [4, 5, 6] ; [7, 8, 9] no son
+\end{verbatim}
+
+\subsubsect{c}
+\begin{logicenv}[5]{\texttt{al}$(a)$}
+    \begin{align*}
+        \texttt{al}(a) :=& \forall i:I \exists j, k : I (0 \leq i \leq j < k < \texttt{len}(a) \land b, c\\
+        &:A \land b[i] = a[i] \land c = a[k:\texttt{len}(a) - 1] \to a[i] = a[j - i] \to \texttt{pal}[b] \land \texttt{pal}(c))
+    \end{align*}    
+\end{logicenv}
+\end{document}
