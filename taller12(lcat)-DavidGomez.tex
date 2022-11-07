@@ -1,0 +1,126 @@
+\documentclass[twoside]{article}
+
+% Packages
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{logicDG}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+% Font
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+% Page configurations
+
+\geometry{
+    a4paper,
+    margin = 2.5cm,
+    top = 4cm,
+    bottom = 2.5cm,
+    headheight = 72pt
+}
+\newcommand{\logo}{C:/Users/usuario/Documents/U/logo-eci.jpg}
+\renewcommand{\author}{David Gómez}
+\renewcommand{\title}{Taller 12}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\author}
+\fancyhead[LE]{\nouppercase{\leftmark\hfill\rightmark}}
+\fancyhead[R]{\includegraphics[width = 4cm]{\logo}}
+\fancyfoot[C]{Página \thepage}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{rojoEci}\leaders\hrule height \headrulewidth\hfill}}
+
+\hyphenpenalty = 10000
+
+\setlength{\parindent}{0pt}
+
+\newcommand{\sect}[1]{\section*{#1} \addcontentsline{toc}{section}{#1}}
+\newcommand{\subsect}[1]{\subsection*{#1} \addcontentsline{toc}{subsection}{#1}}
+\newcommand{\subsubsect}[1]{\subsubsection*{#1} \addcontentsline{toc}{subsubsection}{#1}}
+
+% Colors
+\definecolor{rojoEci}{RGB}{225, 70, 49}
+
+% Documento
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+ 
+        \textbf{\fontsize{45}{\baselineskip}\selectfont{\title}}
+
+        \vspace{4cm}
+
+        {\Large Hecho por}
+
+        \vspace{1cm}
+
+        {\textbf{\LARGE\MakeUppercase{\author}}}
+
+        \vspace{2cm}
+
+        \includegraphics[width = .8\textwidth]{\logo}
+
+        \vspace{2cm}
+
+        {\Large Estudiante de Matemáticas\\[5pt]
+
+        Escuela Colombiana de Ingeniería Julio Garavito\\[5pt]
+
+        Colombia\\[5pt]
+
+        \today}
+             
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+\sect{Punto 1}
+
+\begin{logicenv}[5]{Los arreglos a y b contienen los mismos valores}
+    \begin{equation*}
+        a,b:A \land \texttt{len}(a) = \texttt{len}(b) \land (\forall i:I \,\vert\, 0 \leq i < \texttt{len}(a) : a[i] = b[i])
+    \end{equation*}
+\end{logicenv}
+
+\sect{Punto 2}
+\begin{logicenv}[5]{Si algun valor del arreglo a es igual a 0, algun otro valor del arreglo es 1}
+    \begin{equation*}
+        a:A \land (\forall i:I \,\vert\, 0 \leq i < \texttt{len}(a) \land a[i] = 0 : (\exists j:I \,\vert\, 0 \leq j < \texttt{len}(a)) : a[j] = 1)
+    \end{equation*}
+\end{logicenv}
+
+\sect{Punto 3}
+\begin{logicenv}[5]{El mínimo valor del arreglo a es un índice del arreglo b}
+    \begin{align*}
+        a,b:A \land (&\exists i:I \,\vert\, 0 \leq i < \texttt{len}(a) \land (\forall j:I \,\vert\, 0 \leq j < \texttt{len}(a) : a[i] \leq a[j])\\
+        &\quad : (\exists k:I \,\vert\, 0 \leq k < \texttt{len}(b)) : k = a[i])
+    \end{align*}
+\end{logicenv}
+
+\sect{Punto 4}
+\begin{logicenv}[5]{Todos los índices del arreglo a son valores del arreglo b}
+    \begin{equation*}
+        a, b : A \land (\forall i:I (0 \leq i < \texttt{len}(a)) : (\exists j:I \,\vert\, 0 \leq j < \texttt{len}(b)) : i = b[j])
+    \end{equation*}
+\end{logicenv}
+
+\sect{Punto 5}
+\begin{logicenv}[5]{El mínimo valor del arreglo a es el máximo valor del arreglo b}
+    \begin{align*}
+        a, b : A \land (&\exists i:I \,\vert\, 0 \leq i < \texttt{len}(a) \land (\forall j:I \,\vert\, 0 \leq j < \texttt{len}(a) : a[i] \leq a[j])\\
+        &\quad \land (\exists k:I \,\vert\, 0 \leq k < \texttt{len}(b) \land (\forall l:I \,\vert\, 0 \leq l < \texttt{len}(a) b[i] \geq b[j]))\\
+        &\quad : a[i] = b[k])
+    \end{align*}
+\end{logicenv}
+\end{document}
