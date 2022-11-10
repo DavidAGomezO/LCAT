@@ -1,0 +1,163 @@
+\documentclass[twoside]{article}
+
+% Packages
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{logicDG}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+% Font
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+% Page configurations
+
+\geometry{
+    a4paper,
+    margin = 2.5cm,
+    top = 4cm,
+    bottom = 2.5cm,
+    headheight = 72pt
+}
+\newcommand{\logo}{C:/Users/usuario/Documents/U/logo-eci.jpg}
+\renewcommand{\author}{David Gómez}
+\renewcommand{\title}{Tarea 13}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\author}
+\fancyhead[LE]{\title}
+\fancyhead[R]{\includegraphics[width = 4cm]{\logo}}
+\fancyfoot[C]{Página \thepage}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{rojoEci}\leaders\hrule height \headrulewidth\hfill}}
+
+\hyphenpenalty = 10000
+
+\setlength{\parindent}{0pt}
+
+\newcommand{\sect}[1]{\section*{#1} \addcontentsline{toc}{section}{#1}}
+\newcommand{\subsect}[1]{\subsection*{#1} \addcontentsline{toc}{subsection}{#1}}
+\newcommand{\subsubsect}[1]{\subsubsection*{#1} \addcontentsline{toc}{subsubsection}{#1}}
+
+% Colors
+\definecolor{rojoEci}{RGB}{225, 70, 49}
+
+% Documento
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+ 
+        \textbf{\fontsize{45}{\baselineskip}\selectfont{\title}}
+
+        \vspace{4cm}
+
+        {\Large Hecho por}
+
+        \vspace{1cm}
+
+        {\textbf{\LARGE\MakeUppercase{\author}}}
+
+        \vspace{2cm}
+
+        \includegraphics[width = .8\textwidth]{\logo}
+
+        \vspace{2cm}
+
+        {\Large Estudiante de Matemáticas\\[5pt]
+
+        Escuela Colombiana de Ingeniería Julio Garavito\\[5pt]
+
+        Colombia\\[5pt]
+
+        \today}
+             
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+\sect{Sección 7.1}
+% Sección 7.1: 1,2,4,5,6,7
+
+\subsect{Punto 1}
+\[\mathbf{F} = \{p_0 \mapsto p_1, p_2 \mapsto \text{\textit{true}}, p_3 \mapsto H(x), p_4 \mapsto p_4\}\]
+
+\subsubsect{a}
+\begin{logicenv}{$\phi = p_0$}
+    \[\mathbf{F}[p_0] = p_1\]
+\end{logicenv}
+
+\subsubsect{b}
+\begin{logicenv}{$\phi = H(y) = \forall x H(x) \land \textit{false}$}
+    \[\mathbf{F}[H(y) = \forall x H(x) \land \textit{false}] = H(y) = \forall x H(x) \land \textit{false}\]
+\end{logicenv}
+
+\subsubsect{c}
+\begin{logicenv}{$\phi = \forall x \forall y (H(f(x, y)) \lor p_3)$}
+    \[\mathbf{F}[\forall x \forall y (H(f(x, y)) \lor p_3)] = \forall x \forall y (H(f(x, y)) \lor H(x))\]
+\end{logicenv}
+
+
+\subsect{Punto 2}
+\subsubsect{a}
+Es libre
+\subsubsect{b}
+Es libre
+\subsubsect{c}
+Es libre
+
+\subsect{Punto 3}
+\subsubsect{a}
+\begin{logicenv}{Demostración de $\phi$}
+    \begin{itemize}
+        \item[(i)] Si no hay cuantificadores que afecten globalmente en $\phi$, la definición de demostración es exactamente la misma que en DS.
+        \item[(ii)] Si $\phi$ es de la forma $\forall x \psi$ , entonces una demostración es una secuencia no vacía de proposiciones tales que el último elemento de la secuencia es $\psi$ y los anteriores son axiomas o deducciones de pasos anteriores mediante reglas de inferencia.
+        \item[(iii)] Si $\phi$ es de la forma $\exists x \psi$, entonces una demostración es una secuencia no vacía de proposiciones tales que el último elemento de la secuencia es $\psi$ y los anteriores son axiomas, deducciones de pasos anteriores mediante reglas de inferencia o suposiciones. 
+    \end{itemize}
+\end{logicenv}
+
+\subsubsect{b}
+\begin{logicenv}{Derivación}
+    \begin{itemize}
+        \item[(i)] Si no hay cuantificadores que afecten globalmente en $\phi$, la definición de derivación es exactamente la misma que en DS.
+        \item[(ii)] Si $\phi$ es de la forma $\forall x (\psi \equiv \tau)$ , entonces una derivación es una secuencia finita de proposiciones, en la cual cada elemento es obtenido mediante transitividades de $\equiv$ del elemento anterior.
+        \item[(iii)] Si $\phi$ es de la forma $\exists x (\psi \equiv \tau)$ , entonces una derivación es una secuencia finita de proposiciones en la cual cada elemento anterior es obtenido mediante transitividades de $\equiv$ del elemento anterior y además se tienen en cuenta suposiciones dadas antes de iniciar la derivación como verdades ``locales''.  
+    \end{itemize}
+\end{logicenv}
+
+\subsubsect{c}
+\begin{logicenv}{Derivación de debilitamiento}
+    \begin{itemize}
+        \item[(i)] Si no hay cuantificadores que afecten globalmente en $\phi$, la definición de derivación de debilitamiento es exactamente la misma que en DS.
+        \item[(ii)] Si $\phi$ es de la forma $\forall x (\psi \to \tau)$ ,  entonces una derivación es una secuencia finita de proposiciones, en la cual cada elemento es obtenido mediante transitividades de $\equiv$ y al menos una de $\to$ del elemento anterior.
+        \item[(iii)] Si $\phi$ es de la forma $\exists x (\psi \to \tau)$ , entonces una derivación es una secuencia finita de proposiciones en la cual cada elemento anterior es obtenido mediante transitividades de $\equiv$ y al menos una de $\to$ del elemento anterior y además se tienen en cuenta suposiciones dadas antes de iniciar la derivación como verdades ``locales''.
+    \end{itemize}
+\end{logicenv}
+
+
+\subsubsect{d}
+\begin{logicenv}{Derivación de fortalecimiento}
+    \begin{itemize}
+        \item[(i)] Si no hay cuantificadores que afecten globalmente en $\phi$, la definición de derivación de fortalecimiento es exactamente la misma que en DS.
+        \item[(ii)] Si $\phi$ es de la forma $\forall x (\psi \gets \tau)$ ,  entonces una derivación es una secuencia finita de proposiciones, en la cual cada elemento es obtenido mediante transitividades de $\gets$ del elemento anterior.
+        \item[(iii)] Si $\phi$ es de la forma $\exists x (\psi \gets \tau)$ , entonces una derivación es una secuencia finita de proposiciones en la cual cada elemento anterior es obtenido mediante transitividades de $\equiv$ y al menos una de $\gets$ del elemento anterior y además se tienen en cuenta suposiciones dadas antes de iniciar la derivación como verdades ``locales''.
+    \end{itemize}
+\end{logicenv}
+
+\subsect{Punto 4}
+\begin{logicenv}[10]{Si $\theo{}{DS}{\phi}$ entonces $\theo{}{DS($\mathcal{L}$)}{\phi}$}
+    Ya que todos los axiomas de DS están contenidos en DS($\mathcal{L}$), usando la definición de demostración, y puesto que no hay cuantificadores en ningún teorema de DS. Se puede demostrar cualquier teorema de DS usando los axiomas de DS($\mathcal{L}$).
+\end{logicenv}
+\sect{Sección 7.2}
+% Sección 7.2: 2,3,4,5,7,9,10,12,14,16
+
+\end{document}
