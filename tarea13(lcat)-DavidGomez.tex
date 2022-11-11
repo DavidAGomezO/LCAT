@@ -45,6 +45,8 @@
 \newcommand{\subsect}[1]{\subsection*{#1} \addcontentsline{toc}{subsection}{#1}}
 \newcommand{\subsubsect}[1]{\subsubsection*{#1} \addcontentsline{toc}{subsubsection}{#1}}
 
+
+\newcommand{\dsl}{\text{DS($\mathcal{L}$)}}
 % Colors
 \definecolor{rojoEci}{RGB}{225, 70, 49}
 
@@ -86,7 +88,7 @@
 \clearpage
 
 \sect{Sección 7.1}
-% Sección 7.1: 1,2,4,5,6,7
+% ! Sección 7.1: 1,2,4,5,6,7
 
 \subsect{Punto 1}
 \[\mathbf{F} = \{p_0 \mapsto p_1, p_2 \mapsto \text{\textit{true}}, p_3 \mapsto H(x), p_4 \mapsto p_4\}\]
@@ -157,7 +159,122 @@ Es libre
 \begin{logicenv}[10]{Si $\theo{}{DS}{\phi}$ entonces $\theo{}{DS($\mathcal{L}$)}{\phi}$}
     Ya que todos los axiomas de DS están contenidos en DS($\mathcal{L}$), usando la definición de demostración, y puesto que no hay cuantificadores en ningún teorema de DS. Se puede demostrar cualquier teorema de DS usando los axiomas de DS($\mathcal{L}$).
 \end{logicenv}
-\sect{Sección 7.2}
-% Sección 7.2: 2,3,4,5,7,9,10,12,14,16
 
+\subsect{Punto 5}
+\begin{logicenv}{Modus Ponens}
+    \begin{logic}
+        \phi & Hipótesis MPP\\ %0
+        \phi \to \psi & Hipótesis MPP\\ %1
+        \neg \phi \to \psi & (alt)Def.($\to$), Ecuanimidad(p1)\\ %2
+        \phi \equiv \textit{true} & Identidad($\equiv$)(p0)\\ %3
+        \neg \phi \lor \psi \equiv \neg \textit{true} \lor \psi & Lbz.($\phi = \neg p \lor \psi$)(p3)\\ %4
+        \neg \textit{true} \lor \psi & Ecuanimidad(p4, p2)\\ %5
+        \textit{false} \lor \psi & $\neg \textit{false} \equiv \textit{true}$, Lbz.($\phi = p \lor \psi$), Ecuanimidad(p5)\\ %6
+        \psi & Identidad($\lor$)
+    \end{logic}
+\end{logicenv}
+
+\subsect{Punto 6}
+\subsubsect{a}
+\begin{logicenv}{Todos los hombres son mortales\dots}
+    \begin{gather*}
+        H(x) := \text{``$x$ es hombre''}\\
+        M(x) := \text{``$x$ es mortal''}
+        s := \text{``Sócrates''}\\
+    \end{gather*}
+    \begin{logic}
+        (\forall x\,\vert\, H(x) : M(x)) & Suposición\\ %1
+        H(s) & Suposición\\ %2
+        (\forall x \,\vert\, H(x) : M(x)) \to (H(s) \to M(s)) & Bx4\\ %3
+        H(s) \to M(s) & MPP (p3, p1)\\ %4
+        M(s) & MPP(p4, p2)
+    \end{logic}
+\end{logicenv}
+
+\subsubsect{b}
+\begin{logicenv}{No todos los estudiantes\dots}
+    \begin{gather*}
+        E(x) := \text{``$x$ es estudiante''}\\
+        A(x, y) := \text{``$x$ asiste a $y$''}\\
+        C(x) := \text{``$x$ es una clase''}
+    \end{gather*}
+    \begin{logic}
+        (\exists x, y \,\vert\, E(x) \land C(y) : \neg A(x, y)) & Suposición\\
+        (\forall x, y \,\vert\, E(x) \land C(y) : \neg A(x, y))
+    \end{logic}
+    La conclusión (p1) no es coherente con la suposición dada, pues en esta se dice que hay algún/os estudiantes que no asisten a clase, pero esto no es equivalente a afirmar que ningún estudiante asiste a clase.
+\end{logicenv}
+
+\subsubsect{c}
+\begin{logicenv}{La relación $R$ es reflexiva\dots}
+    \begin{gather*}
+         R := x \sim y
+    \end{gather*}
+    \begin{logic}
+        (\forall x \,\vert:\, x \sim x) & Suposición\\
+        (\forall x, y, z \,\vert\, x \sim y \land y \sim z : x \sim z) & Suposición\\
+        (\forall x, y \,\vert\, x \sim y : x = y)
+    \end{logic}
+    Un ejemplo puede ser $=$ pues cumple ser reflexiva $(x \leq x$), transitiva ($a \leq b \land b \leq c \to a \leq c)$ pero no es antisimétrica (ej: $2 \leq 3 \to 2 = 3 \equiv \textit{true} \to \textit{false} \equiv \textit{false})$
+\end{logicenv}
+
+\subsect{Punto 7}
+\begin{logicenv}{Demostrar MTT 5.13 para DS($\mathcal{L})$}
+    \begin{itemize}
+        \item[(i)] En caso de que no hayan cuantificadores que afecten globalmente en $\phi \equiv \psi$, el metateorema funciona exactamente igual que en DS, con la extensión a los axiomas de DS($\mathcal{L})$
+        \item[(ii)] En caso de que hayan cuantificadores que afecten globalmente en $\phi \equiv \psi$ basta con aplicar el metateorema a la fórmula afectada por los cuantificadores, teniendo en cuenta suposiciones para $\exists$. Esto debido a que el funcionamiento de las proposiciones seguirá teniendo el mismo significado localmente en el cuantificador que si estuvieran sin este, la diferencia está en lo que quieren representar, mas no en su significado a nivel de lógica.  
+    \end{itemize}
+\end{logicenv}
+\sect{Sección 7.2}
+% ! Sección 7.2: 2,3,4,5,7,9,10,12,14,16
+
+\subsect{Punto 2}
+\begin{logicenv}{$\theo{}{\dsl}{\forall x \forall x \phi \equiv \forall x \phi}$}
+    \begin{derivation}
+            \forall x \forall x \phi\\
+        Bx1(x no es libre en $\forall x \phi$)\\
+            \forall x \phi
+    \end{derivation}
+    Por metateorema de derivación se demuestra que\\
+    $\theo{}{\dsl}{\forall x \forall x \phi \equiv \forall x \phi}$
+\end{logicenv}
+
+\subsect{Punto 3}
+\begin{logicenv}{$\theo{}{\dsl}{(\forall x \,\vert\, \psi \land \tau : \phi) \equiv (\forall x \,\vert:\, \psi \land \tau \to \phi)}$}
+    \begin{derivation}
+            (\forall x \,\vert\, \psi \land \tau : \phi)\\
+        Azúcar sintáctico\\
+            \forall x (\psi \land \tau \to \phi)\\
+        Tomando los pasos siguientes bajo $\forall x$\\
+            \psi \land \tau \to \phi\\
+        Identidad($\lor$)\\
+            (\psi \land \tau \to \phi) \lor \textit{false}\\
+        Conmutativa($\lor$), (alt)Def.($\to$)\\
+            \textit{true} \to (\psi \land \tau \to \phi)\\
+        Regresando $\forall x$\\
+            \forall x (\textit{true} \to (\psi \land \tau \to \phi))\\
+        Azúcar sintáctico\\
+            (\forall x \,\vert:\, \psi \land \tau \to \phi)
+    \end{derivation}
+    Por metateorema de derivación se demuestra que\\
+    $\theo{}{\dsl}{(\forall x \,\vert\, \psi \land \tau : \phi) \equiv (\forall x \,\vert:\, \psi \land \tau \to \phi)}$
+\end{logicenv}
+
+\subsect{Punto 4}
+\begin{logicenv}{$\theo{}{\dsl}{\forall x \forall y \phi \equiv \forall  y \forall x \phi}$}
+    \begin{derivation}
+            \forall x \forall y \phi\\
+        Bx1 ($y$ no aparece libre en $\forall x \forall y \phi$)\\
+            \forall y \forall x \forall y \phi\\
+        Bx1 ($x$ no aparece libre en $\forall x \forall y \phi$)\\
+            \forall y \forall x \forall y \phi\\
+    \end{derivation}    
+\end{logicenv}
+\subsect{Punto 5}
+\subsect{Punto 7}
+\subsect{Punto 9}
+\subsect{Punto 10}
+\subsect{Punto 12}
+\subsect{Punto 14}
+\subsect{Punto 16}
 \end{document}
