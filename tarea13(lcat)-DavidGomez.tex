@@ -261,20 +261,152 @@ Es libre
 \end{logicenv}
 
 \subsect{Punto 4}
-\begin{logicenv}{$\theo{}{\dsl}{\forall x \forall y \phi \equiv \forall  y \forall x \phi}$}
+\begin{logicenv}{$\theo{}{\dsl}{(\forall x \,\vert\, \psi \land \tau : \phi) \equiv (\forall x \,\vert\, \psi : \tau \to \phi)}$}
     \begin{derivation}
-            \forall x \forall y \phi\\
-        Bx1 ($y$ no aparece libre en $\forall x \forall y \phi$)\\
-            \forall y \forall x \forall y \phi\\
-        Bx1 ($x$ no aparece libre en $\forall x \forall y \phi$)\\
-            \forall y \forall x \forall y \phi\\
-    \end{derivation}    
+            (\forall x \,\vert\, \psi \land \tau : \phi)\\
+        Azúcar sintáctico\\
+            \forall x (\psi \land \tau \to \phi)\\
+        Teo 4.31.5\\
+            \forall x (\psi \to (\tau \to \phi))\\
+        Azúcar sintáctico\\
+            (\forall x \,\vert\, \psi : \tau \to \phi)
+    \end{derivation}
+    Por metateorema de derivación se demuestra que\\
+    $\theo{}{\dsl}{(\forall x \,\vert\, \psi \land \tau : \phi) \equiv (\forall x \,\vert\, \psi : \tau \to \phi)}$
 \end{logicenv}
 \subsect{Punto 5}
+\subsubsect{a}
+\begin{logicenv}{$\theo{}{\dsl}{(\forall x \,\vert\, \psi : \phi) \equiv (\forall x \,\vert : \, \psi \lor \phi \equiv \phi)}$}
+    \begin{derivation}
+            (\forall x \,\vert\, \psi : \phi)\\
+        Azúcar sintáctico\\
+            \forall x (\psi \to \phi)\\
+        Def.($\to$)\\
+            \forall x (\psi \lor \phi \equiv \phi)\\
+        Identidad($\lor$), Conmutativa($\lor$)\\
+            \forall x (\textit{false} \lor (\psi \lor \phi \equiv \phi))\\
+        (alt)Def.($\to$)\\
+            \forall x (\textit{true} \to (\psi \lor \phi \equiv \phi))\\
+        Azúcar sintáctico\\
+            (\forall x \,\vert:\, \psi \lor \phi \equiv \phi)
+    \end{derivation}
+    Por metateorema de derivación se demuestra que\\
+    $\theo{}{\dsl}{(\forall x \,\vert\, \psi : \phi) \equiv (\forall x \,\vert : \, \psi \lor \phi \equiv \phi)}$
+\end{logicenv}
+
+\subsubsect{b}
+\begin{logicenv}{$\theo{}{\dsl}{(\forall x \,\vert:\, \phi \land \psi \to \tau) \equiv (\forall x \,\vert\, \phi : (\psi \to \tau))}$}
+    \begin{derivation}
+            (\forall x \,\vert:\, \phi \land \psi \to \tau)\\
+        Azúcar sintáctico\\
+            \forall x (\textit{true} \to (\phi \land \psi \to \tau))\\
+        Identidad($\to$)\\
+            \forall x (\phi\ \land \psi \to \tau)\\
+        Teo 4.31.5\\
+            \forall x (\phi \to (\psi \to \tau))\\
+        Azúcar sintáctico\\
+            (\forall x \,\vert\, \phi : (\psi \to \tau))
+    \end{derivation}
+\end{logicenv}
 \subsect{Punto 7}
+\begin{logicenv}{$\theo{}{\dsl}{\forall x (\phi \equiv \psi) \equiv (\forall x \psi \equiv \forall x \psi)}$}
+    \begin{align*}
+            \res{\forall x (\psi \equiv \phi)}\\
+        \why{Caracterización($\equiv$)}\\
+            \res{\forall x ((\psi \to \phi) \land (\phi \to \psi))}\\
+        \why{Dist.($\forall x$, $\land$)}\\
+            \res{\forall x (\psi \to \phi) \land \forall x (\phi \to \psi)}\\
+        \why[\Rightarrow]{Teo 7.10.1}\\
+            \res{(\forall x \psi \to \forall x \phi) \land (\forall x \phi \to \forall x \psi)}\\
+        \why{Caracterización($\equiv$)}\\
+            \res{\forall x \psi \equiv \forall x \phi}
+    \end{align*}
+    Por metateorema de derivación relajada se demuestra que\\
+    $\theo{}{\dsl}{\forall x (\phi \equiv \psi) \equiv (\forall x \psi \equiv \forall x \psi)}$
+\end{logicenv}
 \subsect{Punto 9}
+\begin{logicenv}{$\theo{}{\dsl}{(\forall x \,\vert\, \tau : \psi \equiv \phi) \to ((\forall x \,\vert\, \tau : \psi) \equiv (\forall x \,\vert\, \tau : \phi))}$}
+    \begin{align*}
+            \res{(\forall x \,\vert\, \tau : \psi \equiv \phi)}\\
+        \why{Azúcar sintáctico}\\
+            \res{\forall x (\tau \to (\psi \equiv \phi))}\\
+        \why{Dist.($\to$, $\equiv$)}\\
+            \res{\forall x (\tau \to \psi \equiv \tau \to \phi)}\\
+        \why[\Rightarrow]{Dist.($\forall x$, $\equiv$)}\\
+            \res{\forall x (\tau \to \psi) \equiv \forall x (\tau \to \phi)}\\
+        \why{Azúcar sintáctico}\\
+            \res{(\forall x \,\vert\, \tau : \psi) \equiv (\forall x \,\vert\, \tau : \phi)}
+    \end{align*}
+    Por metateorema de derivación relajada se demuestra que\\
+    $\theo{}{\dsl}{(\forall x \,\vert\, \tau : \psi \equiv \phi) \to ((\forall x \,\vert\, \tau : \psi) \equiv (\forall x \,\vert\, \tau : \phi))}$
+\end{logicenv}
 \subsect{Punto 10}
+\begin{logicenv}{Demuestre o refute\dots}
+    Esto se puede decir, mediante Def.($\gets$) como:
+    \[\forall x \phi \to \psi \equiv \forall x (\phi \to \psi)\]
+    Pero se puede ver que la equivalencia solo se cumple cuando $x$ no es libre en $\psi$, pues de otra forma, se aplica el cuantificador a una fórmula que no lo tiene, siendo de una forma contradictorio con el axioma de generalización.
+\end{logicenv}
 \subsect{Punto 12}
+\begin{logicenv}{$\theo{}{\dsl}{\psi \to \forall x \phi \equiv \forall x (\psi \to \phi)}$ si $x$ no aparece libre en $\psi$}
+    \begin{derivation}
+            \psi \to \forall x \phi\\
+        (alt.)Def.($\to$)\\
+            \neg \psi \lor \forall x \phi\\
+        Bx2, $x$ no aparece libre en $\psi$\\
+            \forall x (\neg \psi \lor \phi)\\
+        (alt.)Def.($\to$)\\
+            \forall x (\psi \to \phi)
+    \end{derivation}
+    Por metateorema de derivación se demuestra que\\
+    $\theo{}{\dsl}{\psi \to \forall x \phi \equiv \forall x (\psi \to \phi)}$ si $x$ no aparece libre en $\psi$
+\end{logicenv}
 \subsect{Punto 14}
+\begin{logicenv}{$\theo{}{\dsl}{(\forall x \,\vert\, \psi \lor \tau : \phi) \equiv (\forall x \,\vert\, \psi : \phi) \land (\forall x \,\vert\, \tau : \phi)}$}
+  \begin{derivation}
+        (\forall x \,\vert\, \psi \lor \tau : \phi)\\
+    Azúcar sintáctico\\
+        \forall x (\psi \lor \tau \to \phi)\\
+    (alt.)Def.($\to$), Dist($\neg$, $\to$)\\
+        \forall x ((\neg \psi \land \neg \tau) \lor \phi)\\
+    Dist.($\lor$, $\land$)\\
+        \forall x ((\neg \psi \lor \phi) \land (\neg \tau \lor \phi))\\
+    (alt.)Def.($\to$)\\
+        \forall x ((\psi \to \phi) \land (\tau \to \phi))\\
+    Dist.($\forall x $, $\land$)\\
+        \forall x (\psi \to \phi) \land \forall x (\tau \to \phi)\\
+    Azúcar sintáctico\\
+        (\forall x \,\vert\, \psi : \phi) \land (\forall x \,\vert\, \tau : \phi)
+  \end{derivation}  
+\end{logicenv}
 \subsect{Punto 16}
+\begin{logicenv}{$\theo{}{\dsl}{\forall x \forall y \phi \equiv \forall y \forall x \phi}$}
+    \begin{logic}
+        \forall x \forall y \phi \to \forall y \forall x \phi\\
+        \forall y \forall x \phi \to \forall x \forall y \phi\\
+        \forall x \forall y \phi \equiv \forall y \forall x \phi & (p1, p0)
+    \end{logic}
+    * Nota: no me convence esta forma de demostrarlo, si hay otra manera, agradecería que me la hiciera saber. Gracias*
+\end{logicenv}
+\begin{subproof}{$\forall x \forall y \phi \to \forall y \forall x \phi$}
+    \begin{align*}
+            \res{\forall x \forall y \phi}\\
+        \why[\Rightarrow]{Generalización, $y$ no aparece libre en $\phi$}\\
+            \res{\forall x \phi}\\
+        \why{Generalización, $y$ no aparece libre en $\phi$}\\
+            \res{\forall y \forall x \phi}
+    \end{align*}
+    Por metateorema de derivación relajada se demuestra que\\
+    $\forall x \forall y \phi \to \forall y \forall x \phi$
+\end{subproof}
+\begin{subproof}{$\forall y \forall x \phi \to \forall x \forall y$}
+    \begin{align*}
+        \res{\forall y \forall x \phi}\\
+    \why[\Rightarrow]{Generalización, $x$ no aparece libre en $\phi$}\\
+        \res{\forall y \phi}\\
+    \why{Generalización, $x$ no aparece libre en $\phi$}\\
+        \res{\forall x \forall y \phi}
+    \end{align*}
+    Por metateorema de derivación relajada se demuestra que\\
+    $\forall y \forall x \phi \to \forall x \forall y \phi$
+\end{subproof}
 \end{document}
