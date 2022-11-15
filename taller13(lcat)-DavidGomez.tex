@@ -1,0 +1,201 @@
+\documentclass[twoside]{article}
+
+% Packages
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{logicDG}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+% Font
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+% Page configurations
+
+\geometry{
+    a4paper,
+    margin = 2.5cm,
+    top = 4cm,
+    bottom = 2.5cm,
+    headheight = 72pt
+}
+\newcommand{\logo}{C:/Users/usuario/Documents/U/logo-eci.jpg}
+\renewcommand{\author}{David Gómez}
+\renewcommand{\title}{Taller 13}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\author}
+\fancyhead[LE]{\title}
+\fancyhead[R]{\includegraphics[width = 4cm]{\logo}}
+\fancyfoot[C]{Página \thepage}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{rojoEci}\leaders\hrule height \headrulewidth\hfill}}
+
+\hyphenpenalty = 10000
+
+\setlength{\parindent}{0pt}
+
+\newcommand{\sect}[1]{\section*{#1} \addcontentsline{toc}{section}{#1}}
+\newcommand{\subsect}[1]{\subsection*{#1} \addcontentsline{toc}{subsection}{#1}}
+\newcommand{\subsubsect}[1]{\subsubsection*{#1} \addcontentsline{toc}{subsubsection}{#1}}
+
+% Colors
+\definecolor{rojoEci}{RGB}{225, 70, 49}
+
+% Document
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+ 
+        \textbf{\fontsize{45}{\baselineskip}\selectfont{\title}}
+
+        \vspace{4cm}
+
+        {\Large Hecho por}
+
+        \vspace{1cm}
+
+        {\textbf{\LARGE\MakeUppercase{\author}}}
+
+        \vspace{2cm}
+
+        \includegraphics[width = .8\textwidth]{\logo}
+
+        \vspace{2cm}
+
+        {\Large Estudiante de Matemáticas\\[5pt]
+
+        Escuela Colombiana de Ingeniería Julio Garavito\\[5pt]
+
+        Colombia\\[5pt]
+
+        \today}
+             
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+\sect{Punto 1}
+\begin{logicenv}{Algunos son alalíticos\dots}
+    \begin{gather*}
+        A(x) := \text{``$x$ es analítico''}\\
+        D(x) := \text{``$x$ es detective''}
+    \end{gather*}
+
+    \begin{logic}
+        (\exists x \,\vert:\, A(x)) & Suposición\\
+        (\exists x \,\vert:\, A(x) \lor D(x)) & Debilitamiento($\lor$)\\
+        (\exists x \,\vert:\, D(x)) & Falsa regla de inferencia
+    \end{logic}
+\end{logicenv}
+
+\sect{Punto 2}
+\begin{logicenv}{Todos los latinos\dots}
+    \begin{gather*}
+        L(x) := \text{``$x$ es latino''}\\
+        M(x) := \text{``$x$ es mediterraneo''}\\
+        N(x) := \text{``$x$ es nórdico''}
+    \end{gather*}
+    \begin{logic}
+        (\forall x \,\vert\, L(x) : M(x)) & Suposición\\
+        (\forall x \,\vert\, N(x) : \neg M(x)) & Suposición\\
+        (\forall x \,\vert:\, (\neg L(x) \lor M(x)) \land (\neg N(x) \lor \neg M(x))) & Unión, trueque, dist.($\forall x$, $\land$)\\
+        (\forall x \,\vert:\, \neg L(x) \lor \neg N(x)) & Corte\\
+        (\forall x \,\vert\, N(x) : \neg L(x)) & trueque
+    \end{logic}
+\end{logicenv}
+
+\sect{Punto 3}
+\begin{logicenv}{Todos los que no se presenten\dots}
+    \begin{gather*}
+        P(x, y) := \text{``$x$ se presenta a\ presenta $y$''}\\
+        e := \text{``examen''}\\
+        s := \text{``supletorio''}\\
+        j := \text{``Juan''}
+    \end{gather*}
+    \begin{logic}
+        (\forall x \,\vert\, \neg P(x, e) : P(x, s)) & Suposición\\ %0
+        \neg P(j, e) & Suposición\\ %1
+        (\forall x \,\vert\, \neg P(x, e) : P(x, s)) \to \neg P(i, e) \to P(j, s) & $x$ no aparece libre en $j$\\ %2
+        \neg P(j, e) \to P(j, s) & MPP(p2, p0)\\ %3
+        P(j, s) & MPP(p3, p1)
+    \end{logic}
+\end{logicenv}
+
+\sect{Punto 4}
+\begin{logicenv}{Ningún ánade baila el vals}
+    \begin{gather*}
+        A(x) : \text{``$x$ es un ánade''}\\
+        V(x) : \text{``$X$ baila el vals''}\\
+        O(x) : \text{``$x$ es un oficial''}\\
+        I(x) : \text{``$x$ acepta una invitación a bailar el vals''}\\
+        Av(x) : \text{``$x$ es un ave de corral''}\\
+        \mathbb{M} = \text{``conjunto de `mis' aves de corral''} 
+    \end{gather*}
+    \begin{logic}
+        (\forall x \,\vert\, A(x) : \neg V(x)) & Suposición\\ %0
+        (\forall x \,\vert\, O(x) : I(x)) & Suposición\\ %1
+        (\forall x \,\vert\, I(x) : V(x)) & Suposición\\ %2
+        (\forall x \,\vert\, x \in \mathbb{M} : A(x)) & Suposición\\ %3
+        (\forall x \,\vert\, O(x) : V(x)) & trueque, Unión(p2, p1), Corte\\ %4
+        (\forall x \,\vert\, x \in \mathbb{M} : \neg V(x)) & trueque, Unión(p3, p0), Corte\\ %5
+        (\forall x \,\vert\, x \in \mathbb{M} : \neg O(x)) & trueque, Unión(p5, p4), Corte
+    \end{logic}
+\end{logicenv}
+
+\sect{Punto 5}
+\begin{logicenv}{Nadie confía en las personas\dots}
+    \begin{gather*}
+        C(x, y) : \text{``$x$ confía en $y$''}\\
+        d : \text{``deuda''}\\
+        P(x, y) : \text{``$x$ paga $y$''}\\
+        \mathbb{F}_x : \text{``Familia de $x$''}
+    \end{gather*}
+    \begin{logic}
+        (\forall x, y \,\vert\, \neg P(x, d) : \neg C(y, x)) & Suposición\\
+        (\forall y, x \,\vert\, y \in \mathbb{F}_x : C(y, x)) & Suposición\\
+        (\forall x \,\vert\, (\exists y \,\vert:\, y \in \mathbb{F}_x) : P(x, d)) & trueque, Unión(p1, p0), Corte\\
+    \end{logic}
+\end{logicenv}
+
+\sect{Punto 6}
+\begin{logicenv}{Pienso luego existo\dots}
+    \begin{gather*}
+        P(x) := \text{``$x$ piensa''}\\
+        E(x) := \text{``$x$ existe''}\\
+        y := \text{``yo''}
+    \end{gather*}
+    \begin{logic}
+        (\forall x\,\vert\, P(x) : E(x)) & Suposición\\ %0
+        P(y) & Suposición\\ %1
+        (\forall x\,\vert\, P(x) : E(x)) \to (P(y) \to E(y)) & $x$ no está libre en $y$\\ %2
+        P(y) \to E(y) & MPP(p2, p0)\\ %3
+        E(y) & MPP(p3, p1)
+    \end{logic}
+\end{logicenv}
+
+\sect{Punto 7}
+\begin{logicenv}{Las hienas son peligrosas\dots}
+    \begin{gather*}
+        H(x) := \text{``$x$ es una hiena''}\\
+        P(x) := \text{``$x$ es peligroso''}\\
+        G(x) := \text{``$x$ es un gato''}
+    \end{gather*}
+    \begin{logic}
+        (\forall x \,\vert\, H(x) : P(x)) & Suposición\\
+        (\forall x \,\vert\, G(x) : \neg P(x)) & Suposición\\
+        (\forall x \,\vert:\, \neg H(x) \lor \neg G(x)) & trueque, Unión(p1, p0), Corte\\
+        (\forall x \,\vert\, G(x) : \neg H(x)) & trueque(p2)
+    \end{logic}
+\end{logicenv}
+\end{document}
