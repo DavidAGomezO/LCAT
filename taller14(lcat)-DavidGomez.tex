@@ -1,0 +1,188 @@
+\documentclass[twoside]{article}
+
+% Packages
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{logicDG}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+% Font
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+% Page configurations
+
+\geometry{
+    a4paper,
+    margin = 2.5cm,
+    top = 4cm,
+    bottom = 2.5cm,
+    headheight = 72pt
+}
+\newcommand{\logo}{C:/Users/usuario/Documents/U/logo-eci.jpg}
+\renewcommand{\author}{David Gómez}
+\renewcommand{\title}{Taller 14}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\author}
+\fancyhead[LE]{\title}
+\fancyhead[R]{\includegraphics[width = 4cm]{\logo}}
+\fancyfoot[C]{Página \thepage}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{rojoEci}\leaders\hrule height \headrulewidth\hfill}}
+
+\hyphenpenalty = 10000
+
+\setlength{\parindent}{0pt}
+
+\newcommand{\sect}[1]{\section*{#1} \addcontentsline{toc}{section}{#1}}
+\newcommand{\subsect}[1]{\subsection*{#1} \addcontentsline{toc}{subsection}{#1}}
+\newcommand{\subsubsect}[1]{\subsubsection*{#1} \addcontentsline{toc}{subsubsection}{#1}}
+
+% Colors
+\definecolor{rojoEci}{RGB}{225, 70, 49}
+
+% Documento
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+ 
+        \textbf{\fontsize{45}{\baselineskip}\selectfont{\title}}
+
+        \vspace{4cm}
+
+        {\Large Hecho por}
+
+        \vspace{1cm}
+
+        {\textbf{\LARGE\MakeUppercase{\author}}}
+
+        \vspace{2cm}
+
+        \includegraphics[width = .8\textwidth]{\logo}
+
+        \vspace{2cm}
+
+        {\Large Estudiante de Matemáticas\\[5pt]
+
+        Escuela Colombiana de Ingeniería Julio Garavito\\[5pt]
+
+        Colombia\\[5pt]
+
+        \today}
+             
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+\sect{Punto 1}
+\begin{logicenv}{Si las leyes no existen\dots}
+    \begin{gather*}
+        L(x) := \text{``$x$ es una ley''}\\
+        P(x) := \text{``$x$ está permitido''}\\
+        M(x) := \text{``$x$ es una norma moral''}
+    \end{gather*}
+    \begin{logic}
+        \neg (\exists x \,\vert:\, L(x)) \to (\forall y \,\vert:\, P(y)) & Suposición\\
+        \neg (\exists x \,\vert:\, L(x)) \to \neg (\exists y \,\vert:\, M(x)) & Suposición\\
+        (\exists x \,\vert:\, M(x)) & Suposición\\
+        (\exists x\,\vert:\, L(x)) & MTT(p2, p1)
+    \end{logic}
+\end{logicenv}
+
+\sect{Punto 2}
+\begin{logicenv}{Pedro es maestro\dots}
+    \begin{gather*}
+        p := \text{``Pedro''}\\
+        M(x) :=  \text{``$x$ es maestro''}\\
+        S(x) := \text{``$x$ es sabio''}\\
+        G(x) := \text{``$x$ es generoso''}\\
+        P(x) := \text{``$x$ es persona''}\\
+        \mathbb{P} = \{x \,\vert\, P(x)\}
+    \end{gather*}
+    \begin{logic}
+        M(p) & Suposición\\ %0
+        (\forall x \,\vert\, M(x) : S(x) \land G(x)) & Suposición\\ %1
+        (\forall x \,\vert\, M(x) : x \in \mathbb{P}) & Suposición\\ %2
+        (\forall x \,\vert\, M(x) : S(x) \land G(x)) \to (M(p) \to S(p) \land G(p)) & Bx4\\ %3
+        M(p) \to S(p) \land G(p) & MPP(p3, p1)\\ %4
+        S(p) \land G(p) & MPP(p4, p0)\\ %5
+        (\forall x \,\vert\, M(x) : x \in \mathbb{P}) \to (M(p) \to p \in \mathbb{P}) & Bx4\\ %6
+        (M(p) \to p \in \mathbb{P}) & MPP(p6, p2)\\ %7
+        p \in \mathbb{P} & MPP(p7, p0)\\ %8
+        (\exists x \,\vert\, x \in \mathbb{P} : G(x)) & (p8, p5)
+    \end{logic}
+\end{logicenv}
+
+\sect{Punto 3}
+\begin{logicenv}[5]{Lancelot ama a la Reina\dots}
+    \begin{gather*}
+        \text{Lancelot} : l\\
+        \text{Reina Ginebra} : g\\
+        F(x, y) : \text{$x$ es amigo de $y$}\\
+        \text{Rey Arturo} : a\\
+        L(x, y): \text{$x$ ama a $y$}
+    \end{gather*}
+    \begin{logic}
+        L(l, g) & Suposición\\ %0
+        (\forall x \,\vert\, F(x, l) : \neg L(l, x)) & Suposición\\ %1
+        F(a, l) & Suposición\\ %2
+        (\forall x, y \,\vert\, L(l, x) \land F(y, l) : \neg L(y, x)) & Suposición\\ %3
+        (\forall x, y \,\vert\, L(l, x) \land F(y, l) : \neg L(y, x)) \to (L(l, g) \land F(a, l) \to \neg L(a, g)) & Bx4\\ %4
+        L(l, g) \land F(a, l) \to \neg L(a, g) & MPP(p4, p3)\\ %5
+        L(l, g) \land F(a, l) & Unión(p2, p0)\\ %6
+        \neg L(a, g) & MPP(p6, p5)
+    \end{logic}
+\end{logicenv}
+
+\sect{Punto 4}
+\begin{logicenv}{Hay un hombre\dots}
+    \begin{gather*}
+        H(x) := \text{``$x$ es un hombre''}\\
+        \mathbb{H} = \{x \,\vert\, H(x)\}\\
+        D(x, y) = \text{``$x$ desprecia a $y$''}
+    \end{gather*}
+    \begin{logic}
+        (\exists x \,\vert\, H(x) : (\forall y \,\vert\, y \in \mathbb{H} : D(x, y))) & Suposición\\
+        (\exists x \,\vert\, H(x) : (\forall y \,\vert\, y \in \mathbb{H} : D(y, x)))
+    \end{logic}
+    Hace falta que $D$ sea una relación reflexiva, cosa que no se especifica ni es algo deducible de la palabra misma.
+\end{logicenv}
+
+\sect{Punto 5}
+\begin{logicenv}{Si no es cierto\dots}
+    \begin{gather*}
+        F(x) := \text{``$x$ es feliz''}\\
+    \end{gather*}
+    \begin{logic}
+        \neg (\forall x \,\vert:\, F(x)) \to (\exists x \,\vert:\, \neg F(x)) & Suposición\\
+        \neg (\exists x \,\vert\, \neg F(x)) & Suposición\\
+        (\forall x \,\vert:\, F(x)) & MTT(p1, p0)\\
+        (\exists x \,\vert:\, F(x)) & Lema 7.13.3
+    \end{logic}
+\end{logicenv}
+
+\sect{Punto 6}
+\begin{logicenv}{Los elefantes son más pesados\dots}
+    \begin{gather*}
+        E(x) := \text{``$x$ es un elefante''}\\
+        R(x) := \text{``$x$ es un ratón''}
+        p(x) := \text{peso de $x$}\\
+    \end{gather*}
+    \begin{logic}
+        (\forall x, y \,\vert\, E(x) \land R(y) : p(x) > p(y)) & Suposición\\
+        \neg (\forall y, x \,\vert\, R(y) \land E(x) : p(y) > p(x)) & Suposición\\
+    \end{logic}
+    La conclusión es una proposición sin sentido
+\end{logicenv}
+\end{document}

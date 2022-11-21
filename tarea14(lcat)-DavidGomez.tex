@@ -1,0 +1,388 @@
+\documentclass[twoside]{article}
+
+% Packages
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{logicDG}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+% Font
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+% Page configurations
+
+\geometry{
+    a4paper,
+    margin = 2.5cm,
+    top = 4cm,
+    bottom = 2.5cm,
+    headheight = 72pt
+}
+\newcommand{\logo}{C:/Users/usuario/Documents/U/logo-eci.jpg}
+\renewcommand{\author}{David Gómez}
+\renewcommand{\title}{Tarea 14}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\author}
+\fancyhead[LE]{\title}
+\fancyhead[R]{\includegraphics[width = 4cm]{\logo}}
+\fancyfoot[C]{Página \thepage}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{rojoEci}\leaders\hrule height \headrulewidth\hfill}}
+
+\hyphenpenalty = 10000
+
+\setlength{\parindent}{0pt}
+
+\newcommand{\sect}[1]{\section*{#1} \addcontentsline{toc}{section}{#1}}
+\newcommand{\subsect}[1]{\subsection*{#1} \addcontentsline{toc}{subsection}{#1}}
+\newcommand{\subsubsect}[1]{\subsubsection*{#1} \addcontentsline{toc}{subsubsection}{#1}}
+
+% Colors
+\definecolor{rojoEci}{RGB}{225, 70, 49}
+
+% Documento
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+ 
+        \textbf{\fontsize{45}{\baselineskip}\selectfont{\title}}
+
+        \vspace{4cm}
+
+        {\Large Hecho por}
+
+        \vspace{1cm}
+
+        {\textbf{\LARGE\MakeUppercase{\author}}}
+
+        \vspace{2cm}
+
+        \includegraphics[width = .8\textwidth]{\logo}
+
+        \vspace{2cm}
+
+        {\Large Estudiante de Matemáticas\\[5pt]
+
+        Escuela Colombiana de Ingeniería Julio Garavito\\[5pt]
+
+        Colombia\\[5pt]
+
+        \today}
+             
+    \end{center}
+\end{titlepage}
+
+\begin{center}
+    \textbf{Sección 7.3}
+    (Lemas al final)
+\end{center}
+\tableofcontents
+\clearpage
+
+\sect{Punto 1}
+\subsect{a}
+\begin{logicenv}{Si hay alguien que pague impuestos\dots}
+    \begin{gather*}
+        I(x) := \text{``$x$ paga impuestos''}\\
+        P(x) := \text{``$x$ es político''}\\
+        F(x) := \text{``$x$ es filántropo''}
+    \end{gather*}
+    \begin{logic}
+        (\exists x \,\vert :\, I(x) \to (\forall y \,\vert\, P(y) : I(y))) & Suposición\\
+        (\exists x \,\vert :\, F(x) \to (\forall y \,\vert\, I(y) : F(y))) & Suposición\\
+        \exists x I(x) \to \forall y (P(y) \to I(y)) & Azúcar sintáctico(p0)\\
+        \exists x F(x) \to \forall y (I(y) \to F(y)) & Azúcar sintáctico(p1)\\
+        \exists x I(x) \land \exists x F(x) \to \forall y (P(y) \to I(y)) & Lema 7.3.1(p3, p2)\\
+        \exists x (\exists x I(x) \land F(x)) \to \forall y (P(y) \to I(y)) & Dist.($\exists x$, $\land$)
+    \end{logic}
+\end{logicenv}
+
+\subsect{b}
+\begin{logicenv}{Si hay alguien que pague impuestos\dots}
+    \begin{logic}
+        (\exists x \,\vert:\, I(x) \to (\forall y \,\vert\, P(y) : I(y))) & Suposición\\
+        (\exists x \,\vert :\, F(x) \to (\forall y \,\vert\, I(y) : F(y))) & Suposición\\
+        \exists x I(x) \to \forall y (P(y) \to I(y)) & Azúcar sintáctico(p0)\\
+        \exists x F(x) \to \forall y (I(y) \to F(y)) & Azúcar sintáctico(p1)\\
+        \exists x I(x) \land \exists x F(x) \to \forall y (P(y) \to I(y)) \land \forall y (I(y) \to F(y)) & Lema 7.3.2(p3, p2)\\
+        \exists x (\exists x I(x) \land F(x)) \to \forall x ((P(y) \to I(y)) \land(I(y) \to F(y))) & Dist($\exists x$, $\land$), Dist($\forall x$, $\land$) (p4)\\
+        \exists x (\exists x I(x) \land F(x)) \to \forall x (P(y) \to F(y)) & Transitividad($\to$)
+    \end{logic}
+\end{logicenv}
+
+\sect{Punto 2}
+\begin{logicenv}{$\theo{}{\dsl}{\exists x \textit{true} \equiv \textit{true}}$}
+    \begin{derivation}
+            \exists x \textit{true}\\
+        Def.($\exists x \phi$)\\
+            \neg \forall x \neg \textit{true}\\
+        $\neg \textit{true} \equiv \textit{false}$\\
+            \neg \forall x \textit{false}\\
+        $\forall x \textit{false} \equiv \textit{false}$\\
+            \neg \textit{false}\\
+        $\neg \textit{false} \equiv \textit{true}$\\
+            \textit{true}
+    \end{derivation}
+    Por metateorema de derivación se demuestra que $\theo{}{\dsl}{\exists x \textit{true} \equiv \textit{true}}$
+\end{logicenv}
+
+\sect{Punto 3}
+\begin{logicenv}{$\theo{}{\dsl}{\exists x \textit{false} \equiv \textit{false}}$}
+    \begin{derivation}
+        \exists x \textit{false}\\
+    Def.($\exists x \phi$)\\
+        \neg \forall x \neg \textit{false}\\
+    $\neg \textit{false} \equiv \textit{true}$\\
+        \neg \forall x \textit{true}\\
+    $\forall x \textit{true} \equiv \textit{true}$\\
+        \neg \textit{true}\\
+    $\neg \textit{true} \equiv \textit{false}$\\
+        \textit{false}
+\end{derivation}
+Por metateorema de derivación se demuestra que $\theo{}{\dsl}{\exists x \textit{false} \equiv \textit{false}}$
+\end{logicenv}
+
+\sect{Punto 4}
+\begin{logicenv}{$\exists x \exists x \phi \equiv \exists x \phi$}
+    \begin{derivation}
+            \exists x \exists x \phi\\
+        Def.($\exists x \phi$)\\
+            \neg \forall x \exists x \phi\\
+        Generalización, $x$ no libre en $\exists x \phi$\\
+            \neg \neg \exists x \phi\\
+        Doble negación\\
+            \exists x \phi
+    \end{derivation}
+    Por metateorema de derivación se demuestra que $\exists x \exists x \phi \equiv \exists x \phi$
+\end{logicenv}
+
+\sect{Punto 5}
+\begin{logicenv}{$\theo{}{\dsl}{\phi[x:= t] \equiv \exists x \phi}$, $t$ libre para $x$ en $\phi$}
+    \begin{align*}
+            \res{\phi[x := t]}\\
+        \why{Generalización, x no aparece libre en $\phi[x := t]$}\\
+            \res{\forall x \phi[x := t]}\\
+        \why[\Rightarrow]{Lema 7.3.3}\\
+            \res{\exists x \phi[x := t]}
+    \end{align*}
+\end{logicenv}
+
+\sect{Punto 6}
+\begin{logicenv}{$\theo{}{\dsl}{\exists x \phi \lor \exists x \psi \equiv \exists x (\phi \lor \psi)}$}
+    \begin{derivation}
+            \exists x \phi \lor \exists x \psi\\
+        Def.($\exists x \phi$)\\
+            \neg \forall x \neg \phi \lor \neg \forall x \neg \psi\\
+        Dist.($\neg$, $\land$)\\
+            \neg (\forall x \neg \phi \land \forall x \neg \psi)\\
+        Dist.($\forall x$, $\land$)\\
+            \neg \forall x (\neg \phi \land \neg \psi)\\
+        Def.($\exists x \phi$)\\
+            \exists x \neg (\neg \phi \land \neg \psi)\\
+        Dist.($\neg$, $\land$)\\
+            \exists x (\phi \lor \psi)
+    \end{derivation}
+\end{logicenv}
+
+\sect{Punto 7}
+\begin{logicenv}{$\theo{}{\dsl}{\psi \lor \exists x \phi \equiv \exists x (\psi \lor \phi)}$, $x$ no libre en $\psi$}
+    \begin{derivation}
+            \exists x (\psi \lor \phi)\\
+        Def.($\exists x \phi$)\\
+            \neg \forall x \neg(\psi \lor \phi)\\
+        Dist.($\neg$, $\lor$)\\
+            \neg \forall x (\neg \psi \land \neg \phi)\\
+        Dist.($\forall x$, $\land$)\\
+            \neg (\forall x \neg \psi \land \forall x \neg \phi)\\
+        Generalización, $x$ no libre en $\psi$\\
+            \neg (\neg \psi \land \forall x \neg \phi)\\
+        Dist.($\neg$, $\land$)\\
+            \psi \lor \neg \forall x \neg \phi\\
+        Def.($\exists x \phi$)\\
+            \psi \lor \exists x \phi
+    \end{derivation}
+    Por Conmutativa($\equiv$) y metateorema de derivación se demuestra que $\theo{}{\dsl}{\psi \lor \exists x \phi \equiv \exists x (\psi \lor \phi)}$, $x$ no libre en $\psi$
+\end{logicenv}
+
+\sect{Punto 8}
+\begin{logicenv}{$\theo{}{\dsl}{\psi \land \exists x \phi \equiv \exists x (\psi \land \phi)}$, $x$ no libre en $\psi$}
+    \begin{derivation}
+            \exists x (\psi \land \phi)\\
+        Def.($\exists x \phi$)\\
+            \neg \forall x \neg (\psi \land \phi)\\
+        Dist.($\neg$, $\land$)\\
+            \neg \forall x (\neg \psi \lor \neg \phi)\\
+        Dist.($\forall x$, $\lor$), $x$ no libre en $\psi$\\
+            \neg (\neg \psi \lor \forall x \neg \phi)\\
+        Dist.($\neg$, $\lor$)\\
+            \psi \land \neg \forall x \neg \phi\\
+        Def.($\exists x \phi$)\\
+            \psi \land \exists x \phi
+    \end{derivation}
+    Por Conmutativa($\equiv$) y metateorema de derivación se demuestra que $\theo{}{\dsl}{\psi \land \exists x \phi \equiv \exists x (\psi \land \phi)}$, $x$ no libre en $\psi$
+\end{logicenv}
+
+\sect{Punto 9}
+\begin{logicenv}{$\theo{}{\dsl}{\psi \to \exists x \phi \equiv \exists x (\psi \to \phi)}$, $x$ no libre en $\psi$}
+    \begin{derivation}
+            \exists x (\psi \to \phi)\\
+        (alt.)Def.($\to$)\\
+            \exists x (\neg \psi \lor \phi)\\
+        Dist.($\lor$, $\exists x$), $x$ no libre en $\psi$\\
+            \neg \psi \lor \exists x \phi\\
+        (alt.)Def.($\to$)\\
+            \psi \to \exists x \phi
+    \end{derivation}
+    Por Conmutativa($\equiv$) y metateorema de derivación se demuestra que
+    $\theo{}{\dsl}{\psi \to \exists x \phi \equiv \exists x (\psi \to \phi)}$, $x$ no libre en $\psi$
+\end{logicenv}
+
+\sect{Punto 10}
+\begin{logicenv}{$\theo{}{\dsl}{(\exists x \,\vert\, \textit{false} : \phi) \equiv \textit{false}}$}
+    \begin{derivation}
+            (\exists x \,\vert\, \textit{false} : \phi)\\
+        Azúcar sintáctico\\
+            \exists x (\textit{false} \land \textit{false})\\
+        $\textit{false} \land \phi \equiv \textit{false}$\\
+            \exists x \textit{false}\\
+        $\exists x \textit{false} \equiv \textit{false}$\\
+            \textit{false}
+    \end{derivation}
+    Por metateorema de derivación se demuestra que $\theo{}{\dsl}{(\exists x \,\vert\, \textit{false} : \phi) \equiv \textit{false}}$
+\end{logicenv}
+
+\sect{Punto 12}
+\begin{logicenv}{$\theo{}{\dsl}{(\exists x \,\vert\, \psi \lor \tau : \phi) \equiv (\exists x \,\vert\, \psi : \phi) \lor (\exists x \,\vert\, \tau : \phi)}$}
+    \begin{derivation}
+            (\exists x \,\vert\, \psi \lor \tau : \phi)\\
+        Azúcar sintáctico\\
+            \exists x ((\psi \lor \tau) \land \phi)\\
+        Dist.($\land$, $\lor$)\\
+            \exists x ((\psi \land \phi) \lor (\tau \land \phi))\\
+        Dist.($\exists x$, $\lor$)\\
+            \exists x (\psi \land \phi) \lor \exists x (\tau \land \phi)\\
+        Azúcar sintáctico\\
+            (\exists x \,\vert\, \psi : \phi) \lor (\exists x \,\vert\, \tau : \phi)
+    \end{derivation}
+    Por metateorema de derivación se demuestra que $\theo{}{\dsl}{(\exists x \,\vert\, \psi \lor \tau : \phi) \equiv (\exists x \,\vert\, \psi : \phi) \lor (\exists x \,\vert\, \tau : \phi)}$
+\end{logicenv}
+
+
+\sect{Punto 13}
+\begin{logicenv}{$\theo{}{\dsl}{\exists x \phi \equiv \exists y (\phi[x := y])}$, $y$ no libre en $\phi$}
+    \begin{derivation}
+            \exists x \phi\\
+        Def.($\exists x \phi$)\\
+            \neg \forall x \neg \phi\\
+        $\forall x \phi \equiv \forall y (\phi[x := y])$, $y$ no libre en $\phi$\\
+            \neg \forall y \neg (\phi[x := y])\\
+        Def.($\exists x \phi$)\\
+            \exists y (\phi[x := y])
+    \end{derivation}
+    Por metateorema de derivación se demuestra que $\theo{}{\dsl}{\exists x \phi \equiv \exists y (\phi[x := y])}$, $y$ no libre en $\phi$
+\end{logicenv}
+
+\sect{Punto 16}
+\begin{logicenv}{$\theo{}{\dsl}{\exists x \psi \to \phi \equiv \forall x (\psi \to \phi)}$, $x$ no libre en $\phi$}
+    \begin{derivation}
+            \exists x \psi \to \phi\\
+        (alt.)Def.($\to$)\\
+            \neg \exists x \psi \lor \phi\\
+        $\neg \exists x \phi \equiv \forall x \neg \phi$\\
+            \forall x \neg \psi \lor \phi\\
+        Dist.($\forall x$, $\lor$), $x$ no libre en $\phi$\\
+            \forall x (\neg \psi \lor \phi)\\
+        (alt.)Def.($\to$)\\
+            \forall x (\psi \to \phi)
+    \end{derivation}
+    Por metateorema de derivación se demuestra que $\theo{}{\dsl}{\exists x \psi \to \phi \equiv \forall x (\psi \to \phi)}$, $x$ no libre en $\phi$
+\end{logicenv}
+
+
+\sect{Punto 17}
+\begin{logicenv}{$\theo{}{\dsl}{\exists x (\phi \to \psi) \equiv \forall x \phi \to \exists x \psi}$, $x$ no libre en $\phi$}
+    \begin{derivation}
+            \exists x (\phi \to \psi)\\
+        Def.($\exists x \phi$)\\
+            \neg \forall x \neg (\phi \to \psi)\\
+        Dist.($\neg$, $\to$)\\
+            \neg \forall x (\phi \land \neg \psi)\\
+        Dist.($\forall$, $\land$)\\
+            \neg (\forall x \phi \land \forall x \neg \psi)\\
+        Dist.($\neg$, $\land$)\\
+            \neg \forall x \phi \lor \neg \forall x \neg \psi\\
+        Def.($\exists x \phi$)\\
+            \neg \forall x \phi \lor \exists x \psi\\
+        (alt.)Def.($\to$)\\
+            \forall x \phi \to \exists x \psi            
+    \end{derivation}
+    Por metateorema de derivación se demuestra que $\theo{}{\dsl}{\exists x (\phi \to \psi) \equiv \forall x \phi \to \exists x \psi}$, $x$ no libre en $\phi$
+\end{logicenv}
+
+\sect{Lemas}
+\subsect{Lema 7.3.1}
+\begin{logicenv}{$(\phi \to \psi) \land (\tau \to \xi) \to (\phi \land \tau \to \psi)$}
+    \[\Gamma = \{\phi \to \psi, \tau \to \xi\}\]
+    \begin{logic}
+        \phi \to \psi & $\Gamma$\\ %0
+        \tau \to \xi & $\Gamma$\\ %1
+        \neg (\phi \land \tau \to \psi) & Intento por reducción al absurdo\\ %2
+        \phi \land \tau \land \psi & Dist.($\neg$, $\to$)(p2)\\ %3
+        \phi & Debilitamiento(p3)\\ %4
+        \neg \psi & Debilitamiento(p3)\\ %5
+        \psi & MPP(p4, p0)\\ %6
+        \neg \psi \land \psi & Unión(p6, p5)\\ %7
+        \textit{false} & (p7)
+    \end{logic}
+    Dado que $\Gamma = \{\phi \to \psi, \tau \to \xi\}\cup \{\neg (\phi \land \tau \to \psi)\} \vDash \textit{false}$ se demuestra que 
+    \[(\phi \to \psi) \land (\tau \to \xi) \to (\phi \land \tau \to \psi)\]
+\end{logicenv}
+
+\subsect{Lema 7.3.2}
+\begin{logicenv}{$(\phi \to \psi) \land (\tau \to \xi) \to (\phi \land \tau \to \psi \land \xi)$}
+    \[\Gamma = \{\phi \to \psi, \tau \to \xi\}\]
+    \begin{logic}
+        \phi \to \psi & $\Gamma$\\ %0
+        \tau \to \xi & $\Gamma$\\ %1
+        \neg (\phi \land \tau \to \psi \land \xi) & Intento por reducción al absurdo\\ %2
+        \phi \land \tau \land \neg (\psi \land \xi) & Dist.($\neg$, $\to$)\\ %3
+        \phi & Debilitamiento(p3)\\ %4
+        \tau & Debilitamiento(p3)\\ %5
+        \psi & MPP(p4, p0)\\ %6
+        \xi & MPP(p5, p1)\\ %7
+        \psi \land \xi & Unión(p7, p6) \\ %8
+        \psi \land \xi \land \neg (\psi \land \xi) & Unión(p8, Debilitamiento(p3))\\ %9
+        \textit{false} & (p9)
+    \end{logic}
+    Dado que $\Gamma = \{\phi \to \psi, \tau \to \xi\}\cup \{\neg (\phi \land \tau \to \psi \land \xi)\} \vDash \textit{false}$ se demuestra que 
+    \[(\phi \to \psi) \land (\tau \to \xi) \to (\phi \land \tau \to \psi \land \xi)\]
+\end{logicenv}
+
+\subsect{Lema 7.3.3}
+\begin{logicenv}{$\forall x \phi \to \exists x \phi$}
+    \begin{derivation}
+            \forall x \phi \to \exists x \phi\\
+        (alt.)Def.($\to$)\\
+            \neg \forall x \phi \lor \exists x \phi\\
+        $\neg \forall x \phi \equiv \exists x \neg \phi$\\
+            \exists x \neg \phi \lor \exists x \phi\\
+        Dist.($\exists x$, $\lor$)\\
+            \exists x (\neg \phi \lor \phi)\\
+        $\neg \phi \lor \phi \equiv \textit{true}$\\
+            \exists x \textit{true}\\
+        $\exists x \textit{true} \equiv \textit{true}$\\
+            \textit{true}
+    \end{derivation}
+    Por Identidad($\equiv$) y metateorema de derivación se demuestra que $\forall x \phi \to \exists x \phi$
+\end{logicenv}
+\end{document}
