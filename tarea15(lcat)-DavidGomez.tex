@@ -1,0 +1,283 @@
+\documentclass[twoside]{article}
+
+% Packages
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{logicDG}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+% Font
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+% Page configurations
+
+\geometry{
+    a4paper,
+    margin = 2.5cm,
+    top = 4cm,
+    bottom = 2.5cm,
+    headheight = 72pt
+}
+\newcommand{\logo}{C:/Users/usuario/Documents/U/logo-eci.jpg}
+\renewcommand{\author}{David Gómez}
+\renewcommand{\title}{Titulo}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\author}
+\fancyhead[LE]{\title}
+\fancyhead[R]{\includegraphics[width = 4cm]{\logo}}
+\fancyfoot[C]{Página \thepage}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{rojoEci}\leaders\hrule height \headrulewidth\hfill}}
+
+\hyphenpenalty = 10000
+
+\setlength{\parindent}{0pt}
+
+\newcommand{\sect}[1]{\section*{#1} \addcontentsline{toc}{section}{#1}}
+\newcommand{\subsect}[1]{\subsection*{#1} \addcontentsline{toc}{subsection}{#1}}
+\newcommand{\subsubsect}[1]{\subsubsection*{#1} \addcontentsline{toc}{subsubsection}{#1}}
+
+% Colors
+\definecolor{rojoEci}{RGB}{225, 70, 49}
+
+% Documento
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+ 
+        \textbf{\fontsize{45}{\baselineskip}\selectfont{\title}}
+
+        \vspace{4cm}
+
+        {\Large Hecho por}
+
+        \vspace{1cm}
+
+        {\textbf{\LARGE\MakeUppercase{\author}}}
+
+        \vspace{2cm}
+
+        \includegraphics[width = .8\textwidth]{\logo}
+
+        \vspace{2cm}
+
+        {\Large Estudiante de Matemáticas\\[5pt]
+
+        Escuela Colombiana de Ingeniería Julio Garavito\\[5pt]
+
+        Colombia\\[5pt]
+
+        \today}
+             
+    \end{center}
+\end{titlepage}
+
+{\centering Sección 7.4}
+\tableofcontents
+\clearpage
+
+\sect{Punto 1}
+\subsect{a}
+\begin{logicenv}{Demostración con suposición en $\dsl$}
+    \begin{itemize}
+        \item[(i)] Si no hay cuantificadores que afecten globalmente a la conclusión entonces se puede definir de la misma forma que en DS
+        \item[(ii)] En caso de un cuantificador afectando la conclusión (o que sea referente a un objeto específico) hace falta ver las suposiciones y lograr llevarlas a un nivel del subconjunto al que se hace referencia (ej: tomar suposiciones de los pares para llegar a una conclusión sobre estos, sería lo mismo que reducir el conjunto a los pares y aplicar la definición para DS)  
+    \end{itemize}
+\end{logicenv}
+
+\subsect{b}
+\begin{logicenv}{Derivaciones son suposiciones}
+    \begin{itemize}
+        \item[(i)] Si no hay cuantificadores que afecten la conclusión globalmente entonces funciona tal como en DS
+        \item[(ii)] Se toma todo $\psi \in \Gamma$ como verdadero y aplicando lo que aporta $\dsl$ a lo que ya se tenía en DS más las suposiciones 
+    \end{itemize}
+\end{logicenv}
+
+\subsect{c}
+igual a (b) pero con pasos en los que se justifique con $\Rightarrow$
+\subsect{d}
+igual a (b) pero con pasos en los que se justifique con $\Leftarrow$
+
+\sect{Punto 2}
+\begin{logicenv}{Refutar $\forall x \phi  \equiv \phi$}
+    Al añadir un cuantificador, ya sea implícita o explícitamente, se está trabajando sobre los elementos de un conjunto, digamos $A$
+
+    Si $x$ es libre en $\phi$, $\forall x \phi$, hace referencia a una propiedad que cumplen todos los elementos $A$
+
+    En caso de que $\phi$ no tenga cuantificador ni mención de la variable $x$ entonces decir $\forall x \phi$ no es algo que realmente tenga mucho significado, pues nos dice que una proposición la cual en sí misma es verdad, se cumple para todos los elementos.
+    
+    En el caso de que $x$ sea libre en $\phi$, decir $\forall x \phi \equiv \phi$ nos dice que la propiedad $\phi$ que se cumple para todos los elementos de $A$ se cumple también para todos los elementos de todos los conjuntos, cosa que no es cierta.
+
+    ej:
+    \begin{logic}
+        \forall x (\sqrt{x^2} = x) & Aquí el conjunto es $\mathbb{R}^+$\\
+        \forall x (\sqrt{x^2} = x) \equiv \sqrt{x^2} = x & Proposición a refutar(p0)\\
+        \sqrt{x^2} = x & Ecuanimidad(p1, p0)\\
+        \forall y (\sqrt{x^2} = x) & Aquí el conjunto es $\mathbb{R}$, Generalización(p2)\\
+        \forall y (\sqrt{x^2} = x) \to \sqrt{(-1)^2} = (-1) & $x$ no libre en $(-1)$\\
+        \sqrt{(-1)^2} = (-1) & MPP(p4, p3)\\
+        \sqrt{(-1)^2} = 1 & Álgebra\\
+        -1 = 1 & \textit{false}
+    \end{logic}
+\end{logicenv}
+
+\sect{Punto 6}
+Tomando procedimiento 7.4.1
+\begin{logicenv}{$f(n) = \frac{1}{n}, n > 0$}
+    \begin{logic}
+        f(n) > f(n + 1) & Demostración 1\\
+        \theo{\{\epsilon > 0, n > 100\}}{\dsl}{|f(n) - 0| < \epsilon} & Demostración 2\\
+        limit(f, 0) = \textit{true}
+    \end{logic}
+\end{logicenv}
+\begin{subproof}{Demostración 1}
+    \begin{derivation}
+            \textit{true}\\
+        Aritmética\\
+            1 > 0\\
+        Aritmética\\
+            n + 1 > n\\
+        Aritmética\\
+            \frac{1}{n} >  \frac{1}{n + 1}\\
+        Def.($f$)\\
+            f(n) > f(n + 1)
+    \end{derivation}
+\end{subproof}
+\begin{subproof}{Demostración 2}
+    \begin{derivation}
+            |f(n) - 0| < \epsilon\\
+        Def.($f$)\\
+            \frac{1}{n} < \epsilon\\
+        $n > 100$, transitividad($<$), Aritmética\\
+            0 < \frac{1}{100} < \frac{1}{n} < \epsilon\\
+        transitividad($>$), $\epsilon > 0$\\
+            \textit{true}
+    \end{derivation}
+\end{subproof}
+
+\sect{Punto 7}
+Tomando procedimiento 7.4.1
+\begin{logicenv}{$f(n) = \frac{1}{n + 1}, n \in \mathbb{N}$}
+    \begin{logic}
+        f(n) > f(n + 1) & Demostración 1\\
+        \theo{\{\epsilon > 0, n > 100\}}{\dsl}{|f(n) - 0| < \epsilon} & Demostración 2\\
+        limit(f, 0) = \textit{true}
+    \end{logic}
+\end{logicenv}
+\begin{subproof}{Demostración 1}
+        \begin{derivation}
+                \textit{true}\\
+            Aritmética\\
+                1 > 0\\
+            Aritmética\\
+                n + 2 > n + 1\\
+            Aritmética\\
+                \frac{1}{n + 1} > \frac{1}{n + 2}\\
+            Def($f$)\\
+                f(n) > f(n + 1)
+        \end{derivation}
+\end{subproof}
+\begin{subproof}{Demostración 2}
+    \begin{derivation}
+            |f(n) - 0| < \epsilon\\
+        Def.($f$)\\
+            \frac{1}{n + 1} < \epsilon\\
+        $n > 100$, transitividad($<$), Aritmética\\
+            0 < \frac{1}{101} < \frac{1}{n + 1} < \epsilon\\
+        transitividad($<$), $\epsilon > 0$\\
+            \textit{true}
+    \end{derivation}
+\end{subproof}
+
+\sect{Punto 8}
+\begin{logicenv}{$f(n) = \frac{1}{n^2}, n > 0$}
+    \begin{logic}
+        f(n) > f(n + 1) & Demostración 1\\
+        \theo{\{\epsilon > 0, n > 100\}}{\dsl}{|f(n) - 0| < \epsilon} & Demostración 2\\
+        limit(f, 0) = \textit{true}
+    \end{logic}
+\end{logicenv}
+\begin{subproof}{Demostración 1}
+    \begin{derivation}
+            \textit{true}\\
+        n > 0\\
+            n > -\frac{1}{2}\\
+        Álgebra\\
+            2n + 1 > 0\\
+        Álgebra\\
+            n^2 + 2n + 1 > n^2\\
+        Álgebra\\
+            (n + 1)^2 > n^2\\
+        Álgebra\\
+            \frac{1}{n^2} > \frac{1}{(n + 1)^2}
+    \end{derivation}
+\end{subproof}
+\begin{subproof}{Demostración 2}
+    \begin{derivation}
+            |f(n) - 0| < \epsilon\\
+        Def.($f$)\\
+            \frac{1}{n^2} < \epsilon\\
+        n > 100, transitividad($<$), Aritmética\\
+            0 < \frac{1}{100^2} < \frac{1}{n^2} < \epsilon\\
+        transitividad($<$), $\epsilon >  0$\\
+            \textit{true}
+    \end{derivation}
+\end{subproof}
+
+\sect{Punto 9}
+\begin{logicenv}{$f(n) = n, n \in \mathbb{N}$}
+    \begin{logic}
+        f(n + 1) > f(n) & Demostración 1\\
+        \theo{\{\epsilon > 0, n > 10\}}{\dsl}{|f(n) - 0| < \epsilon} & Demostración 2\\
+        limit(f, 0) = \textit{false}
+    \end{logic}
+\end{logicenv}
+\begin{subproof}{Demostración 1}
+    \begin{derivation}
+            \textit{true}\\
+        Aritmética\\
+            1 > 0\\
+        Álgebra\\
+            n + 1 > n\\
+        Def.($f$)\\
+            f(n + 1) > f(n)
+    \end{derivation}
+\end{subproof}
+\begin{subproof}{Demostración 2}
+    Suponga que existe el límite y dicho límite es $\mathcal{L}$
+    \begin{derivation}
+            |f(n) - \mathcal{L}| < \epsilon\\
+        
+    \end{derivation}
+\end{subproof}
+
+
+\sect{Procedimientos}
+\begin{logicenv}{7.4.1}
+    \[limit(f, 0) \equiv (\forall \epsilon \in \mathbb{R}\,\vert\, \epsilon > 0: (\exists m \in \mathbb{R} \,\vert\, m \geq 0 : (\forall n \in \mathbb{N} \,\vert\, n > m : |f(n) - 0| < \epsilon)))\]
+    Por metateorema 7.22, demostrar
+    \[\theo{\{\epsilon > 0\}}{\dsl}{(\exists m \in \mathbb{R} \,\vert\, m \geq 0 : (\forall n \in \mathbb{N} \,\vert\, n > m |f(n) - 0| < \epsilon))}\]
+
+    \begin{align*}
+            \res{(\exists m \in \mathbb{R} \,\vert\, m \geq 0 : (\forall n \in \mathbb{N} \,\vert\, n > m : |f(n) - 0| < \epsilon))}\\
+        \why{Azúcar sintáctico}\\
+            \res{\exists m \in \mathbb{R} (m \geq 0 \land (\forall n \in \mathbb{N} \,\vert\, n > m : |f(n) - 0| < \epsilon))}\\
+        \why[\Leftarrow]{instanciación con testigo $a$}\\
+            \res{a \geq 0 \land (\forall n \in \mathbb{N} \,\vert\, n > a |f(n) - 0| < \epsilon)}\\
+        \why{$a \geq 0 \equiv \textit{true}$, Identidad($\land$)}\\
+            \res{(\forall n \in \mathbb{N} \,\vert\, n > a |f(n) - 0| < \epsilon)}
+    \end{align*}
+    Por metateorema 7.22, demostrar
+    \[\theo{\{\epsilon > 0, n > a\}}{\dsl}{|f(n) - 0| < \epsilon}\]
+\end{logicenv}
+\end{document}

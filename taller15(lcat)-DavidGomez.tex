@@ -1,0 +1,216 @@
+\documentclass[twoside]{article}
+
+% Packages
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{logicDG}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+
+% Fuente
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+% Configuraciones de página
+
+\geometry{
+    a4paper,
+    margin = 2.5cm,
+    top = 4cm,
+    bottom = 2.5cm,
+    headheight = 72pt
+}
+\newcommand{\logo}{C:/Users/usuario/Documents/U/logo-eci.jpg}
+\renewcommand{\author}{David Gómez}
+\renewcommand{\title}{Taller 15}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\author}
+\fancyhead[LE]{\title}
+\fancyhead[R]{\includegraphics[width = 4cm]{\logo}}
+\fancyfoot[C]{Página \thepage}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{rojoEci}\leaders\hrule height \headrulewidth\hfill}}
+
+\hyphenpenalty = 10000
+
+\setlength{\parindent}{0pt}
+
+\newcommand{\sect}[1]{\section*{#1} \addcontentsline{toc}{section}{#1}}
+\newcommand{\subsect}[1]{\subsection*{#1} \addcontentsline{toc}{subsection}{#1}}
+\newcommand{\subsubsect}[1]{\subsubsection*{#1} \addcontentsline{toc}{subsubsection}{#1}}
+
+
+% Colores
+\definecolor{rojoEci}{RGB}{225, 70, 49}
+
+% Documento
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+ 
+        \textbf{\fontsize{45}{\baselineskip}\selectfont{\title}}
+
+        \vspace{4cm}
+
+        {\Large Hecho por}
+
+        \vspace{1cm}
+
+        {\textbf{\LARGE\MakeUppercase{\author}}}
+
+        \vspace{2cm}
+
+        \includegraphics[width = .8\textwidth]{\logo}
+
+        \vspace{2cm}
+
+        {\Large Estudiante de Matemáticas\\[5pt]
+
+        Escuela Colombiana de Ingeniería Julio Garavito\\[5pt]
+
+        Colombia\\[5pt]
+
+        \today}
+             
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+\sect{Punto 1}
+\begin{logicenv}[10]{$limit(f, 0)$}
+    Tomando el procedimiento \hyperref[proc741]{7.4.1}
+    \[\theo{\left\{\epsilon > 0, n > \frac{1}{\epsilon}\right\}}{\dsl}{\left|f(n) - 0\right| < \epsilon}\]
+    \begin{derivation}
+            \left|f(n) - 0\right|\\
+        Def.($f$)\\
+            \left|\frac{1}{n + 1} - 0\right|\\
+        Aritmética\\
+            \frac{1}{n + 1}\\
+        Álgebra\\
+            0 < \frac{1}{n + 1} < \frac{1}{n}\\
+        $n > m \land m =\frac{1}{\epsilon}$\\
+            0 < \frac{1}{n + 1} < \frac{1}{n} < \frac{1}{m} = \epsilon\\
+        Transitividad($<$)
+            \textit{true}
+    \end{derivation}
+\end{logicenv}
+
+\sect{Punto 2}
+\begin{logicenv}[10]{$limit(f, 1)$}
+    Tomando el procedimiento \hyperref[proc741]{7.4.1}
+    \[\theo{\left\{\epsilon > 0, n > \frac{1}{\epsilon}\right\}}{\dsl}{\left|f(n) - 1\right| < \epsilon}\]
+    \begin{equation*}
+        \boxed{f(n) = \frac{n}{n + 1} = 1 - \frac{1}{n + 1}}
+    \end{equation*}
+    \begin{derivation}
+            \left|1 - \frac{1}{n + 1} - 1\right|\\
+        Aritmética\\
+            \frac{1}{n + 1}\\
+        Álgebra\\
+            0 < \frac{1}{n + 1} < \frac{1}{n}\\
+        $n > m \land m = \frac{1}{\epsilon}$\\
+            0 < \frac{1}{n + 1} < \frac{1}{n} < \frac{1}{m} = \epsilon\\
+        Transitividad($<$)\\
+            \textit{true}
+    \end{derivation}
+\end{logicenv}
+
+\sect{Punto 3}
+\begin{logicenv}[10]{$limit(f, 0)$}
+    Tomando el procedimiento \hyperref[proc741]{7.4.1}
+    \[\theo{\left\{\epsilon > 0, n > \frac{1}{\epsilon^2}\right\}}{\dsl}{\left|f(n) - 0\right| < \epsilon}\]
+    \begin{derivation}
+            \left|\frac{1}{\sqrt{n + 1}} - 0 \right|\\
+        Aritmética\\
+            \frac{1}{\sqrt{n + 1}}\\
+        Álgebra\\
+            0 < \frac{1}{\sqrt{n + 1}} < \frac{1}{\sqrt{n}}\\
+        $n > m \land m = \frac{1}{\epsilon^2}$\\
+            0 < \frac{1}{\sqrt{n + 1}} < \frac{1}{\sqrt{n}} < \frac{1}{\sqrt{m}} = \epsilon\\
+        Transitividad($<$)\\
+            \textit{true}
+    \end{derivation}
+\end{logicenv}
+
+\sect{Punto 4}
+\begin{logicenv}[10]{$limit(f, 1)$}
+    Tomando el procedimiento \hyperref[proc741]{7.4.1}
+    \[\theo{\left\{\epsilon > 0, n > \frac{1}{\epsilon} + 1\right\}}{\dsl}{\left|f(n) - 1\right| < \epsilon}\]
+    \begin{derivation}
+            \left|\frac{1}{n - 1}\right|\\
+        Aritmética\\
+            \frac{1}{n - 1}\\
+        Álgebra\\
+            0 < \frac{1}{n - 1}\\
+        $n > m \land m = \frac{1}{\epsilon} + 1$\\
+            0 < \frac{1}{n - 1} < \frac{1}{m - 1} = \epsilon\\
+        Transitividad($<$)\\
+            \textit{true}
+    \end{derivation}
+\end{logicenv}
+
+\sect{Punto 5}
+\begin{logicenv}[10]{$limit(f, 0)$}
+    Tomando el procedimiento \hyperref[proc741]{7.4.1}
+    \[\theo{\left\{\epsilon > 0, n > e^{1/\epsilon} + 1\right\}}{\dsl}{\left|f(n) - 0\right| < \epsilon}\]
+    \begin{derivation}
+            \left|\frac{1}{\ln(n)} - 0\right|\\
+        Aritmética\\
+            \frac{1}{\ln(n)}\\
+        Álgebra\\
+            0 < \frac{1}{\ln(n)}\\
+        $n > m \land m = e^{1/\epsilon}$\\
+            0 < \frac{1}{\ln(n)} < \frac{1}{\ln(m)} = \epsilon
+    \end{derivation}
+\end{logicenv}
+
+\sect{Punto 6}
+\begin{logicenv}[10]{$limit(f, 1)$}
+    Tomando el procedimiento \hyperref[proc741]{7.4.1}
+    \[\theo{\left\{\epsilon > 0, n > \frac{\epsilon}{3} + 1\right\}}{\dsl}{\left|f(n) - 1\right| < \epsilon}\]
+    \begin{equation*}
+        \boxed{f(n) = \frac{n^2}{(n + 1)^2} = 1 - \frac{2n + 1}{(n + 1)^2}}
+    \end{equation*}
+    \begin{derivation}
+            \left|1 - \frac{2n + 1}{(n + 1)^2}\right|\\
+        Aritmética\\
+            \frac{2n + 1}{(n + 1)^2}\\
+        Álgebra\\
+            0 < \frac{2n + 1}{(n + 1)^2} < \frac{2n + 1}{n + 1} < \frac{2n + 1}{n} < 3n\\
+        $n > m \land m = \frac{\epsilon}{3}$\\
+            0 < \frac{2n + 1}{(n + 1)^2} < \frac{2n + 1}{n + 1} < \frac{2n + 1}{n} < 3n < 3m = \epsilon\\
+        Transitividad($<$)\\
+            \textit{true}
+    \end{derivation}
+\end{logicenv}
+\sect{Procedimientos}
+\phantomsection
+\label{proc741}
+\begin{logicenv}{7.4.1}
+    \[limit(f, 0) \equiv (\forall \epsilon \in \mathbb{R}\,\vert\, \epsilon > 0: (\exists m \in \mathbb{R} \,\vert\, m \geq 0 : (\forall n \in \mathbb{N} \,\vert\, n > m : |f(n) - 0| < \epsilon)))\]
+    Por metateorema 7.22, demostrar
+    \[\theo{\{\epsilon > 0\}}{\dsl}{(\exists m \in \mathbb{R} \,\vert\, m \geq 0 : (\forall n \in \mathbb{N} \,\vert\, n > m |f(n) - 0| < \epsilon))}\]
+
+    \begin{align*}
+            \res{(\exists m \in \mathbb{R} \,\vert\, m \geq 0 : (\forall n \in \mathbb{N} \,\vert\, n > m : |f(n) - 0| < \epsilon))}\\
+        \why{Azúcar sintáctico}\\
+            \res{\exists m \in \mathbb{R} (m \geq 0 \land (\forall n \in \mathbb{N} \,\vert\, n > m : |f(n) - 0| < \epsilon))}\\
+        \why[\Leftarrow]{instanciación con testigo $a$}\\
+            \res{a \geq 0 \land (\forall n \in \mathbb{N} \,\vert\, n > a |f(n) - 0| < \epsilon)}\\
+        \why{$a \geq 0 \equiv \textit{true}$, Identidad($\land$)}\\
+            \res{(\forall n \in \mathbb{N} \,\vert\, n > a |f(n) - 0| < \epsilon)}
+    \end{align*}
+    Por metateorema 7.22, demostrar
+    \[\theo{\{\epsilon > 0, n > a\}}{\dsl}{|f(n) - 0| < \epsilon}\]
+\end{logicenv}
+\end{document}
