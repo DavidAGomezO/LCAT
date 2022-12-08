@@ -1,0 +1,208 @@
+\documentclass[twoside]{article}
+
+% Packages
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{logicDG}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+% Fuente
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+% Configuraciones
+
+\geometry{
+    a4paper,
+    margin = 2.5cm,
+    top = 4cm,
+    bottom = 2.5cm,
+    headheight = 72pt
+}
+\newcommand{\logo}{C:/Users/usuario/Documents/U/logo-eci.jpg}
+\renewcommand{\author}{David Gómez}
+\renewcommand{\title}{Tarea 15}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\author}
+\fancyhead[LE]{\title}
+\fancyhead[R]{\includegraphics[width = 4cm]{\logo}}
+\fancyfoot[C]{Página \thepage}
+\renewcommand{\headrule}{\hbox to \headwidth{\color{rojoEci}\leaders\hrule height \headrulewidth\hfill}}
+
+\hyphenpenalty = 10000
+
+\setlength{\parindent}{0pt}
+
+\newcommand{\sect}[1]{\section*{#1} \addcontentsline{toc}{section}{#1}}
+\newcommand{\subsect}[1]{\subsection*{#1} \addcontentsline{toc}{subsection}{#1}}
+\newcommand{\subsubsect}[1]{\subsubsection*{#1} \addcontentsline{toc}{subsubsection}{#1}}
+
+\newcommand{\divs}[2]{#1 \cdot\hspace*{-.1cm}\mid #2}
+
+% Colores
+\definecolor{rojoEci}{RGB}{225, 70, 49}
+
+% Documento
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+ 
+        \textbf{\fontsize{45}{\baselineskip}\selectfont{\title}}
+
+        \vspace{4cm}
+
+        {\Large Hecho por}
+
+        \vspace{1cm}
+
+        {\textbf{\LARGE\MakeUppercase{\author}}}
+
+        \vspace{2cm}
+
+        \includegraphics[width = .8\textwidth]{\logo}
+
+        \vspace{2cm}
+
+        {\Large Estudiante de Matemáticas\\[5pt]
+
+        Escuela Colombiana de Ingeniería Julio Garavito\\[5pt]
+
+        Colombia\\[5pt]
+
+        \today}
+             
+    \end{center}
+\end{titlepage}
+
+{\centering Sección 7.5}
+\tableofcontents
+\clearpage
+
+% Sección 7.5: 1,2,3,4,5,7,8,9,10
+\sect{Punto 1}
+\begin{logicenv}{Reflexividad de ``$=$''}
+    \[(\forall x \in \mathbb{R} \,\vert:\, x = x)\]
+    Basta demostrar $x = x$ en $\mathbb{R}$ (MT 7.20)
+    \begin{logic}
+        x = x & Bx6
+    \end{logic}
+\end{logicenv}
+
+\sect{Punto 2}
+\begin{logicenv}{Simetría de ``$=$''}
+    \[(\forall x, y \in \mathbb{R} \,\vert\, x = y : y = x)\]
+    Basta demostrar $x = y \to y = x$ en $\mathbb{R}$
+    Suponga $\Gamma = \{x = y, \neg y = x\}$
+    \begin{logic}
+        x = y & $\Gamma$\\
+        \neg y = x & $\Gamma$\\
+        \neg y = x \to (\neg y = x)[x := y] & Bx4(p0)\\
+        (\neg y = x)[x := y] & MPP(p2, p1)\\
+        \neg y = y & (p3)\\
+        \textit{false} & $y = y \equiv \textit{true}$
+    \end{logic}
+\end{logicenv}
+
+\sect{Punto 3}
+\begin{logicenv}{Transitividad de ``$=$''}
+    \[(\forall x, y, z \in \mathbb{R} \,\vert\, x = y \land y = z : )\]
+    Basta con demostrar $x = y \land y = x \to x = z$ en $\mathbb{R}$
+    
+\end{logicenv}
+
+\sect{Punto 4}
+\begin{logicenv}{``Leibniz'' con igualdad}
+    \begin{logic}
+        t = u & Suposición\\
+        u = t & Reflexividad($=$)(p0)\\
+        t = u \to (\phi \equiv \phi[t := u]) & Bx7(p0)\\
+        \phi \equiv \phi[t := u] & MPP(p2, p0)\\
+        u = t \to (\phi \equiv \phi[u := t]) & Bx7(p1)\\
+        \phi \equiv \phi[u := t] & MPP(p4, p1)\\
+        \phi[t := u] \equiv \phi[x := t][t := u] \equiv \phi[x := u] & $t$, $u$ libres para $x$ en $\phi$\\
+        \phi[u := t]  \equiv \phi[x := u][u := t] \equiv \phi[x := t] & $t$, $u$ libres para $x$ en $\phi$\\
+        \phi[u := t] \equiv \phi[t := u] & Transitividad(p3, p5)\\
+        \phi[x := t] \equiv \phi[t := u] & (p8, p6, p5)
+    \end{logic}
+\end{logicenv}
+
+\sect{Punto 5}
+\begin{logicenv}{Teo 7.28.2}
+    \begin{derivation}
+            (\exists x \,\vert\, x = t : \phi)\\
+        Azúcar sintáctico\\
+            \exists x (x = t \land \phi)\\
+        Def.($\forall x$), Dist.($\neg$, $\land$)\\
+            \neg \forall x (\neg x = t \lor \neg \phi)\\
+        (alt.)Def.($\to$)\\
+            \neg \forall x (x = t \to \neg \phi)\\
+        Regla de un punto ($\forall x$)\\
+            \neg \neg \phi[x := t]\\
+        Doble negación\\
+            \phi[x := t]
+    \end{derivation}
+\end{logicenv}
+
+\sect{Punto 7}
+\begin{logicenv}{$a$ divide a sus múltiplos}
+    \[(\forall a \in \mathbb{N} \,\vert:\, a \cdot\mid ab)\]
+    Basta demostrar $a \cdot\mid ab$ en $\mathbb{N}$
+    \begin{align*}
+            \res{a \cdot\mid ab}\\
+        \why{Def.($\cdot\mid$)}\\
+            \res{\exists x (ax = ab)}\\
+        \why[\Leftarrow]{Instanciación con testigo $x = b$}\\
+            \res{ab  = ab}\\
+        \why{Reflexividad($=$)}\\
+            \res{\textit{true}}
+    \end{align*}
+\end{logicenv}
+
+\sect{Punto 8}
+\begin{logicenv}{si $a$ y $b$ se dividen entre si, $a = b$ o $a = -b$}
+    \[(\forall a, b \in \mathbb{N} \,\vert\, \divs{a}{b} \land \divs{b}{a} : a = b \lor a = -b)\]
+    Basta demostrar $\divs{a}{b} \land \divs{b}{a} \to a = b \lor a = -b$ en $\mathbb{N}$
+
+    \begin{derivation}
+            \divs{a}{b} \land \divs{b}{a} \to a = b \lor a = -b\\
+        Def.($\divs{}{}$)\\
+            \exists x (ax = b) \land \exists y (by = a) \to a = b \lor a = -b\\
+        Dist.($\exists x$, $\land$)\\
+            \exists x (ax = b \land \exists y (by = a)) \to a = b \lor a = -b\\
+        Teo 7.20.2\\
+            \forall x (ax = b \land \exists y (by = a) \to a = b \lor a = -b)
+    \end{derivation}
+    \[\theo{\{ax = b \land \exists y (by = a)\}}{\dsl}{a = b \lor a = -b}\]
+    \begin{derivation}
+            ax = b \land \exists y (by = a) \to a = b \lor a = -b\\
+        Dist.($\exists x$, $\land$)\\
+            \exists y(ax = b \land by = a) \to a = b \lor a = -b\\
+        Teo 7.20.2\\
+            \forall y (ax = b \land by = a \to a = b \lor a = -b)\\
+    \end{derivation}
+    \[\theo{\{ax = b \land by = a\}}{\dsl}{a = b \lor a = -b}\]
+    \begin{logic}
+        ax = b & Suposición\\
+        by = a & Suposición\\
+        a = \frac{b}{x} & Álgebra(p0)\\
+        by = \frac{b}{x} & Transitividad($=$)(p2, p1)\\
+        y = \frac{1}{x} & Álgebra(p3)\\
+        x = y = -1 \lor x = y = 1 & Álgebra(p4), ($x, y \in \mathbb{N}$)\\
+        -a = b \lor a = b & Transitividad($=$)(p5, p0)
+    \end{logic}
+    
+\end{logicenv}
+
+\sect{Punto 9}
+\sect{Punto 10}
+\end{document}
